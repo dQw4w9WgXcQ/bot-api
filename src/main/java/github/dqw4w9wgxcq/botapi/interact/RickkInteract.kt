@@ -38,9 +38,9 @@ class RickkInteract : InteractDriver {
         fun onMenuEntryAdded(e: MenuEntryAdded) {
             if (e.menuEntry.type == MenuAction.WALK && forcedTag.get() != -1L) {//walk action is added right before the hovered tags are evaluated
                 //debug { "setting entity tag ${forcedTag.get()}" }
-                val tags: LongArray = Refl.entityTags.get2(null)
+                val tags: LongArray = Refl.ViewportMouse_entityTags.get2(null)
                 tags[0] = forcedTag.get()
-                Refl.entityCount.setInt2(null, 1, Refl.entityCountEncoder)
+                //Refl.ViewportMouse_entityCount.setInt2(null, 1, Refl.entityCountEncoder)
                 //debug { "tag after: ${Refl.entityTags.get2<LongArray>(null)[0]}" }
                 //debug { "entity count after: ${Refl.entityCount.getInt2(null, Refl.entityCountDecoder)}" }
             }
@@ -65,8 +65,8 @@ class RickkInteract : InteractDriver {
         debug { "walking $scenePosition" }
         onGameThread { }//make sure were at the right point in the game cycle, can fail otherwise
         wait(25)
-        Refl.selectedX.setInt2(null, scenePosition.x, 1)
-        Refl.selectedY.setInt2(null, scenePosition.y, 1)
+        Refl.Scene_selectedX.setInt2(null, scenePosition.x, 1)
+        Refl.Scene_selectedY.setInt2(null, scenePosition.y, 1)
         Refl.viewportWalking.setBoolean2(null, true)
     }
 

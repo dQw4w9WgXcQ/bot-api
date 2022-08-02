@@ -54,7 +54,7 @@ object Client : net.runelite.api.Client by BotApiContext.client {
 
     val widgets: Array<Array<net.runelite.api.widgets.Widget?>?>
         get() {
-            return Refl.widgets.get2(null)
+            return Refl.Widget_interfaceComponents.get2(null)
         }
 
     val isLoading: Boolean
@@ -64,7 +64,7 @@ object Client : net.runelite.api.Client by BotApiContext.client {
 
     val isWorldSelectorOpen: Boolean
         get() {
-            return Refl.isWorldSelectorOpen.getBoolean2(null)
+            return Refl.worldSelectOpen.getBoolean2(null)
         }
 
     fun hasFocus(): Boolean {

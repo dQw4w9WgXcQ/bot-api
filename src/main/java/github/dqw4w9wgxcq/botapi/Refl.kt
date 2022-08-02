@@ -11,26 +11,27 @@ internal object Refl {
     }
 
     //client
-    val widgets: Field
+    val Widget_interfaceComponents: Field
     val isLoading: Field
-    val isWorldSelectorOpen: Field
+    val worldSelectOpen: Field
     val loadWorlds: Method
     val hasFocus: Field
 
     //loginevent
     val loginBoxX: Field
     val loginBoxXDecoder: Int
-    val loginResponse1: Field
-    val loginResponse2: Field
-    val loginResponse3: Field
+    val Login_response0: Field
+    val Login_response1: Field
+    val Login_response2: Field
+    val Login_response3: Field
 
     //rickkinteract
-    val entityTags: Field
-    val entityCount: Field
+    val ViewportMouse_entityTags: Field
+    val ViewportMouse_entityCount: Field
     val entityCountDecoder: Int
     val entityCountEncoder: Int
-    val selectedX: Field
-    val selectedY: Field
+    val Scene_selectedX: Field
+    val Scene_selectedY: Field
     val viewportWalking: Field
 
     //actor
@@ -43,33 +44,35 @@ internal object Refl {
         }
 
         try {
-            widgets = getRsClass("aq").getDeclaredField("a")
-            isLoading = getRsClass("client").getDeclaredField("ch")
-            isWorldSelectorOpen = getRsClass("ba").getDeclaredField("cq")
-            loadWorlds = getRsClass("ed").getDeclaredMethod("c", Integer.TYPE)
-            hasFocus = getRsClass("hx").getDeclaredField("az")
+            val loginClass = getRsClass("bb")
 
-            val loginClass = getRsClass("ba")
-            loginBoxX = loginClass.getDeclaredField("b")
-            loginBoxXDecoder = -1216144849
-            loginResponse1 = loginClass.getDeclaredField("be")
-            loginResponse2 = loginClass.getDeclaredField("bz")
-            loginResponse3 = loginClass.getDeclaredField("bp")
+            Widget_interfaceComponents = getRsClass("ku").getDeclaredField("v")
+            isLoading = getRsClass("client").getDeclaredField("cf")
+            worldSelectOpen = loginClass.getDeclaredField("ci")
+            loadWorlds = getRsClass("le").getDeclaredMethod("o", Integer.TYPE)
+            hasFocus = getRsClass("dv").getDeclaredField("ae")
 
-            val viewportMouseClass = getRsClass("he")
-            entityTags = viewportMouseClass.getDeclaredField("u")
-            entityCount = viewportMouseClass.getDeclaredField("r")
-            entityCountDecoder = 435239719
-            entityCountEncoder = 668632215
+            loginBoxX = loginClass.getDeclaredField("e")
+            loginBoxXDecoder = 1251453039
+            Login_response0 = loginClass.getDeclaredField("bz")
+            Login_response1 = loginClass.getDeclaredField("bs")
+            Login_response2 = loginClass.getDeclaredField("bg")
+            Login_response3 = loginClass.getDeclaredField("bv")
 
-            val sceneClass = getRsClass("gg")
-            selectedX = sceneClass.getDeclaredField("am")
-            selectedY = sceneClass.getDeclaredField("an")
-            viewportWalking = sceneClass.getDeclaredField("af")
+            val viewportMouseClass = getRsClass("hn")
+            ViewportMouse_entityTags = viewportMouseClass.getDeclaredField("p")
+            ViewportMouse_entityCount = viewportMouseClass.getDeclaredField("g")
+            entityCountDecoder = -1680997135
+            entityCountEncoder = -520328175
 
-            val actorClass = getRsClass("cj")
-            pathLength = actorClass.getDeclaredField("cd")
-            pathLengthDecoder = 1161369831
+            val sceneClass = getRsClass("go")
+            Scene_selectedX = sceneClass.getDeclaredField("ai")
+            Scene_selectedY = sceneClass.getDeclaredField("ac")
+            viewportWalking = sceneClass.getDeclaredField("ap")
+
+            val actorClass = getRsClass("cs")
+            pathLength = actorClass.getDeclaredField("cm")
+            pathLengthDecoder = -1581137343
         } catch (e: ReflectiveOperationException) {
             throw Exception("reflection init failed", e)
         }

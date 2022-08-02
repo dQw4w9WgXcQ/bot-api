@@ -56,10 +56,11 @@ class LoginEvent : BlockingEvent() {
             }
         private val loginResponse: String
             get() {
+                val response0 = Refl.Login_response0.get2<String>(null)
                 val response1 = Refl.Login_response1.get2<String>(null)
                 val response2 = Refl.Login_response2.get2<String>(null)
                 val response3 = Refl.Login_response3.get2<String>(null)
-                return "$response1 $response2 $response3"
+                return "$response0 $response1 $response2 $response3"
             }
 
         private var needInitialHop = true

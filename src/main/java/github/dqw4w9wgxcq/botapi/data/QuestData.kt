@@ -182,9 +182,9 @@ enum class QuestData(val id: Int, val isVarbit: Boolean) {
 }
 
 //generated from runescript https://github.com/RuneStar/cs2-scripts/blob/b0eb330380e04db807620c234c486dc2e1bc7ac3/scripts/%5Bproc%2Cquest_progress_get%5D.cs2
-/*
+
 fun main() {
-    val string = "zzzzzzzzzzzzzzz"
+    val string = """"""
 
     val lines = string.lines()
 
@@ -212,4 +212,3 @@ fun main() {
         println(sourceLine)
     }
 }
- */

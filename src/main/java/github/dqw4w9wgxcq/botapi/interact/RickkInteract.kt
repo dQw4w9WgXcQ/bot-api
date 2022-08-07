@@ -174,19 +174,14 @@ class RickkInteract : InteractDriver {
     }
 
     //copy pasted out of deob
-    private fun calculateTag(
-        var0: Int,
-        var1: Int,
-        var2: Int,
-        @Suppress("SameParameterValue") var3: Boolean,
-        var4: Int
-    ): Long {
+    @Suppress("SameParameterValue")
+    private fun calculateTag(var0: Int, var1: Int, var2: Int, var3: Boolean, var4: Int): Long {
         var var5 =
-            (var0 and 127 shl 0 or (var1 and 127 shl 7) or (var2 and 3 shl 14)).toLong() or (var4.toLong() and 4294967295L shl 17) // L: 89
-        if (var3) { // L: 90
+            (var0 and 127 shl 0 or (var1 and 127 shl 7) or (var2 and 3 shl 14)).toLong() or (var4.toLong() and 4294967295L shl 17)
+        if (var3) {
             var5 = var5 or 65536L
         }
-        return var5 // L: 91
+        return var5
     }
 
     class InteractMouseAction(

@@ -15,8 +15,8 @@ repositories {
 dependencies {
     compileOnly("net.runelite:client:${Versions.runelite}")
     implementation(project(":loader-api"))
-    compileOnly("org.projectlombok:lombok:1.18.24")
-    annotationProcessor("org.projectlombok:lombok:1.18.24")
+    compileOnly("org.projectlombok:lombok:1.18.20")
+    annotationProcessor("org.projectlombok:lombok:1.18.20")
 }
 
 tasks{
@@ -25,7 +25,7 @@ tasks{
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    withType<JavaCompile>(){
+    withType<JavaCompile> {
         options.encoding = "UTF-8"
     }
 }

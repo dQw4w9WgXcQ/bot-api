@@ -5,7 +5,7 @@ import java.lang.reflect.Field
 import java.lang.reflect.Method
 
 @Suppress("DEPRECATION")
-internal object Refl {
+object Refl {
     private val rsClassLoader by lazy {
         BotApiContext.client::class.java.classLoader!!
     }
@@ -28,8 +28,8 @@ internal object Refl {
     //rickkinteract
     val ViewportMouse_entityTags: Field
     val ViewportMouse_entityCount: Field
-    val entityCountDecoder: Int
-    val entityCountEncoder: Int
+    val entityCountDecoder: Long
+    val entityCountEncoder: Long
     val Scene_selectedX: Field
     val Scene_selectedY: Field
     val viewportWalking: Field

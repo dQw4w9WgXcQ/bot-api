@@ -17,14 +17,10 @@ import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ImageUtil;
 
 import javax.inject.Inject;
+import java.util.Optional;
 
-@PluginDescriptor(
-        name = "bot"
-)
+@PluginDescriptor(name = "bot")
 @Slf4j
-/*
-I HAVE NOT TESTED IF THIS WORKS OR EVEN COMPILES CORRECTLY
- */
 public class BotPlugin extends Plugin {
     @Inject
     private Client client;
@@ -43,7 +39,7 @@ public class BotPlugin extends Plugin {
 //	private BotOverlay overlay;
 
     @Override
-    protected void startUp() throws Exception {
+    protected void startUp() {
         BotApiContext.INSTANCE.initialize(client, clientThread, eventBus);
         ScriptManager scriptManager = new ScriptManager();
 
@@ -52,8 +48,8 @@ public class BotPlugin extends Plugin {
             startScript(scriptManager, scriptName);
         }
 
-        navButton = NavigationButton.builder()
-                .tooltip("Bot")
+        navButton = NavigationButton
+                .builder().tooltip("Bot")
                 .icon(ImageUtil.loadImageResource(ConfigPlugin.class, "config_icon.png"))
                 .priority(-420)
                 .panel(new BotPanel(scriptManager))

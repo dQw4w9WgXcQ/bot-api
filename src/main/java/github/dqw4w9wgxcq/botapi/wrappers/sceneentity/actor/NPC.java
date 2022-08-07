@@ -23,6 +23,8 @@ public final class NPC extends Actor<net.runelite.api.NPC> implements net.runeli
         net.runelite.api.Actor getInteracting();
 
         String getName();
+
+        int getCombatLevel();
     }
 
     @Delegate(types = {net.runelite.api.NPC.class, Renderable.class}, excludes = {Excludes.class})

@@ -18,13 +18,13 @@ import java.awt.Rectangle
 
 class LoginEvent : BlockingEvent() {
     companion object {
-        var isPreventingLogin: (() -> Boolean)? = null
+        var preventLoginHook: (() -> Boolean)? = null
 
         private const val buttonWidth = 100
         private const val buttonHeight = 40
         private val loginBoxX: Int
             get() {
-                return Refl.loginBoxX.getInt2(null, Refl.loginBoxXDecoder)
+                return Refl.loginBoxX.getInt2(null, Refl.loginBoxXmult)
             }
         private val loginBoxCenter: Int
             get() {
@@ -66,15 +66,15 @@ class LoginEvent : BlockingEvent() {
         private var needInitialHop = true
     }
 
-    enum class LoginIndex(val id: Int) {
-        MAIN_MENU(0),
-        BETA_WORLD(1),
-        ENTER_CREDENTIALS(2),
-        INVALID_CREDENTIALS(3),
-        AUTHENTICATOR(4),
-        EULA(12),
-        DISABLED_LOCKED(14),
-        DISCONNECTED(24),
+    object LoginIndex {
+        const val MAIN_MENU = 0
+        const val BETA_WORLD = 1
+        const val ENTER_CREDENTIALS = 2
+        const val INVALID_CREDENTIALS = 3
+        const val AUTHENTICATOR = 4
+        const val EULA = 12
+        const val DISABLED_LOCKED = 14
+        const val DISCONNECTED = 24
     }
 
     private val loginMessageBehaviors = mutableListOf<Pair<String, () -> Boolean>>()
@@ -88,9 +88,9 @@ class LoginEvent : BlockingEvent() {
     }
 
     override fun checkBlocked(): Boolean {
-        if (isPreventingLogin != null) {
-            if (!isPreventingLogin!!()) {
-                isPreventingLogin = null
+        if (preventLoginHook != null) {
+            if (!preventLoginHook!!()) {
+                preventLoginHook = null
                 return false
             }
 
@@ -192,14 +192,14 @@ class LoginEvent : BlockingEvent() {
         }
 
         if (loginResponse.contains("connection timed out", true)) {
-            if (Client.loginIndex != LoginIndex.MAIN_MENU.id) {
+            if (Client.loginIndex != LoginIndex.MAIN_MENU) {
                 Keyboard.esc()
                 return true
             }
         }
 
         val loginIndex: Int = Client.loginIndex
-        info { "login index $loginIndex value: ${LoginIndex.values().firstOrNull { it.id == loginIndex }}" }
+        info { "login index $loginIndex" }
 
         val doBehavior = loginIndexBehaviors[loginIndex]
         if (doBehavior != null) {
@@ -209,7 +209,7 @@ class LoginEvent : BlockingEvent() {
         }
 
         when (loginIndex) {
-            LoginIndex.ENTER_CREDENTIALS.id -> {
+            LoginIndex.ENTER_CREDENTIALS -> {
                 Client.username = credentials.user
                 Client.setPassword(credentials.password)
                 Keyboard.enter()
@@ -221,12 +221,12 @@ class LoginEvent : BlockingEvent() {
                 }
             }
 
-            LoginIndex.MAIN_MENU.id -> {
+            LoginIndex.MAIN_MENU -> {
                 Keyboard.esc()
                 Keyboard.enter()
             }
 
-            LoginIndex.AUTHENTICATOR.id -> {
+            LoginIndex.AUTHENTICATOR -> {
                 val auth = credentials.auth ?: throw Exception("no auth")
                 val code = Totp(auth, object : Clock() {
                     override fun getCurrentInterval(): Long {
@@ -236,15 +236,17 @@ class LoginEvent : BlockingEvent() {
                 info { "auth $auth now:\"$code\"" }
                 Client.setOtp(code)
                 Keyboard.enter()
-                waitUntil { Client.gameState == GameState.LOGGING_IN }
+                waitUntil({ Client.gameState == GameState.LOGGING_IN }.withDescription("gameState == LOGGING_IN"))
                 BotScript.nextLoopDelay = 0
                 return true
             }
 
-            LoginIndex.DISCONNECTED.id -> {
+            LoginIndex.DISCONNECTED -> {
                 info { "disconected state" }
                 Mouse.click(okBounds)
+                waitUntil({ Client.loginIndex != LoginIndex.DISCONNECTED }.withDescription("loginState != DISCONNECTED"))
             }
+
 //            State.BETA_WORLD.loginIndex -> {
 //                if (Worlds.SUITABLE.invoke(Worlds.getCurrent())) {
 //                    Keyboard.esc()
@@ -252,14 +254,14 @@ class LoginEvent : BlockingEvent() {
 //                    Worlds.changeLobbyWorld(Worlds.getRandom(Worlds.SUITABLE.and(Worlds.P2P)).id)
 //                }
 //            }
-            LoginIndex.EULA.id -> {
+
+            LoginIndex.EULA -> {
                 Mouse.click(acceptBounds)
             }
 
-            else -> throw FatalException("no behavior for login index ${
-                LoginIndex.values().firstOrNull { it.id == loginIndex } ?: "unknown: $loginIndex"
-            }")
+            else -> throw FatalException("no behavior for login index $loginIndex")
         }
+
         return true
     }
 }

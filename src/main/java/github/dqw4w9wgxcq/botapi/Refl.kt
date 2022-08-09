@@ -1,5 +1,8 @@
 package github.dqw4w9wgxcq.botapi
 
+import github.dqw4w9wgxcq.botapi.Refl.getLong2
+import github.dqw4w9wgxcq.botapi.Refl.setLong2
+import github.dqw4w9wgxcq.botapi.commons.debug
 import github.dqw4w9wgxcq.botapi.loader.BotApiContext
 import java.lang.reflect.Field
 import java.lang.reflect.Method
@@ -19,7 +22,7 @@ object Refl {
 
     //loginevent
     val loginBoxX: Field
-    val loginBoxXDecoder: Int
+    val loginBoxXmult: Int
     val Login_response0: Field
     val Login_response1: Field
     val Login_response2: Field
@@ -28,15 +31,14 @@ object Refl {
     //rickkinteract
     val ViewportMouse_entityTags: Field
     val ViewportMouse_entityCount: Field
-    val entityCountDecoder: Long
-    val entityCountEncoder: Long
+    val entityCountMult: Long
     val Scene_selectedX: Field
     val Scene_selectedY: Field
     val viewportWalking: Field
 
     //actor
     val pathLength: Field
-    val pathLengthDecoder: Int
+    val pathLengthmult: Int
 
     init {
         fun getRsClass(name: String): Class<*> {
@@ -53,7 +55,7 @@ object Refl {
             hasFocus = getRsClass("dv").getDeclaredField("ae")
 
             loginBoxX = loginClass.getDeclaredField("e")
-            loginBoxXDecoder = 1251453039
+            loginBoxXmult = 1251453039
             Login_response0 = loginClass.getDeclaredField("bz")
             Login_response1 = loginClass.getDeclaredField("bs")
             Login_response2 = loginClass.getDeclaredField("bg")
@@ -62,8 +64,7 @@ object Refl {
             val viewportMouseClass = getRsClass("hn")
             ViewportMouse_entityTags = viewportMouseClass.getDeclaredField("p")
             ViewportMouse_entityCount = viewportMouseClass.getDeclaredField("g")
-            entityCountDecoder = -1680997135
-            entityCountEncoder = -520328175
+            entityCountMult = -520328175
 
             val sceneClass = getRsClass("go")
             Scene_selectedX = sceneClass.getDeclaredField("ai")
@@ -72,7 +73,7 @@ object Refl {
 
             val actorClass = getRsClass("cs")
             pathLength = actorClass.getDeclaredField("cm")
-            pathLengthDecoder = -1581137343
+            pathLengthmult = -1581137343
         } catch (e: ReflectiveOperationException) {
             throw Exception("reflection init failed", e)
         }
@@ -124,14 +125,16 @@ object Refl {
         }
     }
 
-    fun Field.getInt2(obj: Any?, decoder: Int): Int {
+    fun Field.getInt2(obj: Any?, mult: Int): Int {
         val wasAccessible = this.isAccessible
         if (!wasAccessible) {
             this.isAccessible = true
         }
 
         return try {
-            this.getInt(obj) * decoder
+            val value = this.getInt(obj) / mult
+            debug { "getLong2: $value" }
+            value
         } finally {
             if (!wasAccessible) {
                 this.isAccessible = false
@@ -139,14 +142,50 @@ object Refl {
         }
     }
 
-    fun Field.setInt2(obj: Any?, value: Int, encoder: Int) {
+    fun Field.setInt2(obj: Any?, value: Int, mult: Int) {
         val wasAccessible = this.isAccessible
         if (!wasAccessible) {
             this.isAccessible = true
         }
 
         try {
-            this.setInt(obj, value * encoder)
+            val multedValue = value * mult
+            debug { "setLong2: $value * $mult = $multedValue" }
+            this.setInt(obj, multedValue)
+        } finally {
+            if (!wasAccessible) {
+                this.isAccessible = false
+            }
+        }
+    }
+
+    fun Field.getLong2(obj: Any?, mult: Long): Long {
+        val wasAccessible = this.isAccessible
+        if (!wasAccessible) {
+            this.isAccessible = true
+        }
+
+        return try {
+            val value = this.getLong(obj) / mult
+            debug { "getLong2: $value" }
+            value
+        } finally {
+            if (!wasAccessible) {
+                this.isAccessible = false
+            }
+        }
+    }
+
+    fun Field.setLong2(obj:Any?, value:Long, mult: Long){
+        val wasAccessible = this.isAccessible
+        if (!wasAccessible) {
+            this.isAccessible = true
+        }
+
+        try {
+            val multedValue = value * mult
+            debug { "setLong2: $value * $mult = $multedValue" }
+            this.setLong(obj, multedValue)
         } finally {
             if (!wasAccessible) {
                 this.isAccessible = false

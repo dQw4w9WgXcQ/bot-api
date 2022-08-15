@@ -9,13 +9,13 @@ object Events {
     fun register(subscriber: Any) {
         info { "registering" + subscriber.javaClass.simpleName }
         subscribers.add(subscriber)
-        BotApiContext.eventBus.register(subscriber)
+        BotApiContext.getEventBus().register(subscriber)
     }
 
     fun unregister(subscriber: Any) {
         info { "unregistering " + subscriber.javaClass.simpleName }
         subscribers.remove(subscriber)
-        BotApiContext.eventBus.unregister(subscriber)
+        BotApiContext.getEventBus().unregister(subscriber)
     }
 
     fun clear() {

@@ -24,7 +24,7 @@ import kotlin.math.hypot
 fun <T> onGameThreadAsync(runnable: () -> T): Future<T> {
     val future = FutureTask(runnable)
 
-    BotApiContext.clientThread.invoke(future)
+    BotApiContext.getClientThread().invoke(future)
 
     return future
 }

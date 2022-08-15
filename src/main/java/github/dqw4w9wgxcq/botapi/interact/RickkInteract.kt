@@ -2,6 +2,7 @@ package github.dqw4w9wgxcq.botapi.interact
 
 import github.dqw4w9wgxcq.botapi.Refl
 import github.dqw4w9wgxcq.botapi.Refl.get2
+import github.dqw4w9wgxcq.botapi.Refl.getInt2
 import github.dqw4w9wgxcq.botapi.Refl.getLong2
 import github.dqw4w9wgxcq.botapi.Refl.setBoolean2
 import github.dqw4w9wgxcq.botapi.Refl.setInt2
@@ -34,24 +35,30 @@ import java.util.concurrent.atomic.AtomicLong
 
 class RickkInteract : InteractDriver {
     class HoveredTagManager {
-        val forcedTag: AtomicLong = AtomicLong(-1)
+        val forcedTag: AtomicLong = AtomicLong(-1L)
 
         @Subscribe
         fun onMenuEntryAdded(e: MenuEntryAdded) {
-            if (e.menuEntry.type == MenuAction.WALK && forcedTag.get() != -1L) {//walk action is added right before the hovered tags are evaluated
-                debug { "setting entity tag ${forcedTag.get()}" }
-                val tags: LongArray = Refl.ViewportMouse_entityTags.get2(null)
-                tags[0] = forcedTag.get()
-                Refl.ViewportMouse_entityCount.setLong2(null, 1, Refl.entityCountMult)
-                debug { "tag after: ${Refl.ViewportMouse_entityTags.get2<LongArray>(null)[0]}" }
-                debug { "entity count after: ${Refl.ViewportMouse_entityCount.getLong2(null, Refl.entityCountMult)}" }
+            if (e.menuEntry.type != MenuAction.WALK ) {
+                return
             }
+
+            if (forcedTag.get() == -1L) {
+                return
+            }
+
+            debug { "setting entity tag ${forcedTag.get()}" }
+            val tags: LongArray = Refl.ViewportMouse_entityTags.get2(null)
+            tags[0] = forcedTag.get()
+            Refl.ViewportMouse_entityCount.setInt2(null, 1, Refl.entityCountMult)
+            debug { "tag after: ${Refl.ViewportMouse_entityTags.get2<LongArray>(null)[0]}" }
+            debug { "entity count after: ${Refl.ViewportMouse_entityCount.getInt2(null, Refl.entityCountMult)}" }
         }
     }
 
     private val hoveredTagManager by lazy {
         val out = HoveredTagManager()
-        BotApiContext.eventBus.register(out)
+        BotApiContext.getEventBus().register(out)
         out
     }
 
@@ -214,10 +221,14 @@ class RickkInteract : InteractDriver {
             }
 
             var index: Int? = null
-            waitUntil(250, 5) {
-                index = getMenuEntries().indexOfFirst(entryMatches)
-                index != -1
-            }
+            waitUntil(
+                250,
+                5,
+                {
+                    index = getMenuEntries().indexOfFirst(entryMatches)
+                    index != -1
+                }.withDescription("entryMatches:$entryMatches")
+            )
 
             if (interrupted) {
                 debug { "interrupted after index found" }

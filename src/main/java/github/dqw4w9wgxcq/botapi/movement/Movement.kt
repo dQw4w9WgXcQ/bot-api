@@ -109,7 +109,7 @@ object Movement {
 
         val path = LocalPathfinding.findPathUnchecked(to, myTile, ignoreEndObject, map)
 
-        info { "path size ${path.size}" }
+        debug { "path size ${path.size}" }
 
         val points = ArrayDeque(path)
 
@@ -206,7 +206,7 @@ object Movement {
         } else {
             debug { "interacting walk scene:$walkPoint world:${walkPoint.toWorld()}" }
             Interact.walk(walkPoint)
-            waitUntil { isMoving() }
+            waitUntil ({ isMoving() }.withDescription("moving"))
         }
 
         checkStam()

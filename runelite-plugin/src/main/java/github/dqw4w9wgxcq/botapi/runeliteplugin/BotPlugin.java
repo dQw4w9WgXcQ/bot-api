@@ -6,6 +6,7 @@ import github.dqw4w9wgxcq.botapi.loader.ScriptManager;
 import github.dqw4w9wgxcq.botapi.loader.ScriptMeta;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
+import net.runelite.api.ItemComposition;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.plugins.Plugin;
@@ -24,55 +25,47 @@ import java.util.Optional;
 public class BotPlugin extends Plugin {
     @Inject
     private Client client;
+
     @Inject
     private ClientThread clientThread;
+
     @Inject
     private EventBus eventBus;
 
     @Inject
     private ClientToolbar clientToolbar;
 
-    @Inject
-    private OverlayManager overlayManager;
-
-    private NavigationButton navButton;
-//	private BotOverlay overlay;
-
     @Override
     protected void startUp() {
-        BotApiContext.INSTANCE.initialize(client, clientThread, eventBus);
-        ScriptManager scriptManager = new ScriptManager();
+        BotApiContext.initialize(client, clientThread, eventBus);
+        ScriptManager scriptManager = new ScriptManager(getClass().getClassLoader());
 
         String scriptName = System.getProperty("bot.script");
         if (scriptName != null) {
             startScript(scriptManager, scriptName);
         }
 
-        navButton = NavigationButton
+        clientToolbar.addNavigation(NavigationButton
                 .builder().tooltip("Bot")
                 .icon(ImageUtil.loadImageResource(ConfigPlugin.class, "config_icon.png"))
                 .priority(-420)
                 .panel(new BotPanel(scriptManager))
-                .build();
-
-        clientToolbar.addNavigation(navButton);
-//		overlayManager.add(overlay = new BotOverlay());
+                .build());
     }
 
     private void startScript(ScriptManager scriptManager, String scriptName) {
         for (Class<? extends IBotScript> scriptClass : scriptManager.loadScripts()) {
-            if (scriptClass.getAnnotation(ScriptMeta.class).value().equalsIgnoreCase(scriptName)) {
+            if (scriptClass.getAnnotation(ScriptMeta.class).value().trim().equalsIgnoreCase(scriptName.trim())) {
                 scriptManager.startScript(scriptClass);
                 return;
             }
         }
 
-        log.warn("cant find script: " + scriptName);
+        throw new IllegalArgumentException("script not found: " + scriptName);
     }
 
     @Override
     protected void shutDown() {
-        clientToolbar.removeNavigation(navButton);
-//		overlayManager.remove(overlay);
+        throw new IllegalStateException("bot plugin should never be shut down");
     }
 }

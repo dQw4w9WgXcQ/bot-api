@@ -29,6 +29,9 @@ interface SceneEntity : Identifiable, Interactable, Locatable, Nameable {
     }
 
     fun interactUnchecked(actionIgnoreCase: String) {
-        interactUnchecked { it.equals(actionIgnoreCase, ignoreCase = true) }
+        interactUnchecked(
+            { action: String -> action.equals(actionIgnoreCase, ignoreCase = true) }
+                .withDescription("action[$actionIgnoreCase]")
+        )
     }
 }

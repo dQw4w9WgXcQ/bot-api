@@ -1,7 +1,5 @@
 package github.dqw4w9wgxcq.botapi
 
-import github.dqw4w9wgxcq.botapi.Refl.getLong2
-import github.dqw4w9wgxcq.botapi.Refl.setLong2
 import github.dqw4w9wgxcq.botapi.commons.debug
 import github.dqw4w9wgxcq.botapi.loader.BotApiContext
 import java.lang.reflect.Field
@@ -10,7 +8,7 @@ import java.lang.reflect.Method
 @Suppress("DEPRECATION")
 object Refl {
     private val rsClassLoader by lazy {
-        BotApiContext.client::class.java.classLoader!!
+        BotApiContext.getClient()::class.java.classLoader!!
     }
 
     //client
@@ -31,7 +29,7 @@ object Refl {
     //rickkinteract
     val ViewportMouse_entityTags: Field
     val ViewportMouse_entityCount: Field
-    val entityCountMult: Long
+    val entityCountMult: Int
     val Scene_selectedX: Field
     val Scene_selectedY: Field
     val viewportWalking: Field
@@ -73,9 +71,9 @@ object Refl {
 
             val actorClass = getRsClass("cs")
             pathLength = actorClass.getDeclaredField("cm")
-            pathLengthmult = -1581137343
+            pathLengthmult = 398413249
         } catch (e: ReflectiveOperationException) {
-            throw Exception("reflection init failed", e)
+            throw IllegalStateException("reflection init failed", e)
         }
     }
 
@@ -132,8 +130,13 @@ object Refl {
         }
 
         return try {
-            val value = this.getInt(obj) / mult
-            debug { "getLong2: $value" }
+            val multedValue = this.getInt(obj)
+            val value = multedValue / mult
+            val remainder = multedValue % mult
+            debug { "getInt2: $value %$remainder" }
+            if (remainder != 0) {
+                throw IllegalStateException("mult wrong")
+            }
             value
         } finally {
             if (!wasAccessible) {
@@ -166,8 +169,13 @@ object Refl {
         }
 
         return try {
-            val value = this.getLong(obj) / mult
-            debug { "getLong2: $value" }
+            val multedValue = this.getLong(obj)
+            val value = multedValue / mult
+            val remainder = multedValue % mult
+            debug { "getLong2: $value %$multedValue" }
+            if (remainder != 0L) {
+                throw IllegalStateException("mult wrong")
+            }
             value
         } finally {
             if (!wasAccessible) {
@@ -176,7 +184,7 @@ object Refl {
         }
     }
 
-    fun Field.setLong2(obj:Any?, value:Long, mult: Long){
+    fun Field.setLong2(obj: Any?, value: Long, mult: Long) {
         val wasAccessible = this.isAccessible
         if (!wasAccessible) {
             this.isAccessible = true
@@ -184,7 +192,7 @@ object Refl {
 
         try {
             val multedValue = value * mult
-            debug { "setLong2: $value * $mult = $multedValue" }
+            debug { "setLong2: $value*$mult=$multedValue" }
             this.setLong(obj, multedValue)
         } finally {
             if (!wasAccessible) {

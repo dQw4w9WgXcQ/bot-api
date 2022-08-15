@@ -1,8 +1,5 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     java
-    kotlin("jvm") version Versions.kotlin
 }
 
 group = "github.dqw4w9wgxcq.botapi"
@@ -19,18 +16,14 @@ apply<MavenPublishPlugin>()
 
 dependencies {
     compileOnly("net.runelite:client:${Versions.runelite}")//need EventBus
+    compileOnly("org.projectlombok:lombok:1.18.20")
+    annotationProcessor("org.projectlombok:lombok:1.18.20")
 }
 
 tasks {
     java {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    withType<KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = "1.8"
-        }
     }
 }
 

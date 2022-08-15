@@ -12,7 +12,7 @@ import kotlin.random.Random
 
 object Inventory : ItemContainer<InventoryItem>(InventoryID.INVENTORY) {
     fun isItemSelected(): Boolean {
-        return Client.selectedItem == 1
+        return Client.spellSelected
     }
 
     fun isFull(): Boolean {
@@ -66,9 +66,7 @@ object Inventory : ItemContainer<InventoryItem>(InventoryID.INVENTORY) {
 
         if (!isItemSelected()) {
             invItem.interact("use")
-            if (Random.nextBoolean()) {
-                wait(10, 100)
-            }
+            waitUntil { isItemSelected() }
         }
 
         target.interactUnchecked("use")

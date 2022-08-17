@@ -1,4 +1,4 @@
-package api.antiban
+package github.dqw4w9wgxcq.botapi.antiban
 
 object Breaks {
     var time = System.currentTimeMillis()

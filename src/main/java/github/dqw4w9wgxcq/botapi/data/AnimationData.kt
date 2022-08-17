@@ -1,4 +1,4 @@
-package api.data
+package github.dqw4w9wgxcq.botapi.data
 
 object AnimationData {
     const val HIGH_ALCH = 713

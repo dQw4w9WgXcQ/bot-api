@@ -1,4 +1,4 @@
-package api.data
+package github.dqw4w9wgxcq.botapi.data
 
 object VarData {
     const val HOUSE = 738//0 when no house

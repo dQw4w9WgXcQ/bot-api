@@ -1,4 +1,4 @@
-package api.data
+package github.dqw4w9wgxcq.botapi.data
 
 import github.dqw4w9wgxcq.botapi.widget.WidgetQuery
 

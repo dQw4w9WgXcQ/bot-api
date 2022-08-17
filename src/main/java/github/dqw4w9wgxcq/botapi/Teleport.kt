@@ -1,4 +1,4 @@
-package api
+package github.dqw4w9wgxcq.botapi
 
 import github.dqw4w9wgxcq.botapi.commons.*
 import github.dqw4w9wgxcq.botapi.itemcontainer.equipment.Equipment

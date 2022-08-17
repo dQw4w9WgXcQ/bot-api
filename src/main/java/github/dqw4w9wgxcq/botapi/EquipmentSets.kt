@@ -1,4 +1,4 @@
-package api
+package github.dqw4w9wgxcq.botapi
 
 import github.dqw4w9wgxcq.botapi.antiban.Profile
 import github.dqw4w9wgxcq.botapi.sceneentities.actors.players.Players

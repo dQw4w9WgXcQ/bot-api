@@ -1,6 +1,5 @@
-package api.commons
+package github.dqw4w9wgxcq.botapi.commons
 
-import github.dqw4w9wgxcq.botapi.commons.*
 import github.dqw4w9wgxcq.botapi.event.Events
 import net.runelite.api.events.ChatMessage
 import net.runelite.client.eventbus.Subscribe

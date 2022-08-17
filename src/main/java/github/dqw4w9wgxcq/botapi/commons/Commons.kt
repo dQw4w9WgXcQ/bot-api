@@ -195,7 +195,7 @@ fun waitUntil(
     condition: () -> Boolean,
 ) {
     if (!waitUntilWithConfirm(timeout, pollRate, condition)) {
-        throw Wait.WaitException("condition $condition timed out after $timeout  pollRate $pollRate")
+        throw Wait.WaitException("[$condition] timed out $timeout pollRate:$pollRate")
     }
 }
 
@@ -288,7 +288,7 @@ fun bySuffix(vararg ignoreCase: String): (Nameable) -> Boolean {
         }
 
         override fun toString(): String {
-            return "suffix[${ignoreCase.joinToString(",")}]"
+            return "suffix(${ignoreCase.joinToString(",")})"
         }
     }
 }
@@ -313,13 +313,8 @@ fun byIdIgnoreNote(vararg ids: Int): (Item) -> Boolean {
 }
 
 fun byAction(vararg ignoreCase: String): (Interactable) -> Boolean {
-    return { interactable: Interactable -> ignoreCase.any { interactable.hasAction(it) } }.withDescription(
-        "byAction(${
-            ignoreCase.joinToString(
-                ","
-            )
-        })"
-    )
+    return { interactable: Interactable -> ignoreCase.any { interactable.hasAction(it) } }
+        .withDescription("byAction(${ignoreCase.joinToString(",")})")
 }
 
 fun <T, U> ((T) -> U).withDescription(toString: String): (T) -> U {

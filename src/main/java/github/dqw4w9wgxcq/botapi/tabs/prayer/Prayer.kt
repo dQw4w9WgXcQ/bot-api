@@ -19,5 +19,4 @@ enum class Prayer(val childId: Int, val rl: net.runelite.api.Prayer) {
     RIGOUR(31, net.runelite.api.Prayer.RIGOUR),
     AUGURY(32, net.runelite.api.Prayer.AUGURY)
     ;
-
 }

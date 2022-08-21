@@ -1,6 +1,8 @@
 package github.dqw4w9wgxcq.botapi.tabs.settings
 
-import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.commons.NotFoundException
+import github.dqw4w9wgxcq.botapi.commons.wait
+import github.dqw4w9wgxcq.botapi.commons.waitUntil
 import github.dqw4w9wgxcq.botapi.tabs.Tab
 import github.dqw4w9wgxcq.botapi.tabs.Tabs
 import github.dqw4w9wgxcq.botapi.varps.Varps
@@ -27,9 +29,10 @@ object Settings {
     }
 
     fun checkVolumesMuted() {
-        if (Varps.get(VarPlayer.MUSIC_VOLUME) == 0 && Varps.get(VarPlayer.SOUND_EFFECT_VOLUME) == 0 && Varps.get(
-                VarPlayer.AREA_EFFECT_VOLUME
-            ) == 0
+        if (
+            Varps.get(VarPlayer.MUSIC_VOLUME) == 0
+            && Varps.get(VarPlayer.SOUND_EFFECT_VOLUME) == 0
+            && Varps.get(VarPlayer.AREA_EFFECT_VOLUME) == 0
         ) {
             return
         }
@@ -46,9 +49,9 @@ object Settings {
         }
 
         waitUntil {
-            Varps.get(VarPlayer.MUSIC_VOLUME) == 0 && Varps.get(VarPlayer.SOUND_EFFECT_VOLUME) == 0 && Varps.get(
-                VarPlayer.AREA_EFFECT_VOLUME
-            ) == 0
+            Varps.get(VarPlayer.MUSIC_VOLUME) == 0
+                    && Varps.get(VarPlayer.SOUND_EFFECT_VOLUME) == 0
+                    && Varps.get(VarPlayer.AREA_EFFECT_VOLUME) == 0
         }
     }
 
@@ -90,14 +93,14 @@ object Settings {
         openAllSettings()
 
         if (getAllSettingsTab() != tab.varp) {
-            WidgetQuery(WidgetID.SETTINGS_GROUP_ID, 23) { w -> w.hasAction { it.endsWith(tab.actionSuffix) } }.invoke()
+            WidgetQuery(WidgetID.SETTINGS_GROUP_ID, 23) { w -> w.hasAction { it.endsWith(tab.actionSuffix) } }()
                 .interact { it.startsWith("Select") }
             waitUntil { getAllSettingsTab() == tab.varp }
             wait(500)
         }
     }
 
-    private val optionsChildIndex = 19
+    private const val optionsChildIndex = 19
 
     enum class Option(val tab: AllSettingsTab, val scriptIndex1: Int) {
         SHIFT_DROP(AllSettingsTab.CONTROLS, 2772),
@@ -109,7 +112,11 @@ object Settings {
         openAllSettingsTab(option.tab)
         val scrollableWidgets = Widgets.get(WidgetID.SETTINGS_GROUP_ID, optionsChildIndex)
         val toggleWidget = scrollableWidgets.childrenList
-            .firstOrNull { it.hasAction("Toggle") && it.onOpListener?.get(0) == 3847 && it.onOpListener?.get(1) == option.scriptIndex1 }
+            .firstOrNull {
+                it.hasAction("Toggle")
+                        && it.onOpListener?.get(0) == 3847
+                        && it.onOpListener?.get(1) == option.scriptIndex1
+            }
             ?: throw NotFoundException("cant find option $option")
         Widgets.scrollUntilWidgetInBounds(toggleWidget)
         toggleWidget.interact("Toggle")

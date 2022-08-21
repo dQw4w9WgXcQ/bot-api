@@ -1,6 +1,9 @@
 package github.dqw4w9wgxcq.botapi.antiban
 
-import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.commons.debug
+import github.dqw4w9wgxcq.botapi.commons.inGameBounds
+import github.dqw4w9wgxcq.botapi.commons.toAwt
+import github.dqw4w9wgxcq.botapi.commons.wait
 import github.dqw4w9wgxcq.botapi.game.Client
 import github.dqw4w9wgxcq.botapi.input.Focus
 import github.dqw4w9wgxcq.botapi.input.mouse.Mouse
@@ -17,10 +20,11 @@ object Antiban {
         antibanThread.start()
     }
 
-    private val antibanThread = Thread({
-        while (true) {
-            if (active && Client.gameState == GameState.LOGGED_IN) {
-                when (Random.nextInt(0, 100)) {
+    private val antibanThread = Thread(
+        {
+            while (true) {
+                if (active && Client.gameState == GameState.LOGGED_IN) {
+                    when (Random.nextInt(0, 100)) {
 //                    in 0..5 -> {
 //                        camera()
 //                    }
@@ -30,12 +34,14 @@ object Antiban {
 //                    in 40..59 -> {
 //                        loseFocus()
 //                    }
+                    }
                 }
-            }
 
-            wait(0, 2000)
-        }
-    }, "antiban")
+                wait(0, 2000)
+            }
+        },
+        "antiban"
+    )
 
     var mouseMoveArea: Rectangle? = null//not the same as boundary.  need to bound the endpoint not the path
 

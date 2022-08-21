@@ -37,14 +37,14 @@ object Dialog {
         Keyboard.space()
     }
 
-    //tutorial island
-    fun canLegacyContinue(): Boolean {
-        val legacyContinue = Widgets.getOrNull(WidgetInfo.CHATBOX_FULL_INPUT)
-        return legacyContinue != null && !legacyContinue.isHidden
+    fun canContinue(): Boolean {
+        return isOpen && (isNpcContinue() || isPlayerContinue() || isWeirdContinue() || isMinigameContinue() || isWeirdererContinue() || isLevelUpContinue() || isWeirderererContinue() || isWeirdererererContinue() || canLegacyContinue())
     }
 
-    fun canContinue(): Boolean {
-        return isOpen && (isNpcContinue() || isPlayerContinue() || isWeirdContinue() || isMinigameContinue() || isWeirdererContinue() || isLevelUpContinue() || isWeirderererContinue() || isWeirdererererContinue())
+    //tutorial island
+    private fun canLegacyContinue(): Boolean {
+        val legacyContinue = Widgets.getOrNull(WidgetInfo.CHATBOX_FULL_INPUT)
+        return legacyContinue != null && !legacyContinue.isHidden
     }
 
     private val playerContinueQuery =

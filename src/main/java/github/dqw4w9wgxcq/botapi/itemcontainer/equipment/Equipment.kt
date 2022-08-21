@@ -16,7 +16,7 @@ import net.runelite.api.InventoryID
 import net.runelite.api.widgets.WidgetID
 
 object Equipment : ItemContainer<EquipmentItem>(InventoryID.EQUIPMENT) {
-    val widgetChildIndexes = mapOf(
+    val widgetChildIndicies = mapOf(
         EquipmentInventorySlot.HEAD to 15,
         EquipmentInventorySlot.CAPE to 16,
         EquipmentInventorySlot.AMULET to 17,
@@ -61,7 +61,7 @@ object Equipment : ItemContainer<EquipmentItem>(InventoryID.EQUIPMENT) {
     }
 
     fun getWidget(slot: EquipmentInventorySlot): Widget {
-        return Widgets.get(WidgetID.EQUIPMENT_GROUP_ID, widgetChildIndexes[slot]!!)
+        return Widgets.get(WidgetID.EQUIPMENT_GROUP_ID, widgetChildIndicies[slot]!!)
     }
 
     fun interact(slot: EquipmentInventorySlot, actionMatches: (String) -> Boolean) {

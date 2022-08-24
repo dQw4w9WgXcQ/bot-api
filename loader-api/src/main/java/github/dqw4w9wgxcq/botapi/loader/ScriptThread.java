@@ -28,14 +28,15 @@ class ScriptThread extends Thread {
 
             try {
                 activeScript.run();
-            } catch (Exception e) {//just catch all errors bc kotlin t0do error etc.
+            } catch (Exception e) {
                 log.warn("exception in script run method", e);
-            } catch (Error e) {
-                if (e instanceof VirtualMachineError) {
+            } catch (Error e) {//just catch all errors bc kotlin t0do error etc.
+                if (e instanceof VirtualMachineError) {//actual bad error
                     log.debug("script thread got virtual machine error", e);
                     throw e;
                 }
 
+                //probably recoverable error (kotlin t0d0 error etc.)
                 log.warn("error in script method", e);
             }
 
@@ -51,8 +52,7 @@ class ScriptThread extends Thread {
 
             activeScript = script;
             notify();
+            return true;
         }
-
-        return true;
     }
 }

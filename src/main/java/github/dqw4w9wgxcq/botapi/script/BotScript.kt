@@ -95,7 +95,7 @@ abstract class BotScript : IBotScript {
                     }
 
                     nextLoopDelay = when {
-                        unwrappedE is FatalException -> {
+                        unwrappedE is FatalException || unwrappedE is IllegalStateException -> {
                             throw e
                         }
 //                        failCount == 0 -> {//everything not fatal gets retried once

@@ -5,7 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 
-//same as net.runelite.client.plugins.PluginClassLoader
+//similar to net.runelite.client.plugins.PluginClassLoader
 class ScriptClassLoader extends URLClassLoader {
     private final ClassLoader parent;
 

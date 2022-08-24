@@ -1,4 +1,4 @@
-package github.dqw4w9wgxcq.botapi.runeliteplugin;
+package github.dqw4w9wgxcq.botapi.loader;
 
 import javax.swing.*;
 import java.io.IOException;

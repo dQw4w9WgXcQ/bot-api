@@ -33,11 +33,11 @@ public class BotApiContext {
         return getContext().eventBus;
     }
 
-    private Client client;
-    private ClientThread clientThread;
-    private EventBus eventBus;
-
     public static void initialize(Client client, ClientThread clientThread, EventBus eventBus) {
         context = new BotApiContext(client, clientThread, eventBus);
     }
+
+    private Client client;
+    private ClientThread clientThread;
+    private EventBus eventBus;
 }

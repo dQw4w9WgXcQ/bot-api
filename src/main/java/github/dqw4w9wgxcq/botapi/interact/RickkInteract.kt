@@ -72,11 +72,11 @@ class RickkInteract : InteractDriver {
 
     override fun walk(scenePosition: Point) {
         debug { "walking $scenePosition" }
-        onGameThread { }//make sure were at the right point in the game cycle, can fail otherwise
-        wait(25)
-        Refl.Scene_selectedX.setInt2(null, scenePosition.x, 1)
-        Refl.Scene_selectedY.setInt2(null, scenePosition.y, 1)
-        Refl.viewportWalking.setBoolean2(null, true)
+        onGameThread {//make sure were at the right point in the game cycle, can fail otherwise
+            Refl.Scene_selectedX.setInt2(null, scenePosition.x, 1)
+            Refl.Scene_selectedY.setInt2(null, scenePosition.y, 1)
+            Refl.viewportWalking.setBoolean2(null, true)
+        }
     }
 
     override fun withInventory(invItem: InventoryItem, actionMatches: (String) -> Boolean) {

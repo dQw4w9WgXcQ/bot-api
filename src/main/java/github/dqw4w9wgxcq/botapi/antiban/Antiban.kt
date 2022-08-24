@@ -53,14 +53,14 @@ object Antiban {
         }
 
         when (Random.nextInt(0, 100)) {
-//            in 70..89 -> {
-//                debug { "200" }
-//                Mouse.asyncMove(Rectangle(mousePos.x - 200, mousePos.y - 200, mousePos.x + 200, mousePos.y + 200))
-//            }
-//            in 90..99 -> {
-//                debug { "1000" }
-//                Mouse.asyncMove(Rectangle(mousePos.x - 1000, mousePos.y - 1000, mousePos.x + 1000, mousePos.y + 1000))
-//            }
+            in 70..89 -> {
+                debug { "200" }
+                Mouse.asyncMove(Rectangle(mousePos.x - 200, mousePos.y - 200, mousePos.x + 200, mousePos.y + 200))
+            }
+            in 90..99 -> {
+                debug { "1000" }
+                Mouse.asyncMove(Rectangle(mousePos.x - 1000, mousePos.y - 1000, mousePos.x + 1000, mousePos.y + 1000))
+            }
             else -> {
                 val radius = Random.nextInt(1, 300)
                 Mouse.asyncMove(Rectangle(mousePos.x - radius, mousePos.y - radius, radius * 2, radius * 2))
@@ -68,14 +68,14 @@ object Antiban {
         }
     }
 
-//    fun camera() {
-//        if (!inGameBounds(Client.mouseCanvasPosition.toAwt())) {
-//            debug { "skipping camera because mouse not in game" }
-//            return
-//        }
-//
-//        debug { "camera" }
-//    }
+    fun camera() {
+        if (!inGameBounds(Client.mouseCanvasPosition.toAwt())) {
+            debug { "skipping camera because mouse not in game" }
+            return
+        }
+
+        debug { "camera" }
+    }
 
     fun loseFocus() {
         if (inGameBounds(Client.mouseCanvasPosition.toAwt())) {

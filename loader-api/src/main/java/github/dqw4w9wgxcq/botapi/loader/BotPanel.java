@@ -1,15 +1,10 @@
-package github.dqw4w9wgxcq.botapi.runeliteplugin;
-
-import github.dqw4w9wgxcq.botapi.loader.IBotScript;
-import github.dqw4w9wgxcq.botapi.loader.ScriptManager;
-import github.dqw4w9wgxcq.botapi.loader.ScriptMeta;
-import net.runelite.client.ui.PluginPanel;
+package github.dqw4w9wgxcq.botapi.loader;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Vector;
 
-public class BotPanel extends PluginPanel {
+public class BotPanel extends JPanel {
     private final JList<ScriptListEntry> scriptList = new JList<>();
     private final JFrame logFrame;
     private final ScriptManager scriptManager;

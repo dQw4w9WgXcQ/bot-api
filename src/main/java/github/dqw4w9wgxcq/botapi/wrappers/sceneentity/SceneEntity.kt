@@ -1,6 +1,7 @@
 package github.dqw4w9wgxcq.botapi.wrappers.sceneentity
 
-import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.commons.debug
+import github.dqw4w9wgxcq.botapi.commons.withDescription
 import github.dqw4w9wgxcq.botapi.interact.Interact
 import github.dqw4w9wgxcq.botapi.movement.Movement
 import github.dqw4w9wgxcq.botapi.wrappers.Identifiable

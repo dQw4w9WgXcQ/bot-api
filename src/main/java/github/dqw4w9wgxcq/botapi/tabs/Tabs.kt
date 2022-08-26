@@ -1,6 +1,7 @@
 package github.dqw4w9wgxcq.botapi.tabs
 
-import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.commons.debug
+import github.dqw4w9wgxcq.botapi.commons.waitUntil
 import github.dqw4w9wgxcq.botapi.game.Client
 import github.dqw4w9wgxcq.botapi.input.Keyboard
 import github.dqw4w9wgxcq.botapi.itemcontainer.bank.Bank

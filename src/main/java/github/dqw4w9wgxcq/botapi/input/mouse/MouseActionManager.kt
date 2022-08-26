@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.input.mouse
 
-import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.commons.debug
 import github.dqw4w9wgxcq.botapi.input.mouse.action.MouseAction
 import java.util.concurrent.Callable
 import java.util.concurrent.Executors

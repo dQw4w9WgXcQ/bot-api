@@ -1,6 +1,9 @@
 package github.dqw4w9wgxcq.botapi.input
 
-import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.commons.Rand
+import github.dqw4w9wgxcq.botapi.commons.debug
+import github.dqw4w9wgxcq.botapi.commons.info
+import github.dqw4w9wgxcq.botapi.commons.wait
 import java.awt.event.KeyEvent
 import java.util.concurrent.Executors
 import java.util.concurrent.Future

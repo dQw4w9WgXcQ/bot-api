@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi
 
-import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.commons.info
 import github.dqw4w9wgxcq.botapi.skill.Skills
 import net.runelite.api.Skill
 import kotlin.math.ceil

@@ -54,6 +54,17 @@ public class ScriptManager {
         log.info("started script" + script.getClass().getSimpleName());
     }
 
+    public void startScript(String scriptName) {
+        for (Class<? extends IBotScript> scriptClass : loadScripts()) {
+            if (scriptClass.getAnnotation(ScriptMeta.class).value().trim().equalsIgnoreCase(scriptName.trim())) {
+                startScript(scriptClass);
+                return;
+            }
+        }
+
+        throw new IllegalArgumentException("script not found: " + scriptName);
+    }
+
     public void stopScript() {
         IBotScript activeScript = scriptThread.getActiveScript();
         if (activeScript == null) {

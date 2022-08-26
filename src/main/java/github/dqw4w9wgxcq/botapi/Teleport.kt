@@ -1,6 +1,8 @@
 package github.dqw4w9wgxcq.botapi
 
-import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.commons.debug
+import github.dqw4w9wgxcq.botapi.commons.info
+import github.dqw4w9wgxcq.botapi.commons.waitUntil
 import github.dqw4w9wgxcq.botapi.itemcontainer.equipment.Equipment
 import github.dqw4w9wgxcq.botapi.itemcontainer.inventory.Inventory
 import github.dqw4w9wgxcq.botapi.movement.Movement

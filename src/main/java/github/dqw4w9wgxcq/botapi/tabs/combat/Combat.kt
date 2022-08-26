@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.tabs.combat
 
-import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.commons.waitUntil
 import github.dqw4w9wgxcq.botapi.tabs.Tab
 import github.dqw4w9wgxcq.botapi.tabs.Tabs
 import github.dqw4w9wgxcq.botapi.varps.Varps

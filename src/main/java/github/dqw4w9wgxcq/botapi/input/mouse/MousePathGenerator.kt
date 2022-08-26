@@ -1,7 +1,9 @@
 package github.dqw4w9wgxcq.botapi.input.mouse
 
-import github.dqw4w9wgxcq.botapi.commons.*
-import github.dqw4w9wgxcq.botapi.loader.BotApiContext
+import github.dqw4w9wgxcq.botapi.commons.RetryableBotException
+import github.dqw4w9wgxcq.botapi.commons.debug
+import github.dqw4w9wgxcq.botapi.commons.info
+import github.dqw4w9wgxcq.botapi.loader.RuneliteContext
 import java.awt.Point
 import java.awt.Rectangle
 import java.io.File
@@ -14,7 +16,7 @@ class MousePathGenerator {
     val paths: List<PathStore> by lazy {
         buildList {
             var id = 0
-            File(BotApiContext.dir, "mousedata.txt").forEachLine {
+            File(RuneliteContext.dir, "mousedata.txt").forEachLine {
                 val points = mutableListOf<Point>()
 
                 for (pointString in it.split(":")) {

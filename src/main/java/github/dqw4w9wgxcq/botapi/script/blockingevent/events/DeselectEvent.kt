@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.script.blockingevent.events
 
-import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.commons.waitUntil
 import github.dqw4w9wgxcq.botapi.game.Client
 import github.dqw4w9wgxcq.botapi.interact.Interact
 import github.dqw4w9wgxcq.botapi.itemcontainer.inventory.Inventory

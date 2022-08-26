@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.widget
 
-import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.commons.NotFoundException
 import github.dqw4w9wgxcq.botapi.wrappers.widget.Widget
 import net.runelite.api.widgets.WidgetInfo
 

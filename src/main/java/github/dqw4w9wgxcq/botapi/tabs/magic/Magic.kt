@@ -1,6 +1,9 @@
 package github.dqw4w9wgxcq.botapi.tabs.magic
 
-import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.commons.NotFoundException
+import github.dqw4w9wgxcq.botapi.commons.info
+import github.dqw4w9wgxcq.botapi.commons.waitUntil
+import github.dqw4w9wgxcq.botapi.commons.waitUntilNotNull
 import github.dqw4w9wgxcq.botapi.input.mouse.Mouse
 import github.dqw4w9wgxcq.botapi.itemcontainer.inventory.Inventory
 import github.dqw4w9wgxcq.botapi.movement.Movement

@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.loader;
 
-import javax.swing.JTextArea;
+import javax.swing.*;
 
 public class TrimmingJTextArea extends JTextArea {
     @Override

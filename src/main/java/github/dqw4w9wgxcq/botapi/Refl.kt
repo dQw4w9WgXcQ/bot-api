@@ -1,14 +1,14 @@
 package github.dqw4w9wgxcq.botapi
 
 import github.dqw4w9wgxcq.botapi.commons.debug
-import github.dqw4w9wgxcq.botapi.loader.BotApiContext
+import github.dqw4w9wgxcq.botapi.loader.RuneliteContext
 import java.lang.reflect.Field
 import java.lang.reflect.Method
 
 @Suppress("DEPRECATION")
 object Refl {
     private val rsClassLoader by lazy {
-        BotApiContext.getClient()::class.java.classLoader!!
+        RuneliteContext.getClient()::class.java.classLoader!!
     }
 
     //client

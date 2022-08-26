@@ -13,11 +13,7 @@ import github.dqw4w9wgxcq.botapi.widget.WidgetQuery
 import github.dqw4w9wgxcq.botapi.widget.Widgets
 import github.dqw4w9wgxcq.botapi.wrappers.item.container.InventoryItem
 import github.dqw4w9wgxcq.botapi.wrappers.widget.Widget
-import net.runelite.api.GrandExchangeOffer
-import net.runelite.api.GrandExchangeOfferState
-import net.runelite.api.ItemID
-import net.runelite.api.VarClientStr
-import net.runelite.api.VarPlayer
+import net.runelite.api.*
 import net.runelite.api.coords.WorldPoint
 import net.runelite.api.widgets.WidgetID
 import net.runelite.api.widgets.WidgetInfo

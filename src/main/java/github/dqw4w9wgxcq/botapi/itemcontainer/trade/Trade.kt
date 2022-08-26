@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.itemcontainer.trade
 
-import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.commons.RetryableBotException
 import github.dqw4w9wgxcq.botapi.itemcontainer.ItemContainer
 import github.dqw4w9wgxcq.botapi.widget.Dialog
 import github.dqw4w9wgxcq.botapi.widget.Widgets

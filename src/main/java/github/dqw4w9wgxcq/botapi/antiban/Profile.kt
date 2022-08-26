@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.antiban
 
-import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.commons.info
 import kotlin.random.Random
 
 object Profile {

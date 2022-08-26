@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.input.mouse.action
 
-import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.commons.randomPoint
 import github.dqw4w9wgxcq.botapi.input.mouse.MouseInput
 import java.awt.Rectangle
 

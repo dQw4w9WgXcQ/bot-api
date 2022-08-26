@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.wrappers
 
-import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.commons.byContains
 
 interface Interactable {
     val actions: Array<String?>?

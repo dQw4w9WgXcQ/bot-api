@@ -1,11 +1,7 @@
 package github.dqw4w9wgxcq.botapi.sceneentities.tile.objects
 
 import github.dqw4w9wgxcq.botapi.sceneentities.tile.TileEntities
-import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.`object`.DecorativeObject
-import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.`object`.GameObject
-import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.`object`.GroundObject
-import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.`object`.TileObject
-import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.`object`.WallObject
+import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.`object`.*
 import net.runelite.api.Tile
 
 object TileObjects : TileEntities<TileObject<out net.runelite.api.TileObject>>() {

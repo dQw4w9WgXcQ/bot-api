@@ -206,7 +206,7 @@ object Movement {
         } else {
             debug { "interacting walk scene:$walkPoint world:${walkPoint.toWorld()}" }
             Interact.walk(walkPoint)
-            waitUntil ({ isMoving() }.withDescription("moving"))
+            waitUntil({ isMoving() }.withDescription("moving"))
         }
 
         checkStam()

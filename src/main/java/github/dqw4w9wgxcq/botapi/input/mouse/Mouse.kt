@@ -1,6 +1,9 @@
 package github.dqw4w9wgxcq.botapi.input.mouse
 
-import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.commons.RetryableBotException
+import github.dqw4w9wgxcq.botapi.commons.toAwt
+import github.dqw4w9wgxcq.botapi.commons.wait
+import github.dqw4w9wgxcq.botapi.commons.waitUntil
 import github.dqw4w9wgxcq.botapi.game.Client
 import github.dqw4w9wgxcq.botapi.input.CanvasInput
 import github.dqw4w9wgxcq.botapi.input.mouse.action.ClickMouseAction

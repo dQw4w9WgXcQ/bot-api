@@ -199,9 +199,9 @@ fun main() {
         var sourceLine = name.uppercase()
         sourceLine += "("
         sourceLine += if (config.contains("varbit")) {
-            config.removePrefix("varbit") +", true"
+            config.removePrefix("varbit") + ", true"
         } else {
-            config.removePrefix("var") +", false"
+            config.removePrefix("var") + ", false"
         }
         sourceLine += "),"
 

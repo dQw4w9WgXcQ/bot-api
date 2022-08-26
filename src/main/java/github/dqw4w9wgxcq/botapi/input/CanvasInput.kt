@@ -1,11 +1,7 @@
 package github.dqw4w9wgxcq.botapi.input
 
 import github.dqw4w9wgxcq.botapi.game.Client
-import java.awt.event.FocusEvent
-import java.awt.event.InputEvent
-import java.awt.event.KeyEvent
-import java.awt.event.MouseEvent
-import java.awt.event.MouseWheelEvent
+import java.awt.event.*
 
 //do not change the parameters, they document properties the game checks
 internal object CanvasInput {

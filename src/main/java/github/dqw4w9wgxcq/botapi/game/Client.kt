@@ -4,20 +4,20 @@ import github.dqw4w9wgxcq.botapi.Refl
 import github.dqw4w9wgxcq.botapi.Refl.get2
 import github.dqw4w9wgxcq.botapi.Refl.getBoolean2
 import github.dqw4w9wgxcq.botapi.Refl.invoke2
-import github.dqw4w9wgxcq.botapi.commons.*
-import github.dqw4w9wgxcq.botapi.loader.BotApiContext
+import github.dqw4w9wgxcq.botapi.commons.onGameThread
+import github.dqw4w9wgxcq.botapi.loader.RuneliteContext
 import net.runelite.api.ItemComposition
 import net.runelite.api.NPCComposition
 import net.runelite.api.ObjectComposition
 import net.runelite.api.World
 
-object Client : net.runelite.api.Client by BotApiContext.getClient() {
+object Client : net.runelite.api.Client by RuneliteContext.getClient() {
     override fun runScript(vararg args: Any?) {
-        onGameThread { BotApiContext.getClient().runScript(args) }
+        onGameThread { RuneliteContext.getClient().runScript(args) }
     }
 
     override fun getItemDefinition(id: Int): ItemComposition {
-        val out = onGameThread { BotApiContext.getClient().getItemDefinition(id) }
+        val out = onGameThread { RuneliteContext.getClient().getItemDefinition(id) }
         if (out.name == null) {
             throw IllegalArgumentException("no item found for id:$id")
         }
@@ -25,31 +25,31 @@ object Client : net.runelite.api.Client by BotApiContext.getClient() {
     }
 
     override fun getObjectDefinition(id: Int): ObjectComposition {
-        return onGameThread { BotApiContext.getClient().getObjectDefinition(id) }
+        return onGameThread { RuneliteContext.getClient().getObjectDefinition(id) }
     }
 
     override fun getNpcDefinition(id: Int): NPCComposition {
-        return onGameThread { BotApiContext.getClient().getNpcDefinition(id) }
+        return onGameThread { RuneliteContext.getClient().getNpcDefinition(id) }
     }
 
     override fun getCachedNPCs(): Array<net.runelite.api.NPC> {
-        return onGameThread { BotApiContext.getClient().cachedNPCs }
+        return onGameThread { RuneliteContext.getClient().cachedNPCs }
     }
 
     override fun getCachedPlayers(): Array<net.runelite.api.Player> {
-        return onGameThread { BotApiContext.getClient().cachedPlayers }
+        return onGameThread { RuneliteContext.getClient().cachedPlayers }
     }
 
     override fun hopToWorld(world: World) {
-        onGameThread { BotApiContext.getClient().hopToWorld(world) }
+        onGameThread { RuneliteContext.getClient().hopToWorld(world) }
     }
 
     override fun openWorldHopper() {
-        onGameThread { BotApiContext.getClient().openWorldHopper() }
+        onGameThread { RuneliteContext.getClient().openWorldHopper() }
     }
 
     override fun getVarbitValue(varbitId: Int): Int {
-        return onGameThread { getVarbitValue(BotApiContext.getClient().varps, varbitId) }
+        return onGameThread { getVarbitValue(RuneliteContext.getClient().varps, varbitId) }
     }
 
     val widgets: Array<Array<net.runelite.api.widgets.Widget?>?>

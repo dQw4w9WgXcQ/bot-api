@@ -57,10 +57,12 @@ object Antiban {
                 debug { "200" }
                 Mouse.asyncMove(Rectangle(mousePos.x - 200, mousePos.y - 200, mousePos.x + 200, mousePos.y + 200))
             }
+
             in 90..99 -> {
                 debug { "1000" }
                 Mouse.asyncMove(Rectangle(mousePos.x - 1000, mousePos.y - 1000, mousePos.x + 1000, mousePos.y + 1000))
             }
+
             else -> {
                 val radius = Random.nextInt(1, 300)
                 Mouse.asyncMove(Rectangle(mousePos.x - radius, mousePos.y - radius, radius * 2, radius * 2))

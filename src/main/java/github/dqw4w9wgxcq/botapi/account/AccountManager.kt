@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.account
 
-import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.commons.FatalException
 
 object AccountManager {
     var supplyCredentials: () -> Credentials = {

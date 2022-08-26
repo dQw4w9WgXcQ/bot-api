@@ -1,6 +1,7 @@
 package github.dqw4w9wgxcq.botapi.widget
 
-import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.commons.RetryableBotException
+import github.dqw4w9wgxcq.botapi.commons.waitUntil
 import github.dqw4w9wgxcq.botapi.input.Keyboard
 import github.dqw4w9wgxcq.botapi.wrappers.widget.Widget
 import net.runelite.api.widgets.WidgetID

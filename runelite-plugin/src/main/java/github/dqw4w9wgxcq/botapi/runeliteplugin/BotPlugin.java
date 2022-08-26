@@ -10,7 +10,7 @@ import net.runelite.client.plugins.PluginDescriptor;
 public class BotPlugin extends Plugin {
     @Override
     protected void startUp() {
-        BotApi.init();
+        BotApi.init(getClass().getClassLoader());
     }
 
     @Override

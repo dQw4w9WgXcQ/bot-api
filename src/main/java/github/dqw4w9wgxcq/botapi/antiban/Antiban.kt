@@ -25,15 +25,17 @@ object Antiban {
             while (true) {
                 if (active && Client.gameState == GameState.LOGGED_IN) {
                     when (Random.nextInt(0, 100)) {
-//                    in 0..5 -> {
-//                        camera()
-//                    }
-//                    in 10..19 -> {
-//                        mouseMove()
-//                    }
-//                    in 40..59 -> {
-//                        loseFocus()
-//                    }
+//                        in 0 until 5 -> {
+//                            camera()
+//                        }
+
+                        in 10 until 20 -> {
+                            mouseMove()
+                        }
+
+                        in 40 until 60 -> {
+                            loseFocus()
+                        }
                     }
                 }
 
@@ -77,6 +79,7 @@ object Antiban {
         }
 
         debug { "camera" }
+        TODO()
     }
 
     fun loseFocus() {

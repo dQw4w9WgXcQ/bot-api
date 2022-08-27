@@ -3,7 +3,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "6.1.0"
 }
 
-group = "github.dqw4w9wgxcq.botapi"
+group = "github.dqw4w9wgxcq"
 version = Versions.project
 
 repositories {
@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
     compileOnly("net.runelite:client:${Versions.runelite}")
-    implementation(project(":loader-api"))
+    implementation(project(":runelite-bot-loader"))
     compileOnly("org.projectlombok:lombok:1.18.20")
     annotationProcessor("org.projectlombok:lombok:1.18.20")
 }

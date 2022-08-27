@@ -43,10 +43,11 @@ public abstract class Actor<RL extends net.runelite.api.Actor> extends RlWrapper
     }
 
     public int getPathLength() {
-        return Refl.INSTANCE.getInt2(Refl.INSTANCE.getPathLength(), getRl(), Refl.INSTANCE.getPathLengthmult());
+        return Refl.INSTANCE.getInt2(Refl.INSTANCE.getPathLength(), getRl(), Refl.INSTANCE.getPathLengthDecodingMult());
     }
 
     public boolean isMoving() {
-        return getPathLength() != 0;
+        int pathLength = getPathLength();
+        return pathLength != 0;
     }
 }

@@ -48,9 +48,11 @@ class RickkInteract : InteractDriver {
             debug { "setting entity tag ${forcedTag.get()}" }
             val tags: LongArray = Refl.ViewportMouse_entityTags.get2(null)
             tags[0] = forcedTag.get()
-            Refl.ViewportMouse_entityCount.setInt2(null, 1, Refl.entityCountMult)
+            Refl.ViewportMouse_entityCount.setInt2(null, 1, Refl.entityCountEncodingMult)
             debug { "tag after: ${Refl.ViewportMouse_entityTags.get2<LongArray>(null)[0]}" }
-            debug { "entity count after: ${Refl.ViewportMouse_entityCount.getInt2(null, Refl.entityCountMult)}" }
+            debug {
+                "entity count after: ${Refl.ViewportMouse_entityCount.getInt2(null, Refl.entityCountDecodingMult)}"
+            }
         }
     }
 

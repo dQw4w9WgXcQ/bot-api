@@ -1,9 +1,22 @@
+@file:Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
+
 package github.dqw4w9wgxcq.botapi
 
+import github.dqw4w9wgxcq.botapi.commons.FatalException
 import github.dqw4w9wgxcq.botapi.commons.debug
 import github.dqw4w9wgxcq.botapi.loader.RuneliteContext
+import java.lang.Byte
 import java.lang.reflect.Field
 import java.lang.reflect.Method
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.IllegalStateException
+import kotlin.Int
+import kotlin.Long
+import kotlin.String
+import kotlin.Suppress
+import kotlin.getValue
+import kotlin.lazy
 
 @Suppress("DEPRECATION")
 object Refl {
@@ -19,8 +32,6 @@ object Refl {
     val hasFocus: Field
 
     //loginevent
-    val loginBoxX: Field
-    val loginBoxXmult: Int
     val Login_response0: Field
     val Login_response1: Field
     val Login_response2: Field
@@ -29,14 +40,15 @@ object Refl {
     //rickkinteract
     val ViewportMouse_entityTags: Field
     val ViewportMouse_entityCount: Field
-    val entityCountMult: Int
+    val entityCountEncodingMult: Int
+    val entityCountDecodingMult: Int
     val Scene_selectedX: Field
     val Scene_selectedY: Field
     val viewportWalking: Field
 
     //actor
     val pathLength: Field
-    val pathLengthmult: Int
+    val pathLengthDecodingMult: Int
 
     init {
         fun getRsClass(name: String): Class<*> {
@@ -44,36 +56,34 @@ object Refl {
         }
 
         try {
-            val loginClass = getRsClass("bb")
+            val loginClass = getRsClass("bc")
+            Widget_interfaceComponents = getRsClass("md").getDeclaredField("e")
+            isLoading = getRsClass("client").getDeclaredField("ck")
+            worldSelectOpen = loginClass.getDeclaredField("co")
+            loadWorlds = getRsClass("c").getDeclaredMethod("s", Byte.TYPE)
+            hasFocus = getRsClass("op").getDeclaredField("ah")
 
-            Widget_interfaceComponents = getRsClass("ku").getDeclaredField("v")
-            isLoading = getRsClass("client").getDeclaredField("cf")
-            worldSelectOpen = loginClass.getDeclaredField("ci")
-            loadWorlds = getRsClass("le").getDeclaredMethod("o", Integer.TYPE)
-            hasFocus = getRsClass("dv").getDeclaredField("ae")
-
-            loginBoxX = loginClass.getDeclaredField("e")
-            loginBoxXmult = 1251453039
-            Login_response0 = loginClass.getDeclaredField("bz")
-            Login_response1 = loginClass.getDeclaredField("bs")
-            Login_response2 = loginClass.getDeclaredField("bg")
+            Login_response0 = loginClass.getDeclaredField("bq")
+            Login_response1 = loginClass.getDeclaredField("bn")
+            Login_response2 = loginClass.getDeclaredField("bl")
             Login_response3 = loginClass.getDeclaredField("bv")
 
-            val viewportMouseClass = getRsClass("hn")
-            ViewportMouse_entityTags = viewportMouseClass.getDeclaredField("p")
-            ViewportMouse_entityCount = viewportMouseClass.getDeclaredField("g")
-            entityCountMult = -520328175
+            val viewportMouseClass = getRsClass("hg")
+            ViewportMouse_entityTags = viewportMouseClass.getDeclaredField("l")
+            ViewportMouse_entityCount = viewportMouseClass.getDeclaredField("u")
+            entityCountEncodingMult = 609326827
+            entityCountDecodingMult = 834575933
 
-            val sceneClass = getRsClass("go")
-            Scene_selectedX = sceneClass.getDeclaredField("ai")
-            Scene_selectedY = sceneClass.getDeclaredField("ac")
-            viewportWalking = sceneClass.getDeclaredField("ap")
+            val sceneClass = getRsClass("gy")
+            Scene_selectedX = sceneClass.getDeclaredField("as")
+            Scene_selectedY = sceneClass.getDeclaredField("ay")
+            viewportWalking = sceneClass.getDeclaredField("ag")
 
-            val actorClass = getRsClass("cs")
-            pathLength = actorClass.getDeclaredField("cm")
-            pathLengthmult = 398413249
+            val actorClass = getRsClass("cx")
+            pathLength = actorClass.getDeclaredField("cc")
+            pathLengthDecodingMult = -2007282911
         } catch (e: ReflectiveOperationException) {
-            throw IllegalStateException("reflection init failed", e)
+            throw FatalException("reflection init failed", e)
         }
     }
 
@@ -130,13 +140,8 @@ object Refl {
         }
 
         return try {
-            val multedValue = this.getInt(obj)
-            val value = multedValue / mult
-            val remainder = multedValue % mult
-            debug { "getInt2: $value %$remainder" }
-            if (remainder != 0) {
-                throw IllegalStateException("mult wrong")
-            }
+            val raw = this.getInt(obj)
+            val value = raw * mult
             value
         } finally {
             if (!wasAccessible) {

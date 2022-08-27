@@ -2,7 +2,6 @@ package github.dqw4w9wgxcq.botapi.script.blockingevent.events
 
 import github.dqw4w9wgxcq.botapi.Refl
 import github.dqw4w9wgxcq.botapi.Refl.get2
-import github.dqw4w9wgxcq.botapi.Refl.getInt2
 import github.dqw4w9wgxcq.botapi.account.AccountManager
 import github.dqw4w9wgxcq.botapi.commons.*
 import github.dqw4w9wgxcq.botapi.game.Client
@@ -22,9 +21,14 @@ class LoginEvent : BlockingEvent() {
 
         private const val buttonWidth = 100
         private const val buttonHeight = 40
+
+        private val xPadding: Int
+            get() {
+                return (Client.canvasWidth - 765) / 2
+            }
         private val loginBoxX: Int
             get() {
-                return Refl.loginBoxX.getInt2(null, Refl.loginBoxXmult)
+                return xPadding + 202
             }
         private val loginBoxCenter: Int
             get() {

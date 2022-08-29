@@ -13,7 +13,7 @@ import net.runelite.api.WorldType
 import net.runelite.api.widgets.WidgetInfo
 
 object Worlds {
-    val UNSUITABLE_ACTIVITY = setOf(
+    val ACTIVITY_DISALLOW_LIST = setOf(
         "wilderness",
         "trade",
         "pvp",
@@ -30,18 +30,19 @@ object Worlds {
         "target",
         "house party",
     )
+    val TYPE_DISALLOW_LIST = setOf(
+        WorldType.TOURNAMENT_WORLD,
+        WorldType.PVP,
+        WorldType.DEADMAN,
+        WorldType.SEASONAL,
+        WorldType.NOSAVE_MODE,
+        WorldType.HIGH_RISK,
+    )
     val SUITABLE = { w: World ->
-        UNSUITABLE_ACTIVITY.none { w.activity.contains(it, ignoreCase = true) } &&
-                w.types.none {
-                    it == WorldType.TOURNAMENT_WORLD
-                            || it == WorldType.PVP
-                            || it == WorldType.DEADMAN
-                            || it == WorldType.SEASONAL
-                            || it == WorldType.NOSAVE_MODE
-                            || it == WorldType.HIGH_RISK
-                }
-                && w.id > 335
-                && w.playerCount > 2 && w.playerCount < 750
+        ACTIVITY_DISALLOW_LIST.none { w.activity.contains(it, ignoreCase = true) }
+                && TYPE_DISALLOW_LIST.none { w.types.any { TYPE_DISALLOW_LIST.contains(it) } }
+                && w.id >= 330
+                && w.playerCount > 2 && w.playerCount < 2000
     }
 
     val P2P: (World) -> Boolean = { it.types.contains(WorldType.MEMBERS) }
@@ -86,9 +87,9 @@ object Worlds {
         if (Client.getWidget(WidgetInfo.WORLD_SWITCHER_LIST) == null) {
             Bank.close()
             GrandExchange.close()
-            if (Dialog.isOpen) {
+            if (Dialog.isOpen()) {
                 Movement.walk(Players.local().sceneLocation)
-                waitUntil { !Dialog.isOpen }
+                waitUntil { !Dialog.isOpen() }
             }
             Client.openWorldHopper()
             wait(100)
@@ -102,13 +103,18 @@ object Worlds {
         openWorldHopper()
 
         Client.hopToWorld(world)
-        waitUntil { Client.gameState == GameState.HOPPING || Dialog.isOpen }
-        if (Dialog.isOpen && Dialog.hasOption(
+        waitUntil { Client.gameState == GameState.HOPPING || Dialog.isOpen() }
+        if (
+            Dialog.isOpen()
+            && Dialog.hasOption(
                 "Yes. In future, only warn about dangerous worlds.",
                 "Switch to the High Risk world."
             )
         ) {
-            Dialog.chooseOption("Yes. In future, only warn about dangerous worlds.", "Switch to the High Risk world.")
+            Dialog.chooseOption(
+                "Yes. In future, only warn about dangerous worlds.",
+                "Switch to the High Risk world."
+            )
             waitUntil { Client.gameState == GameState.HOPPING }
         }
         waitUntil { Client.gameState == GameState.HOPPING }
@@ -125,11 +131,7 @@ object Worlds {
         switchTo(getRandom(matches.and(SUITABLE.and(NOT_CURRENT))))
     }
 
-    fun onP2p(): Boolean {
-        return P2P(getCurrent())
-    }
-
-    fun World.isMembers(): Boolean {
-        return P2P(this)
+    fun onF2p(): Boolean {
+        return F2P(getCurrent())
     }
 }

@@ -4,22 +4,22 @@ import javax.swing.*;
 
 public class BotApi {
     private static JFrame frame = null;
-
-    private static boolean quickstarted = false;
+    private static ScriptManager scriptManager;
 
     public static void init(ClassLoader classLoader) {
+        scriptManager = new ScriptManager(classLoader);
+
+        frame = new JFrame();
+        frame.add(new BotPanel(scriptManager));
+        frame.setSize(500, 500);
+        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        frame.setVisible(true);
+
         RuneliteContext.init();
-        ScriptManager scriptManager = new ScriptManager(classLoader);
 
         String scriptName = System.getProperty("bot.script");
-        if (!quickstarted && scriptName != null) {
+        if (scriptName != null) {
             scriptManager.startScript(scriptName);
-            quickstarted = true;
-        } else {
-            frame = new JFrame();
-            frame.add(new BotPanel(scriptManager));
-            frame.setSize(500, 500);
-            frame.setVisible(true);
         }
     }
 
@@ -27,5 +27,7 @@ public class BotApi {
         if (frame != null) {
             frame.dispose();
         }
+
+        scriptManager.stopScript();
     }
 }

@@ -1,22 +1,10 @@
-@file:Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
-
 package github.dqw4w9wgxcq.botapi
 
 import github.dqw4w9wgxcq.botapi.commons.FatalException
 import github.dqw4w9wgxcq.botapi.commons.debug
 import github.dqw4w9wgxcq.botapi.loader.RuneliteContext
-import java.lang.Byte
 import java.lang.reflect.Field
 import java.lang.reflect.Method
-import kotlin.Any
-import kotlin.Boolean
-import kotlin.IllegalStateException
-import kotlin.Int
-import kotlin.Long
-import kotlin.String
-import kotlin.Suppress
-import kotlin.getValue
-import kotlin.lazy
 
 @Suppress("DEPRECATION")
 object Refl {
@@ -29,6 +17,7 @@ object Refl {
     val isLoading: Field
     val worldSelectOpen: Field
     val loadWorlds: Method
+    val loadWorldsJunkValue: Byte
     val hasFocus: Field
 
     //loginevent
@@ -60,7 +49,8 @@ object Refl {
             Widget_interfaceComponents = getRsClass("md").getDeclaredField("e")
             isLoading = getRsClass("client").getDeclaredField("ck")
             worldSelectOpen = loginClass.getDeclaredField("co")
-            loadWorlds = getRsClass("c").getDeclaredMethod("s", Byte.TYPE)
+            loadWorlds = getRsClass("c").getDeclaredMethod("s", java.lang.Byte.TYPE)
+            loadWorldsJunkValue = 5;
             hasFocus = getRsClass("op").getDeclaredField("ah")
 
             Login_response0 = loginClass.getDeclaredField("bq")
@@ -207,7 +197,7 @@ object Refl {
     }
 
     //cant use varargs, kotlin primtive auto boxing makes args different type
-    fun <T> Method.invoke2(obj: Any?, @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN") int: Integer): T {
+    fun <T> Method.invoke2(obj: Any?, junk: Any): T {
         val wasAccessible = this.isAccessible
         if (!wasAccessible) {
             this.isAccessible = true
@@ -215,7 +205,7 @@ object Refl {
 
         return try {
             @Suppress("UNCHECKED_CAST")
-            this.invoke(obj, int) as T
+            this.invoke(obj, junk) as T
         } finally {
             if (!wasAccessible) {
                 this.isAccessible = false

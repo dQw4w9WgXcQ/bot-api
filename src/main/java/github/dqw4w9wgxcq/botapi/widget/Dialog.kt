@@ -9,7 +9,7 @@ import net.runelite.api.widgets.WidgetInfo
 
 object Dialog {
     fun enterAmount(amount: Int) {
-        waitUntil() { isEnterAmountOpen }
+        waitUntil { isEnterAmountOpen() }
 
         val amountString = if (amount > 0 && amount % 1_000_000 == 0) {
             (amount / 1_000_000).toString() + "m"
@@ -22,24 +22,22 @@ object Dialog {
         Keyboard.type(amountString, true)
     }
 
-    val isEnterAmountOpen: Boolean
-        get() {
-            val enterAmount = Widgets.getOrNull(WidgetInfo.CHATBOX_FULL_INPUT)
-            return enterAmount != null && !enterAmount.isHidden
-        }
+    fun isEnterAmountOpen(): Boolean {
+        val enterAmount = Widgets.getOrNull(WidgetInfo.CHATBOX_FULL_INPUT)
+        return enterAmount != null && !enterAmount.isHidden
+    }
 
-    val isOpen: Boolean
-        get() {
-            val scrollBar = Widgets.getOrNull(162, 557)
-            return scrollBar == null || scrollBar.isHidden
-        }
+    fun isOpen(): Boolean {
+        val scrollBar = Widgets.getOrNull(162, 557)
+        return scrollBar == null || scrollBar.isHidden
+    }
 
     fun continueSpace() {
         Keyboard.space()
     }
 
     fun canContinue(): Boolean {
-        return isOpen && (isNpcContinue() || isPlayerContinue() || isWeirdContinue() || isMinigameContinue() || isWeirdererContinue() || isLevelUpContinue() || isWeirderererContinue() || isWeirdererererContinue() || canLegacyContinue())
+        return isOpen() && (isNpcContinue() || isPlayerContinue() || isWeirdContinue() || isMinigameContinue() || isWeirdererContinue() || isLevelUpContinue() || isWeirderererContinue() || isWeirdererererContinue() || canLegacyContinue())
     }
 
     //tutorial island
@@ -48,8 +46,9 @@ object Dialog {
         return legacyContinue != null && !legacyContinue.isHidden
     }
 
-    private val playerContinueQuery =
-        WidgetQuery(WidgetID.DIALOG_PLAYER_GROUP_ID) { it.text.contains("continue", true) }
+    private val playerContinueQuery = WidgetQuery(WidgetID.DIALOG_PLAYER_GROUP_ID) {
+        it.text.contains("continue", true)
+    }
 
     private fun isPlayerContinue(): Boolean {
         return playerContinueQuery.getOrNull() != null
@@ -142,7 +141,7 @@ object Dialog {
     }
 
     fun processDialog(vararg optionsContainsIgnoreCase: String) {
-        if (!isOpen) {
+        if (!isOpen()) {
             throw RetryableBotException("dialog not open")
         }
 

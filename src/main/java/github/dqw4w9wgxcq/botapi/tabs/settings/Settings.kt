@@ -61,9 +61,9 @@ object Settings {
             return
         }
 
-        if (Dialog.isOpen && Dialog.canContinue()) {
+        if (Dialog.isOpen() && Dialog.canContinue()) {
             Dialog.continueSpace()
-            waitUntil { !Dialog.isOpen }
+            waitUntil { !Dialog.isOpen() }
         }
 
         Tabs.open(Tab.SETTINGS)

@@ -49,7 +49,7 @@ object Teleport {
         Inventory.get(matches).interact("rub")
         waitUntil { Dialog.hasOption(optionContainsIgnoreCase) || Widgets.getOrNull(187, 3) != null }
 
-        if (Dialog.isOpen) {
+        if (Dialog.isOpen()) {
             Dialog.chooseOption(optionContainsIgnoreCase)
         } else {
             WidgetQuery(WidgetID.ADVENTURE_LOG_ID, 3) {

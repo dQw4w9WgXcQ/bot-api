@@ -72,10 +72,7 @@ object Client : net.runelite.api.Client by RuneliteContext.getClient() {
     }
 
     fun loadWorlds(): Boolean {
-        return onGameThread {
-            @Suppress("DEPRECATION")//cant use Integer#valueOf because kotlin tries to convert it back to an Int
-            Refl.loadWorlds.invoke2(null, Integer(1973466779))
-        }
+        return onGameThread { Refl.loadWorlds.invoke2(null, Refl.loadWorldsJunkValue) }
     }
 
     //doesnt work

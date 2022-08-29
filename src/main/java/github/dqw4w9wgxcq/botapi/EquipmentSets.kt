@@ -12,7 +12,7 @@ object EquipmentSets {
     fun melee(
         att: Int = Skills.level(Skill.ATTACK),
         def: Int = Skills.level(Skill.DEFENCE),
-        p2p: Boolean = Worlds.onP2p(),
+        p2p: Boolean = !Worlds.onF2p(),
     ): MutableMap<EquipmentInventorySlot, Int> {
         return buildMap {
             putAll(meleeArmor(def, p2p))
@@ -118,7 +118,7 @@ object EquipmentSets {
 
     fun meleeArmor(
         def: Int = Skills.level(Skill.DEFENCE),
-        p2p: Boolean = Worlds.onP2p(),
+        p2p: Boolean = !Worlds.onF2p(),
     ): MutableMap<EquipmentInventorySlot, Int> {
         val plateskirt = Profile.getBoolean("plateskirt") && Players.local().isFemale
 

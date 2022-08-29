@@ -10,27 +10,27 @@ import net.runelite.api.Skill
 
 object EquipmentSets {
     fun melee(
-        att: Int = Skills.level(Skill.ATTACK),
-        def: Int = Skills.level(Skill.DEFENCE),
-        p2p: Boolean = !Worlds.onF2p(),
+            att: Int = Skills.level(Skill.ATTACK),
+            def: Int = Skills.level(Skill.DEFENCE),
+            p2p: Boolean = !Worlds.onF2p(),
     ): MutableMap<EquipmentInventorySlot, Int> {
         return buildMap {
             putAll(meleeArmor(def, p2p))
 
             put(
-                EquipmentInventorySlot.WEAPON,
-                when {
-                    att < 5 -> ItemID.IRON_SCIMITAR
-                    att < 20 -> ItemID.STEEL_SCIMITAR
-                    att < 30 -> ItemID.MITHRIL_SCIMITAR
-                    att < 40 -> ItemID.ADAMANT_SCIMITAR
-                    att < 60 || !p2p -> ItemID.RUNE_SCIMITAR
-                    att < 70 -> ItemID.DRAGON_SWORD
-                    else -> {
-                        remove(EquipmentInventorySlot.SHIELD)
-                        ItemID.SARADOMIN_SWORD
+                    EquipmentInventorySlot.WEAPON,
+                    when {
+                        att < 5 -> ItemID.IRON_SCIMITAR
+                        att < 20 -> ItemID.STEEL_SCIMITAR
+                        att < 30 -> ItemID.MITHRIL_SCIMITAR
+                        att < 40 -> ItemID.ADAMANT_SCIMITAR
+                        att < 60 || !p2p -> ItemID.RUNE_SCIMITAR
+                        att < 70 -> ItemID.DRAGON_SWORD
+                        else -> {
+                            remove(EquipmentInventorySlot.SHIELD)
+                            ItemID.SARADOMIN_SWORD
+                        }
                     }
-                }
             )
         }.toMutableMap()
     }
@@ -43,46 +43,46 @@ object EquipmentSets {
             val defLevel = Skills.level(Skill.DEFENCE)
 
             put(
-                EquipmentInventorySlot.WEAPON,
-                when {
-                    rangedLevel < 5 -> ItemID.SHORTBOW
-                    rangedLevel < 20 -> ItemID.OAK_SHORTBOW
-                    rangedLevel < 30 -> ItemID.WILLOW_SHORTBOW
-                    else -> ItemID.MAPLE_SHORTBOW
-                }
+                    EquipmentInventorySlot.WEAPON,
+                    when {
+                        rangedLevel < 5 -> ItemID.SHORTBOW
+                        rangedLevel < 20 -> ItemID.OAK_SHORTBOW
+                        rangedLevel < 30 -> ItemID.WILLOW_SHORTBOW
+                        else -> ItemID.MAPLE_SHORTBOW
+                    }
             )
 
             put(
-                EquipmentInventorySlot.HEAD,
-                when {
-                    rangedLevel < 20 -> ItemID.LEATHER_COWL
-                    else -> ItemID.COIF
-                }
+                    EquipmentInventorySlot.HEAD,
+                    when {
+                        rangedLevel < 20 -> ItemID.LEATHER_COWL
+                        else -> ItemID.COIF
+                    }
             )
 
             put(
-                EquipmentInventorySlot.BODY,
-                when {
-                    defLevel < 10 -> ItemID.LEATHER_BODY
-                    else -> ItemID.HARDLEATHER_BODY// studded body is low trade volume.  has same ranged offense bonus
-                }
+                    EquipmentInventorySlot.BODY,
+                    when {
+                        defLevel < 10 -> ItemID.LEATHER_BODY
+                        else -> ItemID.HARDLEATHER_BODY// studded body is low trade volume.  has same ranged offense bonus
+                    }
             )
 
             put(
-                EquipmentInventorySlot.LEGS,
-                when {
-                    rangedLevel < 40 -> ItemID.LEATHER_CHAPS
-                    //rangedLevel < 40 -> ItemID.STUDDED_CHAPS//trade volume low
-                    else -> ItemID.GREEN_DHIDE_CHAPS
-                }
+                    EquipmentInventorySlot.LEGS,
+                    when {
+                        rangedLevel < 40 -> ItemID.LEATHER_CHAPS
+                        //rangedLevel < 40 -> ItemID.STUDDED_CHAPS//trade volume low
+                        else -> ItemID.GREEN_DHIDE_CHAPS
+                    }
             )
 
             put(
-                EquipmentInventorySlot.GLOVES,
-                when {
-                    rangedLevel < 40 -> ItemID.LEATHER_VAMBRACES
-                    else -> ItemID.GREEN_DHIDE_VAMBRACES
-                }
+                    EquipmentInventorySlot.GLOVES,
+                    when {
+                        rangedLevel < 40 -> ItemID.LEATHER_VAMBRACES
+                        else -> ItemID.GREEN_DHIDE_VAMBRACES
+                    }
             )
         }.toMutableMap()
     }
@@ -92,12 +92,12 @@ object EquipmentSets {
             put(EquipmentInventorySlot.AMULET, ItemID.AMULET_OF_MAGIC)
 
             put(
-                EquipmentInventorySlot.HEAD,
-                if (Profile.getBoolean("wizard hat")) ItemID.WIZARD_HAT else ItemID.BLUE_WIZARD_HAT
+                    EquipmentInventorySlot.HEAD,
+                    if (Profile.getBoolean("wizard hat")) ItemID.WIZARD_HAT else ItemID.BLUE_WIZARD_HAT
             )
             put(
-                EquipmentInventorySlot.BODY,
-                if (Profile.getBoolean("wizard robe")) ItemID.BLACK_ROBE else ItemID.BLUE_WIZARD_ROBE
+                    EquipmentInventorySlot.BODY,
+                    if (Profile.getBoolean("wizard robe")) ItemID.BLACK_ROBE else ItemID.BLUE_WIZARD_ROBE
             )
             put(EquipmentInventorySlot.WEAPON, if (magicLvl < 13) ItemID.STAFF_OF_AIR else ItemID.STAFF_OF_FIRE)
             val legs = when (Profile.getInt("f2p magic legs", 30)) {
@@ -117,8 +117,8 @@ object EquipmentSets {
     }
 
     fun meleeArmor(
-        def: Int = Skills.level(Skill.DEFENCE),
-        p2p: Boolean = !Worlds.onF2p(),
+            def: Int = Skills.level(Skill.DEFENCE),
+            p2p: Boolean = !Worlds.onF2p(),
     ): MutableMap<EquipmentInventorySlot, Int> {
         val plateskirt = Profile.getBoolean("plateskirt") && Players.local().isFemale
 
@@ -160,8 +160,8 @@ object EquipmentSets {
                 put(EquipmentInventorySlot.HEAD, ItemID.RUNE_FULL_HELM)
                 put(EquipmentInventorySlot.BODY, ItemID.RUNE_CHAINBODY)
                 put(
-                    EquipmentInventorySlot.LEGS,
-                    if (plateskirt) ItemID.RUNE_PLATESKIRT else ItemID.RUNE_PLATELEGS
+                        EquipmentInventorySlot.LEGS,
+                        if (plateskirt) ItemID.RUNE_PLATESKIRT else ItemID.RUNE_PLATELEGS
                 )
                 put(EquipmentInventorySlot.SHIELD, ItemID.RUNE_KITESHIELD)
                 if (p2p) {
@@ -175,8 +175,8 @@ object EquipmentSets {
                 if (def >= 60) {
                     put(EquipmentInventorySlot.HEAD, ItemID.DRAGON_MED_HELM)
                     put(
-                        EquipmentInventorySlot.LEGS,
-                        if (plateskirt) ItemID.DRAGON_PLATESKIRT else ItemID.DRAGON_PLATELEGS
+                            EquipmentInventorySlot.LEGS,
+                            if (plateskirt) ItemID.DRAGON_PLATESKIRT else ItemID.DRAGON_PLATELEGS
                     )
                     put(EquipmentInventorySlot.SHIELD, ItemID.TOKTZKETXIL)
                     put(EquipmentInventorySlot.BOOTS, ItemID.DRAGON_BOOTS)
@@ -239,21 +239,21 @@ object EquipmentSets {
 
     val F2P_CAPES = listOf(
 //        ItemID.PURPLE_CAPE,
-        ItemID.RED_CAPE,
+            ItemID.RED_CAPE,
 //        ItemID.BLACK_CAPE,
-        ItemID.BLUE_CAPE,
+            ItemID.BLUE_CAPE,
 //        ItemID.GREEN_CAPE,
 //        ItemID.ORANGE_CAPE,
 //        ItemID.YELLOW_CAPE,
-        ItemID.TEAM10_CAPE,
+            ItemID.TEAM10_CAPE,
 //        ItemID.TEAM20_CAPE,
-        ItemID.TEAM30_CAPE,
+            ItemID.TEAM30_CAPE,
 //        ItemID.TEAM40_CAPE,
-        ItemID.TEAM50_CAPE,
-        ItemID.TEAM16_CAPE,
-        ItemID.TEAM26_CAPE,
-        ItemID.TEAM36_CAPE,
-        ItemID.TEAM46_CAPE,
+            ItemID.TEAM50_CAPE,
+            ItemID.TEAM16_CAPE,
+            ItemID.TEAM26_CAPE,
+            ItemID.TEAM36_CAPE,
+            ItemID.TEAM46_CAPE,
 //        ItemID.TEAM6_CAPE,
 //        ItemID.TEAM17_CAPE,
 //        ItemID.TEAM27_CAPE,
@@ -268,12 +268,12 @@ object EquipmentSets {
     )
 
     val F2P_GLOVES = listOf(
-        ItemID.LEATHER_GLOVES,
-        ItemID.LEATHER_VAMBRACES,
+            ItemID.LEATHER_GLOVES,
+            ItemID.LEATHER_VAMBRACES,
 //        ItemID.GREY_GLOVES,
-        ItemID.PURPLE_GLOVES,
-        ItemID.RED_GLOVES,
+            ItemID.PURPLE_GLOVES,
+            ItemID.RED_GLOVES,
 //        ItemID.TEAL_GLOVES,
-        ItemID.YELLOW_GLOVES,
+            ItemID.YELLOW_GLOVES,
     )
 }

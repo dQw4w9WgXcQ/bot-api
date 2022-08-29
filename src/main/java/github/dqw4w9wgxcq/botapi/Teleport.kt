@@ -30,7 +30,7 @@ object Teleport {
 
     fun tab(itemId: Int) {
         Inventory.get(itemId)
-            .interact { it.equals("teleport", ignoreCase = true) || it.equals("break", ignoreCase = true) }
+                .interact { it.equals("teleport", ignoreCase = true) || it.equals("break", ignoreCase = true) }
         waitTele(4069)//4069 is the breaking tab animation that occurs before main animatoin for all tab types i think
     }
 
@@ -54,8 +54,8 @@ object Teleport {
         } else {
             WidgetQuery(WidgetID.ADVENTURE_LOG_ID, 3) {
                 it.text.contains(
-                    optionContainsIgnoreCase,
-                    true
+                        optionContainsIgnoreCase,
+                        true
                 )
             }().interact("continue")
         }
@@ -64,9 +64,9 @@ object Teleport {
     }
 
     private val HOME_TELE_ANIM: Collection<Int> = listOf(
-        AnimationID.BOOK_HOME_TELEPORT_1,
-        AnimationID.COW_HOME_TELEPORT_1,
-        AnimationID.LEAGUE_HOME_TELEPORT_1
+            AnimationID.BOOK_HOME_TELEPORT_1,
+            AnimationID.COW_HOME_TELEPORT_1,
+            AnimationID.LEAGUE_HOME_TELEPORT_1
     )
 
     fun home() {

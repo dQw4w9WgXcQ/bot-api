@@ -2,7 +2,7 @@ plugins {
     java
 }
 
-group = "github.dqw4w9wgxcq"
+group = "github.dqw4w9wgxcq.botapi"
 version = Versions.project
 
 repositories {
@@ -15,7 +15,7 @@ repositories {
 apply<MavenPublishPlugin>()
 
 dependencies {
-    compileOnly("net.runelite:client:${Versions.runelite}")//need EventBus
+    compileOnly("net.runelite:client:${Versions.runelite}")
     compileOnly("org.projectlombok:lombok:1.18.20")
     annotationProcessor("org.projectlombok:lombok:1.18.20")
 }

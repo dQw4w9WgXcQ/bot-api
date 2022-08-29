@@ -5,7 +5,7 @@ plugins {
     kotlin("jvm") version Versions.kotlin
 }
 
-group = "github.dqw4w9wgxcq"
+group = "github.dqw4w9wgxcq.bot"
 version = Versions.project
 
 repositories {
@@ -19,7 +19,7 @@ apply<MavenPublishPlugin>()
 
 dependencies {
     compileOnly("net.runelite:client:${Versions.runelite}")
-    compileOnly(project(":runelite-bot-loader"))
+    compileOnly(project(":loader"))
     implementation(group = "org.jboss.aerogear", name = "aerogear-otp-java", version = "1.0.0")
     compileOnly(group = "org.jetbrains", name = "annotations", version = "23.0.0")
     compileOnly("org.projectlombok:lombok:1.18.20")

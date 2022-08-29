@@ -1,3 +1,3 @@
 rootProject.name = "runelite-bot-api"
-include("runelite-bot-loader")
-include("runelite-bot-plugin")
+include("loader")
+include("runelite-plugin")

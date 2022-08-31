@@ -6,6 +6,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 
 //similar to net.runelite.client.plugins.PluginClassLoader
+//idk if this is still needed if not runnign in pluggin
 class ScriptClassLoader extends URLClassLoader {
     private final ClassLoader parent;
 

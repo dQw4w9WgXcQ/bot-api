@@ -69,7 +69,6 @@ public class BotPanel extends JPanel {
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         logFrame.getContentPane().add(scrollPane);
-        logFrame.pack();
         logFrame.setSize(1000, 1000);
 
         System.setOut(new PrintStreamInterceptor(System.out, textArea));

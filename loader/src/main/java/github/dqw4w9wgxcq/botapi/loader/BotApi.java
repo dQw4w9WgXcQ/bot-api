@@ -9,11 +9,17 @@ public class BotApi {
     public static void init(ClassLoader classLoader) {
         scriptManager = new ScriptManager(classLoader);
 
-        frame = new JFrame();
-        frame.add(new BotPanel(scriptManager));
-        frame.setSize(500, 500);
-        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        frame.setVisible(true);
+        SwingUtilities.invokeLater(() -> {
+            frame = new JFrame();
+            String acc = System.getProperty("bot.acc");
+            if (acc != null) {
+                frame.setTitle(acc);
+            }
+            frame.add(new BotPanel(scriptManager));
+            frame.setSize(500, 500);
+            frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            frame.setVisible(true);
+        });
 
         RuneliteContext.init();
 

@@ -2,7 +2,7 @@ plugins {
     java
 }
 
-group = "github.dqw4w9wgxcq.botapi"
+group = "github.dqw4w9wgxcq.bot"
 version = Versions.project
 
 repositories {

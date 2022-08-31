@@ -21,7 +21,6 @@ public class ScriptManager {
 
     private final ClassLoader classLoader;
 
-    @SneakyThrows
     public ScriptManager(ClassLoader classLoader) {
         this.classLoader = classLoader;
         log.info("classloader:{}", classLoader);
@@ -76,7 +75,7 @@ public class ScriptManager {
     }
 
     public List<Class<? extends IBotScript>> loadScripts() {
-		List<Class<? extends IBotScript>> out = new ArrayList<>(loadScriptsFromDir(SCRIPTS_DIR));
+        List<Class<? extends IBotScript>> out = new ArrayList<>(loadScriptsFromDir(SCRIPTS_DIR));
 
         File desktopScriptJarFile = new File(new File(System.getProperty("user.home"), "Desktop"), "script.jar");
         if (desktopScriptJarFile.exists()) {

@@ -35,8 +35,8 @@ object TrainingAmounts {
                 }
 
                 lvlStep = minOf(
-                        if (i == methodss.lastIndex) goalLvl else methodss[i + 1].lvlReq,
-                        goalLvl
+                    if (i == methodss.lastIndex) goalLvl else methodss[i + 1].lvlReq,
+                    goalLvl
                 )
 
                 info { "lvlStep $lvlStep" }

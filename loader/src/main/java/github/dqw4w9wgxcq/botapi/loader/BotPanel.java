@@ -1,9 +1,13 @@
 package github.dqw4w9wgxcq.botapi.loader;
 
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Vector;
 
+@Slf4j
 public class BotPanel extends JPanel {
     private final JList<ScriptListEntry> scriptList = new JList<>();
     private final JFrame logFrame;
@@ -60,6 +64,25 @@ public class BotPanel extends JPanel {
 
         add(centerPanel, BorderLayout.CENTER);
 
+        //south
+        Panel southPanel = new Panel(new GridLayout(0, 1));
+        JTextField accountTextField = new JTextField();
+
+        String acc = System.getProperty("bot.acc");
+        if (acc != null) {
+            accountTextField.setText(acc);
+        }
+
+        accountTextField.addActionListener(e -> {
+            String text = accountTextField.getText();
+            log.info("setting acc:" + text);
+            System.setProperty("bot.acc", text);
+        });
+
+        southPanel.add(accountTextField);
+
+        add(southPanel, BorderLayout.SOUTH);
+
         logFrame = new JFrame();
 
         JTextArea textArea = new TrimmingJTextArea();
@@ -89,6 +112,7 @@ public class BotPanel extends JPanel {
     }
 
     private static final class ScriptListEntry {
+        @Getter
         private final Class<? extends IBotScript> scriptClass;
         private final ScriptMeta meta;
 
@@ -104,10 +128,6 @@ public class BotPanel extends JPanel {
         @Override
         public String toString() {
             return meta.value();
-        }
-
-        public Class<? extends IBotScript> getScriptClass() {
-            return scriptClass;
         }
     }
 }

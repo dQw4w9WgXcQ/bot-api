@@ -1,6 +1,7 @@
 package github.dqw4w9wgxcq.botapi.loader;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
@@ -10,6 +11,12 @@ public class PrintStreamInterceptor extends PrintStream {
     public PrintStreamInterceptor(OutputStream originalOut, JTextArea logTextArea) {
         super(originalOut, true);
         this.logTextArea = logTextArea;
+    }
+
+    @Override
+    public void write(byte[] b) throws IOException {
+        logTextArea.append(new String(b));
+        super.write(b);
     }
 
     @Override

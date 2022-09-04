@@ -70,7 +70,7 @@ object Refl {
             viewportWalking = sceneClass.getDeclaredField("ag")
 
             val actorClass = getRsClass("cx")
-            pathLength = actorClass.getDeclaredField("cc")
+            pathLength = actorClass.getDeclaredField("ca")
             pathLengthDecodingMult = -2007282911
         } catch (e: ReflectiveOperationException) {
             throw FatalException("reflection init failed", e)

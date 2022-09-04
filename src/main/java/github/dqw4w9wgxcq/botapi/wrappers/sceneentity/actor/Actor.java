@@ -47,7 +47,6 @@ public abstract class Actor<RL extends net.runelite.api.Actor> extends RlWrapper
     }
 
     public boolean isMoving() {
-        int pathLength = getPathLength();
-        return pathLength != 0;
+        return getPathLength() != 0;
     }
 }

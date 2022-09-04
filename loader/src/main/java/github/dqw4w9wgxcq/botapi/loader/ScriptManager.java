@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public class ScriptManager {
-    private final File SCRIPTS_DIR = new File(new File(System.getProperty("user.home"), "runelite-bot"), "scripts");
+    private final File SCRIPTS_DIR = new File(new File(RealUserHome.getUserHome(), "runelite-bot"), "scripts");
 
     @Getter
     private final ScriptThread scriptThread = new ScriptThread();
@@ -77,7 +77,7 @@ public class ScriptManager {
     public List<Class<? extends IBotScript>> loadScripts() {
         List<Class<? extends IBotScript>> out = new ArrayList<>(loadScriptsFromDir(SCRIPTS_DIR));
 
-        File desktopScriptJarFile = new File(new File(System.getProperty("user.home"), "Desktop"), "script.jar");
+        File desktopScriptJarFile = new File(new File(RealUserHome.getUserHome(), "Desktop"), "script.jar");
         if (desktopScriptJarFile.exists()) {
             out.addAll(loadScriptsFromFile(desktopScriptJarFile));
         } else {

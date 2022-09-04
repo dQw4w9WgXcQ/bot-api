@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import java.io.File;
 
 public class RuneliteContext {
-    public static final File dir = new File(System.getProperty("user.home"), "runelite-bot");
+    public static final File dir = new File(RealUserHome.getUserHome(), "runelite-bot");
 
     private static RuneliteContext instance = null;
 

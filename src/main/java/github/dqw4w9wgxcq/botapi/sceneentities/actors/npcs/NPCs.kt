@@ -7,7 +7,7 @@ import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.actor.NPC
 
 object NPCs : Actors<NPC>() {
     fun atIndex(index: Int): NPC {
-        require(index in 0..32767) {}
+        require(index in 0..32767) { "index in 0..32767" }
 
         return NPC(Client.cachedNPCs[index])
     }

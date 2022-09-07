@@ -11,10 +11,19 @@ public class BotApi {
 
         SwingUtilities.invokeLater(() -> {
             frame = new JFrame();
+
+            String title = "";
             String acc = System.getProperty("bot.acc");
             if (acc != null) {
-                frame.setTitle(acc);
+                title += acc;
+            } else {
+                title = "asdf";
             }
+            String proxy = System.getProperty("socksProxyHost");
+            if (proxy != null) {
+                title += " - " + proxy;
+            }
+            frame.setTitle(title);
             frame.add(new BotPanel(scriptManager));
             frame.setSize(500, 500);
             frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);

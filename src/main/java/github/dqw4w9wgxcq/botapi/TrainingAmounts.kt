@@ -15,7 +15,7 @@ object TrainingAmounts {
         }
     }
 
-    fun calculate(skill: Skill, goalLvl: Int, vararg methods: Method): Map<Int, Int> {
+    fun calculate(skill: Skill, goalLvl: Int, vararg methods: Method): MutableMap<Int, Int> {
         fun MutableMap<Int, Int>.increment(id: Int, amount: Int) {
             put(id, getOrDefault(id, 0) + amount)
         }
@@ -63,6 +63,6 @@ object TrainingAmounts {
                     break
                 }
             }
-        }
+        }.toMutableMap()
     }
 }

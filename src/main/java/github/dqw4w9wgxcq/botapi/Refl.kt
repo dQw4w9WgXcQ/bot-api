@@ -1,6 +1,5 @@
 package github.dqw4w9wgxcq.botapi
 
-import github.dqw4w9wgxcq.botapi.commons.FatalException
 import github.dqw4w9wgxcq.botapi.commons.debug
 import github.dqw4w9wgxcq.botapi.loader.RuneliteContext
 import java.lang.reflect.Field
@@ -17,7 +16,7 @@ object Refl {
     val isLoading: Field
     val worldSelectOpen: Field
     val loadWorlds: Method
-    val loadWorldsJunkValue: Byte
+    val loadWorldsJunkValue: Int
     val hasFocus: Field
 
     //loginevent
@@ -44,37 +43,33 @@ object Refl {
             return Class.forName(name, false, rsClassLoader)
         }
 
-        try {
-            val loginClass = getRsClass("bc")
-            Widget_interfaceComponents = getRsClass("md").getDeclaredField("e")
-            isLoading = getRsClass("client").getDeclaredField("ck")
-            worldSelectOpen = loginClass.getDeclaredField("co")
-            loadWorlds = getRsClass("c").getDeclaredMethod("s", java.lang.Byte.TYPE)
-            loadWorldsJunkValue = 5;
-            hasFocus = getRsClass("op").getDeclaredField("ah")
+        val loginClass = getRsClass("be")
+        Widget_interfaceComponents = getRsClass("je").getDeclaredField("e")
+        isLoading = getRsClass("client").getDeclaredField("cm")
+        worldSelectOpen = loginClass.getDeclaredField("cf")
+        loadWorlds = getRsClass("dr").getDeclaredMethod("c", Integer.TYPE)
+        loadWorldsJunkValue = 53690591
+        hasFocus = getRsClass("ca").getDeclaredField("ay")
 
-            Login_response0 = loginClass.getDeclaredField("bq")
-            Login_response1 = loginClass.getDeclaredField("bn")
-            Login_response2 = loginClass.getDeclaredField("bl")
-            Login_response3 = loginClass.getDeclaredField("bv")
+        Login_response0 = loginClass.getDeclaredField("bw")
+        Login_response1 = loginClass.getDeclaredField("bc")
+        Login_response2 = loginClass.getDeclaredField("bv")
+        Login_response3 = loginClass.getDeclaredField("bg")
 
-            val viewportMouseClass = getRsClass("hg")
-            ViewportMouse_entityTags = viewportMouseClass.getDeclaredField("l")
-            ViewportMouse_entityCount = viewportMouseClass.getDeclaredField("u")
-            entityCountEncodingMult = 609326827
-            entityCountDecodingMult = 834575933
+        val viewportMouseClass = getRsClass("hn")
+        ViewportMouse_entityTags = viewportMouseClass.getDeclaredField("u")
+        ViewportMouse_entityCount = viewportMouseClass.getDeclaredField("t")
+        entityCountEncodingMult = 943156627
+        entityCountDecodingMult = -151668581
 
-            val sceneClass = getRsClass("gy")
-            Scene_selectedX = sceneClass.getDeclaredField("as")
-            Scene_selectedY = sceneClass.getDeclaredField("ay")
-            viewportWalking = sceneClass.getDeclaredField("ag")
+        val sceneClass = getRsClass("gp")
+        Scene_selectedX = sceneClass.getDeclaredField("am")
+        Scene_selectedY = sceneClass.getDeclaredField("ap")
+        viewportWalking = sceneClass.getDeclaredField("ab")
 
-            val actorClass = getRsClass("cx")
-            pathLength = actorClass.getDeclaredField("ca")
-            pathLengthDecodingMult = -2007282911
-        } catch (e: ReflectiveOperationException) {
-            throw FatalException("reflection init failed", e)
-        }
+        val actorClass = getRsClass("ce")
+        pathLength = actorClass.getDeclaredField("ch")
+        pathLengthDecodingMult = -157413117
     }
 
     fun <T> Field.get2(obj: Any?): T {

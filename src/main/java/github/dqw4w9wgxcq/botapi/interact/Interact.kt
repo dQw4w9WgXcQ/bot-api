@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.interact
 
-import github.dqw4w9wgxcq.botapi.game.Client
+import github.dqw4w9wgxcq.botapi.Client
 import net.runelite.api.Constants
 import net.runelite.api.MenuEntry
 import java.awt.Rectangle

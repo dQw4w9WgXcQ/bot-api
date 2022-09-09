@@ -1,12 +1,12 @@
 package github.dqw4w9wgxcq.botapi.grandexchange
 
+import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.*
-import github.dqw4w9wgxcq.botapi.game.Client
 import github.dqw4w9wgxcq.botapi.input.Keyboard
-import github.dqw4w9wgxcq.botapi.itemcontainer.bank.Bank
-import github.dqw4w9wgxcq.botapi.itemcontainer.inventory.Inventory
-import github.dqw4w9wgxcq.botapi.sceneentities.actors.npcs.NPCs
-import github.dqw4w9wgxcq.botapi.sceneentities.actors.players.Players
+import github.dqw4w9wgxcq.botapi.itemcontainer.Bank
+import github.dqw4w9wgxcq.botapi.itemcontainer.Inventory
+import github.dqw4w9wgxcq.botapi.sceneentities.NPCs
+import github.dqw4w9wgxcq.botapi.sceneentities.Players
 import github.dqw4w9wgxcq.botapi.varps.Varps
 import github.dqw4w9wgxcq.botapi.widget.Dialog
 import github.dqw4w9wgxcq.botapi.widget.WidgetQuery

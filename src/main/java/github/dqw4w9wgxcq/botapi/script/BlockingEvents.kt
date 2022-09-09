@@ -1,8 +1,9 @@
-package github.dqw4w9wgxcq.botapi.script.blockingevent
+package github.dqw4w9wgxcq.botapi.script
 
-import github.dqw4w9wgxcq.botapi.script.blockingevent.events.DeselectEvent
-import github.dqw4w9wgxcq.botapi.script.blockingevent.events.LoginEvent
-import github.dqw4w9wgxcq.botapi.script.blockingevent.events.WelcomeEvent
+import github.dqw4w9wgxcq.botapi.script.blockingevents.BlockingEvent
+import github.dqw4w9wgxcq.botapi.script.blockingevents.DeselectEvent
+import github.dqw4w9wgxcq.botapi.script.blockingevents.LoginEvent
+import github.dqw4w9wgxcq.botapi.script.blockingevents.WelcomeEvent
 
 object BlockingEvents {
     init {

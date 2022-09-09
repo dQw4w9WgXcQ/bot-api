@@ -1,8 +1,7 @@
-package github.dqw4w9wgxcq.botapi.sceneentities.actors.npcs
+package github.dqw4w9wgxcq.botapi.sceneentities
 
+import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.NotFoundException
-import github.dqw4w9wgxcq.botapi.game.Client
-import github.dqw4w9wgxcq.botapi.sceneentities.actors.Actors
 import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.actor.NPC
 
 object NPCs : Actors<NPC>() {

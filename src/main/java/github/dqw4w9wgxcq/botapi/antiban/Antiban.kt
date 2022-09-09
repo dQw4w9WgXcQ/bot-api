@@ -1,10 +1,10 @@
 package github.dqw4w9wgxcq.botapi.antiban
 
+import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.debug
 import github.dqw4w9wgxcq.botapi.commons.inGameBounds
 import github.dqw4w9wgxcq.botapi.commons.toAwt
 import github.dqw4w9wgxcq.botapi.commons.wait
-import github.dqw4w9wgxcq.botapi.game.Client
 import github.dqw4w9wgxcq.botapi.input.Focus
 import github.dqw4w9wgxcq.botapi.input.mouse.Mouse
 import net.runelite.api.GameState

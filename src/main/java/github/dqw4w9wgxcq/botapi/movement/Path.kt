@@ -4,7 +4,7 @@ import github.dqw4w9wgxcq.botapi.commons.debug
 import github.dqw4w9wgxcq.botapi.commons.isInTrimmedScene
 import github.dqw4w9wgxcq.botapi.commons.toScene
 import github.dqw4w9wgxcq.botapi.movement.pathfinding.local.LocalPathfinding
-import github.dqw4w9wgxcq.botapi.sceneentities.actors.players.Players
+import github.dqw4w9wgxcq.botapi.sceneentities.Players
 import net.runelite.api.Point
 import net.runelite.api.coords.WorldPoint
 

@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.wrappers.sceneentity.actor;
 
-import github.dqw4w9wgxcq.botapi.game.Client;
+import github.dqw4w9wgxcq.botapi.Client;
 import lombok.experimental.Delegate;
 import net.runelite.api.NPCComposition;
 import net.runelite.api.Renderable;

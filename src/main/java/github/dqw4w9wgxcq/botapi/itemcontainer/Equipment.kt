@@ -1,11 +1,8 @@
-package github.dqw4w9wgxcq.botapi.itemcontainer.equipment
+package github.dqw4w9wgxcq.botapi.itemcontainer
 
 import github.dqw4w9wgxcq.botapi.commons.byId
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
 import github.dqw4w9wgxcq.botapi.data.ActionData
-import github.dqw4w9wgxcq.botapi.itemcontainer.ItemContainer
-import github.dqw4w9wgxcq.botapi.itemcontainer.bank.Bank
-import github.dqw4w9wgxcq.botapi.itemcontainer.inventory.Inventory
 import github.dqw4w9wgxcq.botapi.tabs.Tab
 import github.dqw4w9wgxcq.botapi.tabs.Tabs
 import github.dqw4w9wgxcq.botapi.widget.Widgets

@@ -1,7 +1,7 @@
 package github.dqw4w9wgxcq.botapi.input
 
+import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.Rand
-import github.dqw4w9wgxcq.botapi.game.Client
 
 object Focus {
     @Volatile

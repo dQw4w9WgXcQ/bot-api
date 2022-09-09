@@ -1,7 +1,7 @@
 package github.dqw4w9wgxcq.botapi.input.mouse
 
+import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.*
-import github.dqw4w9wgxcq.botapi.game.Client
 import github.dqw4w9wgxcq.botapi.input.CanvasInput
 import github.dqw4w9wgxcq.botapi.input.Focus
 import java.awt.Point

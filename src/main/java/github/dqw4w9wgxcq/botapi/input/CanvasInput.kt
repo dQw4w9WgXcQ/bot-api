@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.input
 
-import github.dqw4w9wgxcq.botapi.game.Client
+import github.dqw4w9wgxcq.botapi.Client
 import java.awt.event.*
 
 //do not change the parameters, they document properties the game checks

@@ -1,13 +1,10 @@
-package github.dqw4w9wgxcq.botapi.itemcontainer.bank
+package github.dqw4w9wgxcq.botapi.itemcontainer
 
 import github.dqw4w9wgxcq.botapi.commons.*
 import github.dqw4w9wgxcq.botapi.grandexchange.GrandExchange
-import github.dqw4w9wgxcq.botapi.itemcontainer.ItemContainer
-import github.dqw4w9wgxcq.botapi.itemcontainer.equipment.Equipment
-import github.dqw4w9wgxcq.botapi.itemcontainer.inventory.Inventory
 import github.dqw4w9wgxcq.botapi.movement.Movement
 import github.dqw4w9wgxcq.botapi.movement.pathfinding.local.LocalPathfinding
-import github.dqw4w9wgxcq.botapi.sceneentities.tile.objects.TileObjects
+import github.dqw4w9wgxcq.botapi.sceneentities.TileObjects
 import github.dqw4w9wgxcq.botapi.varps.Varps
 import github.dqw4w9wgxcq.botapi.widget.Dialog
 import github.dqw4w9wgxcq.botapi.widget.WidgetQuery

@@ -1,7 +1,7 @@
 package github.dqw4w9wgxcq.botapi.data
 
+import github.dqw4w9wgxcq.botapi.Skills
 import github.dqw4w9wgxcq.botapi.commons.*
-import github.dqw4w9wgxcq.botapi.skill.Skills
 import github.dqw4w9wgxcq.botapi.wrappers.Nameable
 import github.dqw4w9wgxcq.botapi.wrappers.item.Item
 import github.dqw4w9wgxcq.botapi.wrappers.item.container.ContainerItem

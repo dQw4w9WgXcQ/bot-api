@@ -1,9 +1,9 @@
 package github.dqw4w9wgxcq.botapi.commons
 
-import github.dqw4w9wgxcq.botapi.game.Client
+import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.loader.RuneliteContext
 import github.dqw4w9wgxcq.botapi.movement.pathfinding.local.LocalPathfinding
-import github.dqw4w9wgxcq.botapi.sceneentities.actors.players.Players
+import github.dqw4w9wgxcq.botapi.sceneentities.Players
 import github.dqw4w9wgxcq.botapi.script.BotScript
 import github.dqw4w9wgxcq.botapi.wrappers.Identifiable
 import github.dqw4w9wgxcq.botapi.wrappers.Interactable

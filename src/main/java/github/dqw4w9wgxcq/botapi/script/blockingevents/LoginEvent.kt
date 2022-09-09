@@ -1,14 +1,13 @@
-package github.dqw4w9wgxcq.botapi.script.blockingevent.events
+package github.dqw4w9wgxcq.botapi.script.blockingevents
 
+import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.Refl
 import github.dqw4w9wgxcq.botapi.Refl.get2
 import github.dqw4w9wgxcq.botapi.account.AccountManager
 import github.dqw4w9wgxcq.botapi.commons.*
-import github.dqw4w9wgxcq.botapi.game.Client
 import github.dqw4w9wgxcq.botapi.input.Keyboard
 import github.dqw4w9wgxcq.botapi.input.mouse.Mouse
 import github.dqw4w9wgxcq.botapi.script.BotScript
-import github.dqw4w9wgxcq.botapi.script.blockingevent.BlockingEvent
 import github.dqw4w9wgxcq.botapi.worlds.Worlds
 import net.runelite.api.GameState
 import org.jboss.aerogear.security.otp.Totp

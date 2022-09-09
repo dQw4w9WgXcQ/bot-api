@@ -1,8 +1,7 @@
-package github.dqw4w9wgxcq.botapi.sceneentities.tile
+package github.dqw4w9wgxcq.botapi.sceneentities
 
+import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.*
-import github.dqw4w9wgxcq.botapi.game.Client
-import github.dqw4w9wgxcq.botapi.sceneentities.SceneEntities
 import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.TileEntity
 import net.runelite.api.Point
 import net.runelite.api.Tile

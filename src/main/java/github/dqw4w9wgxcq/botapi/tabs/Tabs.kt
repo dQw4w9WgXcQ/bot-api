@@ -1,10 +1,10 @@
 package github.dqw4w9wgxcq.botapi.tabs
 
+import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.debug
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
-import github.dqw4w9wgxcq.botapi.game.Client
 import github.dqw4w9wgxcq.botapi.input.Keyboard
-import github.dqw4w9wgxcq.botapi.itemcontainer.bank.Bank
+import github.dqw4w9wgxcq.botapi.itemcontainer.Bank
 import github.dqw4w9wgxcq.botapi.widget.WidgetQuery
 import github.dqw4w9wgxcq.botapi.widget.Widgets
 import net.runelite.api.GameState

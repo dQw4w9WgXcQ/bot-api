@@ -1,7 +1,7 @@
 package github.dqw4w9wgxcq.botapi.wrappers;
 
 import github.dqw4w9wgxcq.botapi.commons.CommonsKt;
-import github.dqw4w9wgxcq.botapi.sceneentities.actors.players.Players;
+import github.dqw4w9wgxcq.botapi.sceneentities.Players;
 import net.runelite.api.Point;
 import net.runelite.api.coords.WorldPoint;
 import org.jetbrains.annotations.NotNull;

@@ -1,7 +1,7 @@
 package github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.item;
 
 import github.dqw4w9wgxcq.botapi.commons.CommonsKt;
-import github.dqw4w9wgxcq.botapi.itemcontainer.inventory.Inventory;
+import github.dqw4w9wgxcq.botapi.itemcontainer.Inventory;
 import github.dqw4w9wgxcq.botapi.wrappers.item.Item;
 import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.TileEntity;
 import kotlin.NotImplementedError;

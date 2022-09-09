@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.data
 
-import github.dqw4w9wgxcq.botapi.coords.Areas
+import github.dqw4w9wgxcq.botapi.commons.Areas
 import net.runelite.api.coords.WorldArea
 import net.runelite.api.coords.WorldPoint
 

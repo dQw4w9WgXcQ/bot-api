@@ -1,9 +1,9 @@
 package github.dqw4w9wgxcq.botapi.tabs.quest
 
+import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.byAction
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
-import github.dqw4w9wgxcq.botapi.game.Client
-import github.dqw4w9wgxcq.botapi.sceneentities.actors.players.Players
+import github.dqw4w9wgxcq.botapi.sceneentities.Players
 import github.dqw4w9wgxcq.botapi.widget.WidgetQuery
 import net.runelite.api.coords.WorldPoint
 import net.runelite.api.widgets.WidgetInfo

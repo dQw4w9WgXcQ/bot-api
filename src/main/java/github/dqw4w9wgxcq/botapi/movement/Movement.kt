@@ -1,13 +1,13 @@
 package github.dqw4w9wgxcq.botapi.movement
 
+import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.antiban.Profile
 import github.dqw4w9wgxcq.botapi.commons.*
-import github.dqw4w9wgxcq.botapi.game.Client
 import github.dqw4w9wgxcq.botapi.interact.Interact
-import github.dqw4w9wgxcq.botapi.itemcontainer.inventory.Inventory
+import github.dqw4w9wgxcq.botapi.itemcontainer.Inventory
 import github.dqw4w9wgxcq.botapi.movement.pathfinding.local.LocalPathfinding
-import github.dqw4w9wgxcq.botapi.sceneentities.actors.players.Players
-import github.dqw4w9wgxcq.botapi.sceneentities.tile.objects.TileObjects
+import github.dqw4w9wgxcq.botapi.sceneentities.Players
+import github.dqw4w9wgxcq.botapi.sceneentities.TileObjects
 import github.dqw4w9wgxcq.botapi.varps.Varps
 import github.dqw4w9wgxcq.botapi.widget.Dialog
 import github.dqw4w9wgxcq.botapi.widget.Widgets

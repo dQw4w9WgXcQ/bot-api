@@ -1,5 +1,5 @@
 package github.dqw4w9wgxcq.botapi.wrappers
 
-interface Nameable {
+interface Nameable : Identifiable {
     val name: String
 }

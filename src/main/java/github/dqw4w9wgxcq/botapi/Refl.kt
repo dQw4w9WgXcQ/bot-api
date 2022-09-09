@@ -192,7 +192,7 @@ object Refl {
     }
 
     //cant use varargs, kotlin primtive auto boxing makes args different type
-    fun <T> Method.invoke2(obj: Any?, junk: Any): T {
+    fun <T> Method.invoke2(vararg args: Any?): T {
         val wasAccessible = this.isAccessible
         if (!wasAccessible) {
             this.isAccessible = true
@@ -200,7 +200,7 @@ object Refl {
 
         return try {
             @Suppress("UNCHECKED_CAST")
-            this.invoke(obj, junk) as T
+            this.invoke(args) as T
         } finally {
             if (!wasAccessible) {
                 this.isAccessible = false

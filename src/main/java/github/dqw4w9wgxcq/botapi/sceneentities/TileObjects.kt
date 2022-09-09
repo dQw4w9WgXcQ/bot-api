@@ -1,6 +1,5 @@
-package github.dqw4w9wgxcq.botapi.sceneentities.tile.objects
+package github.dqw4w9wgxcq.botapi.sceneentities
 
-import github.dqw4w9wgxcq.botapi.sceneentities.tile.TileEntities
 import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.`object`.*
 import net.runelite.api.Tile
 

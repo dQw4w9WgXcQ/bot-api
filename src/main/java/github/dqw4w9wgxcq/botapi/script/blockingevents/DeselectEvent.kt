@@ -1,10 +1,9 @@
-package github.dqw4w9wgxcq.botapi.script.blockingevent.events
+package github.dqw4w9wgxcq.botapi.script.blockingevents
 
+import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
-import github.dqw4w9wgxcq.botapi.game.Client
 import github.dqw4w9wgxcq.botapi.interact.Interact
-import github.dqw4w9wgxcq.botapi.itemcontainer.inventory.Inventory
-import github.dqw4w9wgxcq.botapi.script.blockingevent.BlockingEvent
+import github.dqw4w9wgxcq.botapi.itemcontainer.Inventory
 
 class DeselectEvent : BlockingEvent() {
     override fun checkBlocked(): Boolean {

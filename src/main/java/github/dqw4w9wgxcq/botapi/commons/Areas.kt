@@ -1,7 +1,6 @@
-package github.dqw4w9wgxcq.botapi.coords
+package github.dqw4w9wgxcq.botapi.commons
 
-import github.dqw4w9wgxcq.botapi.commons.Rand
-import github.dqw4w9wgxcq.botapi.sceneentities.actors.players.Players
+import github.dqw4w9wgxcq.botapi.sceneentities.Players
 import github.dqw4w9wgxcq.botapi.wrappers.Locatable
 import net.runelite.api.coords.WorldArea
 import net.runelite.api.coords.WorldPoint

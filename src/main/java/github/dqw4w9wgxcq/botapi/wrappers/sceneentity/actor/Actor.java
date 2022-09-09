@@ -1,8 +1,8 @@
 package github.dqw4w9wgxcq.botapi.wrappers.sceneentity.actor;
 
+import github.dqw4w9wgxcq.botapi.Client;
 import github.dqw4w9wgxcq.botapi.Refl;
 import github.dqw4w9wgxcq.botapi.commons.CommonsKt;
-import github.dqw4w9wgxcq.botapi.game.Client;
 import github.dqw4w9wgxcq.botapi.wrappers.RlWrapper;
 import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.SceneEntity;
 import net.runelite.api.Point;

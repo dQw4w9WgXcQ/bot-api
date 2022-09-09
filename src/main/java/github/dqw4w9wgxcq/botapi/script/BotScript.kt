@@ -1,11 +1,10 @@
 package github.dqw4w9wgxcq.botapi.script
 
+import github.dqw4w9wgxcq.botapi.Client
+import github.dqw4w9wgxcq.botapi.Events
 import github.dqw4w9wgxcq.botapi.antiban.Antiban
 import github.dqw4w9wgxcq.botapi.commons.*
-import github.dqw4w9wgxcq.botapi.event.Events
-import github.dqw4w9wgxcq.botapi.game.Client
 import github.dqw4w9wgxcq.botapi.loader.IBotScript
-import github.dqw4w9wgxcq.botapi.script.blockingevent.BlockingEvents
 import org.slf4j.event.Level
 import java.io.IOException
 import java.util.concurrent.ExecutionException

@@ -1,6 +1,5 @@
-package github.dqw4w9wgxcq.botapi.skill
+package github.dqw4w9wgxcq.botapi
 
-import github.dqw4w9wgxcq.botapi.game.Client
 import net.runelite.api.Skill
 
 object Skills {

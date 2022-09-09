@@ -1,11 +1,11 @@
 package github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.object;
 
+import github.dqw4w9wgxcq.botapi.Client;
 import github.dqw4w9wgxcq.botapi.commons.CommonsKt;
 import github.dqw4w9wgxcq.botapi.commons.RetryableBotException;
-import github.dqw4w9wgxcq.botapi.game.Client;
 import github.dqw4w9wgxcq.botapi.movement.Movement;
 import github.dqw4w9wgxcq.botapi.movement.pathfinding.local.LocalPathfinding;
-import github.dqw4w9wgxcq.botapi.sceneentities.actors.players.Players;
+import github.dqw4w9wgxcq.botapi.sceneentities.Players;
 import kotlin.jvm.functions.Function1;
 import lombok.experimental.Delegate;
 import net.runelite.api.ObjectComposition;

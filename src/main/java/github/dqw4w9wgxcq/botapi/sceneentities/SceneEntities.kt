@@ -1,7 +1,6 @@
 package github.dqw4w9wgxcq.botapi.sceneentities
 
 import github.dqw4w9wgxcq.botapi.commons.*
-import github.dqw4w9wgxcq.botapi.sceneentities.actors.players.Players
 import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.SceneEntity
 import kotlin.math.ceil
 

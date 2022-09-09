@@ -1,7 +1,7 @@
 package github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.object;
 
+import github.dqw4w9wgxcq.botapi.Client;
 import github.dqw4w9wgxcq.botapi.commons.CommonsKt;
-import github.dqw4w9wgxcq.botapi.game.Client;
 import github.dqw4w9wgxcq.botapi.wrappers.RlWrapper;
 import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.TileEntity;
 import lombok.experimental.Delegate;

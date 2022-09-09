@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.tabs.prayer
 
-import github.dqw4w9wgxcq.botapi.skill.Skills.boostedLevel
+import github.dqw4w9wgxcq.botapi.Skills.boostedLevel
 import github.dqw4w9wgxcq.botapi.varps.Varps
 import github.dqw4w9wgxcq.botapi.widget.Widgets
 import net.runelite.api.Skill

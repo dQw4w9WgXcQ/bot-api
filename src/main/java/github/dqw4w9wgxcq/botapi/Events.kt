@@ -1,4 +1,4 @@
-package github.dqw4w9wgxcq.botapi.event
+package github.dqw4w9wgxcq.botapi
 
 import github.dqw4w9wgxcq.botapi.commons.info
 import github.dqw4w9wgxcq.botapi.commons.warn

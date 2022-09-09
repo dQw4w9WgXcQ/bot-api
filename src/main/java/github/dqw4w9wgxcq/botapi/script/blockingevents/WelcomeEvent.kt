@@ -1,12 +1,11 @@
-package github.dqw4w9wgxcq.botapi.script.blockingevent.events
+package github.dqw4w9wgxcq.botapi.script.blockingevents
 
+import github.dqw4w9wgxcq.botapi.Client
+import github.dqw4w9wgxcq.botapi.Skills
 import github.dqw4w9wgxcq.botapi.commons.byAction
 import github.dqw4w9wgxcq.botapi.commons.debug
 import github.dqw4w9wgxcq.botapi.commons.info
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
-import github.dqw4w9wgxcq.botapi.game.Client
-import github.dqw4w9wgxcq.botapi.script.blockingevent.BlockingEvent
-import github.dqw4w9wgxcq.botapi.skill.Skills
 import github.dqw4w9wgxcq.botapi.widget.WidgetQuery
 import github.dqw4w9wgxcq.botapi.widget.Widgets
 import net.runelite.api.Skill

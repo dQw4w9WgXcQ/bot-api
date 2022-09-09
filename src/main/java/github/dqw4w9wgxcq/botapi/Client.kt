@@ -1,6 +1,5 @@
-package github.dqw4w9wgxcq.botapi.game
+package github.dqw4w9wgxcq.botapi
 
-import github.dqw4w9wgxcq.botapi.Refl
 import github.dqw4w9wgxcq.botapi.Refl.get2
 import github.dqw4w9wgxcq.botapi.Refl.getBoolean2
 import github.dqw4w9wgxcq.botapi.Refl.invoke2
@@ -72,7 +71,7 @@ object Client : net.runelite.api.Client by RuneliteContext.getClient() {
     }
 
     fun loadWorlds(): Boolean {
-        return onGameThread { Refl.loadWorlds.invoke2(null, Refl.loadWorldsJunkValue) }
+        return onGameThread { Refl.loadWorlds.invoke2(Refl.loadWorldsJunkValue) }
     }
 
     //doesnt work

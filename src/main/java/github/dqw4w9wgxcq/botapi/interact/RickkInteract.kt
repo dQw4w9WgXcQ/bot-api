@@ -37,10 +37,6 @@ class RickkInteract : InteractDriver {
 
         @Subscribe
         fun onMenuEntryAdded(e: MenuEntryAdded) {
-//            if (e.menuEntry.type != MenuAction.WALK) {
-//                return
-//            }
-
             if (forcedTag.get() == -1L) {
                 return
             }

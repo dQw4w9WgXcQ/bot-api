@@ -71,7 +71,7 @@ object Client : net.runelite.api.Client by RuneliteContext.getClient() {
     }
 
     fun loadWorlds(): Boolean {
-        return onGameThread { Refl.loadWorlds.invoke2(Refl.loadWorldsJunkValue) }
+        return onGameThread { Refl.loadWorlds.invoke2(null, Refl.loadWorldsJunkValue) }
     }
 
     //doesnt work

@@ -4,6 +4,7 @@ import net.runelite.api.Client;
 import net.runelite.client.RuneLite;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.eventbus.EventBus;
+import net.runelite.client.plugins.PluginManager;
 
 import javax.inject.Inject;
 import java.io.File;
@@ -19,6 +20,8 @@ public class RuneliteContext {
     private ClientThread clientThread;
     @Inject
     private EventBus eventBus;
+    @Inject
+    private PluginManager pluginManager;
 
     static void init() {
         RuneliteContext ctx = new RuneliteContext();
@@ -44,5 +47,9 @@ public class RuneliteContext {
 
     public static EventBus getEventBus() {
         return get().eventBus;
+    }
+
+    public static PluginManager getPluginManager() {
+        return get().pluginManager;
     }
 }

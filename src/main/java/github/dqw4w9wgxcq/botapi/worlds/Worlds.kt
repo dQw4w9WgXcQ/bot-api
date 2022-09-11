@@ -128,7 +128,19 @@ object Worlds {
     }
 
     fun switchToRandomSuitable(matches: (World) -> Boolean = { true }) {
-        switchTo(getRandom(matches.and(SUITABLE.and(NOT_CURRENT))))
+        val highPop = all(F2P)
+            .sortedByDescending { it.playerCount }
+            .map { it.id }
+            .take(10)
+            .toMutableSet()
+        highPop.addAll(
+            all(P2P)
+                .sortedByDescending { it.playerCount }
+                .map { it.id }
+                .take(20)
+        )
+
+        switchTo(getRandom(matches.and(SUITABLE).and(NOT_CURRENT).and { highPop.contains(it.id) }))
     }
 
     fun onF2p(): Boolean {

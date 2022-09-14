@@ -147,7 +147,7 @@ fun <T> waitUntilCondition(
 
         val supplied = supply()
         if (condition(supplied)) {
-            debug { "validated after ${System.currentTimeMillis() - start}ms" }
+            debug { "$supply validated $condition after ${System.currentTimeMillis() - start}ms" }
             return supplied
         }
 
@@ -171,8 +171,22 @@ fun <T> waitUntilNotNull(
     return waitUntilCondition(
         timeout,
         pollRate,
-        supply
-    ) { it != null }!!
+        supply,
+        { t: T? -> t != null }.withDescription("not null")
+    )!!
+}
+
+fun waitUntil(
+    timeout: Int = Wait.defaultTimeout,
+    pollRate: Int = Wait.defaultPollRate,
+    condition: () -> Boolean,
+) {
+    waitUntilCondition(
+        timeout,
+        pollRate,
+        supply = condition,
+        condition = { it == true }
+    )
 }
 
 fun waitUntilWithConfirm(
@@ -181,19 +195,11 @@ fun waitUntilWithConfirm(
     condition: () -> Boolean,
 ): Boolean {
     return try {
-        waitUntilCondition(timeout, pollRate, condition) { it == true }
+        waitUntil(timeout, pollRate, condition)
         true
     } catch (e: Wait.TimeoutException) {
         false
     }
-}
-
-fun waitUntil(
-    timeout: Int = Wait.defaultTimeout,
-    pollRate: Int = Wait.defaultPollRate,
-    condition: () -> Boolean,
-) {
-    waitUntilCondition(timeout, pollRate, condition) { it == true }
 }
 
 //fun waitUntil(condition: () -> Boolean) {//kotlin can't infer condition, need to specify explicitly without this

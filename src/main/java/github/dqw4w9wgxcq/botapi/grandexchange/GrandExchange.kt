@@ -135,11 +135,10 @@ object GrandExchange {
             return
         }
 
-        if (view() == View.BUYING) {
-            if (price * offerQuantity() > Inventory.count(ItemID.COINS_995)) {
-                throw RetryableBotException("not enough coins")
-            }
+        if (view() == View.BUYING && price * offerQuantity() > Inventory.count(ItemID.COINS_995)) {
+            throw RetryableBotException("not enough coins")
         }
+
         enterPriceWidget().interact("Enter price")
         Dialog.enterAmount(price)
         if (waitFor) {

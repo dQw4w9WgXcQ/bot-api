@@ -120,7 +120,7 @@ class RickkInteract : InteractDriver {
                 arg0 = sceneLocation.x
                 arg1 = sceneLocation.y
                 type = 2
-                arg2 = target.id
+                arg2 = target.rl.id
                 debug { "hash ${target.hash}" }
                 calculateTag(arg0, arg1, type, false, arg2)
             }

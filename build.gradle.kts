@@ -35,7 +35,6 @@ tasks {
     withType<KotlinCompile> {
         kotlinOptions {
             jvmTarget = "1.8"
-            //javaParameters = true//so anon kotlin classes((asdf)->asdf) have metadata (tostring)
             freeCompilerArgs = listOf(
                 "-Xjvm-default=all-compatibility",//so kotlin interfaces work with lombok delegate java classes(rlwrappers)
             )

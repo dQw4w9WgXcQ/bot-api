@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.wrappers
 
-import github.dqw4w9wgxcq.botapi.commons.byContains
+import github.dqw4w9wgxcq.botapi.commons.byEquals
 
 interface Interactable {
     val actions: Array<String?>?
@@ -10,7 +10,7 @@ interface Interactable {
         get() = actions?.filterNotNull() ?: emptyList()
 
     fun interact(actionIgnoreCase: String): Any {
-        return interact(byContains(actionIgnoreCase))
+        return interact(byEquals(actionIgnoreCase))
     }
 
     fun hasAction(actionMatches: (String) -> Boolean): Boolean {
@@ -18,6 +18,6 @@ interface Interactable {
     }
 
     fun hasAction(actionIgnoreCase: String): Boolean {
-        return hasAction(byContains(actionIgnoreCase))
+        return hasAction(byEquals(actionIgnoreCase))
     }
 }

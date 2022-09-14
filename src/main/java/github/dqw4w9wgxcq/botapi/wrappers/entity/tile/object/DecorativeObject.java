@@ -1,4 +1,4 @@
-package github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.object;
+package github.dqw4w9wgxcq.botapi.wrappers.entity.tile.object;
 
 import lombok.experimental.Delegate;
 import net.runelite.api.ObjectComposition;
@@ -10,8 +10,8 @@ public final class DecorativeObject extends TileObject<net.runelite.api.Decorati
     }
 
     @NotNull
-    @Delegate(types = {net.runelite.api.DecorativeObject.class}, excludes = {LocatableExcludes.class, ObjectComposition.class})
-    public net.runelite.api.DecorativeObject getDelegate() {
-        return super.getRl();
+    @Delegate(types = {net.runelite.api.DecorativeObject.class}, excludes = {ObjectComposition.class})
+    private net.runelite.api.DecorativeObject getDelegate() {
+        return rl;
     }
 }

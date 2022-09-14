@@ -1,19 +1,21 @@
 package github.dqw4w9wgxcq.botapi.wrappers;
 
+import github.dqw4w9wgxcq.botapi.Client;
 import github.dqw4w9wgxcq.botapi.commons.CommonsKt;
-import github.dqw4w9wgxcq.botapi.sceneentities.Players;
+import github.dqw4w9wgxcq.botapi.entities.Players;
 import net.runelite.api.Point;
 import net.runelite.api.coords.WorldPoint;
 import org.jetbrains.annotations.NotNull;
 
 public interface Locatable {
-    @NotNull
-    WorldPoint getWorldLocation();
-
-    @NotNull
-    Point getSceneLocation();
+    @NotNull Point getSceneLocation();
 
     int getPlane();
+
+    default @NotNull WorldPoint getWorldLocation() {
+        Point sceneLocation = getSceneLocation();
+        return WorldPoint.fromScene(Client.INSTANCE, sceneLocation.getX(), sceneLocation.getY(), getPlane());
+    }
 
     default int getX() {
         return getWorldLocation().getX();
@@ -43,13 +45,13 @@ public interface Locatable {
         return distance(Players.INSTANCE.local());
     }
 
-    interface LocatableExcludes {
-        int getX();
-
-        int getY();
-
-        Point getSceneLocation();
-
-        WorldPoint getWorldLocation();
-    }
+//    interface LocatableExcludes {
+//        int getX();
+//
+//        int getY();
+//
+//        Point getSceneLocation();
+//
+//        WorldPoint getWorldLocation();
+//    }
 }

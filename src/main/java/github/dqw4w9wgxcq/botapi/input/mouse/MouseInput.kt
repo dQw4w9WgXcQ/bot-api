@@ -118,7 +118,7 @@ object MouseInput {
             Focus.require()
         }
 
-        wait(0..150)
+        wait(1, 150)
 
         CanvasInput.mouseReleased(false)
         CanvasInput.mouseClicked(false)

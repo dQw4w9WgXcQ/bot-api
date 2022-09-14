@@ -2,7 +2,7 @@ package github.dqw4w9wgxcq.botapi.movement.pathfinding.local
 
 import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.*
-import github.dqw4w9wgxcq.botapi.sceneentities.Players
+import github.dqw4w9wgxcq.botapi.entities.Players
 import github.dqw4w9wgxcq.botapi.wrappers.Locatable
 import net.runelite.api.CollisionDataFlag
 import net.runelite.api.ObjectID

@@ -3,15 +3,15 @@ package github.dqw4w9wgxcq.botapi.movement
 import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.antiban.Profile
 import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.entities.Players
+import github.dqw4w9wgxcq.botapi.entities.TileObjects
 import github.dqw4w9wgxcq.botapi.interact.Interact
 import github.dqw4w9wgxcq.botapi.itemcontainer.Inventory
 import github.dqw4w9wgxcq.botapi.movement.pathfinding.local.LocalPathfinding
-import github.dqw4w9wgxcq.botapi.sceneentities.Players
-import github.dqw4w9wgxcq.botapi.sceneentities.TileObjects
 import github.dqw4w9wgxcq.botapi.varps.Varps
 import github.dqw4w9wgxcq.botapi.widget.Dialog
 import github.dqw4w9wgxcq.botapi.widget.Widgets
-import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.`object`.WallObject
+import github.dqw4w9wgxcq.botapi.wrappers.entity.tile.`object`.WallObject
 import net.runelite.api.ItemID
 import net.runelite.api.Point
 import net.runelite.api.Varbits
@@ -206,7 +206,7 @@ object Movement {
         } else {
             debug { "interacting walk scene:$walkPoint world:${walkPoint.toWorld()}" }
             Interact.walk(walkPoint)
-            waitUntil({ isMoving() }.withDescription("moving"))
+            waitUntil(condition = { isMoving() }.withDescription("moving"))
         }
 
         checkStam()

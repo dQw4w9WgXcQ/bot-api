@@ -13,9 +13,9 @@ import github.dqw4w9wgxcq.botapi.tabs.Tabs
 import github.dqw4w9wgxcq.botapi.varps.Varps
 import github.dqw4w9wgxcq.botapi.widget.WidgetQuery
 import github.dqw4w9wgxcq.botapi.widget.Widgets
+import github.dqw4w9wgxcq.botapi.wrappers.Widget
+import github.dqw4w9wgxcq.botapi.wrappers.entity.Entity
 import github.dqw4w9wgxcq.botapi.wrappers.item.container.InventoryItem
-import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.SceneEntity
-import github.dqw4w9wgxcq.botapi.wrappers.widget.Widget
 import net.runelite.api.Skill
 import net.runelite.api.widgets.WidgetID
 import net.runelite.api.widgets.WidgetInfo
@@ -72,7 +72,7 @@ object Magic {
         invItem.interact("Cast")
     }
 
-    fun cast(spell: Spell, target: SceneEntity, checkReachable: Boolean = true): Boolean {
+    fun cast(spell: Spell, target: Entity, checkReachable: Boolean = true): Boolean {
         if (checkReachable && !Movement.checkDoor(target.sceneLocation, true)) {
             return false
         }

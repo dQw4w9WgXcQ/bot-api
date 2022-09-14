@@ -1,10 +1,10 @@
-package github.dqw4w9wgxcq.botapi.sceneentities
+package github.dqw4w9wgxcq.botapi.entities
 
 import github.dqw4w9wgxcq.botapi.commons.*
-import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.SceneEntity
+import github.dqw4w9wgxcq.botapi.wrappers.entity.Entity
 import kotlin.math.ceil
 
-abstract class SceneEntities<out E : SceneEntity> {
+abstract class SceneEntities<out E : Entity> {
     protected abstract fun allUnsafe(matches: (E) -> Boolean): List<E>
 
     fun all(matches: (E) -> Boolean = { true }): List<E> {

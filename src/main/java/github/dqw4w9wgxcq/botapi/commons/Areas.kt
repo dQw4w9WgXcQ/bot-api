@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.commons
 
-import github.dqw4w9wgxcq.botapi.sceneentities.Players
+import github.dqw4w9wgxcq.botapi.entities.Players
 import github.dqw4w9wgxcq.botapi.wrappers.Locatable
 import net.runelite.api.coords.WorldArea
 import net.runelite.api.coords.WorldPoint

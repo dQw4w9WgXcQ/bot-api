@@ -1,85 +1,103 @@
 package github.dqw4w9wgxcq.botapi.widget
 
 import github.dqw4w9wgxcq.botapi.commons.NotFoundException
-import github.dqw4w9wgxcq.botapi.wrappers.widget.Widget
+import github.dqw4w9wgxcq.botapi.commons.debug
+import github.dqw4w9wgxcq.botapi.wrappers.Widget
 import net.runelite.api.widgets.WidgetInfo
 
 class WidgetQuery : () -> Widget {
-    private val groupIndex: Int
+    private val group: Int
+    private var childId: Int? = null
+    private var grandChildId: Int? = null
     private var childMatches: ((Widget) -> Boolean)? = null
-    private var grandchildMatches: ((Widget) -> Boolean)?
-    private var childIndex: Int?
-    private var grandChildIndex: Int? = null
+    private var grandchildMatches: ((Widget) -> Boolean)? = null
 
-    constructor(groupId: Int, childMatches: (Widget) -> Boolean) {
-        this.groupIndex = groupId
+    constructor(group: Int, childMatches: (Widget) -> Boolean) {
+        this.group = group
         this.childMatches = childMatches
-        childIndex = null
-        grandchildMatches = null
     }
 
     constructor(
-        groupId: Int,
+        group: Int,
         childMatches: (Widget) -> Boolean,
         grandchildMatches: ((Widget) -> Boolean)
     ) {//kotlin 2 dum 4 default param
-        this.groupIndex = groupId
+        this.group = group
         this.childMatches = childMatches
         this.grandchildMatches = grandchildMatches
-        childIndex = null
     }
 
-    constructor(groupId: Int, childId: Int, grandchildMatches: ((Widget) -> Boolean)) {
-        this.groupIndex = groupId
-        this.childIndex = childId
+    constructor(
+        group: Int,
+        childId: Int,
+        grandchildMatches: ((Widget) -> Boolean)
+    ) {
+        this.group = group
+        this.childId = childId
         this.grandchildMatches = grandchildMatches
     }
 
-    constructor(widgetInfo: WidgetInfo, grandchildMatches: ((Widget) -> Boolean)) : this(
-        widgetInfo.groupId,
-        widgetInfo.childId,
+    constructor(info: WidgetInfo, grandchildMatches: ((Widget) -> Boolean)) : this(
+        info.groupId,
+        info.childId,
         grandchildMatches
     )
 
     fun getOrNull(): Widget? {
-        if (childIndex == null) {
-            val group = Widgets.getOrNull(groupIndex) ?: return null
-            for (widget in group) {
-                if (widget == null) continue
-                if (childMatches!!(widget)) {
-                    childIndex = WidgetInfo.TO_CHILD(widget.id)
+        if (childId == null) {
+            val group = Widgets.getOrNull(group)
+
+            if (group == null) {
+                debug { "group null" }
+                return null
+            }
+
+            for (w in group) {
+                if (w == null) {
+                    continue
+                }
+
+                if (childMatches!!(w)) {
+                    childId = WidgetInfo.TO_CHILD(w.id)
                     break
                 }
             }
 
-            if (childIndex == null) return null
+            if (childId == null) {
+                debug { "cant find child matching:$childMatches" }
+                return null
+            }
         }
 
-        val child = Widgets.getOrNull(groupIndex, childIndex!!) ?: return null
+        val child = Widgets.getOrNull(group, childId!!) ?: return null
 
         if (grandchildMatches == null) {
             return child
         }
 
-        if (grandChildIndex == null) {
+        if (grandChildId == null) {
             for ((i, grandchild) in child.childrenList.withIndex()) {
                 if (grandchildMatches!!(grandchild)) {
-                    grandChildIndex = i
+                    grandChildId = i
                     return grandchild
                 }
             }
 
-            if (grandChildIndex == null) return null
+            if (grandChildId == null) {
+                return null
+            }
+
+            return child.getChild(grandChildId!!)
         }
 
-        return child.getChild(grandChildIndex!!)
+        return null
     }
 
     override fun invoke(): Widget {
-        return getOrNull() ?: throw NotFoundException("Widget not found for query $this")
+        return getOrNull() ?: throw NotFoundException(this.toString())
     }
 
     override fun toString(): String {
-        return "WidgetQuery[groupIndex=$groupIndex, childMatches=$childMatches, grandchildMatches=$grandchildMatches, childIndex=$childIndex, grandChildIndex=$grandChildIndex]"
+        return "WidgetQuery[groupIndex=$group, childIndex=$childId, grandChildIndex=$grandChildId], childMatches=$childMatches, grandchildMatches=$grandchildMatches"
     }
 }

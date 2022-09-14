@@ -1,9 +1,9 @@
 package github.dqw4w9wgxcq.botapi.commons
 
 import github.dqw4w9wgxcq.botapi.Client
+import github.dqw4w9wgxcq.botapi.entities.Players
 import github.dqw4w9wgxcq.botapi.loader.RuneliteContext
 import github.dqw4w9wgxcq.botapi.movement.pathfinding.local.LocalPathfinding
-import github.dqw4w9wgxcq.botapi.sceneentities.Players
 import github.dqw4w9wgxcq.botapi.script.BotScript
 import github.dqw4w9wgxcq.botapi.wrappers.Identifiable
 import github.dqw4w9wgxcq.botapi.wrappers.Interactable
@@ -115,15 +115,16 @@ object Wait {
     const val defaultPollRate = 50
     const val defaultTimeout = 3000
 
-    class WaitException(message: String) : RetryableBotException(message)
+    class TimeoutException(
+        timeout: Int,
+        pollRate: Int,
+        supply: () -> Any?,
+        condition: (Any?) -> Boolean,
+    ) : RetryableBotException("($condition) on ($supply) after $timeout($pollRate)ms")
 }
 
 fun wait(millis: Int) {
     Thread.sleep(millis.toLong())
-}
-
-fun wait(range: IntRange) {
-    wait(range.first, range.last)
 }
 
 fun wait(from: Int, until: Int) {
@@ -133,26 +134,33 @@ fun wait(from: Int, until: Int) {
 fun <T> waitUntilCondition(
     timeout: Int = Wait.defaultTimeout,
     pollRate: Int = Wait.defaultPollRate,
-    check: (T?) -> Boolean,
     supply: () -> T?,
+    condition: (T?) -> Boolean,
 ): T? {
-    require(timeout > pollRate) { "!timeout > pollRate" }
+    require(timeout > pollRate) { "timeout must be > pollRate" }
 
     val start = System.currentTimeMillis()
     do {
         if (!BotScript.looping) {
-            throw RetryableBotException("bot script not looping")
+            throw SilentBotException("bot script not looping")
         }
 
         val supplied = supply()
-        if (check(supplied)) {
+        if (condition(supplied)) {
             debug { "validated after ${System.currentTimeMillis() - start}ms" }
             return supplied
         }
+
         wait(pollRate)
     } while (System.currentTimeMillis() < start + timeout)
 
-    throw Wait.WaitException("check $check supply $supply timeout $timeout  pollRate $pollRate")
+    @Suppress("UNCHECKED_CAST")//no clue this is necessary
+    throw Wait.TimeoutException(
+        timeout,
+        pollRate,
+        supply,
+        condition as (Any?) -> Boolean,
+    )
 }
 
 fun <T> waitUntilNotNull(
@@ -160,7 +168,11 @@ fun <T> waitUntilNotNull(
     pollRate: Int = Wait.defaultPollRate,
     supply: () -> T?,
 ): T {
-    return waitUntilCondition(timeout, pollRate, { it != null }, supply)!!
+    return waitUntilCondition(
+        timeout,
+        pollRate,
+        supply
+    ) { it != null }!!
 }
 
 fun waitUntilWithConfirm(
@@ -168,25 +180,12 @@ fun waitUntilWithConfirm(
     pollRate: Int = Wait.defaultPollRate,
     condition: () -> Boolean,
 ): Boolean {
-    require(timeout > pollRate) { "!timeout > pollRate" }
-
-    val start = System.currentTimeMillis()
-    while (!condition()) {
-        if (!BotScript.looping) {
-            throw SilentBotException("bot script not looping")
-        }
-
-        val curr = System.currentTimeMillis()
-        if (curr > start + timeout) {
-            debug { "timeout after ${System.currentTimeMillis() - start}ms" }
-
-            return false
-        }
-        wait(pollRate)
+    return try {
+        waitUntilCondition(timeout, pollRate, condition) { it == true }
+        true
+    } catch (e: Wait.TimeoutException) {
+        false
     }
-
-    debug { "validated after ${System.currentTimeMillis() - start}ms" }
-    return true
 }
 
 fun waitUntil(
@@ -194,14 +193,12 @@ fun waitUntil(
     pollRate: Int = Wait.defaultPollRate,
     condition: () -> Boolean,
 ) {
-    if (!waitUntilWithConfirm(timeout, pollRate, condition)) {
-        throw Wait.WaitException("[$condition] timed out $timeout pollRate:$pollRate")
-    }
+    waitUntilCondition(timeout, pollRate, condition) { it == true }
 }
 
-fun waitUntil(condition: () -> Boolean) {//kotlin can't infer condition, need to specify explicitly without this
-    waitUntil(timeout = Wait.defaultTimeout, condition = condition)
-}
+//fun waitUntil(condition: () -> Boolean) {//kotlin can't infer condition, need to specify explicitly without this
+//    waitUntil(timeout = Wait.defaultTimeout, condition = condition)
+//}
 
 fun <T> ((T) -> Boolean).and(that: (T) -> Boolean): (T) -> Boolean {
     val self = this
@@ -211,7 +208,7 @@ fun <T> ((T) -> Boolean).and(that: (T) -> Boolean): (T) -> Boolean {
         }
 
         override fun toString(): String {
-            return "($self and $that)"
+            return "($self AND $that)"
         }
     }
 }
@@ -224,20 +221,21 @@ fun <T> ((T) -> Boolean).or(that: (T) -> Boolean): (T) -> Boolean {
         }
 
         override fun toString(): String {
-            return "($self or $that)"
+            return "($self OR $that)"
         }
     }
 }
 
 fun <T> ((T) -> Boolean).negate(): (T) -> Boolean {
     val self = this
+
     return object : (T) -> Boolean {
         override fun invoke(it: T): Boolean {
             return !this@negate(it)
         }
 
         override fun toString(): String {
-            return "negate($self)"
+            return "negate[$self]"
         }
     }
 }
@@ -250,7 +248,31 @@ fun byName(vararg ignoreCase: String): (Nameable) -> Boolean {
         }
 
         override fun toString(): String {
-            return "name(${ignoreCase.joinToString(",")})"
+            return "name[${ignoreCase.joinToString(",")}]"
+        }
+    }
+}
+
+fun byEquals(vararg ignoreCase: String): (String) -> Boolean {
+    return object : (String) -> Boolean {
+        override fun invoke(s: String): Boolean {
+            return ignoreCase.any { it.equals(s, true) }
+        }
+
+        override fun toString(): String {
+            return "equals[${ignoreCase.joinToString(",")}]"
+        }
+    }
+}
+
+fun byContains(vararg ignoreCase: String): (String) -> Boolean {
+    return object : (String) -> Boolean {
+        override fun invoke(s: String): Boolean {
+            return ignoreCase.any { it.contains(s, true) }
+        }
+
+        override fun toString(): String {
+            return "contains[${ignoreCase.joinToString(",")}]"
         }
     }
 }
@@ -263,19 +285,7 @@ fun byPrefix(vararg ignoreCase: String): (Nameable) -> Boolean {
         }
 
         override fun toString(): String {
-            return "prefix(${ignoreCase.joinToString(",")})"
-        }
-    }
-}
-
-fun byContains(ignoreCase: String): (String) -> Boolean {
-    return object : (String) -> Boolean {
-        override fun invoke(s: String): Boolean {
-            return s.contains(ignoreCase, true)
-        }
-
-        override fun toString(): String {
-            return "contains($ignoreCase)"
+            return "prefix[${ignoreCase.joinToString(",")}]"
         }
     }
 }
@@ -288,7 +298,7 @@ fun bySuffix(vararg ignoreCase: String): (Nameable) -> Boolean {
         }
 
         override fun toString(): String {
-            return "suffix(${ignoreCase.joinToString(",")})"
+            return "suffix[${ignoreCase.joinToString(",")}]"
         }
     }
 }
@@ -307,14 +317,14 @@ fun byIdIgnoreNote(vararg ids: Int): (Item) -> Boolean {
             val names = onGameThread {
                 ids.map { Client.getItemDefinition(it).name ?: throw Exception("item with id:$it name null") }
             }
-            return "idIgnoreNote(${names.joinToString(",")})"
+            return "idIgnoreNote[${names.joinToString(",")}]"
         }
     }
 }
 
 fun byAction(vararg ignoreCase: String): (Interactable) -> Boolean {
     return { interactable: Interactable -> ignoreCase.any { interactable.hasAction(it) } }
-        .withDescription("byAction(${ignoreCase.joinToString(",")})")
+        .withDescription("byAction[${ignoreCase.joinToString(",")}]")
 }
 
 fun <T, U> ((T) -> U).withDescription(toString: String): (T) -> U {
@@ -344,7 +354,7 @@ fun <T> (() -> T).withDescription(toString: String): () -> T {
 open class RetryableBotException(
     message: String,
     cause: Throwable? = null,
-    val retries: Int = 10,
+    val retries: Int = 5,
 ) : RuntimeException(message, cause) {
     constructor(message: String) : this(message, null)
 
@@ -354,11 +364,7 @@ open class RetryableBotException(
 }
 
 //trace doesn't get logged at INFO level
-open class SilentBotException(
-    message: String,
-    cause: Throwable? = null,
-    retries: Int = 10
-) : RetryableBotException(message, cause, retries)
+open class SilentBotException(message: String) : RetryableBotException(message)
 
 open class NotFoundException(message: String) : RetryableBotException(message)
 

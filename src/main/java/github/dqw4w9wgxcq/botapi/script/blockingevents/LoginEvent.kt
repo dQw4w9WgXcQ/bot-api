@@ -239,7 +239,7 @@ class LoginEvent : BlockingEvent() {
                 info { "auth $auth now:\"$code\"" }
                 Client.setOtp(code)
                 Keyboard.enter()
-                waitUntil({ Client.gameState == GameState.LOGGING_IN }.withDescription("gameState == LOGGING_IN"))
+                waitUntil(condition = { Client.gameState == GameState.LOGGING_IN }.withDescription("gameState == LOGGING_IN"))
                 BotScript.nextLoopDelay = 0
                 return true
             }
@@ -247,7 +247,7 @@ class LoginEvent : BlockingEvent() {
             LoginIndex.DISCONNECTED -> {
                 info { "disconected state" }
                 Mouse.click(okBounds)
-                waitUntil({ Client.loginIndex != LoginIndex.DISCONNECTED }.withDescription("loginState != DISCONNECTED"))
+                waitUntil(condition = { Client.loginIndex != LoginIndex.DISCONNECTED }.withDescription("loginState != DISCONNECTED"))
             }
 
 //            State.BETA_WORLD.loginIndex -> {

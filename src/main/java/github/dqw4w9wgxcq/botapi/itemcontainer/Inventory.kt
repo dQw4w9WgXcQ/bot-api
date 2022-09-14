@@ -6,8 +6,8 @@ import github.dqw4w9wgxcq.botapi.commons.byName
 import github.dqw4w9wgxcq.botapi.commons.wait
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
 import github.dqw4w9wgxcq.botapi.movement.Movement
+import github.dqw4w9wgxcq.botapi.wrappers.entity.Entity
 import github.dqw4w9wgxcq.botapi.wrappers.item.container.InventoryItem
-import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.SceneEntity
 import net.runelite.api.InventoryID
 import net.runelite.api.Item
 
@@ -60,7 +60,7 @@ object Inventory : ItemContainer<InventoryItem>(InventoryID.INVENTORY) {
         item2.interact("use")
     }
 
-    fun useOn(matches: (InventoryItem) -> Boolean, target: SceneEntity, checkReachable: Boolean = true): Boolean {
+    fun useOn(matches: (InventoryItem) -> Boolean, target: Entity, checkReachable: Boolean = true): Boolean {
         val invItem = Inventory.get(matches)
 
         if (checkReachable && !Movement.checkDoor(target.sceneLocation, true)) return false

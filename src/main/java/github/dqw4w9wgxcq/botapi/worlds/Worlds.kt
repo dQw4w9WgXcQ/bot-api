@@ -2,10 +2,10 @@ package github.dqw4w9wgxcq.botapi.worlds
 
 import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.entities.Players
 import github.dqw4w9wgxcq.botapi.grandexchange.GrandExchange
 import github.dqw4w9wgxcq.botapi.itemcontainer.Bank
 import github.dqw4w9wgxcq.botapi.movement.Movement
-import github.dqw4w9wgxcq.botapi.sceneentities.Players
 import github.dqw4w9wgxcq.botapi.widget.Dialog
 import net.runelite.api.GameState
 import net.runelite.api.World

@@ -38,6 +38,7 @@ object ItemData {
     val STRENGTH_POTION: (Item) -> Boolean = byPrefix("Strength potion(")
 
     val NOT_NOTED: (ContainerItem) -> Boolean = { it !is InventoryItem || !it.isNoted }
+    val NOTED: (ContainerItem) -> Boolean = { it is InventoryItem && it.isNoted }
 
     //as of 7/20/21
     val F2P_TRADE_RESTRICTED_ITEMS = setOf(

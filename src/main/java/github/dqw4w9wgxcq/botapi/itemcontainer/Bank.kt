@@ -1,19 +1,19 @@
 package github.dqw4w9wgxcq.botapi.itemcontainer
 
 import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.entities.TileObjects
 import github.dqw4w9wgxcq.botapi.grandexchange.GrandExchange
 import github.dqw4w9wgxcq.botapi.movement.Movement
 import github.dqw4w9wgxcq.botapi.movement.pathfinding.local.LocalPathfinding
-import github.dqw4w9wgxcq.botapi.sceneentities.TileObjects
 import github.dqw4w9wgxcq.botapi.varps.Varps
 import github.dqw4w9wgxcq.botapi.widget.Dialog
 import github.dqw4w9wgxcq.botapi.widget.WidgetQuery
 import github.dqw4w9wgxcq.botapi.widget.Widgets
+import github.dqw4w9wgxcq.botapi.wrappers.Widget
+import github.dqw4w9wgxcq.botapi.wrappers.entity.tile.`object`.TileObject
 import github.dqw4w9wgxcq.botapi.wrappers.item.container.BankItem
 import github.dqw4w9wgxcq.botapi.wrappers.item.container.ContainerItem
 import github.dqw4w9wgxcq.botapi.wrappers.item.container.InventoryItem
-import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.`object`.TileObject
-import github.dqw4w9wgxcq.botapi.wrappers.widget.Widget
 import net.runelite.api.InventoryID
 import net.runelite.api.Item
 import net.runelite.api.widgets.WidgetID

@@ -8,7 +8,7 @@ import github.dqw4w9wgxcq.botapi.commons.onGameThread
 import github.dqw4w9wgxcq.botapi.input.Keyboard
 import github.dqw4w9wgxcq.botapi.input.mouse.Mouse
 import github.dqw4w9wgxcq.botapi.varps.Varps
-import github.dqw4w9wgxcq.botapi.wrappers.widget.Widget
+import github.dqw4w9wgxcq.botapi.wrappers.Widget
 import net.runelite.api.widgets.WidgetInfo
 
 object Widgets {
@@ -50,8 +50,7 @@ object Widgets {
     }
 
     fun getOrNull(group: Int): Array<Widget?>? {
-        val rl: Array<net.runelite.api.widgets.Widget?> = Client.widgets[group] ?: return null
-        return Widget.wrap(rl) as Array<Widget?>
+        return Widget.wrap(Client.widgets[group])
     }
 
     fun scrollUntilWidgetInBounds(widget: Widget) {

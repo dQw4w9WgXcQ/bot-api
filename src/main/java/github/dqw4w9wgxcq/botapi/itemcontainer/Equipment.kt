@@ -6,9 +6,9 @@ import github.dqw4w9wgxcq.botapi.data.ActionData
 import github.dqw4w9wgxcq.botapi.tabs.Tab
 import github.dqw4w9wgxcq.botapi.tabs.Tabs
 import github.dqw4w9wgxcq.botapi.widget.Widgets
+import github.dqw4w9wgxcq.botapi.wrappers.Widget
 import github.dqw4w9wgxcq.botapi.wrappers.item.container.ContainerItem
 import github.dqw4w9wgxcq.botapi.wrappers.item.container.EquipmentItem
-import github.dqw4w9wgxcq.botapi.wrappers.widget.Widget
 import net.runelite.api.EquipmentInventorySlot
 import net.runelite.api.InventoryID
 import net.runelite.api.widgets.WidgetID

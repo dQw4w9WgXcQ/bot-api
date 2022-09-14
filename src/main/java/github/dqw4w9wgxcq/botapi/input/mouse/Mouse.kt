@@ -53,7 +53,7 @@ object Mouse {
             }
 
             scroll(1, up)
-            wait(1..200)
+            wait(1, 200)
         }
 
         throw RetryableBotException("after maxRotations $maxRotations condition $condition not met")

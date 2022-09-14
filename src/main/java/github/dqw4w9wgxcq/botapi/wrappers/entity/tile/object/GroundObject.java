@@ -1,4 +1,4 @@
-package github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.object;
+package github.dqw4w9wgxcq.botapi.wrappers.entity.tile.object;
 
 import lombok.experimental.Delegate;
 import net.runelite.api.ObjectComposition;
@@ -10,8 +10,8 @@ public final class GroundObject extends TileObject<net.runelite.api.GroundObject
     }
 
     @NotNull
-    @Delegate(types = {net.runelite.api.GroundObject.class}, excludes = {LocatableExcludes.class, ObjectComposition.class})
+    @Delegate(types = {net.runelite.api.GroundObject.class}, excludes = {ObjectComposition.class})
     public net.runelite.api.GroundObject getDelegate() {
-        return super.getRl();
+        return super.rl;
     }
 }

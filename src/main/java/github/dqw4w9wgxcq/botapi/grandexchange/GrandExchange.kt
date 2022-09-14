@@ -2,17 +2,17 @@ package github.dqw4w9wgxcq.botapi.grandexchange
 
 import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.entities.NPCs
+import github.dqw4w9wgxcq.botapi.entities.Players
 import github.dqw4w9wgxcq.botapi.input.Keyboard
 import github.dqw4w9wgxcq.botapi.itemcontainer.Bank
 import github.dqw4w9wgxcq.botapi.itemcontainer.Inventory
-import github.dqw4w9wgxcq.botapi.sceneentities.NPCs
-import github.dqw4w9wgxcq.botapi.sceneentities.Players
 import github.dqw4w9wgxcq.botapi.varps.Varps
 import github.dqw4w9wgxcq.botapi.widget.Dialog
 import github.dqw4w9wgxcq.botapi.widget.WidgetQuery
 import github.dqw4w9wgxcq.botapi.widget.Widgets
+import github.dqw4w9wgxcq.botapi.wrappers.Widget
 import github.dqw4w9wgxcq.botapi.wrappers.item.container.InventoryItem
-import github.dqw4w9wgxcq.botapi.wrappers.widget.Widget
 import net.runelite.api.*
 import net.runelite.api.coords.WorldPoint
 import net.runelite.api.widgets.WidgetID
@@ -103,7 +103,7 @@ object GrandExchange {
         Keyboard.type(name)
 
         wait(1000)
-        waitUntil { Widgets.get(WidgetInfo.CHATBOX_GE_SEARCH_RESULTS).children.filterNotNull().any { it.itemId == id } }
+        waitUntil { Widgets.get(WidgetInfo.CHATBOX_GE_SEARCH_RESULTS).childrenList.any { it.itemId == id } }
         wait(1000)
         selectSearchResult(id, waitFor)
     }
@@ -118,6 +118,7 @@ object GrandExchange {
 
     private fun getSearchResultWidget(id: Int): Widget {
         val children = Widgets.get(WidgetInfo.CHATBOX_GE_SEARCH_RESULTS).children
+            ?: throw NotFoundException("ge search result has no children")
         val index = children.indexOfFirst { it != null && it.itemId == id }
         if (index == -1) throw NotFoundException("cant find result widget for id: $id")
         return children[index - 2]!!

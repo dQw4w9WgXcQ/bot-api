@@ -1,8 +1,8 @@
-package github.dqw4w9wgxcq.botapi.sceneentities
+package github.dqw4w9wgxcq.botapi.entities
 
 import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.NotFoundException
-import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.actor.NPC
+import github.dqw4w9wgxcq.botapi.wrappers.entity.actor.NPC
 
 object NPCs : Actors<NPC>() {
     fun atIndex(index: Int): NPC {

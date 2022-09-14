@@ -1,8 +1,8 @@
-package github.dqw4w9wgxcq.botapi.sceneentities
+package github.dqw4w9wgxcq.botapi.entities
 
 import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.NotFoundException
-import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.actor.Player
+import github.dqw4w9wgxcq.botapi.wrappers.entity.actor.Player
 
 object Players : Actors<Player>() {
     fun local(): Player {

@@ -1,6 +1,6 @@
-package github.dqw4w9wgxcq.botapi.sceneentities
+package github.dqw4w9wgxcq.botapi.entities
 
-import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.item.TileItem
+import github.dqw4w9wgxcq.botapi.wrappers.entity.tile.item.TileItem
 import net.runelite.api.Tile
 
 object TileItems : TileEntities<TileItem>() {

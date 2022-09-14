@@ -1,14 +1,14 @@
-package github.dqw4w9wgxcq.botapi.wrappers.sceneentity
+package github.dqw4w9wgxcq.botapi.wrappers.entity
 
+import github.dqw4w9wgxcq.botapi.commons.byEquals
 import github.dqw4w9wgxcq.botapi.commons.debug
-import github.dqw4w9wgxcq.botapi.commons.withDescription
 import github.dqw4w9wgxcq.botapi.interact.Interact
 import github.dqw4w9wgxcq.botapi.movement.Movement
 import github.dqw4w9wgxcq.botapi.wrappers.Interactable
 import github.dqw4w9wgxcq.botapi.wrappers.Locatable
 import github.dqw4w9wgxcq.botapi.wrappers.Nameable
 
-interface SceneEntity : Interactable, Locatable, Nameable {
+interface Entity : Interactable, Locatable, Nameable {
     override fun interact(actionMatches: (String) -> Boolean): Boolean {
         debug { "door handle interact" }
 
@@ -29,9 +29,6 @@ interface SceneEntity : Interactable, Locatable, Nameable {
     }
 
     fun interactUnchecked(actionIgnoreCase: String) {
-        interactUnchecked(
-            { action: String -> action.equals(actionIgnoreCase, ignoreCase = true) }
-                .withDescription("action[$actionIgnoreCase]")
-        )
+        interactUnchecked(byEquals(actionIgnoreCase))
     }
 }

@@ -3,10 +3,10 @@ package github.dqw4w9wgxcq.botapi
 import github.dqw4w9wgxcq.botapi.commons.debug
 import github.dqw4w9wgxcq.botapi.commons.info
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
+import github.dqw4w9wgxcq.botapi.entities.Players
 import github.dqw4w9wgxcq.botapi.itemcontainer.Equipment
 import github.dqw4w9wgxcq.botapi.itemcontainer.Inventory
 import github.dqw4w9wgxcq.botapi.movement.Movement
-import github.dqw4w9wgxcq.botapi.sceneentities.Players
 import github.dqw4w9wgxcq.botapi.tabs.magic.Magic
 import github.dqw4w9wgxcq.botapi.tabs.magic.Spell
 import github.dqw4w9wgxcq.botapi.widget.Dialog

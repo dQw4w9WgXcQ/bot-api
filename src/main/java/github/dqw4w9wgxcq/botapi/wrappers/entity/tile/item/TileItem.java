@@ -1,9 +1,9 @@
-package github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.item;
+package github.dqw4w9wgxcq.botapi.wrappers.entity.tile.item;
 
 import github.dqw4w9wgxcq.botapi.commons.CommonsKt;
 import github.dqw4w9wgxcq.botapi.itemcontainer.Inventory;
+import github.dqw4w9wgxcq.botapi.wrappers.entity.tile.TileEntity;
 import github.dqw4w9wgxcq.botapi.wrappers.item.Item;
-import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.TileEntity;
 import kotlin.NotImplementedError;
 import lombok.experimental.Delegate;
 import net.runelite.api.Point;
@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public final class TileItem extends Item implements TileEntity, net.runelite.api.TileItem {
-    @Delegate(types = {net.runelite.api.TileItem.class}, excludes = {LocatableExcludes.class, net.runelite.api.Item.class})
+    @Delegate(types = {net.runelite.api.TileItem.class}, excludes = { net.runelite.api.Item.class})
     private final net.runelite.api.TileItem rlTileItem;
     private final Tile tile;
 

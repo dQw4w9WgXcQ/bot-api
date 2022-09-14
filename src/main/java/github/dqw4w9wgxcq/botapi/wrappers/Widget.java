@@ -1,12 +1,9 @@
-package github.dqw4w9wgxcq.botapi.wrappers.widget;
+package github.dqw4w9wgxcq.botapi.wrappers;
 
 import github.dqw4w9wgxcq.botapi.commons.CommonsKt;
 import github.dqw4w9wgxcq.botapi.commons.LogKt;
 import github.dqw4w9wgxcq.botapi.commons.NotFoundException;
 import github.dqw4w9wgxcq.botapi.interact.Interact;
-import github.dqw4w9wgxcq.botapi.wrappers.Identifiable;
-import github.dqw4w9wgxcq.botapi.wrappers.Interactable;
-import github.dqw4w9wgxcq.botapi.wrappers.RlWrapper;
 import kotlin.jvm.functions.Function1;
 import lombok.experimental.Delegate;
 import net.runelite.api.widgets.WidgetInfo;
@@ -15,55 +12,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class Widget extends RlWrapper<net.runelite.api.widgets.Widget> implements net.runelite.api.widgets.Widget, Interactable, Identifiable {
-    public static @Nullable Widget @NotNull [] wrap(net.runelite.api.widgets.Widget[] rls) {
-        if (rls == null) {
-            return new Widget[0];
-        }
-        Widget[] out = new Widget[rls.length];
-        for (int i = 0; i < rls.length; i++) {
-            Widget wrapped = wrap(rls[i]);
-            if (wrapped == null) {
-                continue;
-            }
-            out[i] = wrapped;
-        }
-
-        return out;
-    }
-
-    public static @Nullable Widget wrap(@Nullable net.runelite.api.widgets.Widget rl) {
-        if (rl == null) {
-            return null;
-        }
-
-        Rectangle bounds = rl.getBounds();
-        if (bounds == null) {
-            LogKt.debug(() -> "bounds null at " + parseId(rl.getId()));
-            return null;
-        }
-
-        if (bounds.getX() == -1) {
-            LogKt.debug(() -> "bounds x -1 at " + parseId(rl.getId()));
-            return null;
-        }
-
-        if (bounds.getY() == -1) {
-            LogKt.debug(() -> "bounds y -1 at " + parseId(rl.getId()));
-            return null;
-        }
-
-        return new Widget(rl);
-    }
-
-    private static @NotNull String parseId(int id) {
-        return WidgetInfo.TO_GROUP(id) + "," + WidgetInfo.TO_CHILD(id);
-    }
+public class Widget implements net.runelite.api.widgets.Widget, Interactable, Identifiable {
+    public final @NotNull net.runelite.api.widgets.Widget rl;
 
     private Widget(@NotNull net.runelite.api.widgets.Widget rl) {
-        super(rl);
+        this.rl = rl;
     }
 
     private interface Excludes {
@@ -84,26 +40,27 @@ public class Widget extends RlWrapper<net.runelite.api.widgets.Widget> implement
 
     @Delegate(excludes = Excludes.class)
     public @NotNull net.runelite.api.widgets.Widget widgetDelegate() {
-        return super.getRl();
+        return rl;
     }
 
     @Override
     public @NotNull Rectangle getBounds() {
-        Rectangle out = getRl().getBounds();
-        if (out == null || out.x == -1 || out.y == -1) {
-            throw new RuntimeException("bounds should have been filtered by this point:" + out);
+        Rectangle bounds = rl.getBounds();
+        if (bounds == null || bounds.x == -1 || bounds.y == -1) {
+            throw new IllegalStateException("bounds:" + bounds + " of widget:" + this + " should have been filtered by this point ");
         }
-        return out;
+
+        return bounds;
     }
 
     @Override
     public @Nullable Object[] getOnOpListener() {
-        return CommonsKt.onGameThread(() -> getRl().getOnOpListener());
+        return CommonsKt.onGameThread(rl::getOnOpListener);
     }
 
     @Nullable
     public Widget getParentOrNull() {
-        net.runelite.api.widgets.Widget parentNullable = CommonsKt.onGameThread(() -> getRl().getParent());
+        net.runelite.api.widgets.Widget parentNullable = CommonsKt.onGameThread(rl::getParent);
         if (parentNullable == null) {
             return null;
         }
@@ -123,12 +80,12 @@ public class Widget extends RlWrapper<net.runelite.api.widgets.Widget> implement
 
     @Override
     public int getParentId() {
-        return CommonsKt.onGameThread(getRl()::getParentId);
+        return CommonsKt.onGameThread(rl::getParentId);
     }
 
     @Nullable
     public Widget getChildOrNull(int index) {
-        return wrap(getRl().getChild(index));
+        return wrap(rl.getChild(index));
     }
 
     @Override
@@ -142,23 +99,29 @@ public class Widget extends RlWrapper<net.runelite.api.widgets.Widget> implement
     }
 
     @Override
-    public @Nullable Widget @NotNull [] getChildren() {
-        return Widget.wrap(getRl().getChildren());
+    public @Nullable Widget @Nullable [] getChildren() {
+        return Widget.wrap(rl.getChildren());
     }
 
     public @NotNull List<@NotNull Widget> getChildrenList() {
+        Widget[] children = getChildren();
+        if (children == null) {
+            return Collections.emptyList();
+        }
+
         ArrayList<Widget> out = new ArrayList<>();
-        for (Widget child : getChildren()) {
+        for (Widget child : children) {
             if (child != null) {
                 out.add(child);
             }
         }
+
         return out;
     }
 
     @Override
     public boolean isHidden() {
-        return CommonsKt.onGameThread(getRl()::isHidden);
+        return CommonsKt.onGameThread(rl::isHidden);
     }
 
     @Override
@@ -166,11 +129,56 @@ public class Widget extends RlWrapper<net.runelite.api.widgets.Widget> implement
         return "Widget(" + getParentId() + "" + getId() + ")";
     }
 
-    //Unit return causes nosuchmethoderror
     @NotNull
     @Override
+    //kotlin.Unit causes nosuchmethoderror
     public Object interact(@NotNull Function1<? super String, Boolean> actionMatches) {
         Interact.INSTANCE.withWidget(this, actionMatches);
         return new Object();
+    }
+
+    public static @Nullable Widget @Nullable [] wrap(@Nullable net.runelite.api.widgets.Widget @Nullable [] rl) {
+        if (rl == null) {
+            return null;
+        }
+
+        Widget[] out = new Widget[rl.length];
+        for (int i = 0; i < rl.length; i++) {
+            Widget wrapped = wrap(rl[i]);
+            if (wrapped == null) {
+                continue;
+            }
+            out[i] = wrapped;
+        }
+
+        return out;
+    }
+
+    public static @Nullable Widget wrap(@Nullable net.runelite.api.widgets.Widget rl) {
+        if (rl == null) {
+            return null;
+        }
+
+        Rectangle bounds = rl.getBounds();
+        if (bounds == null) {
+            LogKt.debug(() -> "bounds null at " + idToString(rl.getId()));
+            return null;
+        }
+
+        if (bounds.getX() == -1) {
+            LogKt.debug(() -> "bounds x -1 at " + idToString(rl.getId()));
+            return null;
+        }
+
+        if (bounds.getY() == -1) {
+            LogKt.debug(() -> "bounds y -1 at " + idToString(rl.getId()));
+            return null;
+        }
+
+        return new Widget(rl);
+    }
+
+    private static @NotNull String idToString(int id) {
+        return WidgetInfo.TO_GROUP(id) + "," + WidgetInfo.TO_CHILD(id);
     }
 }

@@ -1,6 +1,7 @@
 package github.dqw4w9wgxcq.botapi.itemcontainer
 
 import github.dqw4w9wgxcq.botapi.commons.RetryableBotException
+import github.dqw4w9wgxcq.botapi.commons.byContains
 import github.dqw4w9wgxcq.botapi.widget.Dialog
 import github.dqw4w9wgxcq.botapi.widget.Widgets
 import github.dqw4w9wgxcq.botapi.wrappers.item.container.TradeItem
@@ -40,7 +41,7 @@ object Trade : ItemContainer<TradeItem>(InventoryID.TRADE) {
     fun offerAll(itemId: Int) {
         require(itemId > 0)
         val tradeInv = Widgets.get(WidgetID.PLAYER_TRADE_INVENTORY_GROUP_ID, 0)
-        for (item in tradeInv.children) {
+        for (item in tradeInv.childrenList) {
             if (item.itemId == itemId) {
                 item.interact("offer-all")
                 return
@@ -53,14 +54,14 @@ object Trade : ItemContainer<TradeItem>(InventoryID.TRADE) {
         require(amount > 0)
         require(itemId > 0)
         val tradeInv = Widgets.get(WidgetID.PLAYER_TRADE_INVENTORY_GROUP_ID, 0)
-        for (item in tradeInv.children) {
+        for (item in tradeInv.childrenList) {
             if (item.itemId == itemId) {
                 val action = if (amount == 1) {
                     "offer"
                 } else {
                     "offer-x"
                 }
-                item.interact { it.contains(action, true) }
+                item.interact(byContains(action))
                 if (action == "offer-x") {
                     Dialog.enterAmount(amount)
                 }

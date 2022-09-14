@@ -15,13 +15,13 @@ import github.dqw4w9wgxcq.botapi.script.BotScript
 import github.dqw4w9wgxcq.botapi.tabs.Tab
 import github.dqw4w9wgxcq.botapi.tabs.Tabs
 import github.dqw4w9wgxcq.botapi.widget.Widgets
+import github.dqw4w9wgxcq.botapi.wrappers.Widget
+import github.dqw4w9wgxcq.botapi.wrappers.entity.Entity
+import github.dqw4w9wgxcq.botapi.wrappers.entity.actor.NPC
+import github.dqw4w9wgxcq.botapi.wrappers.entity.actor.Player
+import github.dqw4w9wgxcq.botapi.wrappers.entity.tile.item.TileItem
+import github.dqw4w9wgxcq.botapi.wrappers.entity.tile.`object`.TileObject
 import github.dqw4w9wgxcq.botapi.wrappers.item.container.InventoryItem
-import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.SceneEntity
-import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.actor.NPC
-import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.actor.Player
-import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.item.TileItem
-import github.dqw4w9wgxcq.botapi.wrappers.sceneentity.tile.`object`.TileObject
-import github.dqw4w9wgxcq.botapi.wrappers.widget.Widget
 import net.runelite.api.MenuAction
 import net.runelite.api.MenuEntry
 import net.runelite.api.Point
@@ -78,7 +78,7 @@ class RickkInteract : InteractDriver {
     override fun withInventory(invItem: InventoryItem, actionMatches: (String) -> Boolean) {
         Tabs.open(Tab.INVENTORY)
         val invIndex = invItem.index
-        val widget = Widgets.get(WidgetInfo.INVENTORY).children[invIndex]
+        val widget = Widgets.get(WidgetInfo.INVENTORY).children?.get(invIndex)
             ?: throw RetryableBotException("widgetitem at index $invIndex is null")
         val bounds = widget.bounds
 
@@ -89,7 +89,7 @@ class RickkInteract : InteractDriver {
         )
     }
 
-    override fun withEntity(target: SceneEntity, actionMatches: (String) -> Boolean) {
+    override fun withEntity(target: Entity, actionMatches: (String) -> Boolean) {
         val arg0: Int
         val arg1: Int
         val type: Int

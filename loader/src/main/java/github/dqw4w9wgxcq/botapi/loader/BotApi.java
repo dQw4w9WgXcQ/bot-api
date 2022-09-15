@@ -7,6 +7,8 @@ public class BotApi {
     private static ScriptManager scriptManager;
 
     public static void init(ClassLoader classLoader) {
+        RuneliteContext.init();
+
         scriptManager = new ScriptManager(classLoader);
 
         SwingUtilities.invokeLater(() -> {
@@ -29,8 +31,6 @@ public class BotApi {
             frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
             frame.setVisible(true);
         });
-
-        RuneliteContext.init();
 
         String scriptName = System.getProperty("bot.script");
         if (scriptName != null) {

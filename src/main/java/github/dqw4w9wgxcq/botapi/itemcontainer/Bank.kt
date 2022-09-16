@@ -321,7 +321,16 @@ object Bank : ItemContainer<BankItem>(InventoryID.BANK) {
     }
 
     fun normalize(id: Int, quantity: Int = 1, noted: Boolean = false, waitFor: Boolean = true): Int {
-        return normalize(if (noted) byIdIgnoreNote(id) else byId(id), quantity, noted, waitFor)
+        return normalize(
+            if (noted) {
+                byIdIgnoreNote(id)
+            } else {
+                byId(id)
+            },
+            quantity,
+            noted,
+            waitFor
+        )
     }
 
     fun normalize(

@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public final class TileItem extends Item implements TileEntity, net.runelite.api.TileItem {
-    @Delegate(types = {net.runelite.api.TileItem.class}, excludes = { net.runelite.api.Item.class})
+    @Delegate(types = {net.runelite.api.TileItem.class}, excludes = {net.runelite.api.Item.class})
     private final net.runelite.api.TileItem rlTileItem;
     private final Tile tile;
 

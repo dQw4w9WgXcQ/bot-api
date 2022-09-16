@@ -26,6 +26,9 @@ public class RuneliteContext {
     static void init() {
         RuneliteContext ctx = new RuneliteContext();
         RuneLite.getInjector().injectMembers(ctx);
+        if (ctx.client == null) {
+            throw new RuntimeException("outdated (client is null)");
+        }
         instance = ctx;
     }
 

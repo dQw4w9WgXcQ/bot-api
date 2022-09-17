@@ -3,8 +3,10 @@ package github.dqw4w9wgxcq.botapi.loader;
 import net.runelite.api.Client;
 import net.runelite.client.RuneLite;
 import net.runelite.client.callback.ClientThread;
+import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.plugins.PluginManager;
+import net.runelite.client.ui.ClientUI;
 
 import javax.inject.Inject;
 import java.io.File;
@@ -22,6 +24,8 @@ public class RuneliteContext {
     private EventBus eventBus;
     @Inject
     private PluginManager pluginManager;
+    @Inject
+    private ConfigManager configManager;
 
     static void init() {
         RuneliteContext ctx = new RuneliteContext();
@@ -54,5 +58,9 @@ public class RuneliteContext {
 
     public static PluginManager getPluginManager() {
         return get().pluginManager;
+    }
+
+    public static ConfigManager getConfigManager() {
+        return get().configManager;
     }
 }

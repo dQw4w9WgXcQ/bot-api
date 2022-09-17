@@ -158,7 +158,9 @@ object Bank : ItemContainer<BankItem>(InventoryID.BANK) {
     }
 
     fun setQuantityMode(mode: QuantityMode, waitFor: Boolean = true) {
-        if (getQuantityModeConfig() == mode.config) return
+        if (getQuantityModeConfig() == mode.config) {
+            return
+        }
 
         val action = "Default quantity: ${if (mode == QuantityMode.X) getXQuantity() else mode.actionSuffix!!}"
         val getWidget = WidgetQuery(WidgetID.BANK_GROUP_ID, byAction(action))()

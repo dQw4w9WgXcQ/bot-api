@@ -18,8 +18,6 @@ public class BotApi {
             String acc = System.getProperty("bot.acc");
             if (acc != null) {
                 title += acc;
-            } else {
-                title = "asdf";
             }
             String proxy = System.getProperty("socksProxyHost");
             if (proxy != null) {

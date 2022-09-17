@@ -23,28 +23,6 @@ public class Player extends Actor<net.runelite.api.Player> implements net.runeli
 
     @NotNull
     @Override
-    public Boolean interact(@NotNull Function1<? super String, Boolean> actionMatches) {
-        return super.interact(actionMatches);
-    }
-
-    @NotNull
-    @Override
-    public Boolean interact(@NotNull String actionIgnoreCase) {
-        return super.interact(actionIgnoreCase);
-    }
-
-    @Override
-    public void interactUnchecked(@NotNull Function1<? super String, Boolean> actionMatches) {
-        super.interactUnchecked(actionMatches);
-    }
-
-    @Override
-    public void interactUnchecked(@NotNull String actionIgnoreCase) {
-        super.interactUnchecked(actionIgnoreCase);
-    }
-
-    @NotNull
-    @Override
     public List<String> getFilteredActions() {
         return super.getFilteredActions();
     }

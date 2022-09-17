@@ -3,10 +3,12 @@ package github.dqw4w9wgxcq.botapi.wrappers.entity.actor;
 import github.dqw4w9wgxcq.botapi.Client;
 import github.dqw4w9wgxcq.botapi.commons.NotFoundException;
 import github.dqw4w9wgxcq.botapi.commons.RetryableBotException;
+import github.dqw4w9wgxcq.botapi.wrappers.Locatable;
 import kotlin.jvm.functions.Function1;
 import lombok.experimental.Delegate;
 import net.runelite.api.PlayerComposition;
 import net.runelite.api.Renderable;
+import net.runelite.api.coords.WorldPoint;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -37,13 +39,18 @@ public class Player extends Actor<net.runelite.api.Player> implements net.runeli
         return super.hasAction(actionIgnoreCase);
     }
 
+    @Override
+    public @NotNull WorldPoint getWorldLocation() {
+        return rl.getWorldLocation();
+    }
+
     private interface Excludes {
         net.runelite.api.Actor getInteracting();
 
         String getName();
     }
 
-    @Delegate(types = {net.runelite.api.Player.class, Renderable.class}, excludes = {PlayerComposition.class, Excludes.class})
+    @Delegate(types = {net.runelite.api.Player.class, Renderable.class}, excludes = {Excludes.class, PlayerComposition.class, Locatable.class})
     private @NotNull net.runelite.api.Player getDelegate() {
         return super.rl;
     }

@@ -45,14 +45,4 @@ public interface Locatable {
     default int distance() {
         return distance(Players.INSTANCE.local());
     }
-
-//    interface LocatableExcludes {
-//        int getX();
-//
-//        int getY();
-//
-//        Point getSceneLocation();
-//
-//        WorldPoint getWorldLocation();
-//    }
 }

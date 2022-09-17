@@ -1,6 +1,7 @@
 package github.dqw4w9wgxcq.botapi.wrappers.entity.tile.object;
 
 import github.dqw4w9wgxcq.botapi.Client;
+import github.dqw4w9wgxcq.botapi.wrappers.Locatable;
 import github.dqw4w9wgxcq.botapi.wrappers.entity.tile.TileEntity;
 import lombok.experimental.Delegate;
 import net.runelite.api.ObjectComposition;
@@ -8,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 //getId returns the compostion id.  getRl().getId() represents the id of the entity.
 public abstract class TileObject<RL extends net.runelite.api.TileObject> implements TileEntity, net.runelite.api.TileObject, ObjectComposition {
-    @Delegate(types = net.runelite.api.TileObject.class, excludes = {ObjectComposition.class})
+    @Delegate(types = net.runelite.api.TileObject.class, excludes = {ObjectComposition.class, Locatable.class})
     public final @NotNull RL rl;
 
     @Delegate(types = {ObjectComposition.class})
@@ -27,5 +28,20 @@ public abstract class TileObject<RL extends net.runelite.api.TileObject> impleme
                 }
             }
         }
+    }
+
+    @Override
+    public int getPlane() {
+        return rl.getPlane();
+    }
+
+    @Override
+    public int getX() {
+        return TileEntity.super.getX();
+    }
+
+    @Override
+    public int getY() {
+        return TileEntity.super.getY();
     }
 }

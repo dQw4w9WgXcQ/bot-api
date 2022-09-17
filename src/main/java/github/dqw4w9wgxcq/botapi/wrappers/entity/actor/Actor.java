@@ -1,12 +1,10 @@
 package github.dqw4w9wgxcq.botapi.wrappers.entity.actor;
 
-import github.dqw4w9wgxcq.botapi.Client;
 import github.dqw4w9wgxcq.botapi.Refl;
-import github.dqw4w9wgxcq.botapi.commons.CommonsKt;
 import github.dqw4w9wgxcq.botapi.commons.FatalException;
+import github.dqw4w9wgxcq.botapi.wrappers.Locatable;
 import github.dqw4w9wgxcq.botapi.wrappers.entity.Entity;
 import lombok.experimental.Delegate;
-import net.runelite.api.Point;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -15,21 +13,11 @@ public abstract class Actor<RL extends net.runelite.api.Actor> implements Entity
         net.runelite.api.Actor getInteracting();
     }
 
-    @Delegate(types = net.runelite.api.Actor.class, excludes = Excludes.class)
+    @Delegate(types = net.runelite.api.Actor.class, excludes = {Excludes.class, Locatable.class})
     public final @NotNull RL rl;
 
     public Actor(@NotNull RL rl) {
         this.rl = rl;
-    }
-
-    @Override
-    public @NotNull Point getSceneLocation() {
-        return CommonsKt.toScene(rl.getWorldLocation(), Client.INSTANCE.getBaseX(), Client.INSTANCE.getBaseY());
-    }
-
-    @Override
-    public int getPlane() {
-        return getWorldLocation().getPlane();
     }
 
     @Override

@@ -1,14 +1,17 @@
 package github.dqw4w9wgxcq.botapi.wrappers.entity.tile.object;
 
+import github.dqw4w9wgxcq.botapi.Client;
 import github.dqw4w9wgxcq.botapi.commons.CommonsKt;
 import github.dqw4w9wgxcq.botapi.commons.RetryableBotException;
 import github.dqw4w9wgxcq.botapi.entities.Players;
 import github.dqw4w9wgxcq.botapi.movement.Movement;
 import github.dqw4w9wgxcq.botapi.movement.pathfinding.local.LocalPathfinding;
+import github.dqw4w9wgxcq.botapi.wrappers.Locatable;
 import kotlin.jvm.functions.Function1;
 import lombok.experimental.Delegate;
 import net.runelite.api.ObjectComposition;
 import net.runelite.api.Point;
+import net.runelite.api.coords.WorldPoint;
 import org.jetbrains.annotations.NotNull;
 
 public final class GameObject extends TileObject<net.runelite.api.GameObject> implements net.runelite.api.GameObject {
@@ -17,7 +20,7 @@ public final class GameObject extends TileObject<net.runelite.api.GameObject> im
     }
 
     @NotNull
-    @Delegate(types = {net.runelite.api.GameObject.class}, excludes = {ObjectComposition.class})
+    @Delegate(types = {net.runelite.api.GameObject.class}, excludes = {ObjectComposition.class, Locatable.class})
     public net.runelite.api.GameObject getDelegate() {
         return super.rl;
     }
@@ -54,5 +57,11 @@ public final class GameObject extends TileObject<net.runelite.api.GameObject> im
     @Override
     public @NotNull Point getSceneLocation() {
         return getSceneMinLocation();
+    }
+
+    @Override
+    public @NotNull WorldPoint getWorldLocation() {
+        Point sceneLocation = getSceneLocation();
+        return WorldPoint.fromScene(Client.INSTANCE, sceneLocation.getX(), sceneLocation.getY(), rl.getPlane());
     }
 }

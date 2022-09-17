@@ -8,13 +8,15 @@ import net.runelite.api.coords.WorldPoint;
 import org.jetbrains.annotations.NotNull;
 
 public interface Locatable {
-    @NotNull Point getSceneLocation();
+    @NotNull WorldPoint getWorldLocation();
 
-    int getPlane();
+    @NotNull
+    default Point getSceneLocation() {
+        return CommonsKt.toScene(getWorldLocation(), Client.INSTANCE.getBaseX(), Client.INSTANCE.getBaseY());
+    }
 
-    default @NotNull WorldPoint getWorldLocation() {
-        Point sceneLocation = getSceneLocation();
-        return WorldPoint.fromScene(Client.INSTANCE, sceneLocation.getX(), sceneLocation.getY(), getPlane());
+    default int getPlane() {
+        return getWorldLocation().getPlane();
     }
 
     default int getX() {

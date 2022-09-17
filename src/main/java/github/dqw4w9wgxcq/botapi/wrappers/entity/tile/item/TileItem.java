@@ -6,7 +6,6 @@ import github.dqw4w9wgxcq.botapi.wrappers.entity.tile.TileEntity;
 import github.dqw4w9wgxcq.botapi.wrappers.item.Item;
 import kotlin.NotImplementedError;
 import lombok.experimental.Delegate;
-import net.runelite.api.Point;
 import net.runelite.api.Tile;
 import net.runelite.api.coords.WorldPoint;
 import org.jetbrains.annotations.NotNull;
@@ -37,15 +36,5 @@ public final class TileItem extends Item implements TileEntity, net.runelite.api
     @Override
     public @NotNull WorldPoint getWorldLocation() {
         return tile.getWorldLocation();
-    }
-
-    @Override
-    public @NotNull Point getSceneLocation() {
-        return tile.getSceneLocation();
-    }
-
-    @Override
-    public int getPlane() {
-        return getWorldLocation().getPlane();
     }
 }

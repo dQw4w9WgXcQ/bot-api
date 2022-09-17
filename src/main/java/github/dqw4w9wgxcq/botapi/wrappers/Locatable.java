@@ -10,8 +10,7 @@ import org.jetbrains.annotations.NotNull;
 public interface Locatable {
     @NotNull WorldPoint getWorldLocation();
 
-    @NotNull
-    default Point getSceneLocation() {
+    default @NotNull Point getSceneLocation() {
         return CommonsKt.toScene(getWorldLocation(), Client.INSTANCE.getBaseX(), Client.INSTANCE.getBaseY());
     }
 

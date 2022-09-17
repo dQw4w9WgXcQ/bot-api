@@ -58,8 +58,8 @@ public class Widget implements net.runelite.api.widgets.Widget, Interactable, Id
         return CommonsKt.onGameThread(rl::getOnOpListener);
     }
 
-    @Nullable
-    public Widget getParentOrNull() {
+
+    public @Nullable Widget getParentOrNull() {
         net.runelite.api.widgets.Widget parentNullable = CommonsKt.onGameThread(rl::getParent);
         if (parentNullable == null) {
             return null;
@@ -68,8 +68,8 @@ public class Widget implements net.runelite.api.widgets.Widget, Interactable, Id
     }
 
     @Override
-    @NotNull
-    public Widget getParent() {
+
+    public @NotNull Widget getParent() {
         Widget parentNullable = getParentOrNull();
         if (parentNullable == null) {
             throw new NotFoundException("parent widget null");
@@ -83,14 +83,12 @@ public class Widget implements net.runelite.api.widgets.Widget, Interactable, Id
         return CommonsKt.onGameThread(rl::getParentId);
     }
 
-    @Nullable
-    public Widget getChildOrNull(int index) {
+    public @Nullable Widget getChildOrNull(int index) {
         return wrap(rl.getChild(index));
     }
 
     @Override
-    @NotNull
-    public Widget getChild(int index) {
+    public @NotNull Widget getChild(int index) {
         Widget childOrNull = getChildOrNull(index);
         if (childOrNull == null) {
             throw new NotFoundException("child widget null index " + index);
@@ -129,10 +127,9 @@ public class Widget implements net.runelite.api.widgets.Widget, Interactable, Id
         return "Widget(" + getParentId() + "" + getId() + ")";
     }
 
-    @NotNull
     @Override
     //kotlin.Unit causes nosuchmethoderror
-    public Object interact(@NotNull Function1<? super String, Boolean> actionMatches) {
+    public @NotNull Object interact(@NotNull Function1<? super String, Boolean> actionMatches) {
         Interact.INSTANCE.withWidget(this, actionMatches);
         return new Object();
     }

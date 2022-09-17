@@ -4,7 +4,6 @@ import github.dqw4w9wgxcq.botapi.Client;
 import github.dqw4w9wgxcq.botapi.wrappers.entity.tile.TileEntity;
 import lombok.experimental.Delegate;
 import net.runelite.api.ObjectComposition;
-import net.runelite.api.coords.WorldPoint;
 import org.jetbrains.annotations.NotNull;
 
 //getId returns the compostion id.  getRl().getId() represents the id of the entity.

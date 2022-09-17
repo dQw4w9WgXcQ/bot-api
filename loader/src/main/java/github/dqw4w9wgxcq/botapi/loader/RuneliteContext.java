@@ -6,7 +6,6 @@ import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.plugins.PluginManager;
-import net.runelite.client.ui.ClientUI;
 
 import javax.inject.Inject;
 import java.io.File;

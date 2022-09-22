@@ -33,9 +33,8 @@ public class InventoryItem extends ContainerItem implements Interactable {
     }
 
     //Unit cause nosuchmethoderror
-    @NotNull
     @Override
-    public Object interact(@NotNull Function1<? super String, Boolean> actionMatches) {
+    public @NotNull Object interact(@NotNull Function1<? super String, Boolean> actionMatches) {
         Interact.INSTANCE.withInventory(this, actionMatches);
         return new Object();
     }

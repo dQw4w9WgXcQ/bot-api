@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.data
 
-import github.dqw4w9wgxcq.botapi.Skills
+import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.*
 import github.dqw4w9wgxcq.botapi.wrappers.Nameable
 import github.dqw4w9wgxcq.botapi.wrappers.item.Item
@@ -199,7 +199,7 @@ object ItemData {
         companion object {
             val degradedMatches = byId(*values().flatMap { it.degradedIds }.toIntArray())
 
-            fun pouchesForLevel(lvl: Int = Skills.level(Skill.RUNECRAFT)): List<EssPouch> {
+            fun pouchesForLevel(lvl: Int = Client.getRealSkillLevel(Skill.RUNECRAFT)): List<EssPouch> {
                 require(lvl >= 1)
                 val lastPouchIndex = values().indexOfLast { it.level <= lvl }
 

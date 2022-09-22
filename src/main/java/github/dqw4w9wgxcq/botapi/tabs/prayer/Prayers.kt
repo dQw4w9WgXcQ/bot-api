@@ -1,7 +1,6 @@
 package github.dqw4w9wgxcq.botapi.tabs.prayer
 
 import github.dqw4w9wgxcq.botapi.Client
-import github.dqw4w9wgxcq.botapi.Skills.boostedLevel
 import github.dqw4w9wgxcq.botapi.widget.Widgets
 import net.runelite.api.Skill
 
@@ -16,7 +15,7 @@ object Prayers {
     }
 
     val points: Int
-        get() = boostedLevel(Skill.PRAYER)
+        get() = Client.getBoostedSkillLevel(Skill.PRAYER)
     val isQuickPrayerActive: Boolean
         get() = Client.getVarpValue(4103) == 1
 

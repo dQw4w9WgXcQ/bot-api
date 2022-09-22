@@ -21,8 +21,8 @@ object TrainingAmounts {
 
         return buildMap {
             val methodss = methods.sortedBy { it.lvlReq }
-            var lvlStep = Skills.level(skill)
-            var expStep = Skills.experience(skill).toDouble()
+            var lvlStep = Client.getRealSkillLevel(skill)
+            var expStep = Client.getSkillExperience(skill).toDouble()
             for ((i, method) in methodss.withIndex()) {
                 if (method.lvlReq > lvlStep) {
                     throw IllegalStateException("method.lvlReq ${method.lvlReq} > lvlStep $lvlStep, prob no doable method")

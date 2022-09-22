@@ -1,7 +1,6 @@
 package github.dqw4w9wgxcq.botapi.script.blockingevents
 
 import github.dqw4w9wgxcq.botapi.Client
-import github.dqw4w9wgxcq.botapi.Skills
 import github.dqw4w9wgxcq.botapi.commons.byAction
 import github.dqw4w9wgxcq.botapi.commons.debug
 import github.dqw4w9wgxcq.botapi.commons.info
@@ -29,7 +28,7 @@ open class WelcomeEvent : BlockingEvent() {
             return false
         }
 
-        waitUntil { Skills.level(Skill.HITPOINTS) >= 10 }
+        waitUntil { Client.getRealSkillLevel(Skill.HITPOINTS) >= 10 }
 
         if (doWhenOpen != null) {
             debug { "doing doWhenOpen" }

@@ -13,24 +13,12 @@ object Skills {
         4842295, 5346332, 5902831, 6517253, 7195629, 7944614, 8771558, 9684577, 10692629, 11805606, 13034431
     )
 
-    fun level(skill: Skill): Int {
-        return Client.getRealSkillLevel(skill)
-    }
-
-    fun boostedLevel(skill: Skill): Int {
-        return Client.getBoostedSkillLevel(skill)
-    }
-
-    fun missing(skill: Skill): Int {
-        return level(skill) - boostedLevel(skill)
-    }
-
     fun experience(skill: Skill): Int {
         return Client.getSkillExperience(skill)
     }
 
     fun missingHealth(): Int {
-        return missing(Skill.HITPOINTS)
+        return Client.getRealSkillLevel(Skill.HITPOINTS) - Client.getBoostedSkillLevel(Skill.HITPOINTS)
     }
 
     fun experienceForLevel(level: Int): Int {
@@ -39,11 +27,11 @@ object Skills {
     }
 
     fun health(): Int {
-        return boostedLevel(Skill.HITPOINTS)
+        return Client.getBoostedSkillLevel(Skill.HITPOINTS)
     }
 
     fun healthRatio(): Double {
-        return boostedLevel(Skill.HITPOINTS).toDouble() / level(Skill.HITPOINTS)
+        return Client.getBoostedSkillLevel(Skill.HITPOINTS).toDouble() / Client.getRealSkillLevel(Skill.HITPOINTS)
     }
 
     fun healthPercent(): Int {

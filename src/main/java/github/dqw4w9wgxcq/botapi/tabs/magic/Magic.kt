@@ -1,7 +1,6 @@
 package github.dqw4w9wgxcq.botapi.tabs.magic
 
 import github.dqw4w9wgxcq.botapi.Client
-import github.dqw4w9wgxcq.botapi.Skills
 import github.dqw4w9wgxcq.botapi.commons.NotFoundException
 import github.dqw4w9wgxcq.botapi.commons.info
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
@@ -60,7 +59,7 @@ object Magic {
     fun cast(spell: Spell) {
         info { "Casting ${spell.widgetName}" }
         Tabs.open(Tab.MAGIC)
-        val level = Skills.level(Skill.MAGIC)
+        val level = Client.getRealSkillLevel(Skill.MAGIC)
         require(level >= spell.level) { "magic lvl $level < $spell" }
         getWidget(spell).interact("Cast")
     }

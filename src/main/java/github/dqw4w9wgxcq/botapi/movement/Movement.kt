@@ -8,7 +8,6 @@ import github.dqw4w9wgxcq.botapi.entities.TileObjects
 import github.dqw4w9wgxcq.botapi.interact.Interact
 import github.dqw4w9wgxcq.botapi.itemcontainer.Inventory
 import github.dqw4w9wgxcq.botapi.movement.pathfinding.local.LocalPathfinding
-import github.dqw4w9wgxcq.botapi.varps.Varps
 import github.dqw4w9wgxcq.botapi.widget.Dialog
 import github.dqw4w9wgxcq.botapi.widget.Widgets
 import github.dqw4w9wgxcq.botapi.wrappers.entity.tile.`object`.WallObject
@@ -23,8 +22,8 @@ object Movement {
     val stamThreshold = Profile.getInt("stam threshold", 10) + 10
 
     fun runEnergy(): Int = Client.energy
-    fun runEnabled(): Boolean = Varps.get(173) == 1
-    fun getStaminaConfig(): Int = Varps.getBit(Varbits.RUN_SLOWED_DEPLETION_ACTIVE)
+    fun runEnabled(): Boolean = Client.getVarpValue(173) == 1
+    fun getStaminaConfig(): Int = Client.getVarbitValue(Varbits.RUN_SLOWED_DEPLETION_ACTIVE)
     fun isStaminaActive(): Boolean = getStaminaConfig() > 0
 
     fun walk(to: Point) {

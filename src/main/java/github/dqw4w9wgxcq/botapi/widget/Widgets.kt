@@ -7,7 +7,6 @@ import github.dqw4w9wgxcq.botapi.commons.debug
 import github.dqw4w9wgxcq.botapi.commons.onGameThread
 import github.dqw4w9wgxcq.botapi.input.Keyboard
 import github.dqw4w9wgxcq.botapi.input.mouse.Mouse
-import github.dqw4w9wgxcq.botapi.varps.Varps
 import github.dqw4w9wgxcq.botapi.wrappers.Widget
 import net.runelite.api.widgets.WidgetInfo
 
@@ -77,7 +76,7 @@ object Widgets {
     }
 
     fun escClosesInterface(): Boolean {
-        return Varps.getBit(4681) == 1
+        return Client.getVarbitValue(4681) == 1
     }
 
     fun closeWithEsc() {

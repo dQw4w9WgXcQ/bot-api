@@ -1,5 +1,6 @@
 package github.dqw4w9wgxcq.botapi.tabs.combat
 
+import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
 import github.dqw4w9wgxcq.botapi.tabs.Tab
 import github.dqw4w9wgxcq.botapi.tabs.Tabs
@@ -17,14 +18,14 @@ object Combat {
     )
 
     fun selectStyle(index: Int) {
-        if (Varps.get(VarPlayer.ATTACK_STYLE) != index) {
+        if (Varps.getVarPlayer(VarPlayer.ATTACK_STYLE) != index) {
             Tabs.open(Tab.COMBAT)
             Widgets.get(styleMap[index]).interact { true }
         }
     }
 
     fun isAutoRetaliateEnabled(): Boolean {
-        return Varps.get(172) == 0
+        return Client.getVarpValue(172) == 0
     }
 
     fun checkAutoRetaliate(enabled: Boolean) {

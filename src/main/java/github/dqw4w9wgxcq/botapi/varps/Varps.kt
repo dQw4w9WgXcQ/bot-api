@@ -4,17 +4,9 @@ import github.dqw4w9wgxcq.botapi.Client
 import net.runelite.api.VarPlayer
 
 object Varps {
-    fun getBit(id: Int): Int {
-        return Client.getVarbitValue(id)
+    fun getVarPlayer(varplayer: VarPlayer): Int {
+        return Client.getVarpValue(varplayer.id)
     }
 
-    fun get(id: Int): Int {
-        return Client.getVarpValue(id)
-    }
-
-    fun get(varplayer: VarPlayer): Int {
-        return get(varplayer.id)
-    }
-
-    fun membershipDays(): Int = get(1780)
+    fun membershipDays(): Int = Client.getVarpValue(1780)
 }

@@ -1,5 +1,6 @@
 package github.dqw4w9wgxcq.botapi.tabs.magic
 
+import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.Skills
 import github.dqw4w9wgxcq.botapi.commons.NotFoundException
 import github.dqw4w9wgxcq.botapi.commons.info
@@ -10,7 +11,6 @@ import github.dqw4w9wgxcq.botapi.itemcontainer.Inventory
 import github.dqw4w9wgxcq.botapi.movement.Movement
 import github.dqw4w9wgxcq.botapi.tabs.Tab
 import github.dqw4w9wgxcq.botapi.tabs.Tabs
-import github.dqw4w9wgxcq.botapi.varps.Varps
 import github.dqw4w9wgxcq.botapi.widget.WidgetQuery
 import github.dqw4w9wgxcq.botapi.widget.Widgets
 import github.dqw4w9wgxcq.botapi.wrappers.Widget
@@ -45,7 +45,7 @@ object Magic {
     }
 
     fun isAutocasting(config: Int? = null): Boolean {
-        val varpValue = Varps.getBit(276)
+        val varpValue = Client.getVarbitValue(276)
         return if (config == null) {
             varpValue != 0
         } else {
@@ -108,7 +108,7 @@ object Magic {
             12137 to "Show spells you lack the requirements to cast"
         )
 
-        if (Widgets.getOrNull(218, 195) != null && configs.all { Varps.getBit(it.key) == 0 }) {
+        if (Widgets.getOrNull(218, 195) != null && configs.all { Client.getVarbitValue(it.key) == 0 }) {
             return
         }
 
@@ -127,10 +127,10 @@ object Magic {
         }
 
         for (config in configs) {
-            if (Varps.getBit(config.key) != 0) {
+            if (Client.getVarbitValue(config.key) != 0) {
                 container.childrenList.firstOrNull { it.text == config.value }?.interact("Change filter")
                     ?: throw NotFoundException("Could not find for text [${config.value}]")
-                waitUntil { Varps.getBit(config.key) == 0 }
+                waitUntil { Client.getVarbitValue(config.key) == 0 }
             }
         }
 

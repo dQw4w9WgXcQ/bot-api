@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.data
 
-import github.dqw4w9wgxcq.botapi.varps.Varps
+import github.dqw4w9wgxcq.botapi.Client
 
 enum class QuestData(val id: Int, val isVarbit: Boolean) {
     BLACK_KNIGHTS_FORTRESS(130, false),
@@ -169,9 +169,9 @@ enum class QuestData(val id: Int, val isVarbit: Boolean) {
     companion object {
         fun getProgress(quest: QuestData): Int {
             return if (quest.isVarbit) {
-                Varps.getBit(quest.id)
+                Client.getVarbitValue(quest.id)
             } else {
-                Varps.get(quest.id)
+                Client.getVarpValue(quest.id)
             }
         }
     }

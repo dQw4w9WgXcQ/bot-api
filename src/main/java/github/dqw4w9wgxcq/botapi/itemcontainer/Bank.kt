@@ -1,11 +1,11 @@
 package github.dqw4w9wgxcq.botapi.itemcontainer
 
+import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.*
 import github.dqw4w9wgxcq.botapi.entities.TileObjects
 import github.dqw4w9wgxcq.botapi.grandexchange.GrandExchange
 import github.dqw4w9wgxcq.botapi.movement.Movement
 import github.dqw4w9wgxcq.botapi.movement.pathfinding.local.LocalPathfinding
-import github.dqw4w9wgxcq.botapi.varps.Varps
 import github.dqw4w9wgxcq.botapi.widget.Dialog
 import github.dqw4w9wgxcq.botapi.widget.WidgetQuery
 import github.dqw4w9wgxcq.botapi.widget.Widgets
@@ -114,7 +114,7 @@ object Bank : ItemContainer<BankItem>(InventoryID.BANK) {
         }
     }
 
-    fun isNotedWithdrawMode(): Boolean = Varps.getBit(3958) == 1
+    fun isNotedWithdrawMode(): Boolean = Client.getVarbitValue(3958) == 1
 
     private val getWithdrawAsNote = WidgetQuery(WidgetID.BANK_GROUP_ID) { it.hasAction("Note") }
     private val getWithdrawAsItem = WidgetQuery(WidgetID.BANK_GROUP_ID) { it.hasAction("Item") }
@@ -131,7 +131,7 @@ object Bank : ItemContainer<BankItem>(InventoryID.BANK) {
     }
 
     fun isAlwaysSetPlaceholders(): Boolean {
-        return Varps.getBit(3755) == 1
+        return Client.getVarbitValue(3755) == 1
     }
 
     private val alwaysSetPlaceHoldersWidget =
@@ -149,9 +149,9 @@ object Bank : ItemContainer<BankItem>(InventoryID.BANK) {
         }
     }
 
-    fun getXQuantity(): Int = Varps.getBit(3960)
+    fun getXQuantity(): Int = Client.getVarbitValue(3960)
 
-    fun getQuantityModeConfig(): Int = Varps.getBit(6590)
+    fun getQuantityModeConfig(): Int = Client.getVarbitValue(6590)
 
     enum class QuantityMode(val actionSuffix: String?, val config: Int) {
         ONE("1", 0), X(null, 3), ALL("All", 4)

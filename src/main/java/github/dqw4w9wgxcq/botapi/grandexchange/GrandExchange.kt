@@ -58,7 +58,7 @@ object GrandExchange {
         }
     }
 
-    fun currentItemId(): Int = Varps.get(VarPlayer.CURRENT_GE_ITEM)
+    fun currentItemId(): Int = Varps.getVarPlayer(VarPlayer.CURRENT_GE_ITEM)
 
     fun selectItem(id: Int, waitFor: Boolean = true) {
         if (id == currentItemId()) {
@@ -124,7 +124,7 @@ object GrandExchange {
         return children[index - 2]!!
     }
 
-    fun offerPrice(): Int = Varps.getBit(4398)
+    fun offerPrice(): Int = Client.getVarbitValue(4398)
 
     private val enterPriceWidget = WidgetQuery(WidgetInfo.GRAND_EXCHANGE_OFFER_CONTAINER, byAction("Enter price"))
     fun enterPrice(price: Int, waitFor: Boolean = true) {
@@ -209,7 +209,7 @@ object GrandExchange {
         }
     }
 
-    fun offerQuantity(): Int = Varps.getBit(4396)
+    fun offerQuantity(): Int = Client.getVarbitValue(4396)
 
     private val notNumberRegex = "\\D".toRegex()
     fun guidePrice(): Int {

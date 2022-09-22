@@ -1,5 +1,6 @@
 package github.dqw4w9wgxcq.botapi.tabs.settings
 
+import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.NotFoundException
 import github.dqw4w9wgxcq.botapi.commons.wait
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
@@ -19,20 +20,20 @@ object Settings {
 
     private val acceptAid = WidgetQuery(groupId) { it.hasAction("Toggle Accept Aid") }
     fun checkAcceptAidOff() {
-        if (Varps.getBit(4180) == 0) {
+        if (Client.getVarbitValue(4180) == 0) {
             return
         }
 
         checkSettingsTabOpen(0)
         acceptAid().interact("Toggle Accept Aid")
-        waitUntil { Varps.getBit(4180) == 0 }
+        waitUntil { Client.getVarbitValue(4180) == 0 }
     }
 
     fun checkVolumesMuted() {
         if (
-            Varps.get(VarPlayer.MUSIC_VOLUME) == 0
-            && Varps.get(VarPlayer.SOUND_EFFECT_VOLUME) == 0
-            && Varps.get(VarPlayer.AREA_EFFECT_VOLUME) == 0
+            Varps.getVarPlayer(VarPlayer.MUSIC_VOLUME) == 0
+            && Varps.getVarPlayer(VarPlayer.SOUND_EFFECT_VOLUME) == 0
+            && Varps.getVarPlayer(VarPlayer.AREA_EFFECT_VOLUME) == 0
         ) {
             return
         }
@@ -49,9 +50,9 @@ object Settings {
         }
 
         waitUntil {
-            Varps.get(VarPlayer.MUSIC_VOLUME) == 0
-                    && Varps.get(VarPlayer.SOUND_EFFECT_VOLUME) == 0
-                    && Varps.get(VarPlayer.AREA_EFFECT_VOLUME) == 0
+            Varps.getVarPlayer(VarPlayer.MUSIC_VOLUME) == 0
+                    && Varps.getVarPlayer(VarPlayer.SOUND_EFFECT_VOLUME) == 0
+                    && Varps.getVarPlayer(VarPlayer.AREA_EFFECT_VOLUME) == 0
         }
     }
 
@@ -86,7 +87,7 @@ object Settings {
     }
 
     fun getAllSettingsTab(): Int {
-        return Varps.getBit(9656)
+        return Client.getVarbitValue(9656)
     }
 
     fun openAllSettingsTab(tab: AllSettingsTab) {
@@ -124,7 +125,7 @@ object Settings {
 
     fun checkSettingsTabOpen(index: Int) {
         Tabs.open(Tab.SETTINGS)
-        val bit = Varps.getBit(tabVarbit)
+        val bit = Client.getVarbitValue(tabVarbit)
         println("bit$bit")
         if (bit != index) {
             val action = when (index) {
@@ -135,7 +136,7 @@ object Settings {
             }
 
             WidgetQuery(groupId) { it.hasAction(action) }.invoke().interact(action)
-            waitUntil(2000) { Varps.getBit(tabVarbit) == index }
+            waitUntil(2000) { Client.getVarbitValue(tabVarbit) == index }
         }
     }
 
@@ -157,7 +158,7 @@ object Settings {
             4688 to 12
         )
 
-        return configs.any { Varps.getBit(it.key) != it.value }
+        return configs.any { Client.getVarbitValue(it.key) != it.value }
     }
 
     fun checkRestoreDefaultKeybinds() {

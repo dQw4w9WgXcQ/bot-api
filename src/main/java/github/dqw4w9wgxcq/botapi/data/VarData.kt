@@ -6,6 +6,7 @@ object VarData {
     const val KOUREND_VISITED = -1
     const val TUTORIAL = 281
 
+    const val MEMBERSHIP_DAYS = 1780
     const val PLAYED_TIME_VARC = 526//in minutes, is 0 until sub tab is opened
 
     const val ABYSS_MAGE_WARNING_BIT = 626//1 -> 0 bit 5938?

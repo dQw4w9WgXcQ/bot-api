@@ -1,8 +1,8 @@
 package github.dqw4w9wgxcq.botapi.grandexchange
 
 import github.dqw4w9wgxcq.botapi.Client
-import github.dqw4w9wgxcq.botapi.Varps
 import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.data.VarData
 import github.dqw4w9wgxcq.botapi.entities.NPCs
 import github.dqw4w9wgxcq.botapi.entities.Players
 import github.dqw4w9wgxcq.botapi.input.Keyboard
@@ -58,7 +58,7 @@ object GrandExchange {
         }
     }
 
-    fun currentItemId(): Int = Varps.getVarPlayer(VarPlayer.CURRENT_GE_ITEM)
+    fun currentItemId(): Int = Client.getVarpValue(VarPlayer.CURRENT_GE_ITEM)
 
     fun selectItem(id: Int, waitFor: Boolean = true) {
         if (id == currentItemId()) {
@@ -259,11 +259,17 @@ object GrandExchange {
 
     fun haveEmptySlot(): Boolean {
         val offers = offers
-        val memDays: Int by lazy { Varps.membershipDays() }
+        val memDays: Int = Client.getVarpValue(VarData.MEMBERSHIP_DAYS)
         for (i in offers.indices) {
-            if (i > 2 && memDays == 0) return false
-            if (offers[i].state == GrandExchangeOfferState.EMPTY) return true
+            if (i > 2 && memDays == 0) {
+                return false
+            }
+
+            if (offers[i].state == GrandExchangeOfferState.EMPTY) {
+                return true
+            }
         }
+
         return false
     }
 

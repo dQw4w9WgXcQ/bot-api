@@ -1,7 +1,6 @@
 package github.dqw4w9wgxcq.botapi.tabs.settings
 
 import github.dqw4w9wgxcq.botapi.Client
-import github.dqw4w9wgxcq.botapi.Varps
 import github.dqw4w9wgxcq.botapi.commons.NotFoundException
 import github.dqw4w9wgxcq.botapi.commons.wait
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
@@ -31,9 +30,9 @@ object Settings {
 
     fun checkVolumesMuted() {
         if (
-            Varps.getVarPlayer(VarPlayer.MUSIC_VOLUME) == 0
-            && Varps.getVarPlayer(VarPlayer.SOUND_EFFECT_VOLUME) == 0
-            && Varps.getVarPlayer(VarPlayer.AREA_EFFECT_VOLUME) == 0
+            Client.getVarpValue(VarPlayer.MUSIC_VOLUME) == 0
+            && Client.getVarpValue(VarPlayer.SOUND_EFFECT_VOLUME) == 0
+            && Client.getVarpValue(VarPlayer.AREA_EFFECT_VOLUME) == 0
         ) {
             return
         }
@@ -50,9 +49,9 @@ object Settings {
         }
 
         waitUntil {
-            Varps.getVarPlayer(VarPlayer.MUSIC_VOLUME) == 0
-                    && Varps.getVarPlayer(VarPlayer.SOUND_EFFECT_VOLUME) == 0
-                    && Varps.getVarPlayer(VarPlayer.AREA_EFFECT_VOLUME) == 0
+            Client.getVarpValue(VarPlayer.MUSIC_VOLUME) == 0
+                    && Client.getVarpValue(VarPlayer.SOUND_EFFECT_VOLUME) == 0
+                    && Client.getVarpValue(VarPlayer.AREA_EFFECT_VOLUME) == 0
         }
     }
 

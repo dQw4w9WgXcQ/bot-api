@@ -1,7 +1,6 @@
 package github.dqw4w9wgxcq.botapi.tabs.combat
 
 import github.dqw4w9wgxcq.botapi.Client
-import github.dqw4w9wgxcq.botapi.Varps
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
 import github.dqw4w9wgxcq.botapi.tabs.Tab
 import github.dqw4w9wgxcq.botapi.tabs.Tabs
@@ -18,7 +17,7 @@ object Combat {
     )
 
     fun selectStyle(index: Int) {
-        if (Varps.getVarPlayer(VarPlayer.ATTACK_STYLE) != index) {
+        if (Client.getVarpValue(VarPlayer.ATTACK_STYLE) != index) {
             Tabs.open(Tab.COMBAT)
             Widgets.get(styleMap[index]).interact { true }
         }

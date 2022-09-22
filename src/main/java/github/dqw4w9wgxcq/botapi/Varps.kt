@@ -1,6 +1,5 @@
-package github.dqw4w9wgxcq.botapi.varps
+package github.dqw4w9wgxcq.botapi
 
-import github.dqw4w9wgxcq.botapi.Client
 import net.runelite.api.VarPlayer
 
 object Varps {

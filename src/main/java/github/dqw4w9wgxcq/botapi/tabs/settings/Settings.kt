@@ -1,12 +1,12 @@
 package github.dqw4w9wgxcq.botapi.tabs.settings
 
 import github.dqw4w9wgxcq.botapi.Client
+import github.dqw4w9wgxcq.botapi.Varps
 import github.dqw4w9wgxcq.botapi.commons.NotFoundException
 import github.dqw4w9wgxcq.botapi.commons.wait
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
 import github.dqw4w9wgxcq.botapi.tabs.Tab
 import github.dqw4w9wgxcq.botapi.tabs.Tabs
-import github.dqw4w9wgxcq.botapi.varps.Varps
 import github.dqw4w9wgxcq.botapi.widget.Dialog
 import github.dqw4w9wgxcq.botapi.widget.WidgetQuery
 import github.dqw4w9wgxcq.botapi.widget.Widgets

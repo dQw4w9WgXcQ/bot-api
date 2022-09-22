@@ -1,10 +1,10 @@
 package github.dqw4w9wgxcq.botapi.tabs.combat
 
 import github.dqw4w9wgxcq.botapi.Client
+import github.dqw4w9wgxcq.botapi.Varps
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
 import github.dqw4w9wgxcq.botapi.tabs.Tab
 import github.dqw4w9wgxcq.botapi.tabs.Tabs
-import github.dqw4w9wgxcq.botapi.varps.Varps
 import github.dqw4w9wgxcq.botapi.widget.Widgets
 import net.runelite.api.VarPlayer
 import net.runelite.api.widgets.WidgetInfo

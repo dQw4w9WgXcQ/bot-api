@@ -20,6 +20,6 @@ object Prayers {
         get() = Client.getVarpValue(4103) == 1
 
     fun toggleQuickPrayer(on: Boolean) {
-        Widgets.getOrNull(160, 14)?.interact { it.equals(if (on) "activate" else "deactivate", ignoreCase = true) }
+        Widgets.getOrNull(160, 14)?.interact(if (on) "activate" else "deactivate")
     }
 }

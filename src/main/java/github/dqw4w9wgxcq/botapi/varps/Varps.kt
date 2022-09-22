@@ -13,7 +13,7 @@ object Varps {
     }
 
     fun get(varplayer: VarPlayer): Int {
-        return Client.getVar(varplayer)
+        return get(varplayer.id)
     }
 
     fun membershipDays(): Int = get(1780)

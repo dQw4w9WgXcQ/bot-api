@@ -15,6 +15,11 @@ public class BotPanel extends JPanel {
 
     public BotPanel(ScriptManager scriptManager) {
         super(false);
+        JTextArea logTextArea = new TrimmingJTextArea();
+        logTextArea.setEditable(false);
+        System.setOut(new PrintStreamInterceptor(System.out, logTextArea));
+        System.setErr(new PrintStreamInterceptor(System.err, logTextArea));
+
         this.scriptManager = scriptManager;
 
         setLayout(new BorderLayout());
@@ -83,19 +88,11 @@ public class BotPanel extends JPanel {
 
         add(southPanel, BorderLayout.SOUTH);
 
-        logFrame = new JFrame();
-
-        JTextArea textArea = new TrimmingJTextArea();
-        textArea.setEditable(false);
-
-        JScrollPane scrollPane = new JScrollPane(textArea);
+        JScrollPane scrollPane = new JScrollPane(logTextArea);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
+        logFrame = new JFrame();
         logFrame.getContentPane().add(scrollPane);
         logFrame.setSize(1000, 1000);
-
-        System.setOut(new PrintStreamInterceptor(System.out, textArea));
-        System.setErr(new PrintStreamInterceptor(System.err, textArea));
     }
 
     private void openLogger() {

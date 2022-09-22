@@ -36,7 +36,7 @@ class RickkInteract : InteractDriver {
         val forcedTag: AtomicLong = AtomicLong(-1L)
 
         @Subscribe
-        fun onMenuEntryAdded(e: MenuEntryAdded) {
+        fun onMenuEntryAdded(@Suppress("UNUSED_PARAMETER") e: MenuEntryAdded) {
             if (forcedTag.get() == -1L) {
                 return
             }

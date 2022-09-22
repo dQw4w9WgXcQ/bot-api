@@ -10,8 +10,7 @@ object Prayers {
     }
 
     fun togglePrayer(prayer: Prayer, on: Boolean) {
-        Widgets.getOrNull(541, prayer.childId)
-            ?.interact { it.equals(if (on) "activate" else "deactivate", ignoreCase = true) }
+        Widgets.getOrNull(541, prayer.childId)?.interact(if (on) "activate" else "deactivate")
     }
 
     val points: Int

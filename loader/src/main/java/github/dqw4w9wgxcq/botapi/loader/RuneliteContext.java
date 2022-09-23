@@ -5,11 +5,8 @@ import net.runelite.client.callback.ClientThread;
 import net.runelite.client.eventbus.EventBus;
 
 import javax.inject.Inject;
-import java.io.File;
 
 public class RuneliteContext {
-    public static final File dir = new File(RealUserHome.getUserHome(), "runelite-bot");
-
     @Inject
     private Client client;
     @Inject
@@ -21,15 +18,7 @@ public class RuneliteContext {
 
     static void setInstance(RuneliteContext ctx) {
         if (ctx.client == null) {
-            throw new IllegalStateException("client null");
-        }
-
-        if (ctx.clientThread == null) {
-            throw new IllegalStateException("clientThread null");
-        }
-
-        if (ctx.eventBus == null) {
-            throw new IllegalStateException("eventBus null");
+            throw new IllegalStateException("client null, prob update");
         }
 
         instance = ctx;

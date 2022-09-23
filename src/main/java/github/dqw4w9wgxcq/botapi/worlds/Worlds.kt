@@ -16,7 +16,7 @@ object Worlds {
     val ACTIVITY_DISALLOW_LIST = setOf(
         "wilderness",
         "trade",
-        "pvp",
+        "pvp world",
         "deadman",
         "skill total",
         "tournament",

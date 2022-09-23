@@ -16,8 +16,10 @@ import net.runelite.client.plugins.fps.FpsPlugin;
 import net.runelite.client.plugins.hiscore.HiscorePlugin;
 import net.runelite.client.plugins.info.InfoPlugin;
 import net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperPlugin;
+import net.runelite.client.plugins.xptracker.XpTrackerPlugin;
 
 import javax.swing.*;
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -26,6 +28,8 @@ import java.util.Set;
 
 @Slf4j
 public class BotApi {
+    public static final File DIR = new File(RealUserHome.getUserHome(), "runelite-bot");
+
     @Data
     private static class ManagedConfig<T> {
         private final String groupName;
@@ -43,7 +47,8 @@ public class BotApi {
             MenuEntrySwapperPlugin.class,
             AntiDragPlugin.class,
             HiscorePlugin.class,
-            InfoPlugin.class
+            InfoPlugin.class,
+            XpTrackerPlugin.class
     ));
 
     private static final List<ManagedConfig<?>> managedConfigs = Arrays.asList(

@@ -47,11 +47,11 @@ object Worlds {
 
     val P2P: (World) -> Boolean = { it.types.contains(WorldType.MEMBERS) }
     val F2P = P2P.negate()
-    private val NOT_CURRENT: (World) -> Boolean = { it.id != getCurrentId() }
+    private val NOT_CURRENT: (World) -> Boolean = { it.id != Client.world }
 
-    fun getCurrentId(): Int = Client.world
-
-    fun getCurrent(): World = get(getCurrentId())
+    fun getCurrent(): World {
+        return get(Client.world)
+    }
 
     fun all(matches: (World) -> Boolean): List<World> {
         return Client.worldList?.filter(matches) ?: throw RetryableBotException("worlds not loaded")
@@ -71,7 +71,7 @@ object Worlds {
 
     fun changeLobbyWorld(id: Int) {
         Client.changeWorld(get(id))
-        waitUntil { getCurrentId() == id }
+        waitUntil { Client.world == id }
     }
 
     fun getBest(matches: (World) -> Boolean, selector: (World) -> Double): World {
@@ -118,7 +118,7 @@ object Worlds {
             waitUntil { Client.gameState == GameState.HOPPING }
         }
         waitUntil { Client.gameState == GameState.HOPPING }
-        waitUntil(10_000) { getCurrentId() == world.id }
+        waitUntil(10_000) { Client.world == world.id }
         waitUntil(10_000) { Client.gameState == GameState.LOGGED_IN }
         waitUntil { !Client.isLoading }
     }

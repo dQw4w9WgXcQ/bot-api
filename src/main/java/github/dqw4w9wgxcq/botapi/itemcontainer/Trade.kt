@@ -17,26 +17,25 @@ object Trade : ItemContainer<TradeItem>(InventoryID.TRADE) {
         }
     }
 
-    val view: View
-        get() {
-            val first = Widgets.getOrNull(WidgetID.PLAYER_TRADE_SCREEN_GROUP_ID, 10)
-            if (first != null && !first.isHidden) {
-                if (!first.hasAction("Accept")) {
-                    throw RetryableBotException("it hink widg brok")
-                }
-
-                return View.FIRST
+    fun view(): View {
+        val first = Widgets.getOrNull(WidgetID.PLAYER_TRADE_SCREEN_GROUP_ID, 10)
+        if (first != null && !first.isHidden) {
+            if (!first.hasAction("Accept")) {
+                throw RetryableBotException("it hink widg brok")
             }
-            val second = Widgets.getOrNull(SECOND_SCREEN_GROUP_ID, 13)
-            if (second != null && !second.isHidden) {
-                if (!second.hasAction("Accept")) {
-                    throw RetryableBotException("it hink widg brok")
-                }
 
-                return View.SECOND
-            }
-            return View.CLOSED
+            return View.FIRST
         }
+        val second = Widgets.getOrNull(SECOND_SCREEN_GROUP_ID, 13)
+        if (second != null && !second.isHidden) {
+            if (!second.hasAction("Accept")) {
+                throw RetryableBotException("it hink widg brok")
+            }
+
+            return View.SECOND
+        }
+        return View.CLOSED
+    }
 
     fun offerAll(itemId: Int) {
         require(itemId > 0)
@@ -78,7 +77,7 @@ object Trade : ItemContainer<TradeItem>(InventoryID.TRADE) {
     }
 
     fun accept() {
-        val view = view
+        val view = view()
         if (view == View.CLOSED) {
             throw RetryableBotException("trade view is closed")
         }

@@ -146,9 +146,9 @@ class LoginEvent : BlockingEvent() {
             }
 
             val newWorldId = Worlds.getRandom { Worlds.SUITABLE(it) && Worlds.P2P(it) }.id
-            if (newWorldId != Worlds.getCurrentId()) {
+            if (newWorldId != Client.world) {
                 Worlds.changeLobbyWorld(newWorldId)
-                waitUntil { newWorldId == Worlds.getCurrentId() }
+                waitUntil { newWorldId == Client.world }
             }
             needInitialHop = false
             info { "did initial hop" }

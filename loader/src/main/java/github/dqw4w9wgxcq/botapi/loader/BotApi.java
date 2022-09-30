@@ -12,6 +12,7 @@ import net.runelite.client.plugins.PluginInstantiationException;
 import net.runelite.client.plugins.PluginManager;
 import net.runelite.client.plugins.antidrag.AntiDragPlugin;
 import net.runelite.client.plugins.config.ConfigPlugin;
+import net.runelite.client.plugins.devtools.DevToolsPlugin;
 import net.runelite.client.plugins.fps.FpsPlugin;
 import net.runelite.client.plugins.hiscore.HiscorePlugin;
 import net.runelite.client.plugins.info.InfoPlugin;
@@ -48,15 +49,16 @@ public class BotApi {
             AntiDragPlugin.class,
             HiscorePlugin.class,
             InfoPlugin.class,
-            XpTrackerPlugin.class
+            XpTrackerPlugin.class,
+            DevToolsPlugin.class
     ));
 
     private static final List<ManagedConfig<?>> managedConfigs = Arrays.asList(
             new ManagedConfig<>(RuneLiteConfig.GROUP_NAME, "rememberScreenBounds", Boolean.class, false),
-            new ManagedConfig<>(RuneLiteConfig.GROUP_NAME, "enableCustomChrome", Boolean.class, false),
+            new ManagedConfig<>(RuneLiteConfig.GROUP_NAME, "uiEnableCustomChrome", Boolean.class, false),//needs restart
             new ManagedConfig<>(RuneLiteConfig.GROUP_NAME, "warningOnExit", WarningOnExit.class, WarningOnExit.NEVER),
-            new ManagedConfig<>(RuneLiteConfig.GROUP_NAME, "enableTrayIcon", Boolean.class, false),
-            new ManagedConfig<>(RuneLiteConfig.GROUP_NAME, "enableTrayNotifications", Boolean.class, false),
+            new ManagedConfig<>(RuneLiteConfig.GROUP_NAME, "trayIcon", Boolean.class, false),//needs restart
+            new ManagedConfig<>(RuneLiteConfig.GROUP_NAME, "notificationTray", Boolean.class, false),
 
             new ManagedConfig<>("fpscontrol", "limitFps", Boolean.class, true),
             new ManagedConfig<>("fpscontrol", "maxFps", Integer.class, 30),

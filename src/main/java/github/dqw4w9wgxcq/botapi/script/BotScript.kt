@@ -8,6 +8,7 @@ import github.dqw4w9wgxcq.botapi.loader.IBotScript
 import org.slf4j.event.Level
 import java.io.IOException
 import java.util.concurrent.ExecutionException
+import kotlin.system.exitProcess
 
 abstract class BotScript : IBotScript {
     companion object {
@@ -56,10 +57,11 @@ abstract class BotScript : IBotScript {
             var failCount = 0
             while (looping) {
                 debug { "START OF LOOP$loopCount" }
-                loopCount++//outside debug block
+                loopCount++
 
                 if (!Client.clientThread.isAlive) {
-                    throw FatalException("rs game thread dead")
+                    warn { "game thread dead" }
+                    exitProcess(401)
                 }
 
                 nextLoopDelay = null

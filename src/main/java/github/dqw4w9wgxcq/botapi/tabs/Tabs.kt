@@ -47,7 +47,9 @@ object Tabs {
     fun logout() {
         Bank.close()
 
-        waitUntil(5 * 60_000) { Client.gameState == GameState.LOGIN_SCREEN }//todo
+        waitUntil(6 * 60_000) { Client.gameState == GameState.LOGIN_SCREEN }//todo
+        return
+
         open(Tab.LOGOUT)
 
         (WidgetQuery(WidgetID.LOGOUT_PANEL_ID) { it.hasAction("logout") }.getOrNull()

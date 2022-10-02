@@ -2,7 +2,6 @@ package github.dqw4w9wgxcq.botapi.grandexchange
 
 import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.*
-import github.dqw4w9wgxcq.botapi.data.VarData
 import github.dqw4w9wgxcq.botapi.entities.NPCs
 import github.dqw4w9wgxcq.botapi.entities.Players
 import github.dqw4w9wgxcq.botapi.input.Keyboard
@@ -255,11 +254,13 @@ object GrandExchange {
     }
 
     val offers: List<GrandExchangeOffer>
-        get() = Client.grandExchangeOffers.toList()
+        get() {
+            return Client.grandExchangeOffers.toList()
+        }
 
     fun haveEmptySlot(): Boolean {
         val offers = offers
-        val memDays: Int = Client.getVarpValue(VarData.MEMBERSHIP_DAYS)
+        val memDays: Int = Client.getVarpValue(VarPlayer.MEMBERSHIP_DAYS)
         for (i in offers.indices) {
             if (i > 2 && memDays == 0) {
                 return false

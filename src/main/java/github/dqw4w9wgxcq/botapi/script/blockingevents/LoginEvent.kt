@@ -57,7 +57,7 @@ class LoginEvent : BlockingEvent() {
                 debug { "Ok bounds: $out" }
                 return out
             }
-        private val loginResponse: String
+        val loginResponse: String
             get() {
                 val response0 = Refl.Login_response0.get2<String>(null)
                 val response1 = Refl.Login_response1.get2<String>(null)
@@ -250,13 +250,9 @@ class LoginEvent : BlockingEvent() {
                 waitUntil(condition = { Client.loginIndex != LoginIndex.DISCONNECTED }.withDescription("loginState != DISCONNECTED"))
             }
 
-//            State.BETA_WORLD.loginIndex -> {
-//                if (Worlds.SUITABLE.invoke(Worlds.getCurrent())) {
-//                    Keyboard.esc()
-//                } else {
-//                    Worlds.changeLobbyWorld(Worlds.getRandom(Worlds.SUITABLE.and(Worlds.P2P)).id)
-//                }
-//            }
+            LoginIndex.BETA_WORLD -> {
+                throw FatalException("beta world")
+            }
 
             LoginIndex.EULA -> {
                 Mouse.click(acceptBounds)

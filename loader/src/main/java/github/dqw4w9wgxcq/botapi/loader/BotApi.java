@@ -18,6 +18,9 @@ import net.runelite.client.plugins.hiscore.HiscorePlugin;
 import net.runelite.client.plugins.info.InfoPlugin;
 import net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperPlugin;
 import net.runelite.client.plugins.xptracker.XpTrackerPlugin;
+import net.runelite.client.ui.ClientToolbar;
+import net.runelite.client.ui.NavigationButton;
+import net.runelite.client.util.ImageUtil;
 
 import javax.swing.*;
 import java.io.File;
@@ -49,8 +52,8 @@ public class BotApi {
             AntiDragPlugin.class,
             HiscorePlugin.class,
             InfoPlugin.class,
-            XpTrackerPlugin.class,
-            DevToolsPlugin.class
+            XpTrackerPlugin.class
+            //DevToolsPlugin.class
     ));
 
     private static final List<ManagedConfig<?>> managedConfigs = Arrays.asList(
@@ -86,9 +89,17 @@ public class BotApi {
             frame.setTitle(title);
             frame.add(new BotPanel(scriptManager));
             frame.setSize(500, 500);
-            frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-            frame.setVisible(true);
+            frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         });
+
+        NavigationButton navButton = NavigationButton.builder()
+                .tooltip("Developer Tools")
+                .icon(ImageUtil.loadImageResource(DevToolsPlugin.class, "devtools_icon.png"))
+                .priority(-420)
+                .onClick(() -> frame.setVisible(!frame.isVisible()))
+                .build();
+
+        injector.getInstance(ClientToolbar.class).addNavigation(navButton);
 
         //stop plugins
         PluginManager pluginManager = injector.getInstance(PluginManager.class);
@@ -118,14 +129,6 @@ public class BotApi {
         if (quickstartScript != null) {
             scriptManager.startScript(quickstartScript);
         }
-    }
-
-    public static void shutDown() {
-        if (frame != null) {
-            frame.dispose();
-        }
-
-        scriptManager.stopScript();
     }
 
     //from PluginListPanel#startPlugin/stopPlugin

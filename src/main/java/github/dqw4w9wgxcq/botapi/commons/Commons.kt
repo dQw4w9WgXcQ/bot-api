@@ -102,7 +102,6 @@ fun java.awt.Point.toRl(): Point {
     return Point(x, y)
 }
 
-//todo not natural distribution in a rectangle rn
 fun Rectangle.randomPoint(): java.awt.Point {
     return java.awt.Point(Rand.nextInt(x, x + width), Rand.nextInt(y, y + height))
 }
@@ -151,7 +150,7 @@ fun <T> waitUntilCondition(
             return supplied
         }
 
-        wait(pollRate)
+        Thread.sleep(pollRate.toLong())
     } while (System.currentTimeMillis() < start + timeout)
 
     @Suppress("UNCHECKED_CAST")//no clue this is necessary

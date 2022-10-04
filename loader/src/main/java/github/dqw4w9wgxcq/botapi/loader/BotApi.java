@@ -93,7 +93,7 @@ public class BotApi {
         });
 
         NavigationButton navButton = NavigationButton.builder()
-                .tooltip("Developer Tools")
+                .tooltip("bot")
                 .icon(ImageUtil.loadImageResource(DevToolsPlugin.class, "devtools_icon.png"))
                 .priority(-420)
                 .onClick(() -> frame.setVisible(!frame.isVisible()))

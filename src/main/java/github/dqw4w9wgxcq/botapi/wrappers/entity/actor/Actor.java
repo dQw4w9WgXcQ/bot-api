@@ -1,7 +1,6 @@
 package github.dqw4w9wgxcq.botapi.wrappers.entity.actor;
 
 import github.dqw4w9wgxcq.botapi.Refl;
-import github.dqw4w9wgxcq.botapi.commons.FatalException;
 import github.dqw4w9wgxcq.botapi.wrappers.Locatable;
 import github.dqw4w9wgxcq.botapi.wrappers.entity.Entity;
 import lombok.experimental.Delegate;
@@ -30,7 +29,7 @@ public abstract class Actor<RL extends net.runelite.api.Actor> implements Entity
         } else if (interacting instanceof net.runelite.api.NPC) {
             return new NPC((net.runelite.api.NPC) interacting);
         } else {
-            throw new FatalException("weird interacting type: " + interacting.getClass().getName(), null);
+            throw new IllegalStateException("weird interacting type: " + interacting.getClass().getName(), null);
         }
     }
 

@@ -6,7 +6,10 @@ import github.dqw4w9wgxcq.botapi.antiban.Antiban
 import github.dqw4w9wgxcq.botapi.commons.*
 import github.dqw4w9wgxcq.botapi.loader.IBotScript
 import org.slf4j.event.Level
+import java.io.FileNotFoundException
 import java.io.IOException
+import java.net.MalformedURLException
+import java.net.ProtocolException
 import java.util.concurrent.ExecutionException
 import kotlin.system.exitProcess
 
@@ -76,42 +79,42 @@ abstract class BotScript : IBotScript {
                         failCount = 0
                     }
                 } catch (e: Exception) {
+                    @Suppress("NAME_SHADOWING")
+                    var e = e
+
                     debug { "exception in loop: $e" }
 
-                    var unwrappedE: Exception = e
                     var i = 0//only for log
-                    while (unwrappedE is ExecutionException) {
-                        debug { "$i unwrapping $unwrappedE" }
-                        if (unwrappedE.cause == null) {
-                            warn { "ExecutionException cause null $unwrappedE" }
+                    while (e is ExecutionException) {
+                        debug { "${i++} unwrapping $e" }
+
+                        val cause = e.cause
+
+                        if (cause == null) {
+                            warn { "ExecutionException cause null $e" }
                             break
                         }
 
-                        if (unwrappedE.cause !is Exception) {
-                            throw Exception("while unwrapping cause is not an exception, cause:${unwrappedE.cause}", e)
+                        if (cause !is Exception) {
+                            throw Exception("cause is not an exception:$cause", e)
                         }
 
-                        unwrappedE = unwrappedE.cause as Exception
-                        i++
+                        e = cause
                     }
 
                     nextLoopDelay = when {
-                        unwrappedE is FatalException || unwrappedE is IllegalStateException -> {
-                            throw e
-                        }
-//                        failCount == 0 -> {//everything not fatal gets retried once
-//                            nextLoopDelay
-//                        }
-                        unwrappedE is RetryableBotException && failCount < unwrappedE.retries -> {
-                            if (failCount == 0) {
-                                nextLoopDelay
-                            } else {
-                                5000
-                            }
+                        e is RetryableBotException && failCount < e.retries -> {
+                            nextLoopDelay
                         }
 
-                        unwrappedE is IOException && failCount < 20 -> {
-                            if (failCount < 10) {
+                        e is IOException && failCount < 20 -> {
+                            if (e is FileNotFoundException || e is MalformedURLException || e is ProtocolException) {
+                                throw e
+                            }
+
+                            if (failCount < 3) {
+                                1000
+                            } else if (failCount < 10) {
                                 10000
                             } else {
                                 60000
@@ -128,8 +131,13 @@ abstract class BotScript : IBotScript {
                             warn(e) { "exception in loop" }
                         }
                     } else {
-                        info { "$failCount fails, $e" }
+                        if (e is SilentBotException) {
+                            debug { "silent $failCount fails, $e" }
+                        } else {
+                            info { "$failCount fails, $e" }
+                        }
                     }
+
                     failCount++
                 }
 
@@ -155,6 +163,7 @@ abstract class BotScript : IBotScript {
             }
         } catch (t: Throwable) {
             warn(t) { "fatal in script" }
+
             try {
                 cleanUpFatal(t)
             } catch (e: Exception) {

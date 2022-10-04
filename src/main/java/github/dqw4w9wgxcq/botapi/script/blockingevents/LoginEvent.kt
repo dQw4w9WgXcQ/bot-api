@@ -187,7 +187,7 @@ class LoginEvent : BlockingEvent() {
         }
 
         if (loginResponse.contains("login limit", true)) {
-            throw FatalException(loginResponse)
+            throw IllegalStateException(loginResponse)
         }
 
         if (loginResponse.contains("your account has not logged out", true)) {
@@ -251,14 +251,14 @@ class LoginEvent : BlockingEvent() {
             }
 
             LoginIndex.BETA_WORLD -> {
-                throw FatalException("beta world")
+                throw IllegalStateException("beta world")
             }
 
             LoginIndex.EULA -> {
                 Mouse.click(acceptBounds)
             }
 
-            else -> throw FatalException("no behavior for login index $loginIndex")
+            else -> throw IllegalStateException("no behavior for login index $loginIndex")
         }
 
         return true

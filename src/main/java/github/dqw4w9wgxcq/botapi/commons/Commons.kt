@@ -372,6 +372,3 @@ open class RetryableBotException(
 open class SilentBotException(message: String) : RetryableBotException(message)
 
 open class NotFoundException(message: String) : RetryableBotException(message)
-
-//currently doesn't matter, script will stop on any unknown exception
-open class FatalException(message: String, cause: Throwable? = null) : RuntimeException(message, cause)

@@ -90,7 +90,7 @@ object MouseInput {
 
         for ((i, point) in path.withIndex()) {
             if (isInterrupted()) {
-                info { "interrupted at index:$i" }
+                debug { "interrupted at index:$i" }
                 return false
             }
             wait(25)

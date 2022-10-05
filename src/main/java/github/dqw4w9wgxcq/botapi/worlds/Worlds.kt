@@ -16,19 +16,21 @@ object Worlds {
     val ACTIVITY_DISALLOW_LIST = setOf(
         "wilderness",
         "trade",
-        "pvp world",
+        "pvp",//pvp world, pvp arena
         "deadman",
         "skill total",
         "tournament",
-        "private practice",
+        "practice",//private practice
         "unrestricted",
         "bounty",
         "beta",
         "high risk",
         "twisted league",
-        "claim league points",
+        "claim ",//claim league points
         "target",
         "house party",
+        " pk",
+        "pk ",
     )
     val TYPE_DISALLOW_LIST = setOf(
         WorldType.TOURNAMENT_WORLD,

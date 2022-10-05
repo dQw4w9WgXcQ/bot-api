@@ -4,7 +4,8 @@ object AccountManager {
     var supplyCredentials: () -> Credentials = {
         Credentials(
             System.getProperty("bot.acc") ?: throw IllegalStateException("no bot.acc"),
-            System.getProperty("bot.pass") ?: throw IllegalStateException("no bot.pass")
+            System.getProperty("bot.pass") ?: throw IllegalStateException("no bot.pass"),
+            System.getProperty("bot.auth")
         )
     }
 

@@ -16,6 +16,7 @@ import net.runelite.client.plugins.devtools.DevToolsPlugin;
 import net.runelite.client.plugins.fps.FpsPlugin;
 import net.runelite.client.plugins.hiscore.HiscorePlugin;
 import net.runelite.client.plugins.info.InfoPlugin;
+import net.runelite.client.plugins.lowmemory.LowMemoryPlugin;
 import net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperPlugin;
 import net.runelite.client.plugins.xptracker.XpTrackerPlugin;
 import net.runelite.client.ui.ClientToolbar;
@@ -52,7 +53,8 @@ public class BotApi {
             AntiDragPlugin.class,
             HiscorePlugin.class,
             InfoPlugin.class,
-            XpTrackerPlugin.class
+            XpTrackerPlugin.class,
+            LowMemoryPlugin.class
             //DevToolsPlugin.class
     ));
 

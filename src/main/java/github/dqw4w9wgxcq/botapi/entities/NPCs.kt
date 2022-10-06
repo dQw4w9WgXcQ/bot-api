@@ -20,6 +20,9 @@ object NPCs : Actors<NPC>() {
     }
 
     override fun allUnsafe(matches: (NPC) -> Boolean): List<NPC> {
-        return Client.npcs.filter { !it.name.isNullOrEmpty() }.map { NPC(it) }.filter(matches)
+        return Client.npcs
+            .filter { !it.name.isNullOrEmpty() }
+            .map { NPC(it) }
+            .filter(matches)
     }
 }

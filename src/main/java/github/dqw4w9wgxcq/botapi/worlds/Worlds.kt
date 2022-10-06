@@ -24,6 +24,7 @@ object Worlds {
         "unrestricted",
         "bounty",
         "beta",
+        "alpha",
         "high risk",
         "twisted league",
         "claim ",//claim league points

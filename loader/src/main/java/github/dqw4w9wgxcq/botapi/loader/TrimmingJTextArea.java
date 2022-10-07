@@ -10,6 +10,10 @@ public class TrimmingJTextArea extends JTextArea {
             setText(text.substring(text.length() - 5000));
         }
         super.append(str);
+        scrollToBottom();
+    }
+
+    public void scrollToBottom() {
         setCaretPosition(getText().length());
     }
 }

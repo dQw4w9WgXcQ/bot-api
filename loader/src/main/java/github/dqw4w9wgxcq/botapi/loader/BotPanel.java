@@ -11,11 +11,12 @@ import java.util.Vector;
 public class BotPanel extends JPanel {
     private final JList<ScriptListEntry> scriptList = new JList<>();
     private final JFrame logFrame;
+    TrimmingJTextArea logTextArea;
     private final ScriptManager scriptManager;
 
     public BotPanel(ScriptManager scriptManager) {
         super(false);
-        JTextArea logTextArea = new TrimmingJTextArea();
+        logTextArea = new TrimmingJTextArea();
         logTextArea.setEditable(false);
         System.setOut(new PrintStreamInterceptor(System.out, logTextArea));
         System.setErr(new PrintStreamInterceptor(System.err, logTextArea));
@@ -97,6 +98,7 @@ public class BotPanel extends JPanel {
 
     private void openLogger() {
         logFrame.setVisible(!logFrame.isVisible());
+        logTextArea.scrollToBottom();
     }
 
     private void refreshScriptList() {

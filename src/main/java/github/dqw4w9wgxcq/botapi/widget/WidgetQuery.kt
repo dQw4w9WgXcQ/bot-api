@@ -1,6 +1,7 @@
 package github.dqw4w9wgxcq.botapi.widget
 
 import github.dqw4w9wgxcq.botapi.commons.NotFoundException
+import github.dqw4w9wgxcq.botapi.commons.info
 import github.dqw4w9wgxcq.botapi.wrappers.Widget
 import net.runelite.api.widgets.WidgetInfo
 
@@ -88,11 +89,13 @@ class WidgetQuery : () -> Widget {
     }
 
     private fun reset() {
-        if (childMatches != null) {
-            childMatches = null
+        if (childMatches != null && childIndex != null) {
+            info { "resetting child index" }
+            childIndex = null
         }
 
-        if (grandchildMatches != null) {
+        if (grandchildMatches != null && grandChildIndex != null) {
+            info { "resetting grand child index" }
             grandChildIndex = null
         }
     }

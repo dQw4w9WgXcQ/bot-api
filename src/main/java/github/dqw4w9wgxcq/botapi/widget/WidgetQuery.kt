@@ -76,7 +76,25 @@ class WidgetQuery : () -> Widget {
     }
 
     override fun invoke(): Widget {
-        return getOrNull() ?: throw NotFoundException("Widget not found for query $this")
+        val orNull = getOrNull()
+
+        if (orNull == null) {
+            val toString = this.toString()
+            reset()
+            throw NotFoundException(toString)
+        }
+
+        return orNull
+    }
+
+    private fun reset() {
+        if (childMatches != null) {
+            childMatches = null
+        }
+
+        if (grandchildMatches != null) {
+            grandChildIndex = null
+        }
     }
 
     override fun toString(): String {

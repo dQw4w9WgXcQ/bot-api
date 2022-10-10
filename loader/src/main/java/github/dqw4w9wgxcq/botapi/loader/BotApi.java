@@ -1,7 +1,9 @@
 package github.dqw4w9wgxcq.botapi.loader;
 
 import com.google.inject.Injector;
+import com.google.inject.Module;
 import lombok.Data;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.RuneLite;
 import net.runelite.client.config.ConfigManager;
@@ -25,6 +27,7 @@ import net.runelite.client.util.ImageUtil;
 
 import javax.swing.*;
 import java.io.File;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -71,7 +74,8 @@ public class BotApi {
             new ManagedConfig<>("antiDrag", "onShiftOnly", Boolean.class, false)
     );
 
-    public static void init(ClassLoader classLoader) throws InterruptedException, InvocationTargetException {
+    @SneakyThrows
+    public static void init(ClassLoader classLoader) {
         String acc = System.getProperty("bot.acc");
         String proxy = System.getProperty("socksProxyHost");
 
@@ -104,9 +108,9 @@ public class BotApi {
                 .build();
 
         Injector injector = RuneLite.getInjector();
+
         injector.getInstance(ClientToolbar.class).addNavigation(navButton);
 
-        //stop plugins
         PluginManager pluginManager = injector.getInstance(PluginManager.class);
         for (Plugin plugin : pluginManager.getPlugins()) {
             Class<? extends Plugin> pluginClass = plugin.getClass();
@@ -118,7 +122,6 @@ public class BotApi {
             }
         }
 
-        //change configs
         ConfigManager configManager = injector.getInstance(ConfigManager.class);
         for (ManagedConfig<?> managedConfig : managedConfigs) {
             Object currConfig = configManager.getConfiguration(managedConfig.getGroupName(), managedConfig.getKey(), managedConfig.getType());
@@ -127,6 +130,31 @@ public class BotApi {
                 configManager.setConfiguration(managedConfig.getGroupName(), managedConfig.getKey(), managedConfig.getConfig());
             }
         }
+
+        DevToolsPlugin devToolsPlugin = DevToolsPlugin.class.getDeclaredConstructor().newInstance();
+        Module devToolsModule = binder -> {
+            binder.bind(DevToolsPlugin.class).toInstance(devToolsPlugin);
+            binder.install(devToolsPlugin);
+        };
+        Injector devToolsInjector = injector.createChildInjector(devToolsModule);
+        Field injectorField = Plugin.class.getDeclaredField("injector");
+        boolean access = injectorField.isAccessible();
+        if (!access) {
+            injectorField.setAccessible(true);
+        }
+        injectorField.set(devToolsPlugin, devToolsInjector);
+        if (!access) {
+            injectorField.setAccessible(false);
+        }
+        pluginManager.add(devToolsPlugin);
+        togglePlugin(pluginManager, devToolsPlugin, true);
+        SwingUtilities.invokeAndWait(() -> {
+            try {
+                pluginManager.startPlugin(devToolsPlugin);
+            } catch (PluginInstantiationException e) {
+                log.error("error starting devtools plugin", e);
+            }
+        });
 
         RuneliteContext.setInstance(injector.getInstance(RuneliteContext.class));
 

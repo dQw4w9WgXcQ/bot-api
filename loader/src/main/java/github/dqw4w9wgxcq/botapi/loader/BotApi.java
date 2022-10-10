@@ -1,7 +1,6 @@
 package github.dqw4w9wgxcq.botapi.loader;
 
 import com.google.inject.Injector;
-import com.google.inject.Module;
 import lombok.Data;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -27,8 +26,8 @@ import net.runelite.client.util.ImageUtil;
 
 import javax.swing.*;
 import java.io.File;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -58,7 +57,6 @@ public class BotApi {
             InfoPlugin.class,
             XpTrackerPlugin.class,
             LowMemoryPlugin.class
-            //DevToolsPlugin.class
     ));
 
     private static final List<ManagedConfig<?>> managedConfigs = Arrays.asList(
@@ -75,11 +73,11 @@ public class BotApi {
     );
 
     @SneakyThrows
-    public static void init(ClassLoader classLoader) {
+    public static void init(ClassLoader rlLoader) {
         String acc = System.getProperty("bot.acc");
         String proxy = System.getProperty("socksProxyHost");
 
-        scriptManager = new ScriptManager(classLoader);
+        scriptManager = new ScriptManager(RuneLite.class.getClassLoader());
 
         SwingUtilities.invokeAndWait(() -> {
             frame = new JFrame();
@@ -131,30 +129,43 @@ public class BotApi {
             }
         }
 
-        DevToolsPlugin devToolsPlugin = DevToolsPlugin.class.getDeclaredConstructor().newInstance();
-        Module devToolsModule = binder -> {
-            binder.bind(DevToolsPlugin.class).toInstance(devToolsPlugin);
-            binder.install(devToolsPlugin);
-        };
-        Injector devToolsInjector = injector.createChildInjector(devToolsModule);
-        Field injectorField = Plugin.class.getDeclaredField("injector");
-        boolean access = injectorField.isAccessible();
+        Method instantiateM = PluginManager.class.getDeclaredMethod("instantiate", List.class, Class.class);
+        boolean access = instantiateM.isAccessible();
         if (!access) {
-            injectorField.setAccessible(true);
+            instantiateM.setAccessible(true);
         }
-        injectorField.set(devToolsPlugin, devToolsInjector);
+        //noinspection RedundantCast
+        DevToolsPlugin devTools = (DevToolsPlugin) instantiateM.invoke(pluginManager, (List<Plugin>) pluginManager.getPlugins(), DevToolsPlugin.class);
         if (!access) {
-            injectorField.setAccessible(false);
+            instantiateM.setAccessible(false);
         }
-        pluginManager.add(devToolsPlugin);
-        togglePlugin(pluginManager, devToolsPlugin, true);
-        SwingUtilities.invokeAndWait(() -> {
-            try {
-                pluginManager.startPlugin(devToolsPlugin);
-            } catch (PluginInstantiationException e) {
-                log.error("error starting devtools plugin", e);
-            }
-        });
+        pluginManager.getPlugins().add(devTools);
+        togglePlugin(pluginManager, devTools, true);
+
+//        DevToolsPlugin devToolsPlugin = DevToolsPlugin.class.getDeclaredConstructor().newInstance();
+//        Module devToolsModule = binder -> {
+//            binder.bind(DevToolsPlugin.class).toInstance(devToolsPlugin);
+//            binder.install(devToolsPlugin);
+//        };
+//        Injector devToolsInjector = injector.createChildInjector(devToolsModule);
+//        Field injectorField = Plugin.class.getDeclaredField("injector");
+//        boolean access = injectorField.isAccessible();
+//        if (!access) {
+//            injectorField.setAccessible(true);
+//        }
+//        injectorField.set(devToolsPlugin, devToolsInjector);
+//        if (!access) {
+//            injectorField.setAccessible(false);
+//        }
+//        pluginManager.add(devToolsPlugin);
+//        togglePlugin(pluginManager, devToolsPlugin, true);
+//        SwingUtilities.invokeAndWait(() -> {
+//            try {
+//                pluginManager.startPlugin(devToolsPlugin);
+//            } catch (PluginInstantiationException e) {
+//                log.error("error starting devtools plugin", e);
+//            }
+//        });
 
         RuneliteContext.setInstance(injector.getInstance(RuneliteContext.class));
 

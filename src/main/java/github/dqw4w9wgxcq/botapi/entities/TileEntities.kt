@@ -80,8 +80,8 @@ abstract class TileEntities<T : TileEntity> : SceneEntities<T>() {
     override fun allUnsafe(matches: (T) -> Boolean): List<T> {
         return Client.scene
             .tiles[Client.plane]
-            .copyOfRange(SCENE_TRIM_FROM, SCENE_TRIM_UNTIL)
-            .flatMap { it.copyOfRange(SCENE_TRIM_FROM, SCENE_TRIM_UNTIL).asIterable() }
+            .copyOfRange(SCENE_FROM, SCENE_UNTIL)
+            .flatMap { it.copyOfRange(SCENE_FROM, SCENE_UNTIL).asIterable() }
             .filterNotNull()
             .flatMap { extractFromUnsafe(it) }
             .filter(matches)

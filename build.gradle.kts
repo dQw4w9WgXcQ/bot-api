@@ -37,7 +37,7 @@ tasks {
         kotlinOptions {
             jvmTarget = "1.8"
             freeCompilerArgs = listOf(
-                "-Xjvm-default=all-compatibility",//so kotlin interfaces work with lombok delegate java classes(rlwrappers)
+                "-Xjvm-default=all-compatibility",//so kotlin interfaces work with lombok delegate java classes(Wrappers)
             )
         }
     }

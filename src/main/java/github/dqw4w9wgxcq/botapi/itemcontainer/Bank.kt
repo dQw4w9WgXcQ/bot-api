@@ -20,7 +20,7 @@ import net.runelite.api.widgets.WidgetID
 import net.runelite.api.widgets.WidgetInfo
 
 object Bank : ItemContainer<BankItem>(InventoryID.BANK) {
-    class NotInBankException(message: String) : RetryableBotException(message, retries = 5)
+    class NotInBankException(matches: (BankItem) -> Boolean) : RetryableBotException("$matches")
 
     private enum class TransactAction(val suffix: String?) {
         ONE("1"), FIVE("5"), TEN("10"), X("X"), SAVED_X(null), ALL("All"), ALL_BUT_ONE("All-but-one");
@@ -205,7 +205,7 @@ object Bank : ItemContainer<BankItem>(InventoryID.BANK) {
     }
 
     fun withdraw(matches: (BankItem) -> Boolean, quantity: Int = 1, noted: Boolean = false) {
-        withdraw(firstOrNull(matches) ?: throw NotInBankException("nothing matched $matches"), quantity, noted)
+        withdraw(firstOrNull(matches) ?: throw NotInBankException(matches), quantity, noted)
     }
 
     fun withdraw(id: Int, quantity: Int = 1, noted: Boolean = false) {
@@ -322,13 +322,14 @@ object Bank : ItemContainer<BankItem>(InventoryID.BANK) {
         return getInvWidget(index)
     }
 
-    fun normalize(id: Int, quantity: Int = 1, noted: Boolean = false, waitFor: Boolean = true): Int {
+    fun normalize(
+        id: Int,
+        quantity: Int = 1,
+        noted: Boolean = false,
+        waitFor: Boolean = true,
+    ): Int {
         return normalize(
-            if (noted) {
-                byIdIgnoreNote(id)
-            } else {
-                byId(id)
-            },
+            if (noted) byIdIgnoreNote(id) else byId(id),
             quantity,
             noted,
             waitFor
@@ -359,7 +360,7 @@ object Bank : ItemContainer<BankItem>(InventoryID.BANK) {
         }
 
         if (waitFor) {
-            waitUntil { Inventory.count(matches) == quantity }
+            waitUntil(condition = { Inventory.count(matches) == quantity }.withDescription("matches:$matches quantity:$quantity"))
         }
 
         return quantity - count

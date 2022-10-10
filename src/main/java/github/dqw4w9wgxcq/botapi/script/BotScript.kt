@@ -6,7 +6,9 @@ import github.dqw4w9wgxcq.botapi.antiban.Antiban
 import github.dqw4w9wgxcq.botapi.commons.*
 import github.dqw4w9wgxcq.botapi.loader.IBotScript
 import org.slf4j.event.Level
-import java.net.SocketException
+import java.io.FileNotFoundException
+import java.io.IOException
+import java.net.MalformedURLException
 import java.util.concurrent.ExecutionException
 import kotlin.system.exitProcess
 
@@ -89,9 +91,8 @@ abstract class BotScript : IBotScript {
 
                     debug { "exception in loop: $e" }
 
-                    var i = 0//only for log
                     while (e is ExecutionException) {
-                        debug { "${i++} unwrapping $e" }
+                        debug { "unwrapping $e" }
 
                         val cause = e.cause
 
@@ -116,7 +117,9 @@ abstract class BotScript : IBotScript {
                             }
                         }
 
-                        e is SocketException && failCount < 20 -> {
+                        e is FileNotFoundException || e is MalformedURLException -> throw e
+
+                        e is IOException && failCount < 20 -> {
                             if (failCount < 2) {
                                 nextLoopDelay
                             } else if (failCount < 5) {

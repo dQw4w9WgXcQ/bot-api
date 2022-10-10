@@ -6,16 +6,18 @@ import github.dqw4w9wgxcq.botapi.antiban.Antiban
 import github.dqw4w9wgxcq.botapi.commons.*
 import github.dqw4w9wgxcq.botapi.loader.IBotScript
 import org.slf4j.event.Level
-import java.io.FileNotFoundException
-import java.io.IOException
-import java.net.MalformedURLException
-import java.net.ProtocolException
+import java.net.SocketException
 import java.util.concurrent.ExecutionException
 import kotlin.system.exitProcess
 
 abstract class BotScript : IBotScript {
     companion object {
+        @Volatile
         var nextLoopDelay: Int? = null
+            set(value) {
+                require(value == null || value >= 0) { "$value" }
+                field = value
+            }
 
         @Volatile
         var looping = false
@@ -36,7 +38,7 @@ abstract class BotScript : IBotScript {
     }
 
     override fun stopLooping() {
-        info { "stopLooping" }
+        debug { "stopLooping" }
         looping = false
     }
 
@@ -71,13 +73,16 @@ abstract class BotScript : IBotScript {
 
                 try {
                     if (BlockingEvents.checkBlocked()) {
-                        debug { "a blocking event triggered" }
-                    } else if (!looping) {
-                        debug { "not looping after blocking events" }
-                    } else {
-                        loop()
-                        failCount = 0
+                        continue
                     }
+
+                    if (!looping) {
+                        debug { "not looping after checking blocking events" }
+                        continue
+                    }
+
+                    loop()
+                    failCount = 0
                 } catch (e: Exception) {
                     @Suppress("NAME_SHADOWING")
                     var e = e
@@ -104,17 +109,17 @@ abstract class BotScript : IBotScript {
 
                     nextLoopDelay = when {
                         e is RetryableBotException && failCount < e.retries -> {
-                            nextLoopDelay
+                            if (failCount < 2) {
+                                1000
+                            } else {
+                                5000
+                            }
                         }
 
-                        e is IOException && failCount < 20 -> {
-                            if (e is FileNotFoundException || e is MalformedURLException || e is ProtocolException) {
-                                throw e
-                            }
-
-                            if (failCount < 3) {
-                                1000
-                            } else if (failCount < 10) {
+                        e is SocketException && failCount < 20 -> {
+                            if (failCount < 2) {
+                                nextLoopDelay
+                            } else if (failCount < 5) {
                                 10000
                             } else {
                                 60000
@@ -126,13 +131,13 @@ abstract class BotScript : IBotScript {
 
                     if (failCount == 0) {
                         if (e is SilentBotException) {
-                            Log.log(Level.DEBUG, e) { "silent exception in loop" }
+                            Log.log(Level.DEBUG, e) { "exception in loop" }
                         } else {
                             warn(e) { "exception in loop" }
                         }
                     } else {
                         if (e is SilentBotException) {
-                            debug { "silent $failCount fails, $e" }
+                            debug { "$failCount fails, $e" }
                         } else {
                             info { "$failCount fails, $e" }
                         }
@@ -141,22 +146,15 @@ abstract class BotScript : IBotScript {
                     failCount++
                 }
 
-                debug { "handling nextLoopDelay: $nextLoopDelay looping: $looping" }
                 if (looping) {
-                    val nextLoopDelay = nextLoopDelay
-                    when {
-                        nextLoopDelay == null -> {
+                    debug { "nextLoopDelay:$nextLoopDelay" }
+                    when (nextLoopDelay) {
+                        null -> {
                             wait(750, 1500)
                         }
 
-                        nextLoopDelay < 0 -> {
-                            info { "nextLoopDelay is $nextLoopDelay stopping" }
-                            stopLooping()
-                        }
-
                         else -> {
-                            debug { "nextLoopDelay $nextLoopDelay" }
-                            wait(nextLoopDelay)
+                            wait(nextLoopDelay!!)
                         }
                     }
                 }
@@ -167,8 +165,8 @@ abstract class BotScript : IBotScript {
             try {
                 cleanUpFatal(t)
             } catch (e: Exception) {
-                warn(e) { "cleanUpFatal is throwing stuff lol" }
-                throw Exception("cleanUpFatal is throwing stuff", e)
+                warn(e) { "cleanUpFatal errored" }
+                throw Exception("cleanUpFatal errored", e)
             }
         } finally {
             debug { "turning off antiban, clearing events, paint" }

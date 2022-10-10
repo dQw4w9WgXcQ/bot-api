@@ -29,7 +29,7 @@ public class ScriptManager {
     }
 
     public void startScript(Class<? extends IBotScript> scriptClass) {
-        IBotScript activeScript = scriptThread.getActiveScript();
+        IBotScript activeScript = scriptThread.getScript();
         if (activeScript != null) {
             log.info("script is running already");
             return;
@@ -65,7 +65,7 @@ public class ScriptManager {
     }
 
     public void stopScript() {
-        IBotScript activeScript = scriptThread.getActiveScript();
+        IBotScript activeScript = scriptThread.getScript();
         if (activeScript == null) {
             log.info("no script running");
         } else {

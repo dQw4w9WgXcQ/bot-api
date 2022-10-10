@@ -72,19 +72,18 @@ public class BotApi {
     );
 
     public static void init(ClassLoader classLoader) throws InterruptedException, InvocationTargetException {
-        scriptManager = new ScriptManager(classLoader);
+        String acc = System.getProperty("bot.acc");
+        String proxy = System.getProperty("socksProxyHost");
 
-        Injector injector = RuneLite.getInjector();
+        scriptManager = new ScriptManager(classLoader);
 
         SwingUtilities.invokeAndWait(() -> {
             frame = new JFrame();
 
             String title = "";
-            String acc = System.getProperty("bot.acc");
             if (acc != null) {
                 title += acc;
             }
-            String proxy = System.getProperty("socksProxyHost");
             if (proxy != null) {
                 title += " - " + proxy;
             }
@@ -94,6 +93,9 @@ public class BotApi {
             frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         });
 
+        log.info("acc:" + acc);
+        log.info("proxy:" + proxy);
+
         NavigationButton navButton = NavigationButton.builder()
                 .tooltip("bot")
                 .icon(ImageUtil.loadImageResource(DevToolsPlugin.class, "devtools_icon.png"))
@@ -101,6 +103,7 @@ public class BotApi {
                 .onClick(() -> frame.setVisible(!frame.isVisible()))
                 .build();
 
+        Injector injector = RuneLite.getInjector();
         injector.getInstance(ClientToolbar.class).addNavigation(navButton);
 
         //stop plugins

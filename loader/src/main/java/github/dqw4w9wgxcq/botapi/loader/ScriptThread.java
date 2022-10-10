@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 class ScriptThread extends Thread {
     @Getter
-    private volatile IBotScript activeScript;
+    private volatile IBotScript script;
 
     public ScriptThread() {
         super("script");
@@ -18,15 +18,15 @@ class ScriptThread extends Thread {
     public void run() {
         while (!isInterrupted()) {
             synchronized (this) {
-                if (activeScript == null) {
-                    log.info("waiting for script");
+                if (script == null) {
+                    log.debug("waiting for script");
 
                     wait();
                 }
             }
 
             try {
-                activeScript.run();
+                script.run();
             } catch (Exception e) {
                 log.warn("exception in script run", e);
             } catch (Error e) {//just catch all errors bc kotlin t0do error etc.
@@ -38,7 +38,7 @@ class ScriptThread extends Thread {
                 log.warn("error in script run", e);
             }
 
-            activeScript = null;
+            script = null;
         }
     }
 
@@ -48,11 +48,11 @@ class ScriptThread extends Thread {
                 throw new IllegalStateException("script thread dead");
             }
 
-            if (activeScript != null) {
+            if (this.script != null) {
                 return false;
             }
 
-            activeScript = script;
+            this.script = script;
             notify();
             return true;
         }

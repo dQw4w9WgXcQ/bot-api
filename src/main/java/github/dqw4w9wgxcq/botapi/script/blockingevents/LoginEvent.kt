@@ -182,7 +182,7 @@ class LoginEvent : BlockingEvent() {
         }
 
         if (loginResponse.contains("update")) {
-            BotScript.nextLoopDelay = -1
+            BotScript.looping = false
             return true
         }
 

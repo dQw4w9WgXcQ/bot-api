@@ -28,8 +28,8 @@ object ItemData {
     val STAMINA_POTION: (Item) -> Boolean = byPrefix("stamina potion(")
     val ENERGY_POTION: (Item) -> Boolean = byPrefix("energy potion(")
     val EQUIPABLE = byAction("equip", "wield", "wear")
-    val FOOD = byAction("Eat")
-    val BOND = byPrefix("old school bond")
+    val FOOD = byAction("eat")
+    val BOND = byId(ItemID.OLD_SCHOOL_BOND, ItemID.OLD_SCHOOL_BOND_UNTRADEABLE)
     val GRACEFUL = byPrefix("graceful ")
     val THIEVING_CAPE = byId(ItemID.THIEVING_CAPE, ItemID.THIEVING_CAPET)
     val BIRD_NEST_FILLED: (Item) -> Boolean = byName("bird nest").and { it.id != ItemID.BIRD_NEST }

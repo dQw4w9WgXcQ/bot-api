@@ -10,6 +10,7 @@ import github.dqw4w9wgxcq.botapi.wrappers.Interactable
 import github.dqw4w9wgxcq.botapi.wrappers.Locatable
 import github.dqw4w9wgxcq.botapi.wrappers.Nameable
 import github.dqw4w9wgxcq.botapi.wrappers.item.Item
+import net.runelite.api.Constants
 import net.runelite.api.Point
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.coords.WorldPoint
@@ -59,10 +60,10 @@ fun WorldPoint.toPlane(plane: Int = Client.plane): WorldPoint {
     return WorldPoint(x, y, plane)
 }
 
-const val SCENE_TRIM_FROM = 1
-const val SCENE_TRIM_UNTIL = 99
+const val SCENE_FROM = 1
+const val SCENE_UNTIL = Constants.SCENE_SIZE - 5
 fun Point.isInTrimmedScene(): Boolean {
-    return this.x >= SCENE_TRIM_FROM && this.y >= SCENE_TRIM_FROM && this.x < SCENE_TRIM_UNTIL && this.y < SCENE_TRIM_UNTIL
+    return this.x >= SCENE_FROM && this.y >= SCENE_FROM && this.x < SCENE_UNTIL && this.y < SCENE_UNTIL
 }
 
 fun WorldPoint.isInTrimmedScene(): Boolean {
@@ -113,13 +114,6 @@ fun inGameBounds(point: java.awt.Point): Boolean {
 object Wait {
     const val defaultPollRate = 50
     const val defaultTimeout = 3000
-
-    class TimeoutException(
-        timeout: Int,
-        pollRate: Int,
-        supply: () -> Any?,
-        condition: (Any?) -> Boolean,
-    ) : RetryableBotException("($condition) on ($supply) after $timeout($pollRate)ms")
 }
 
 fun wait(millis: Int) {
@@ -154,7 +148,7 @@ fun <T> waitUntilCondition(
     } while (System.currentTimeMillis() < start + timeout)
 
     @Suppress("UNCHECKED_CAST")//no clue this is necessary
-    throw Wait.TimeoutException(
+    throw WaitTimeoutException(
         timeout,
         pollRate,
         supply,
@@ -171,7 +165,7 @@ fun <T> waitUntilNotNull(
         timeout,
         pollRate,
         supply,
-        { t: T? -> t != null }.withDescription("not null")
+        { it: T? -> it != null }.withDescription("not null")
     )!!
 }
 
@@ -183,8 +177,8 @@ fun waitUntil(
     waitUntilCondition(
         timeout,
         pollRate,
-        supply = condition,
-        condition = { it == true }
+        supply = { },
+        condition = { _: Unit? -> condition() }.withDescription(condition.toString())
     )
 }
 
@@ -196,14 +190,10 @@ fun waitUntilWithConfirm(
     return try {
         waitUntil(timeout, pollRate, condition)
         true
-    } catch (e: Wait.TimeoutException) {
+    } catch (e: WaitTimeoutException) {
         false
     }
 }
-
-//fun waitUntil(condition: () -> Boolean) {//kotlin can't infer condition, need to specify explicitly without this
-//    waitUntil(timeout = Wait.defaultTimeout, condition = condition)
-//}
 
 fun <T> ((T) -> Boolean).and(that: (T) -> Boolean): (T) -> Boolean {
     val self = this
@@ -359,7 +349,7 @@ fun <T> (() -> T).withDescription(toString: String): () -> T {
 open class RetryableBotException(
     message: String,
     cause: Throwable? = null,
-    val retries: Int = 10,
+    val retries: Int = 5,
 ) : RuntimeException(message, cause) {
     constructor(message: String) : this(message, null)
 
@@ -372,3 +362,10 @@ open class RetryableBotException(
 open class SilentBotException(message: String) : RetryableBotException(message)
 
 open class NotFoundException(message: String) : RetryableBotException(message)
+
+class WaitTimeoutException(
+    timeout: Int,
+    pollRate: Int,
+    supply: () -> Any?,
+    condition: (Any?) -> Boolean,
+) : RetryableBotException("timeout:$timeout pollRate:$pollRate\n$condition\n$supply", retries = 10)

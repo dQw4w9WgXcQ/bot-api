@@ -41,8 +41,10 @@ object Bank : ItemContainer<BankItem>(InventoryID.BANK) {
     }
 
     fun isOpen(): Boolean {
-        val itemsWidget = Widgets.getOrNull(WidgetInfo.BANK_ITEM_CONTAINER)
-        return itemsWidget != null && !itemsWidget.isHidden//idk if hidden check does anything or if it makes it work by just waiting a tick
+        return onGameThread {
+            val itemsWidget = Widgets.getOrNull(WidgetInfo.BANK_ITEM_CONTAINER)
+            itemsWidget != null && !itemsWidget.isHidden
+        }
     }
 
     fun close(waitFor: Boolean = true) {
@@ -114,7 +116,9 @@ object Bank : ItemContainer<BankItem>(InventoryID.BANK) {
         }
     }
 
-    fun isNotedWithdrawMode(): Boolean = Client.getVarbitValue(3958) == 1
+    fun isNotedWithdrawMode(): Boolean {
+        return Client.getVarbitValue(3958) == 1
+    }
 
     private val getWithdrawAsNote = WidgetQuery(WidgetID.BANK_GROUP_ID) { it.hasAction("Note") }
     private val getWithdrawAsItem = WidgetQuery(WidgetID.BANK_GROUP_ID) { it.hasAction("Item") }

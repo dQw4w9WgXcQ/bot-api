@@ -148,31 +148,6 @@ public class BotApi {
         pluginManager.getPlugins().add(devTools);
         togglePlugin(pluginManager, devTools, true);
 
-//        DevToolsPlugin devToolsPlugin = DevToolsPlugin.class.getDeclaredConstructor().newInstance();
-//        Module devToolsModule = binder -> {
-//            binder.bind(DevToolsPlugin.class).toInstance(devToolsPlugin);
-//            binder.install(devToolsPlugin);
-//        };
-//        Injector devToolsInjector = injector.createChildInjector(devToolsModule);
-//        Field injectorField = Plugin.class.getDeclaredField("injector");
-//        boolean access = injectorField.isAccessible();
-//        if (!access) {
-//            injectorField.setAccessible(true);
-//        }
-//        injectorField.set(devToolsPlugin, devToolsInjector);
-//        if (!access) {
-//            injectorField.setAccessible(false);
-//        }
-//        pluginManager.add(devToolsPlugin);
-//        togglePlugin(pluginManager, devToolsPlugin, true);
-//        SwingUtilities.invokeAndWait(() -> {
-//            try {
-//                pluginManager.startPlugin(devToolsPlugin);
-//            } catch (PluginInstantiationException e) {
-//                log.error("error starting devtools plugin", e);
-//            }
-//        });
-
         RuneliteContext.setInstance(injector.getInstance(RuneliteContext.class));
 
         String quickstartScript = System.getProperty("bot.script");

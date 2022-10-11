@@ -129,18 +129,18 @@ public class BotApi {
             }
         }
 
-        Method instantiateM = PluginManager.class.getDeclaredMethod("instantiate", List.class, Class.class);
-        boolean access = instantiateM.isAccessible();
+        Method instantiate = PluginManager.class.getDeclaredMethod("instantiate", List.class, Class.class);
+        boolean access = instantiate.canAccess(instantiate);
         if (!access) {
-            instantiateM.setAccessible(true);
+            instantiate.setAccessible(true);
         }
         DevToolsPlugin devTools;
         try {
             //noinspection RedundantCast
-            devTools = (DevToolsPlugin) instantiateM.invoke(pluginManager, (List<Plugin>) pluginManager.getPlugins(), DevToolsPlugin.class);
+            devTools = (DevToolsPlugin) instantiate.invoke(pluginManager, (List<Plugin>) pluginManager.getPlugins(), DevToolsPlugin.class);
         } finally {
             if (!access) {
-                instantiateM.setAccessible(false);
+                instantiate.setAccessible(false);
             }
         }
 

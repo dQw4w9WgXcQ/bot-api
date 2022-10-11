@@ -21,50 +21,49 @@ class LoginEvent : BlockingEvent() {
         private const val buttonWidth = 100
         private const val buttonHeight = 40
 
-        private val xPadding: Int
-            get() {
-                return (Client.canvasWidth - 765) / 2
-            }
-        private val loginBoxX: Int
-            get() {
-                return xPadding + 202
-            }
-        private val loginBoxCenter: Int
-            get() {
-                return loginBoxX + 180
-            }
-        private val cancelBounds: Rectangle
-            get() {
-                val var4 = loginBoxX + 180 - 80
-                val var23 = 321;
-                val out = Rectangle(var4 - 73, var23 - 20, buttonWidth, buttonHeight)
-                debug { "Cancel bounds: $out" }
-                return out
-            }
-        private val acceptBounds: Rectangle
-            get() {
-                val var4 = loginBoxCenter - 80;
-                val var23 = 311;
-                val out = Rectangle(var4 - 73, var23 - 20, buttonWidth, buttonHeight)
-                debug { "Accept bounds: $out" }
-                return out
-            }
-        private val okBounds: Rectangle
-            get() {
-                val var4 = loginBoxX + 180 // L: 1955
-                val var23 = 301 // L: 1956
-                val out = Rectangle(var4 - 73, var23 - 20, buttonWidth, buttonHeight) // L: 1957
-                debug { "Ok bounds: $out" }
-                return out
-            }
-        val loginResponse: String
-            get() {
-                val response0 = Refl.Login_response0.get2<String>(null)
-                val response1 = Refl.Login_response1.get2<String>(null)
-                val response2 = Refl.Login_response2.get2<String>(null)
-                val response3 = Refl.Login_response3.get2<String>(null)
-                return "$response0 $response1 $response2 $response3"
-            }
+        private fun getXPadding(): Int {
+            return (Client.canvasWidth - 765) / 2
+        }
+
+        private fun getLoginBoxX(): Int {
+            return getXPadding() + 202
+        }
+
+        private fun getLoginBoxCenter(): Int {
+            return getLoginBoxX() + 180
+        }
+
+        private fun getCancelBounds(): Rectangle {
+            val var4 = getLoginBoxX() + 180 - 80
+            val var23 = 321;
+            val out = Rectangle(var4 - 73, var23 - 20, buttonWidth, buttonHeight)
+            debug { "Cancel bounds: $out" }
+            return out
+        }
+
+        private fun getAcceptBounds(): Rectangle {
+            val var4 = getLoginBoxCenter() - 80;
+            val var23 = 311;
+            val out = Rectangle(var4 - 73, var23 - 20, buttonWidth, buttonHeight)
+            debug { "Accept bounds: $out" }
+            return out
+        }
+
+        private fun getOkBounds(): Rectangle {
+            val var4 = getLoginBoxX() + 180 // L: 1955
+            val var23 = 301 // L: 1956
+            val out = Rectangle(var4 - 73, var23 - 20, buttonWidth, buttonHeight) // L: 1957
+            debug { "Ok bounds: $out" }
+            return out
+        }
+
+        fun getLoginResponse(): String {
+            val response0 = Refl.Login_response0.get2<String>(null)
+            val response1 = Refl.Login_response1.get2<String>(null)
+            val response2 = Refl.Login_response2.get2<String>(null)
+            val response3 = Refl.Login_response3.get2<String>(null)
+            return listOf(response0, response1, response2, response3).joinToString(" ")
+        }
 
         private var needInitialHop = true
     }
@@ -80,9 +79,9 @@ class LoginEvent : BlockingEvent() {
         const val DISCONNECTED = 24
     }
 
-    private val loginMessageBehaviors = mutableListOf<Pair<String, () -> Boolean>>()
-    fun addLoginMessageBehavior(messageContainsIgnoreCase: String, behavior: () -> Boolean) {
-        loginMessageBehaviors.add(messageContainsIgnoreCase to behavior)
+    private val loginResponseBehaviors = mutableListOf<Pair<String, () -> Boolean>>()
+    fun addLoginResponseBehavior(responseContainsIgnoreCase: String, behavior: () -> Boolean) {
+        loginResponseBehaviors.add(responseContainsIgnoreCase to behavior)
     }
 
     private val loginIndexBehaviors = mutableMapOf<Int, () -> Boolean>()
@@ -100,7 +99,9 @@ class LoginEvent : BlockingEvent() {
             return true
         }
 
-        var gameState = Client.gameState
+        var gameState = Client.gameState!!
+
+        info { "gameState:$gameState" }
 
         if (gameState == GameState.LOGGED_IN) {
             return false
@@ -134,15 +135,18 @@ class LoginEvent : BlockingEvent() {
             return true
         }
 
-        //WelcomeEvent.needCheck = true
-
         val credentials = AccountManager.credentials
         if (needInitialHop) {
             if (!Worlds.areWorldsLoaded()) {
                 if (!Client.loadWorlds()) {
                     return true
                 }
-                waitUntil { Worlds.areWorldsLoaded() && Worlds.isLobbySelectorOpen() }
+
+                waitUntil(
+                    10_000,
+                    condition = { Worlds.areWorldsLoaded() && Worlds.isLobbySelectorOpen() }
+                        .withDescription("worlds loaded and selector open")
+                )
             }
 
             val newWorldId = Worlds.getRandom { Worlds.SUITABLE(it) && Worlds.P2P(it) }.id
@@ -158,15 +162,16 @@ class LoginEvent : BlockingEvent() {
             info { "closing world selector" }
             Keyboard.esc()
             waitUntil { !Worlds.isLobbySelectorOpen() }
-            wait(500)
+            return true
         }
 
-        val loginResponse = loginResponse
-        info { "login response $loginResponse" }
-        for (behavior in loginMessageBehaviors) {
+        val loginResponse = getLoginResponse()
+        info { "login response:$loginResponse" }
+        for (behavior in loginResponseBehaviors) {
             val messagePart = behavior.first
             val doBehavior = behavior.second
             if (loginResponse.contains(messagePart, true)) {
+                info { "doing behavior for messagePart:$messagePart" }
                 if (doBehavior()) {
                     return true
                 }
@@ -213,23 +218,28 @@ class LoginEvent : BlockingEvent() {
 
         when (loginIndex) {
             LoginIndex.ENTER_CREDENTIALS -> {
+                info { "LoginIndex.ENTER_CREDENTIALS" }
                 Client.username = credentials.user
                 Client.setPassword(credentials.password)
-                Keyboard.enter()
-                Keyboard.enter()
-                waitUntil { Client.gameState == GameState.LOGGING_IN || Client.gameState == GameState.LOGIN_SCREEN_AUTHENTICATOR }
-                if (Client.gameState == GameState.LOGGING_IN) {
-                    BotScript.nextLoopDelay = 0
-                    return true
-                }
+                Keyboard.enter().get()
+                Keyboard.enter().get()
+                waitUntil(
+                    condition = { Client.gameState == GameState.LOGGING_IN || Client.gameState == GameState.LOGIN_SCREEN_AUTHENTICATOR }
+                        .withDescription("logging in or auth screen")
+                )
+                BotScript.nextLoopDelay = 100
+                return true
             }
 
             LoginIndex.MAIN_MENU -> {
+                info { "LoginIndex.MAIN_MENU" }
                 Keyboard.esc()
                 Keyboard.enter()
+                return true
             }
 
             LoginIndex.AUTHENTICATOR -> {
+                info { "LoginIndex.AUTHENTICATOR" }
                 val auth = credentials.auth ?: throw Exception("no auth")
                 val code = Totp(auth, object : Clock() {
                     override fun getCurrentInterval(): Long {
@@ -240,14 +250,15 @@ class LoginEvent : BlockingEvent() {
                 Client.setOtp(code)
                 Keyboard.enter()
                 waitUntil(condition = { Client.gameState == GameState.LOGGING_IN }.withDescription("gameState == LOGGING_IN"))
-                BotScript.nextLoopDelay = 0
+                BotScript.nextLoopDelay = 100
                 return true
             }
 
             LoginIndex.DISCONNECTED -> {
-                info { "disconected state" }
-                Mouse.click(okBounds)
+                info { "LoginIndex.DISCONNECTED" }
+                Mouse.click(getOkBounds())
                 waitUntil(condition = { Client.loginIndex != LoginIndex.DISCONNECTED }.withDescription("loginState != DISCONNECTED"))
+                return true
             }
 
             LoginIndex.BETA_WORLD -> {
@@ -255,12 +266,12 @@ class LoginEvent : BlockingEvent() {
             }
 
             LoginIndex.EULA -> {
-                Mouse.click(acceptBounds)
+                info { "LoginIndex.EULA" }
+                Mouse.click(getAcceptBounds())
+                return true
             }
 
             else -> throw IllegalStateException("no behavior for login index $loginIndex")
         }
-
-        return true
     }
 }

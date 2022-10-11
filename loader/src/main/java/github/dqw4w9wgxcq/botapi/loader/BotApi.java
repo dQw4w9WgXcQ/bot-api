@@ -134,11 +134,16 @@ public class BotApi {
         if (!access) {
             instantiateM.setAccessible(true);
         }
-        //noinspection RedundantCast
-        DevToolsPlugin devTools = (DevToolsPlugin) instantiateM.invoke(pluginManager, (List<Plugin>) pluginManager.getPlugins(), DevToolsPlugin.class);
-        if (!access) {
-            instantiateM.setAccessible(false);
+        DevToolsPlugin devTools;
+        try {
+            //noinspection RedundantCast
+            devTools = (DevToolsPlugin) instantiateM.invoke(pluginManager, (List<Plugin>) pluginManager.getPlugins(), DevToolsPlugin.class);
+        } finally {
+            if (!access) {
+                instantiateM.setAccessible(false);
+            }
         }
+
         pluginManager.getPlugins().add(devTools);
         togglePlugin(pluginManager, devTools, true);
 

@@ -177,8 +177,8 @@ fun waitUntil(
     waitUntilCondition(
         timeout,
         pollRate,
-        supply = { },
-        condition = { _: Unit? -> condition() }.withDescription(condition.toString())
+        supply = condition,
+        condition = { it: Boolean? -> it!! }.withDescription("true")
     )
 }
 

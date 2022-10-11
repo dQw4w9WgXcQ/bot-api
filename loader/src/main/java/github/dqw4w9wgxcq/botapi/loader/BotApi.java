@@ -130,7 +130,8 @@ public class BotApi {
         }
 
         Method instantiate = PluginManager.class.getDeclaredMethod("instantiate", List.class, Class.class);
-        boolean access = instantiate.canAccess(instantiate);
+        @SuppressWarnings("deprecation")
+        boolean access = instantiate.isAccessible();
         if (!access) {
             instantiate.setAccessible(true);
         }

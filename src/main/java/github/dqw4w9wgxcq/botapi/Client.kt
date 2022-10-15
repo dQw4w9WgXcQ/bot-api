@@ -2,7 +2,6 @@ package github.dqw4w9wgxcq.botapi
 
 import github.dqw4w9wgxcq.botapi.Refl.get2
 import github.dqw4w9wgxcq.botapi.Refl.getBoolean2
-import github.dqw4w9wgxcq.botapi.Refl.invoke2
 import github.dqw4w9wgxcq.botapi.commons.onGameThread
 import github.dqw4w9wgxcq.botapi.loader.RuneliteContext
 import net.runelite.api.ItemComposition
@@ -69,12 +68,4 @@ object Client : net.runelite.api.Client by RuneliteContext.getClient() {
     fun hasFocus(): Boolean {
         return Refl.hasFocus.getBoolean2(null)
     }
-
-    fun loadWorlds(): Boolean {
-        return onGameThread { Refl.loadWorlds.invoke2(null, Refl.loadWorldsJunk) }
-    }
-
-    //doesnt work
-//    val viewportBounds
-//        get() = Rectangle(Client.viewportXOffset, Client.viewportYOffset, Client.viewportWidth, Client.viewportHeight)
 }

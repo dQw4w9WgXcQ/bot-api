@@ -32,6 +32,7 @@ object Worlds {
         "house party",
         " pk",
         "pk ",
+        "speedrun"
     )
     val TYPE_DISALLOW_LIST = setOf(
         WorldType.TOURNAMENT_WORLD,

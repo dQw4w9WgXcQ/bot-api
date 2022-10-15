@@ -15,8 +15,6 @@ object Refl {
     val Widget_interfaceComponents: Field
     val isLoading: Field
     val worldSelectOpen: Field
-    val loadWorlds: Method
-    val loadWorldsJunk: Int
     val hasFocus: Field
 
     //loginevent
@@ -47,8 +45,6 @@ object Refl {
         Widget_interfaceComponents = getRsClass("kn").getDeclaredField("q")
         isLoading = getRsClass("client").getDeclaredField("df")
         worldSelectOpen = loginClass.getDeclaredField("cs")
-        loadWorlds = getRsClass("lp").getDeclaredMethod("a", Integer.TYPE)
-        loadWorldsJunk = 2049735321
         hasFocus = getRsClass("bs").getDeclaredField("au")
 
         Login_response0 = loginClass.getDeclaredField("bh")

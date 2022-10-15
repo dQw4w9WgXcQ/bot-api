@@ -49,6 +49,16 @@ class LoginEvent : BlockingEvent() {
             return out
         }
 
+        private fun getClickToSwitchBounds(): Rectangle {
+            val var4 = getXPadding() + 5;
+            val var5 = 463 // L: 340
+            val var6 = 100 // L: 341
+            val var7 = 35 // L: 342
+            val out = Rectangle(var4, var5, var6, var7)
+            debug { "getClickToSwitchBounds: $out" }
+            return out
+        }
+
         private fun getOkBounds(): Rectangle {
             val var4 = getLoginBoxX() + 180 // L: 1955
             val var23 = 301 // L: 1956
@@ -138,9 +148,7 @@ class LoginEvent : BlockingEvent() {
         val credentials = AccountManager.credentials
         if (needInitialHop) {
             if (!Worlds.areWorldsLoaded()) {
-                if (!Client.loadWorlds()) {
-                    return true
-                }
+                Mouse.click(getClickToSwitchBounds())
 
                 waitUntil(
                     10_000,

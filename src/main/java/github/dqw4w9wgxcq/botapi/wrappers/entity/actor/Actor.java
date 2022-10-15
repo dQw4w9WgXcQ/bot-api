@@ -38,7 +38,7 @@ public abstract class Actor<RL extends net.runelite.api.Actor> implements Entity
     }
 
     public int getPathLength() {
-        return Refl.INSTANCE.getInt2(Refl.INSTANCE.getPathLength(), rl, Refl.INSTANCE.getPathLengthDecodingMult());
+        return Refl.INSTANCE.getInt2(Refl.INSTANCE.getPathLength(), rl, Refl.INSTANCE.getPathLengthDecoder());
     }
 
     public boolean isMoving() {

@@ -95,7 +95,7 @@ object GrandExchange {
 
         val searchText = Client.getVarcStrValue(VarClientStr.INPUT_TEXT).trim()
         if (searchText.isNotEmpty()) {
-            Keyboard.backSpace(searchText.length)
+            Keyboard.backspace(searchText.length)
             throw RetryableBotException("search text not empty $$searchText")
         }
 

@@ -73,7 +73,7 @@ object Keyboard {
         return typeKey(KeyEvent.VK_ESCAPE)
     }
 
-    fun backSpace(reps: Int = 1) {
+    fun backspace(reps: Int = 1) {
         require(reps >= 1)
         var text = ""
         for (i in 0 until reps) {

@@ -32,8 +32,12 @@ object Worlds {
         "house party",
         " pk",
         "pk ",
-        "speedrun"
+        "speedrun",
+        "fresh start",
+        "freshstart",
+        "fresh-start"
     )
+
     val TYPE_DISALLOW_LIST = setOf(
         WorldType.TOURNAMENT_WORLD,
         WorldType.PVP,
@@ -42,6 +46,7 @@ object Worlds {
         WorldType.NOSAVE_MODE,
         WorldType.HIGH_RISK,
     )
+
     val SUITABLE = { w: World ->
         ACTIVITY_DISALLOW_LIST.none { w.activity.contains(it, ignoreCase = true) }
                 && TYPE_DISALLOW_LIST.none { w.types.any { TYPE_DISALLOW_LIST.contains(it) } }

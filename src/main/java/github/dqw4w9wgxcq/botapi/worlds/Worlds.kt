@@ -34,8 +34,6 @@ object Worlds {
         "pk ",
         "speedrun",
         "fresh start",
-        "freshstart",
-        "fresh-start"
     )
 
     val TYPE_DISALLOW_LIST = setOf(

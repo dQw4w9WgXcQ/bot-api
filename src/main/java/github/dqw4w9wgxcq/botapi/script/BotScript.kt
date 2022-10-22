@@ -61,6 +61,8 @@ abstract class BotScript : IBotScript {
 
             Antiban.active = true
 
+            Events.register(this)
+
             var failCount = 0
             while (looping) {
                 debug { "START OF LOOP$loopCount" }
@@ -68,23 +70,20 @@ abstract class BotScript : IBotScript {
 
                 if (!Client.clientThread.isAlive) {
                     warn { "game thread dead" }
-                    exitProcess(401)
+                    exitProcess(501)
                 }
 
                 nextLoopDelay = null
 
                 try {
                     if (BlockingEvents.checkBlocked()) {
-                        continue
-                    }
-
-                    if (!looping) {
+                        debug { "blocking event triggered" }
+                    } else if (!looping) {
                         debug { "not looping after checking blocking events" }
-                        continue
+                    } else {
+                        loop()
+                        failCount = 0
                     }
-
-                    loop()
-                    failCount = 0
                 } catch (e: Exception) {
                     @Suppress("NAME_SHADOWING")
                     var e = e

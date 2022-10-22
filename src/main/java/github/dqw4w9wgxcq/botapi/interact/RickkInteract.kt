@@ -36,7 +36,7 @@ class RickkInteract : InteractDriver {
         val forcedTag: AtomicLong = AtomicLong(-1L)
 
         @Subscribe
-        fun onMenuEntryAdded(@Suppress("UNUSED_PARAMETER") e: MenuEntryAdded) {
+        fun onMenuEntryAdded(e: MenuEntryAdded) {
             if (forcedTag.get() == -1L) {
                 return
             }
@@ -253,7 +253,7 @@ class RickkInteract : InteractDriver {
 
                 val indexAfterOpen = getMenuEntries().indexOfFirst { entryMatches(it) }
                 if (indexAfterOpen == -1) {
-                    BotScript.nextLoopDelay = 0
+                    BotScript.nextLoopDelay = 100
                     throw RetryableBotException("no entry matched $entryMatches after menu opened")
                 }
 
@@ -283,7 +283,7 @@ class RickkInteract : InteractDriver {
                 val indexAfterMove = getMenuEntries().indexOfFirst { entryMatches(it) }
                 if (indexAfterMove != indexAfterOpen) {
                     if (indexAfterMove == -1) {
-                        BotScript.nextLoopDelay = 0
+                        BotScript.nextLoopDelay = 100
                         throw RetryableBotException("indexAfterMove is -1")
                     }
 

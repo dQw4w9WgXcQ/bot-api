@@ -14,7 +14,8 @@ import net.runelite.client.plugins.PluginManager;
 import net.runelite.client.plugins.antidrag.AntiDragPlugin;
 import net.runelite.client.plugins.config.ConfigPlugin;
 import net.runelite.client.plugins.devtools.DevToolsPlugin;
-import net.runelite.client.plugins.fps.FpsPlugin;
+import net.runelite.client.plugins.gpu.GpuPlugin;
+import net.runelite.client.plugins.gpu.GpuPluginConfig;
 import net.runelite.client.plugins.hiscore.HiscorePlugin;
 import net.runelite.client.plugins.info.InfoPlugin;
 import net.runelite.client.plugins.lowmemory.LowMemoryPlugin;
@@ -50,13 +51,14 @@ public class BotApi {
 
     private static final Set<Class<? extends Plugin>> enabledPlugins = new HashSet<>(Arrays.asList(
             ConfigPlugin.class,
-            FpsPlugin.class,
+            //FpsPlugin.class,
             MenuEntrySwapperPlugin.class,
             AntiDragPlugin.class,
             HiscorePlugin.class,
             InfoPlugin.class,
             XpTrackerPlugin.class,
-            LowMemoryPlugin.class
+            LowMemoryPlugin.class,
+            GpuPlugin.class
     ));
 
     private static final List<ManagedConfig<?>> managedConfigs = Arrays.asList(
@@ -66,10 +68,16 @@ public class BotApi {
             new ManagedConfig<>(RuneLiteConfig.GROUP_NAME, "trayIcon", Boolean.class, false),//needs restart
             new ManagedConfig<>(RuneLiteConfig.GROUP_NAME, "notificationTray", Boolean.class, false),
 
-            new ManagedConfig<>("fpscontrol", "limitFps", Boolean.class, true),
-            new ManagedConfig<>("fpscontrol", "maxFps", Integer.class, 30),
+//            new ManagedConfig<>("fpscontrol", "limitFps", Boolean.class, true),
+//            new ManagedConfig<>("fpscontrol", "maxFps", Integer.class, 30),
 
-            new ManagedConfig<>("antiDrag", "onShiftOnly", Boolean.class, false)
+            new ManagedConfig<>("antiDrag", "onShiftOnly", Boolean.class, false),
+
+            new ManagedConfig<>(GpuPluginConfig.GROUP, "drawDistance", Integer.class, 1),
+            new ManagedConfig<>(GpuPluginConfig.GROUP, "useComputeShaders", Boolean.class, false),
+            new ManagedConfig<>(GpuPluginConfig.GROUP, "vsyncMode", GpuPluginConfig.SyncMode.class, GpuPluginConfig.SyncMode.OFF),
+            new ManagedConfig<>(GpuPluginConfig.GROUP, "unlockFps", Boolean.class, false)
+//            new ManagedConfig<>(GpuPluginConfig.GROUP, "fpsTarget", Integer.class, 25)
     );
 
     @SneakyThrows

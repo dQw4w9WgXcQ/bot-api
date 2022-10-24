@@ -16,7 +16,7 @@ object LocalPathfinding {
         val names: Set<String>,
         val ids: Set<Int>,
         val index0Actions: Set<String>,
-        val blacklistIds: Set<Int>
+        val idDisallowList: Set<Int>
     ) : (WallObject) -> Boolean {
         DOOR(
             setOf("Door", "Large door", "Gate", "Large gate", "Longhall door"),
@@ -38,7 +38,8 @@ object LocalPathfinding {
 
         override fun invoke(wallObject: WallObject): Boolean {
             val id = wallObject.id
-            if (blacklistIds.contains(id)) return false
+
+            if (idDisallowList.contains(id)) return false
 
             if (ids.contains(id)) return true
 

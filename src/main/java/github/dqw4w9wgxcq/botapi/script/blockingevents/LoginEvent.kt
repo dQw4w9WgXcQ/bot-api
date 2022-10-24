@@ -111,7 +111,6 @@ class LoginEvent : BlockingEvent() {
 
         var gameState = Client.gameState!!
 
-        info { "gameState:$gameState" }
 
         if (gameState == GameState.LOGGED_IN) {
             return false
@@ -121,6 +120,8 @@ class LoginEvent : BlockingEvent() {
             BotScript.nextLoopDelay = 100
             return true
         }
+
+        info { "gameState:$gameState" }
 
         //if we are logging in, wait for welcome screen
         if (gameState == GameState.LOGGING_IN) {
@@ -186,8 +187,8 @@ class LoginEvent : BlockingEvent() {
             }
         }
 
-        if (loginResponse.contains("wait a few min", true)) {
-            wait(30_000)
+        if (loginResponse.contains("oo many login attempts", true)) {
+            throw IllegalStateException(loginResponse)
         }
 
         if (loginResponse.contains("need a members")) {

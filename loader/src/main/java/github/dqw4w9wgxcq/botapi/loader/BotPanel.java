@@ -98,7 +98,7 @@ public class BotPanel extends JPanel {
 
     private void openLogger() {
         logFrame.setVisible(!logFrame.isVisible());
-        logTextArea.scrollToBottom();
+        logTextArea.scrollToBottom();//doesnt work
     }
 
     private void refreshScriptList() {

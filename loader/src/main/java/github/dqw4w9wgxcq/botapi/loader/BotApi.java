@@ -16,11 +16,9 @@ import net.runelite.client.plugins.config.ConfigPlugin;
 import net.runelite.client.plugins.devtools.DevToolsPlugin;
 import net.runelite.client.plugins.fps.FpsPlugin;
 import net.runelite.client.plugins.gpu.GpuPluginConfig;
-import net.runelite.client.plugins.hiscore.HiscorePlugin;
 import net.runelite.client.plugins.info.InfoPlugin;
 import net.runelite.client.plugins.lowmemory.LowMemoryPlugin;
 import net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperPlugin;
-import net.runelite.client.plugins.xptracker.XpTrackerPlugin;
 import net.runelite.client.ui.ClientToolbar;
 import net.runelite.client.ui.NavigationButton;
 import net.runelite.client.util.ImageUtil;
@@ -53,9 +51,9 @@ public class BotApi {
             ConfigPlugin.class,
             MenuEntrySwapperPlugin.class,
             AntiDragPlugin.class,
-            HiscorePlugin.class,
+            //HiscorePlugin.class,
             InfoPlugin.class,
-            XpTrackerPlugin.class,
+            //XpTrackerPlugin.class,
             LowMemoryPlugin.class,
             FpsPlugin.class
             //GpuPlugin.class
@@ -162,6 +160,10 @@ public class BotApi {
         if (quickstartScript != null) {
             scriptManager.startScript(quickstartScript);
         }
+    }
+
+    public static void toggleFrame(boolean open) {
+        SwingUtilities.invokeLater(() -> frame.setVisible(open));
     }
 
     //from PluginListPanel#startPlugin/stopPlugin

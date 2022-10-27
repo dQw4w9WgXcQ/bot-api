@@ -21,8 +21,12 @@ object Profile {
             return _hash!!
         }
 
-    private fun newRandom(key: Int): Random {
+    fun newRandom(key: Int): Random {
         return Random(hash * key)
+    }
+
+    fun newRandom(): Random {
+        return newRandom(hash)
     }
 
     fun newRandom(key: String): Random {

@@ -4,6 +4,7 @@ import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.Events
 import github.dqw4w9wgxcq.botapi.antiban.Antiban
 import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.loader.BotApi
 import github.dqw4w9wgxcq.botapi.loader.IBotScript
 import org.slf4j.event.Level
 import java.io.FileNotFoundException
@@ -31,15 +32,11 @@ abstract class BotScript : IBotScript {
         debug { "default onStart" }
     }
 
-    protected open fun onFinish() {
-        debug { "default onFinish" }
-    }
-
     protected open fun cleanUpFatal(e: Throwable) {
         debug { "default cleanUpFatal" }
     }
 
-    override fun stopLooping() {
+    final override fun stopLooping() {
         debug { "stopLooping" }
         looping = false
     }
@@ -70,7 +67,7 @@ abstract class BotScript : IBotScript {
 
                 if (!Client.clientThread.isAlive) {
                     warn { "game thread dead" }
-                    exitProcess(501)
+                    exitProcess(201)
                 }
 
                 nextLoopDelay = null
@@ -163,6 +160,8 @@ abstract class BotScript : IBotScript {
             }
         } catch (t: Throwable) {
             warn(t) { "fatal in script" }
+
+            BotApi.toggleFrame(true)
 
             try {
                 cleanUpFatal(t)

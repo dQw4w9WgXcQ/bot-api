@@ -44,4 +44,13 @@ public abstract class Actor<RL extends net.runelite.api.Actor> implements Entity
     public boolean isMoving() {
         return getPathLength() != 0;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Actor)) {
+            return false;
+        }
+
+        return rl == ((Actor<?>) obj).rl;
+    }
 }

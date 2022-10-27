@@ -4,8 +4,10 @@ import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.*
 import github.dqw4w9wgxcq.botapi.entities.Players
 import github.dqw4w9wgxcq.botapi.grandexchange.GrandExchange
+import github.dqw4w9wgxcq.botapi.input.mouse.Mouse
 import github.dqw4w9wgxcq.botapi.itemcontainer.Bank
 import github.dqw4w9wgxcq.botapi.movement.Movement
+import github.dqw4w9wgxcq.botapi.script.blockingevents.LoginEvent
 import github.dqw4w9wgxcq.botapi.widget.Dialog
 import net.runelite.api.GameState
 import net.runelite.api.World
@@ -13,7 +15,14 @@ import net.runelite.api.WorldType
 import net.runelite.api.widgets.WidgetInfo
 
 object Worlds {
-    val ACTIVITY_DISALLOW_LIST = setOf(
+    class LobbyLoadWorldsTimedOutException : RetryableBotException("load worlds in lobby timed out")
+
+    const val LOCATION_US = 0
+    const val LOCATION_UK = 1
+    const val LOCATION_AUS = 3
+    const val LOCATION_GER = 7
+
+    val ACTIVITY_DISALLOWLIST = setOf(
         "wilderness",
         "trade",
         "pvp",//pvp world, pvp arena
@@ -25,6 +34,8 @@ object Worlds {
         "bounty",
         "beta",
         "alpha",
+        " test",
+        "test ",
         "high risk",
         "twisted league",
         "claim ",//claim league points
@@ -36,25 +47,33 @@ object Worlds {
         "fresh start",
     )
 
-    val TYPE_DISALLOW_LIST = setOf(
+    val TYPE_DISALLOWLIST = setOf(
         WorldType.TOURNAMENT_WORLD,
         WorldType.PVP,
         WorldType.DEADMAN,
         WorldType.SEASONAL,
         WorldType.NOSAVE_MODE,
         WorldType.HIGH_RISK,
+        WorldType.SKILL_TOTAL,
+        WorldType.FRESH_START_WORLD,
+        WorldType.PVP_ARENA,
+        WorldType.BOUNTY,
+        WorldType.QUEST_SPEEDRUNNING
     )
 
-    val SUITABLE = { w: World ->
-        ACTIVITY_DISALLOW_LIST.none { w.activity.contains(it, ignoreCase = true) }
-                && TYPE_DISALLOW_LIST.none { w.types.any { TYPE_DISALLOW_LIST.contains(it) } }
-                && w.id >= 330
-                && w.playerCount > 2 && w.playerCount < 2000
-    }
+    val P2P: (World) -> Boolean = { it: World -> it.types.contains(WorldType.MEMBERS) }.withDescription("P2P")
+    val F2P = P2P.negate().withDescription("F2P")
 
-    val P2P: (World) -> Boolean = { it.types.contains(WorldType.MEMBERS) }
-    val F2P = P2P.negate()
-    private val NOT_CURRENT: (World) -> Boolean = { it.id != Client.world }
+    private val isSuitable = { w: World ->
+        ACTIVITY_DISALLOWLIST.none { w.activity.contains(it, ignoreCase = true) }
+                && TYPE_DISALLOWLIST.none { w.types.any { TYPE_DISALLOWLIST.contains(it) } }
+                && w.id >= 330
+                && w.playerCount > 2
+                && w.playerCount < 2000
+                && (if (locationsAllowlist != null) locationsAllowlist!!.contains(w.location) else true)
+    }.withDescription("isSuitable")
+
+    var locationsAllowlist: Set<Int>? = null
 
     fun getCurrent(): World {
         return get(Client.world)
@@ -68,7 +87,7 @@ object Worlds {
         return Client.worldList != null
     }
 
-    fun get(id: Int): World {
+    private fun get(id: Int): World {
         return all { it.id == id }.firstOrNull() ?: throw RetryableBotException("no world found $id")
     }
 
@@ -76,12 +95,22 @@ object Worlds {
         return Client.isWorldSelectorOpen
     }
 
+    fun openLobbySelector() {
+        Mouse.click(LoginEvent.getClickToSwitchBounds())
+
+        if (!waitUntilWithConfirm(10_000, condition = { areWorldsLoaded() }.withDescription("worlds loaded"))) {
+            throw LobbyLoadWorldsTimedOutException()
+        }
+
+        waitUntil(condition = { Client.isWorldSelectorOpen }.withDescription("Client.isWorldSelectorOpen"))
+    }
+
     fun changeLobbyWorld(id: Int) {
         Client.changeWorld(get(id))
         waitUntil { Client.world == id }
     }
 
-    fun getBest(matches: (World) -> Boolean, selector: (World) -> Double): World {
+    private fun getBest(matches: (World) -> Boolean, selector: (World) -> Double): World {
         return all(matches).minByOrNull(selector) ?: throw RetryableBotException("no world matched")
     }
 
@@ -122,32 +151,39 @@ object Worlds {
                 "Yes. In future, only warn about dangerous worlds.",
                 "Switch to the High Risk world."
             )
-            waitUntil { Client.gameState == GameState.HOPPING }
+            waitUntil(condition = { Client.gameState == GameState.HOPPING }.withDescription("game state hopping"))
         }
         waitUntil { Client.gameState == GameState.HOPPING }
-        waitUntil(10_000) { Client.world == world.id }
-        waitUntil(10_000) { Client.gameState == GameState.LOGGED_IN }
-        waitUntil { !Client.isLoading }
+        waitUntil(10_000, condition = { Client.world == world.id }.withDescription("world id change to ${world.id}"))
+        waitUntil(
+            30_000,
+            condition = { Client.gameState == GameState.LOGGED_IN }.withDescription("game state logged in")
+        )
+        waitUntil(condition = { !Client.isLoading }.withDescription("game state not loading"))
     }
 
     fun switchTo(id: Int) {
         switchTo(get(id))
     }
 
-    fun switchToRandomSuitable(matches: (World) -> Boolean = { true }) {
-        val highPop = all(F2P)
+    fun getRandomSuitable(matches: (World) -> Boolean = { true }): World {
+        val highPopF2p = all(F2P)
             .sortedByDescending { it.playerCount }
             .map { it.id }
             .take(10)
-            .toMutableSet()
-        highPop.addAll(
-            all(P2P)
-                .sortedByDescending { it.playerCount }
-                .map { it.id }
-                .take(20)
-        )
 
-        switchTo(getRandom(matches.and(SUITABLE).and(NOT_CURRENT).and { highPop.contains(it.id) }))
+        val highPopP2p = all(P2P)
+            .sortedByDescending { it.playerCount }
+            .map { it.id }
+            .take(20)
+
+        val highPop = highPopF2p + highPopP2p
+
+        return getRandom(matches.and(isSuitable).and { it.id != Client.world }.and { !highPop.contains(it.id) })
+    }
+
+    fun switchToRandomSuitable(matches: (World) -> Boolean = { true }) {
+        switchTo(getRandomSuitable(matches))
     }
 
     fun onF2p(): Boolean {

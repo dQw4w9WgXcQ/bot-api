@@ -49,7 +49,7 @@ class LoginEvent : BlockingEvent() {
             return out
         }
 
-        private fun getClickToSwitchBounds(): Rectangle {
+        fun getClickToSwitchBounds(): Rectangle {
             val var4 = getXPadding() + 5;
             val var5 = 463 // L: 340
             val var6 = 100 // L: 341
@@ -147,41 +147,34 @@ class LoginEvent : BlockingEvent() {
         }
 
         val credentials = AccountManager.credentials
-        if (needInitialHop) {
-            if (!Worlds.areWorldsLoaded()) {
-                Mouse.click(getClickToSwitchBounds())
 
-                waitUntil(
-                    10_000,
-                    condition = { Worlds.areWorldsLoaded() && Worlds.isLobbySelectorOpen() }
-                        .withDescription("worlds loaded and selector open")
-                )
-            }
-
-            val newWorldId = Worlds.getRandom { Worlds.SUITABLE(it) && Worlds.P2P(it) }.id
-            if (newWorldId != Client.world) {
-                Worlds.changeLobbyWorld(newWorldId)
-                waitUntil { newWorldId == Client.world }
-            }
-            needInitialHop = false
-            info { "did initial hop" }
+        if (!Worlds.areWorldsLoaded()) {
+            Worlds.openLobbySelector()
         }
 
         if (Worlds.isLobbySelectorOpen()) {
             info { "closing world selector" }
             Keyboard.esc()
             waitUntil { !Worlds.isLobbySelectorOpen() }
-            return true
+        }
+
+        if (needInitialHop) {
+            val newWorldId = Worlds.getRandomSuitable(Worlds.P2P).id
+            if (Client.world != newWorldId) {
+                Worlds.changeLobbyWorld(newWorldId)
+            }
+            needInitialHop = false
+            info { "did initial hop" }
         }
 
         val loginResponse = getLoginResponse()
         info { "login response:$loginResponse" }
-        for (behavior in loginResponseBehaviors) {
-            val messagePart = behavior.first
-            val doBehavior = behavior.second
-            if (loginResponse.contains(messagePart, true)) {
-                info { "doing behavior for messagePart:$messagePart" }
-                if (doBehavior()) {
+        for (responseBehavior in loginResponseBehaviors) {
+            val response = responseBehavior.first
+            val behavior = responseBehavior.second
+            if (loginResponse.contains(response, true)) {
+                info { "doing behavior for response:$response" }
+                if (behavior()) {
                     return true
                 }
             }
@@ -192,7 +185,7 @@ class LoginEvent : BlockingEvent() {
         }
 
         if (loginResponse.contains("need a members")) {
-            Worlds.changeLobbyWorld(Worlds.getRandom { Worlds.SUITABLE(it) && !Worlds.P2P(it) }.id)
+            Worlds.changeLobbyWorld(Worlds.getRandomSuitable(Worlds.F2P).id)
         }
 
         if (loginResponse.contains("update")) {
@@ -268,10 +261,6 @@ class LoginEvent : BlockingEvent() {
                 Mouse.click(getOkBounds())
                 waitUntil(condition = { Client.loginIndex != LoginIndex.DISCONNECTED }.withDescription("loginState != DISCONNECTED"))
                 return true
-            }
-
-            LoginIndex.BETA_WORLD -> {
-                throw IllegalStateException("beta world")
             }
 
             LoginIndex.EULA -> {

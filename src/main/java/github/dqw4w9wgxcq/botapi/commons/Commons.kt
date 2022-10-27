@@ -164,8 +164,8 @@ fun <T> waitUntilNotNull(
     return waitUntilCondition(
         timeout,
         pollRate,
-        supply,
-        { it: T? -> it != null }.withDescription("not null")
+        supply = supply,
+        condition = { it: T? -> it != null }.withDescription("not null")
     )!!
 }
 
@@ -203,7 +203,7 @@ fun <T> ((T) -> Boolean).and(that: (T) -> Boolean): (T) -> Boolean {
         }
 
         override fun toString(): String {
-            return "($self AND $that)"
+            return "($self & $that)"
         }
     }
 }
@@ -216,7 +216,7 @@ fun <T> ((T) -> Boolean).or(that: (T) -> Boolean): (T) -> Boolean {
         }
 
         override fun toString(): String {
-            return "($self OR $that)"
+            return "($self | $that)"
         }
     }
 }
@@ -230,7 +230,7 @@ fun <T> ((T) -> Boolean).negate(): (T) -> Boolean {
         }
 
         override fun toString(): String {
-            return "negate[$self]"
+            return "negate($self)"
         }
     }
 }
@@ -368,4 +368,4 @@ class WaitTimeoutException(
     pollRate: Int,
     supply: () -> Any?,
     condition: (Any?) -> Boolean,
-) : RetryableBotException("timeout:$timeout pollRate:$pollRate\n$condition\n$supply", retries = 10)
+) : RetryableBotException("timeout:$timeout pollRate:$pollRate condition:$condition supply:$supply", retries = 10)

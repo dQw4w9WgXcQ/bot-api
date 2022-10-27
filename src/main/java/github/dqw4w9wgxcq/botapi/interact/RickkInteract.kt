@@ -68,7 +68,14 @@ class RickkInteract : InteractDriver {
 
     override fun walk(scenePosition: Point) {
         debug { "walking $scenePosition" }
+        val baseX = Client.baseX
+        val baseY = Client.baseY
         onGameThread {//make sure were at the right point in the game cycle, can fail otherwise
+            val newBaseX = Client.baseX
+            val newBaseY = Client.baseY
+            if (baseX != newBaseX || baseY != newBaseY) {
+                throw RetryableBotException("base changed $baseX,$baseY to $newBaseX,$newBaseY")
+            }
             Refl.Scene_selectedX.setInt2(null, scenePosition.x, 1)
             Refl.Scene_selectedY.setInt2(null, scenePosition.y, 1)
             Refl.viewportWalking.setBoolean2(null, true)
@@ -162,14 +169,17 @@ class RickkInteract : InteractDriver {
         //need to trim the bounds because can be clipped by parent (ge collect widget)
         val trimmedBounds = Rectangle(bounds.x, bounds.y + 1, bounds.width, bounds.height - 2)
         info { "actionMatches $actionMatches" }
-        withDestination(trimmedBounds, entryMatches = { it.param1 == target.id && actionMatches(it.option) })
+        withDestination(
+            trimmedBounds,
+            { it: MenuEntry -> it.param1 == target.id && actionMatches(it.option) }.withDescription("widget id:${target.id} actionMatches:$actionMatches")
+        )
     }
 
     private fun withDestination(destination: Rectangle, entryMatches: (MenuEntry) -> Boolean) {
         if (Client.isMenuOpen) {
             debug { "menu open, async moving" }
             Mouse.asyncMove(Rectangle(-100, -100, 1000, 1000))
-            waitUntil { !Client.isMenuOpen }
+            waitUntil(condition = { !Client.isMenuOpen }.withDescription("menu closed"))
         }
 
         val successful = Mouse.actionManager.submit(InteractMouseAction(destination, entryMatches)).get()

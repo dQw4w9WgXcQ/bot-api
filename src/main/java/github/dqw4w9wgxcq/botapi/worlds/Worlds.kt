@@ -157,7 +157,8 @@ object Worlds {
         waitUntil(10_000, condition = { Client.world == world.id }.withDescription("world id change to ${world.id}"))
         waitUntil(
             30_000,
-            condition = { Client.gameState == GameState.LOGGED_IN }.withDescription("game state logged in")
+            condition = { Client.gameState == GameState.LOGGED_IN }
+                .withDescription("game state logged in")
         )
         waitUntil(condition = { !Client.isLoading }.withDescription("game state not loading"))
     }

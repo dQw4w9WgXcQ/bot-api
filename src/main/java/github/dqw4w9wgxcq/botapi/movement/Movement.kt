@@ -25,6 +25,7 @@ object Movement {
     fun runEnabled(): Boolean = Client.getVarpValue(173) == 1
     fun getStaminaConfig(): Int = Client.getVarbitValue(Varbits.RUN_SLOWED_DEPLETION_ACTIVE)
     fun isStaminaActive(): Boolean = getStaminaConfig() > 0
+    fun isMoving(): Boolean = Players.local().isMoving && !Dialog.canContinue()
 
     fun walk(to: Point) {
         if (walkOrOpenDoor(getDoorOrWalkPoint(to, false) ?: to)) {
@@ -34,13 +35,18 @@ object Movement {
     }
 
     fun walk(to: WorldPoint) {
-        val toScene = to.toScene()
-        if (!toScene.isInTrimmedScene()) {
+        val plane = Client.plane
+        if (to.plane != plane) {
+            throw RetryableBotException("to.plane:${to.plane} != plane:$plane")
+        }
+
+        val scenePoint = to.toScene()
+        if (!scenePoint.isInTrimmedScene()) {
             //todo walk to closest tile in scene
             throw RetryableBotException("$to not in trimmed scene")
         }
 
-        walk(toScene)
+        walk(scenePoint)
     }
 
     fun walk(x: Int, y: Int, plane: Int = Client.plane) {
@@ -158,11 +164,7 @@ object Movement {
         return null
     }
 
-    fun isMoving(): Boolean {
-        return Players.local().isMoving && !Dialog.canContinue()
-    }
-
-    //input is either a point or door
+    //arg is either a point or door
     //return true if should repeat(we opened a door close by)
     private fun walkOrOpenDoor(doorOrTile: Any): Boolean {
         val walkPoint = when (doorOrTile) {
@@ -211,15 +213,5 @@ object Movement {
         checkStam()
         checkRun()
         return false
-    }
-
-    fun from(location: WorldPoint, action: () -> Unit): Boolean {
-        return if (location.isNear()) {
-            action()
-            true
-        } else {
-            walk(location)
-            false
-        }
     }
 }

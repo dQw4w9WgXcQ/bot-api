@@ -28,6 +28,7 @@ dependencies {
 
 tasks {
     java {
+        //if used in a plugin, need 1.8.  j9 module-info breaks guava jar loader
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }

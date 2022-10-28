@@ -349,7 +349,7 @@ fun <T> (() -> T).withDescription(toString: String): () -> T {
 open class RetryableBotException(
     message: String,
     cause: Throwable? = null,
-    val retries: Int = 5,
+    val retries: Int = 10,
 ) : RuntimeException(message, cause) {
     constructor(message: String) : this(message, null)
 

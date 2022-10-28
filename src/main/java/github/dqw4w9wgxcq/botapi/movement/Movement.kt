@@ -8,6 +8,8 @@ import github.dqw4w9wgxcq.botapi.entities.TileObjects
 import github.dqw4w9wgxcq.botapi.interact.Interact
 import github.dqw4w9wgxcq.botapi.itemcontainer.Inventory
 import github.dqw4w9wgxcq.botapi.movement.pathfinding.local.LocalPathfinding
+import github.dqw4w9wgxcq.botapi.movement.pathfinding.local.LocalPathfinding.canReach
+import github.dqw4w9wgxcq.botapi.movement.pathfinding.local.LocalPathfinding.canTravelInDirection
 import github.dqw4w9wgxcq.botapi.widget.Dialog
 import github.dqw4w9wgxcq.botapi.widget.Widgets
 import github.dqw4w9wgxcq.botapi.wrappers.entity.tile.`object`.WallObject
@@ -72,6 +74,7 @@ object Movement {
             ItemID.STAMINA_POTION3,
             ItemID.STAMINA_POTION4
         )
+
         if (stam != null && !stam.name.contains("member", true)) {
             stam.interact("Drink")
         }
@@ -106,13 +109,13 @@ object Movement {
     private fun getDoorOrWalkPoint(to: Point, ignoreEndObject: Boolean): Any? {
         val map = LocalPathfinding.map
         val flags = Client.collisionMaps!![Client.plane].flags!!
-        val myTile = Players.local().sceneLocation
+        val myPoint = Players.local().sceneLocation
 
-        if (!LocalPathfinding.canReach(to, myTile, ignoreEndObject, map)) {
-            throw RetryableBotException("not reachable to:$to ${to.toWorld()} from:$myTile ${myTile.toWorld()}")
+        if (!map.canReach(to, myPoint, ignoreEndObject)) {
+            throw RetryableBotException("not reachable to:$to ${to.toWorld()} from:$myPoint ${myPoint.toWorld()}")
         }
 
-        val path = LocalPathfinding.findPathUnchecked(to, myTile, ignoreEndObject, map)
+        val path = LocalPathfinding.findPathUnchecked(to, myPoint, ignoreEndObject, map)
 
         debug { "path size ${path.size}" }
 
@@ -124,7 +127,7 @@ object Movement {
 
             debug { "curr $curr next $next" }
 
-            if (LocalPathfinding.canTravelInDirection(curr.x, curr.y, next.x - curr.x, next.y - curr.y, flags)) {
+            if (flags.canTravelInDirection(curr.x, curr.y, next.x - curr.x, next.y - curr.y)) {
                 continue
             }
 

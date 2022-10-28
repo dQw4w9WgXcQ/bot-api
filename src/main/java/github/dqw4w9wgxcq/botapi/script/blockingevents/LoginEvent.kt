@@ -100,15 +100,6 @@ class LoginEvent : BlockingEvent() {
     }
 
     override fun checkBlocked(): Boolean {
-        if (preventLoginHook != null) {
-            if (!preventLoginHook!!()) {
-                preventLoginHook = null
-                return false
-            }
-
-            return true
-        }
-
         var gameState = Client.gameState!!
 
 
@@ -122,6 +113,15 @@ class LoginEvent : BlockingEvent() {
         }
 
         info { "gameState:$gameState" }
+
+        if (preventLoginHook != null) {
+            if (!preventLoginHook!!()) {
+                preventLoginHook = null
+                return false
+            }
+
+            return true
+        }
 
         //if we are logging in, wait for welcome screen
         if (gameState == GameState.LOGGING_IN) {

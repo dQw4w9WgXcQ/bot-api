@@ -161,7 +161,7 @@ object LocalPathfinding {
         val adjacentEdges: List<GridEdge> by lazy {
             buildList {
                 for (direction in 0..6 step 2) {
-                    if (canTravelInDirection(x, y, direction, flags)) {
+                    if (flags.canTravelInDirection(x, y, direction)) {
                         add(GridEdge(direction))
                     }
                 }
@@ -213,7 +213,7 @@ object LocalPathfinding {
 
             return adjacentEdges.mapNotNull {
                 val adjacentFrom = Point(from.x + dx(it.direction), from.y + dy(it.direction))
-                if (!canReach(to, adjacentFrom, ignoreEndObject, map)) {
+                if (!map.canReach(to, adjacentFrom, ignoreEndObject)) {
                     null
                 } else {
                     findPathUnchecked(to, adjacentFrom, ignoreEndObject, map)
@@ -221,7 +221,7 @@ object LocalPathfinding {
             }.minByOrNull { it.size }
         }
 
-        if (!canReach(to, from, ignoreEndObject, map)) {
+        if (!map.canReach(to, from, ignoreEndObject)) {
             return null
         }
 
@@ -237,7 +237,7 @@ object LocalPathfinding {
 
         val adjacentToEnd = buildSet {
             for (direction in 0..6 step 2) {
-                if (canTravelInDirection(to.x, to.y, direction, map.flags)) {
+                if (map.flags.canTravelInDirection(to.x, to.y, direction)) {
                     add(Point(to.x + dx(direction), to.y + dy(direction)))
                 }
             }
@@ -279,18 +279,18 @@ object LocalPathfinding {
     }
 
     fun canReach(to: WorldPoint, ignoreEndObject: Boolean = true): Boolean {
-        return canReach(to.toScene(), Players.local().sceneLocation, ignoreEndObject, map)
+        return map.canReach(to.toScene(), Players.local().sceneLocation, ignoreEndObject)
     }
 
     fun canReach(to: Locatable, ignoreEndObject: Boolean = true): Boolean {
-        return canReach(to.sceneLocation, Players.local().sceneLocation, ignoreEndObject, map)
+        return map.canReach(to.sceneLocation, Players.local().sceneLocation, ignoreEndObject)
     }
 
     fun canReach(to: Point, from: Point, ignoreEndObject: Boolean = true): Boolean {
-        return canReach(to, from, ignoreEndObject, map)
+        return map.canReach(to, from, ignoreEndObject)
     }
 
-    fun canReach(to: Point, from: Point, ignoreEndObject: Boolean, map: GridMap): Boolean {
+    fun GridMap.canReach(to: Point, from: Point, ignoreEndObject: Boolean): Boolean {
         if (!to.isInTrimmedScene()) {
             throw RetryableBotException("to $to is not in trimmed scene")
         }
@@ -299,20 +299,19 @@ object LocalPathfinding {
             throw RetryableBotException("from $from not in trimmed scene")
         }
 
-        val zoneId = map.graph[from.x][from.y].zone ?: fillZone(from, map)
+        val zoneId = graph[from.x][from.y].zone ?: fillZone(from, this)
 
-        if (zoneId == map.graph[to.x][to.y].zone) {
+        if (zoneId == graph[to.x][to.y].zone) {
             return true
         }
 
         if (ignoreEndObject) {
             for (direction in 0..6 step 2) {
-                if (canTravelInDirection(
+                if (flags.canTravelInDirection(
                         to.x,
                         to.y,
-                        direction,
-                        map.flags
-                    ) && zoneId == map.graph[to.x + dx(direction)][to.y + dy(direction)].zone
+                        direction
+                    ) && zoneId == graph[to.x + dx(direction)][to.y + dy(direction)].zone
                 ) {
                     debug { "ignoring end blocked direction: $direction" }
                     return true
@@ -384,8 +383,8 @@ object LocalPathfinding {
         }
     }
 
-    internal fun canTravelInDirection(fromX: Int, fromY: Int, dx: Int, dy: Int, flags: Array<IntArray>): Boolean {
-        val fromFlag = flags[fromX][fromY]
+    internal fun Array<IntArray>.canTravelInDirection(fromX: Int, fromY: Int, dx: Int, dy: Int): Boolean {
+        val fromFlag = this[fromX][fromY]
 
         if (dx == 1 && fromFlag and CollisionDataFlag.BLOCK_MOVEMENT_EAST != 0
             || dx == -1 && fromFlag and CollisionDataFlag.BLOCK_MOVEMENT_WEST != 0
@@ -395,7 +394,7 @@ object LocalPathfinding {
 
         //east west
         if (dx != 0) {
-            val xFlag = flags[fromX + dx][fromY]
+            val xFlag = this[fromX + dx][fromY]
             if (xFlag and CollisionDataFlag.BLOCK_MOVEMENT_FULL != 0) return false
 //            if (dx == 1) {
 //                if (xFlag and CollisionDataFlag.BLOCK_MOVEMENT_WEST != 0) return false
@@ -406,7 +405,7 @@ object LocalPathfinding {
 
         //north south
         if (dy != 0) {
-            val yFlag = flags[fromX][fromY + dy]
+            val yFlag = this[fromX][fromY + dy]
             if (yFlag and CollisionDataFlag.BLOCK_MOVEMENT_FULL != 0) return false
 //            if (dy == 1) {
 //                if (yFlag and CollisionDataFlag.BLOCK_MOVEMENT_SOUTH != 0) return false
@@ -418,9 +417,9 @@ object LocalPathfinding {
         return true
     }
 
-    private fun canTravelInDirection(fromX: Int, fromY: Int, direction: Int, flags: Array<IntArray>): Boolean {
+    private fun Array<IntArray>.canTravelInDirection(fromX: Int, fromY: Int, direction: Int): Boolean {
         val dx = dx(direction)
         val dy = dy(direction)
-        return canTravelInDirection(fromX, fromY, dx, dy, flags)
+        return canTravelInDirection(fromX, fromY, dx, dy)
     }
 }

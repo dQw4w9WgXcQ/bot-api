@@ -113,7 +113,7 @@ fun inGameBounds(point: java.awt.Point): Boolean {
 
 object Wait {
     const val defaultPollRate = 50
-    const val defaultTimeout = 3000
+    const val defaultTimeout = 5000
 }
 
 fun wait(millis: Int) {

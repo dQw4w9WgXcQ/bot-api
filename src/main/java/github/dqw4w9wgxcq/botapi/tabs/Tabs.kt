@@ -3,6 +3,7 @@ package github.dqw4w9wgxcq.botapi.tabs
 import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.debug
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
+import github.dqw4w9wgxcq.botapi.grandexchange.GrandExchange
 import github.dqw4w9wgxcq.botapi.input.Keyboard
 import github.dqw4w9wgxcq.botapi.itemcontainer.Bank
 import github.dqw4w9wgxcq.botapi.widget.WidgetQuery
@@ -23,14 +24,11 @@ object Tabs {
         if (tab == Tab.LOGOUT) {
             debug { "logout must be opened with mouse" }
 
-            val logoutTab = let {
-                val classicResizableTab = Widgets.getOrNull(WidgetInfo.RESIZABLE_VIEWPORT_LOGOUT_TAB)
-                if (classicResizableTab == null || classicResizableTab.isHidden) {
-                    Widgets.get(WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_LOGOUT_BUTTON)
-                } else {
-                    classicResizableTab
-                }
+            if (Client.isResized) {
+                throw IllegalStateException("not implemented open logout tab on resizable")
             }
+
+            val logoutTab = Widgets.get(WidgetInfo.FIXED_VIEWPORT_LOGOUT_TAB)
 
             logoutTab.interact("logout")
         } else {
@@ -44,17 +42,22 @@ object Tabs {
         return Client.getVarcIntValue(VarClientInt.INVENTORY_TAB) == tab.varcInt
     }
 
-    fun logout() {
-        Bank.close()
-
-        waitUntil(6 * 60_000) { Client.gameState == GameState.LOGIN_SCREEN }//todo
-        return
+    val logoutWq = WidgetQuery(WidgetID.LOGOUT_PANEL_ID) { it.hasAction("logout") }
+    val worldSwitcherLogoutWq = WidgetQuery(WidgetID.WORLD_SWITCHER_GROUP_ID) { it.hasAction("logout") }
+    fun logout(checkCloseInterfaces: Boolean = true) {
+        if (checkCloseInterfaces) {
+            Bank.close()
+            GrandExchange.close()
+        }
 
         open(Tab.LOGOUT)
 
-        (WidgetQuery(WidgetID.LOGOUT_PANEL_ID) { it.hasAction("logout") }.getOrNull()
-            ?: Widgets.get(WidgetID.WORLD_SWITCHER_GROUP_ID, 23))
-            .interact("logout")
+        var logoutButton = logoutWq.getOrNull()
+        if (logoutButton == null) {
+            logoutButton = worldSwitcherLogoutWq()
+        }
+
+        logoutButton.interact("logout")
 
         waitUntil { Client.gameState == GameState.LOGIN_SCREEN }
     }

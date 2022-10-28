@@ -45,21 +45,10 @@ object Worlds {
         "pk ",
         "speedrun",
         "fresh start",
+        "private world",
     )
 
-    val TYPE_DISALLOWLIST = setOf(
-        WorldType.TOURNAMENT_WORLD,
-        WorldType.PVP,
-        WorldType.DEADMAN,
-        WorldType.SEASONAL,
-        WorldType.NOSAVE_MODE,
-        WorldType.HIGH_RISK,
-        WorldType.SKILL_TOTAL,
-        WorldType.FRESH_START_WORLD,
-        WorldType.PVP_ARENA,
-        WorldType.BOUNTY,
-        WorldType.QUEST_SPEEDRUNNING
-    )
+    val TYPE_DISALLOWLIST = WorldType.values().toMutableSet().filter { it != WorldType.MEMBERS }
 
     val P2P: (World) -> Boolean = { it: World -> it.types.contains(WorldType.MEMBERS) }.withDescription("P2P")
     val F2P = P2P.negate().withDescription("F2P")

@@ -112,8 +112,6 @@ class LoginEvent : BlockingEvent() {
             return true
         }
 
-        info { "gameState:$gameState" }
-
         if (preventLoginHook != null) {
             if (!preventLoginHook!!()) {
                 preventLoginHook = null
@@ -122,6 +120,8 @@ class LoginEvent : BlockingEvent() {
 
             return true
         }
+
+        info { "gameState:$gameState" }
 
         //if we are logging in, wait for welcome screen
         if (gameState == GameState.LOGGING_IN) {

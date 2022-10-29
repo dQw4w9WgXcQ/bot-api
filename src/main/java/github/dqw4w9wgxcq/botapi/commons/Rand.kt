@@ -21,10 +21,10 @@ object Rand {
     fun nextInt(until: Int): Int {
         require(until >= 1) { "until must be >= 1" }
 
-        return (nextBiased() * until).toInt()
+        return (nextDouble() * until).toInt()
     }
 
-    fun nextBiased(bias: Double = this.bias): Double {
+    fun nextDouble(bias: Double = this.bias): Double {
         require(bias in 0.2..0.8) { "bias must be [0.2-0.8]" }
         val randomBias = bias + Random.nextDouble(-0.1, 0.1)
         //cba rn

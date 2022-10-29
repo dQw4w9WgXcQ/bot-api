@@ -218,3 +218,16 @@ object ItemData {
 //        return field.getInt(null)
 //    }
 }
+
+enum class CraftJewellery(
+    val lvl: Int,
+    val id: Int,
+    val mould: Int,
+    val exp: Double,
+    val selectedBit: Int,
+    val gem: Int?,
+) {
+    RING(5, ItemID.GOLD_RING, ItemID.RING_MOULD, 15.0, 1, null),
+    NECKLACE(6, ItemID.GOLD_NECKLACE, ItemID.NECKLACE_MOULD, 20.0, 10, null),
+    AMULET(8, ItemID.GOLD_AMULET_U, ItemID.AMULET_MOULD, 30.0, 18, null),
+}

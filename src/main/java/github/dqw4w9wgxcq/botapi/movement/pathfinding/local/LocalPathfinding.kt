@@ -17,7 +17,7 @@ object LocalPathfinding {
         val ids: Set<Int>,
         val index0Actions: Set<String>,
         val idDisallowList: Set<Int>
-    ) : (WallObject) -> Boolean {
+    ) {
         DOOR(
             setOf("Door", "Large door", "Gate", "Large gate", "Longhall door"),
             setOf(),
@@ -36,7 +36,7 @@ object LocalPathfinding {
         ),
         ;
 
-        override fun invoke(wallObject: WallObject): Boolean {
+        fun test(wallObject: WallObject): Boolean {
             val id = wallObject.id
 
             if (idDisallowList.contains(id)) return false
@@ -76,7 +76,7 @@ object LocalPathfinding {
                     if (tile == null) continue
                     val wallObject = tile.wallObject ?: continue
 
-                    if (WallObstacle.values().any { it(wallObject) }) {
+                    if (WallObstacle.values().any { it.test(wallObject) }) {
                         removeObjectFlags(x, y, wallObject.config, out)
                     }
                 }
@@ -187,36 +187,42 @@ object LocalPathfinding {
 
     fun findPath(
         to: WorldPoint,
-        from: WorldPoint = Players.local().worldLocation,
-        ignoreEndObject: Boolean = true
+        from: WorldPoint,
+        ignoreEndObject: Boolean,
     ): List<Point>? {
         return findPath(to.toScene(), from.toScene(), ignoreEndObject)
     }
 
-    fun findPath(to: Locatable, from: Locatable = Players.local(), ignoreEndObject: Boolean = true): List<Point>? {
+    fun findPath(
+        to: Locatable,
+        from: Locatable,
+        ignoreEndObject: Boolean,
+    ): List<Point>? {
         return findPath(to.sceneLocation, from.sceneLocation, ignoreEndObject)
     }
 
     fun findPath(
         to: Point,
-        from: Point = Players.local().sceneLocation,
-        ignoreEndObject: Boolean = true
+        from: Point,
+        ignoreEndObject: Boolean,
     ): List<Point>? {
         val map = map//ensure the map doesn't change between reachable and finding path
 
         //if we are standing on a blocked tile(this is observed when just teleproted to fairy ring)
         if (map.flags[from.x][from.y] and CollisionDataFlag.BLOCK_MOVEMENT_FULL != 0) {
-            debug { "we are on a blocked tile" }
+            info { "we are standing on a blocked tile" }
             val adjacentEdges = map.graph[from.x][from.y].adjacentEdges
 
-            if (adjacentEdges.isEmpty()) throw Exception("should never happen, we are on blcoked and all adjacent r blocked ${Players.local().worldLocation}")
+            if (adjacentEdges.isEmpty()) {
+                throw Exception("should never happen, we are on standing on blocked and all adjacent r blocked ${Players.local().worldLocation}")
+            }
 
             return adjacentEdges.mapNotNull {
                 val adjacentFrom = Point(from.x + dx(it.direction), from.y + dy(it.direction))
                 if (!map.canReach(to, adjacentFrom, ignoreEndObject)) {
                     null
                 } else {
-                    findPathUnchecked(to, adjacentFrom, ignoreEndObject, map)
+                    findPathIgnoreReachable(to, adjacentFrom, ignoreEndObject, map)
                 }
             }.minByOrNull { it.size }
         }
@@ -225,11 +231,10 @@ object LocalPathfinding {
             return null
         }
 
-        return findPathUnchecked(to, from, ignoreEndObject, map)
+        return findPathIgnoreReachable(to, from, ignoreEndObject, map)
     }
 
-    //doesnt check reachable
-    internal fun findPathUnchecked(to: Point, from: Point, ignoreEndObject: Boolean, map: GridMap): List<Point> {
+    internal fun findPathIgnoreReachable(to: Point, from: Point, ignoreEndObject: Boolean, map: GridMap): List<Point> {
         debug { "to $to from $from" }
 
         val frontier = mutableListOf(from)

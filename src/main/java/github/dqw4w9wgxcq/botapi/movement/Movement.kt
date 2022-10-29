@@ -115,9 +115,9 @@ object Movement {
             throw RetryableBotException("not reachable to:$to ${to.toWorld()} from:$myPoint ${myPoint.toWorld()}")
         }
 
-        val path = LocalPathfinding.findPathUnchecked(to, myPoint, ignoreEndObject, map)
+        val path = LocalPathfinding.findPathIgnoreReachable(to, myPoint, ignoreEndObject, map)
 
-        debug { "path size ${path.size}" }
+        debug { "path size:${path.size}" }
 
         val points = ArrayDeque(path)
 
@@ -134,14 +134,15 @@ object Movement {
             debug { "prob have a door" }
 
             val door = let {
-                var out =
-                    TileObjects.firstAtOrNull(curr) { it is WallObject && LocalPathfinding.WallObstacle.DOOR.invoke(it) }
-                if (out == null) {
-                    out = TileObjects.firstAtOrNull(next) {
-                        it is WallObject && LocalPathfinding.WallObstacle.DOOR.invoke(it)
+                var o = TileObjects.firstAtOrNull(curr) {
+                    it is WallObject && LocalPathfinding.WallObstacle.DOOR.test(it)
+                }
+                if (o == null) {
+                    o = TileObjects.firstAtOrNull(next) {
+                        it is WallObject && LocalPathfinding.WallObstacle.DOOR.test(it)
                     }
                 }
-                out
+                o
             }
 
             if (door == null) {
@@ -155,9 +156,9 @@ object Movement {
 
             //the game doesn't load door state beyond ~30 tiles? idk how it works exactly
             val distance = door.distance()
-            info { "door distance $distance" }
+            debug { "door distance:$distance" }
             if (distance >= 25) {
-                debug { "door is far $distance, walking to it" }
+                info { "door is far:$distance" }
                 return curr
             }
 
@@ -190,7 +191,7 @@ object Movement {
         debug { "distance: $distance, destination: $destination, off: ${destination?.distance(walkPoint)}" }
 
         if (doorOrTile is WallObject && distance < 25) {//real door state isnt received from server unless within ~30 tiles
-            val doorType = LocalPathfinding.WallObstacle.values().first { it(doorOrTile) }
+            val doorType = LocalPathfinding.WallObstacle.values().first { it.test(doorOrTile) }
 
             Interact.withEntity(doorOrTile) { doorType.index0Actions.contains(it) }
 

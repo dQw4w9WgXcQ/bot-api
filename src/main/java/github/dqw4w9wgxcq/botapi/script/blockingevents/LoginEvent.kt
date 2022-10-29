@@ -227,7 +227,7 @@ class LoginEvent : BlockingEvent() {
                 Keyboard.enter().get()
                 waitUntil(
                     condition = { Client.gameState == GameState.LOGGING_IN || Client.gameState == GameState.LOGIN_SCREEN_AUTHENTICATOR }
-                        .withDescription("logging in or auth screen")
+                        .desc("logging in or auth screen")
                 )
                 BotScript.nextLoopDelay = 100
                 return true
@@ -251,7 +251,7 @@ class LoginEvent : BlockingEvent() {
                 info { "auth $auth now:\"$code\"" }
                 Client.setOtp(code)
                 Keyboard.enter()
-                waitUntil(condition = { Client.gameState == GameState.LOGGING_IN }.withDescription("gameState == LOGGING_IN"))
+                waitUntil(condition = { Client.gameState == GameState.LOGGING_IN }.desc("gameState == LOGGING_IN"))
                 BotScript.nextLoopDelay = 100
                 return true
             }
@@ -259,7 +259,7 @@ class LoginEvent : BlockingEvent() {
             LoginIndex.DISCONNECTED -> {
                 info { "LoginIndex.DISCONNECTED" }
                 Mouse.click(getOkBounds())
-                waitUntil(condition = { Client.loginIndex != LoginIndex.DISCONNECTED }.withDescription("loginState != DISCONNECTED"))
+                waitUntil(condition = { Client.loginIndex != LoginIndex.DISCONNECTED }.desc("loginState != DISCONNECTED"))
                 return true
             }
 

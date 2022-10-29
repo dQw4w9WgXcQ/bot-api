@@ -50,8 +50,8 @@ object Worlds {
 
     val TYPE_DISALLOWLIST = WorldType.values().toMutableSet().filter { it != WorldType.MEMBERS }
 
-    val P2P: (World) -> Boolean = { it: World -> it.types.contains(WorldType.MEMBERS) }.withDescription("P2P")
-    val F2P = P2P.negate().withDescription("F2P")
+    val P2P: (World) -> Boolean = { it: World -> it.types.contains(WorldType.MEMBERS) }.desc("P2P")
+    val F2P = P2P.negate().desc("F2P")
 
     private val isSuitable = { w: World ->
         ACTIVITY_DISALLOWLIST.none { w.activity.contains(it, ignoreCase = true) }
@@ -60,7 +60,7 @@ object Worlds {
                 && w.playerCount > 2
                 && w.playerCount < 2000
                 && (if (locationsAllowlist != null) locationsAllowlist!!.contains(w.location) else true)
-    }.withDescription("isSuitable")
+    }.desc("isSuitable")
 
     var locationsAllowlist: Set<Int>? = null
 
@@ -87,11 +87,11 @@ object Worlds {
     fun openLobbySelector() {
         Mouse.click(LoginEvent.getClickToSwitchBounds())
 
-        if (!waitUntilWithConfirm(10_000, condition = { areWorldsLoaded() }.withDescription("worlds loaded"))) {
+        if (!waitUntilWithConfirm(10_000, condition = { areWorldsLoaded() }.desc("worlds loaded"))) {
             throw LobbyLoadWorldsTimedOutException()
         }
 
-        waitUntil(condition = { Client.isWorldSelectorOpen }.withDescription("Client.isWorldSelectorOpen"))
+        waitUntil(condition = { Client.isWorldSelectorOpen }.desc("Client.isWorldSelectorOpen"))
     }
 
     fun changeLobbyWorld(id: Int) {
@@ -140,16 +140,16 @@ object Worlds {
                 "Yes. In future, only warn about dangerous worlds.",
                 "Switch to the High Risk world."
             )
-            waitUntil(condition = { Client.gameState == GameState.HOPPING }.withDescription("game state hopping"))
+            waitUntil(condition = { Client.gameState == GameState.HOPPING }.desc("game state hopping"))
         }
         waitUntil { Client.gameState == GameState.HOPPING }
-        waitUntil(10_000, condition = { Client.world == world.id }.withDescription("world id change to ${world.id}"))
+        waitUntil(10_000, condition = { Client.world == world.id }.desc("world id change to ${world.id}"))
         waitUntil(
             30_000,
             condition = { Client.gameState == GameState.LOGGED_IN }
-                .withDescription("game state logged in")
+                .desc("game state logged in")
         )
-        waitUntil(condition = { !Client.isLoading }.withDescription("game state not loading"))
+        waitUntil(condition = { !Client.isLoading }.desc("game state not loading"))
     }
 
     fun switchTo(id: Int) {

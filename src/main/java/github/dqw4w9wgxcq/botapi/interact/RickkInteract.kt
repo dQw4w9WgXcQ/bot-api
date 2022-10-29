@@ -62,7 +62,7 @@ class RickkInteract : InteractDriver {
         withDestination(
             Interact.viewportBounds,
             { it: MenuEntry -> it.type == MenuAction.CANCEL && it.option == "Cancel" }
-                .withDescription("type CANCEL and option \"Cancel\"")
+                .desc("type CANCEL and option \"Cancel\"")
         )
     }
 
@@ -92,7 +92,7 @@ class RickkInteract : InteractDriver {
         withDestination(
             bounds,
             { it: MenuEntry -> it.param0 == invIndex && actionMatches(it.option) }
-                .withDescription("invItem name: ${invItem.name} index: $invIndex actionMatches:$actionMatches")
+                .desc("invItem name: ${invItem.name} index: $invIndex actionMatches:$actionMatches")
         )
     }
 
@@ -155,7 +155,7 @@ class RickkInteract : InteractDriver {
             withDestination(
                 Interact.viewportBounds,
                 { it: MenuEntry -> it.param0 == arg0 && it.param1 == arg1 && it.identifier == arg2 && actionMatches(it.option) }
-                    .withDescription("target: ${target.name} actionMatches:$actionMatches")
+                    .desc("target: ${target.name} actionMatches:$actionMatches")
             )
             wait(200)
         } finally {
@@ -171,7 +171,7 @@ class RickkInteract : InteractDriver {
         info { "actionMatches $actionMatches" }
         withDestination(
             trimmedBounds,
-            { it: MenuEntry -> it.param1 == target.id && actionMatches(it.option) }.withDescription("widget id:${target.id} actionMatches:$actionMatches")
+            { it: MenuEntry -> it.param1 == target.id && actionMatches(it.option) }.desc("widget id:${target.id} actionMatches:$actionMatches")
         )
     }
 
@@ -179,7 +179,7 @@ class RickkInteract : InteractDriver {
         if (Client.isMenuOpen) {
             debug { "menu open, async moving" }
             Mouse.asyncMove(Rectangle(-100, -100, 1000, 1000))
-            waitUntil(condition = { !Client.isMenuOpen }.withDescription("menu closed"))
+            waitUntil(condition = { !Client.isMenuOpen }.desc("menu closed"))
         }
 
         val successful = Mouse.actionManager.submit(InteractMouseAction(destination, entryMatches)).get()
@@ -233,7 +233,7 @@ class RickkInteract : InteractDriver {
                 {
                     index = getMenuEntries().indexOfFirst(entryMatches)
                     index != -1
-                }.withDescription("entryMatches:$entryMatches")
+                }.desc("entryMatches:$entryMatches")
             )
 
             if (interrupted) {

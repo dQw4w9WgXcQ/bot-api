@@ -364,7 +364,7 @@ object Bank : ItemContainer<BankItem>(InventoryID.BANK) {
         }
 
         if (waitFor) {
-            waitUntil(condition = { Inventory.count(matches) == quantity }.withDescription("matches:$matches quantity:$quantity"))
+            waitUntil(condition = { Inventory.count(matches) == quantity }.desc("matches:$matches quantity:$quantity"))
         }
 
         return quantity - count

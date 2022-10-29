@@ -22,6 +22,10 @@ import java.util.concurrent.TimeoutException
 import kotlin.math.abs
 import kotlin.math.hypot
 
+const val ONE_MINUTE = 60_000
+const val ONE_HOUR = 60 * ONE_MINUTE
+const val ONE_DAY = 24 * ONE_HOUR
+
 fun <T> onGameThreadAsync(runnable: () -> T): Future<T> {
     val future = FutureTask(runnable)
 
@@ -165,7 +169,7 @@ fun <T> waitUntilNotNull(
         timeout,
         pollRate,
         supply = supply,
-        condition = { it: T? -> it != null }.withDescription("not null")
+        condition = { it: T? -> it != null }.desc("not null")
     )!!
 }
 
@@ -178,7 +182,7 @@ fun waitUntil(
         timeout,
         pollRate,
         supply = condition,
-        condition = { it: Boolean? -> it!! }.withDescription("true")
+        condition = { it: Boolean? -> it!! }.desc("true")
     )
 }
 
@@ -213,6 +217,19 @@ fun <T> ((T) -> Boolean).or(that: (T) -> Boolean): (T) -> Boolean {
     return object : (T) -> Boolean {
         override fun invoke(it: T): Boolean {
             return this@or(it) || that(it)
+        }
+
+        override fun toString(): String {
+            return "($self | $that)"
+        }
+    }
+}
+
+fun (() -> Boolean).or(that: () -> Boolean): () -> Boolean {
+    val self = this
+    return object : () -> Boolean {
+        override fun invoke(): Boolean {
+            return this@or() || that()
         }
 
         override fun toString(): String {
@@ -299,7 +316,7 @@ fun bySuffix(vararg ignoreCase: String): (Nameable) -> Boolean {
 }
 
 fun byId(vararg ids: Int): (Identifiable) -> Boolean {
-    return { it: Identifiable -> ids.contains(it.id) }.withDescription("id[${ids.joinToString(",")}]")
+    return { it: Identifiable -> ids.contains(it.id) }.desc("id[${ids.joinToString(",")}]")
 }
 
 fun byIdIgnoreNote(vararg ids: Int): (Item) -> Boolean {
@@ -319,13 +336,13 @@ fun byIdIgnoreNote(vararg ids: Int): (Item) -> Boolean {
 
 fun byAction(vararg ignoreCase: String): (Interactable) -> Boolean {
     return { interactable: Interactable -> ignoreCase.any { interactable.hasAction(it) } }
-        .withDescription("byAction[${ignoreCase.joinToString(",")}]")
+        .desc("byAction[${ignoreCase.joinToString(",")}]")
 }
 
-fun <T, U> ((T) -> U).withDescription(toString: String): (T) -> U {
+fun <T, U> ((T) -> U).desc(toString: String): (T) -> U {
     return object : (T) -> U {
         override fun invoke(it: T): U {
-            return this@withDescription(it)
+            return this@desc(it)
         }
 
         override fun toString(): String {
@@ -334,10 +351,10 @@ fun <T, U> ((T) -> U).withDescription(toString: String): (T) -> U {
     }
 }
 
-fun <T> (() -> T).withDescription(toString: String): () -> T {
+fun <T> (() -> T).desc(toString: String): () -> T {
     return object : () -> T {
         override fun invoke(): T {
-            return this@withDescription()
+            return this@desc()
         }
 
         override fun toString(): String {

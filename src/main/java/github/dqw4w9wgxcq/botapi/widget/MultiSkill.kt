@@ -1,5 +1,6 @@
 package github.dqw4w9wgxcq.botapi.widget
 
+import github.dqw4w9wgxcq.botapi.commons.RetryableBotException
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
 import github.dqw4w9wgxcq.botapi.input.Keyboard
 
@@ -15,15 +16,14 @@ object MultiSkill {
     }
 
     fun selectAll() {
-        Widgets.get(MULTISKILL_MENU_GROUP_ID, 12).interact("All")
+        if (!isAllSelected()) {
+            Widgets.get(MULTISKILL_MENU_GROUP_ID, 12).interact("All")
+            waitUntil { isAllSelected() }
+        }
     }
 
     fun startMakeAll(id: Int? = null) {
-        if (!isAllSelected()) {
-            selectAll()
-        }
-
-        waitUntil(2000) { isAllSelected() }
+        selectAll()
 
         if (id == null) {
             Dialog.continueSpace()
@@ -31,12 +31,14 @@ object MultiSkill {
         }
 
         for (i in 1..8) {//start at 1 cuz need 2 type
-            if (id == Widgets.get(MULTISKILL_MENU_GROUP_ID, 13 + i).childrenList.last().itemId) {
+            if (id == (Widgets.get(MULTISKILL_MENU_GROUP_ID, 13 + i).childrenList.lastOrNull()?.itemId
+                    ?: throw RetryableBotException("multiskill list empty"))
+            ) {
                 Keyboard.type(i.digitToChar())
                 return
             }
         }
 
-        throw IllegalArgumentException("cant find option with id $id")
+        throw RetryableBotException("cant find option with id $id")
     }
 }

@@ -14,6 +14,7 @@ import net.runelite.client.plugins.PluginManager;
 import net.runelite.client.plugins.antidrag.AntiDragPlugin;
 import net.runelite.client.plugins.config.ConfigPlugin;
 import net.runelite.client.plugins.devtools.DevToolsPlugin;
+import net.runelite.client.plugins.entityhider.EntityHiderConfig;
 import net.runelite.client.plugins.fps.FpsPlugin;
 import net.runelite.client.plugins.gpu.GpuPluginConfig;
 import net.runelite.client.plugins.info.InfoPlugin;
@@ -56,6 +57,7 @@ public class BotApi {
             //XpTrackerPlugin.class,
             LowMemoryPlugin.class,
             FpsPlugin.class
+            //EntityHiderPlugin.class
             //GpuPlugin.class
     ));
 
@@ -67,7 +69,7 @@ public class BotApi {
             new ManagedConfig<>(RuneLiteConfig.GROUP_NAME, "notificationTray", Boolean.class, false),
 
             new ManagedConfig<>("fpscontrol", "limitFps", Boolean.class, true),
-            new ManagedConfig<>("fpscontrol", "maxFps", Integer.class, 30),
+            new ManagedConfig<>("fpscontrol", "maxFps", Integer.class, 25),
 
             new ManagedConfig<>("antiDrag", "onShiftOnly", Boolean.class, false),
 
@@ -75,7 +77,14 @@ public class BotApi {
             new ManagedConfig<>(GpuPluginConfig.GROUP, "useComputeShaders", Boolean.class, false),
             new ManagedConfig<>(GpuPluginConfig.GROUP, "vsyncMode", GpuPluginConfig.SyncMode.class, GpuPluginConfig.SyncMode.OFF),
             new ManagedConfig<>(GpuPluginConfig.GROUP, "unlockFps", Boolean.class, false),
-            new ManagedConfig<>(GpuPluginConfig.GROUP, "fpsTarget", Integer.class, 30)
+            new ManagedConfig<>(GpuPluginConfig.GROUP, "fpsTarget", Integer.class, 30),
+
+            new ManagedConfig<>(EntityHiderConfig.GROUP, "hideNPCs", Boolean.class, true),
+            new ManagedConfig<>(EntityHiderConfig.GROUP, "hidePets", Boolean.class, true),
+            new ManagedConfig<>(EntityHiderConfig.GROUP, "hidePlayers", Boolean.class, true),
+            new ManagedConfig<>(EntityHiderConfig.GROUP, "hideProjectiles", Boolean.class, true),
+            new ManagedConfig<>(EntityHiderConfig.GROUP, "hideLocalPlayer", Boolean.class, true),
+            new ManagedConfig<>(EntityHiderConfig.GROUP, "hideNPCs", Boolean.class, true)
     );
 
     @SneakyThrows

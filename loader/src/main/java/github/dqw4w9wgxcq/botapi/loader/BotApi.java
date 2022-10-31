@@ -18,6 +18,7 @@ import net.runelite.client.plugins.entityhider.EntityHiderConfig;
 import net.runelite.client.plugins.fps.FpsPlugin;
 import net.runelite.client.plugins.gpu.GpuPluginConfig;
 import net.runelite.client.plugins.info.InfoPlugin;
+import net.runelite.client.plugins.loginscreen.LoginScreenPlugin;
 import net.runelite.client.plugins.lowmemory.LowMemoryPlugin;
 import net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperPlugin;
 import net.runelite.client.ui.ClientToolbar;
@@ -56,6 +57,7 @@ public class BotApi {
             InfoPlugin.class,
             //XpTrackerPlugin.class,
             LowMemoryPlugin.class,
+            LoginScreenPlugin.class,
             FpsPlugin.class
             //EntityHiderPlugin.class
             //GpuPlugin.class
@@ -84,7 +86,9 @@ public class BotApi {
             new ManagedConfig<>(EntityHiderConfig.GROUP, "hidePlayers", Boolean.class, true),
             new ManagedConfig<>(EntityHiderConfig.GROUP, "hideProjectiles", Boolean.class, true),
             new ManagedConfig<>(EntityHiderConfig.GROUP, "hideLocalPlayer", Boolean.class, true),
-            new ManagedConfig<>(EntityHiderConfig.GROUP, "hideNPCs", Boolean.class, true)
+            new ManagedConfig<>(EntityHiderConfig.GROUP, "hideNPCs", Boolean.class, true),
+
+            new ManagedConfig<>("loginscreen", "showLoginFire", Boolean.class, false)
     );
 
     @SneakyThrows

@@ -69,7 +69,7 @@ public class BotApi {
             new ManagedConfig<>(RuneLiteConfig.GROUP_NAME, "notificationTray", Boolean.class, false),
 
             new ManagedConfig<>("fpscontrol", "limitFps", Boolean.class, true),
-            new ManagedConfig<>("fpscontrol", "maxFps", Integer.class, 25),
+            new ManagedConfig<>("fpscontrol", "maxFps", Integer.class, 31),
 
             new ManagedConfig<>("antiDrag", "onShiftOnly", Boolean.class, false),
 

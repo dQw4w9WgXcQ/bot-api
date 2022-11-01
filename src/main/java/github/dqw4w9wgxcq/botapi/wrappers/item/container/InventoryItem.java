@@ -1,6 +1,9 @@
 package github.dqw4w9wgxcq.botapi.wrappers.item.container;
 
+import github.dqw4w9wgxcq.botapi.commons.CommonsKt;
+import github.dqw4w9wgxcq.botapi.commons.Wait;
 import github.dqw4w9wgxcq.botapi.interact.Interact;
+import github.dqw4w9wgxcq.botapi.itemcontainer.Inventory;
 import github.dqw4w9wgxcq.botapi.wrappers.Interactable;
 import kotlin.jvm.functions.Function1;
 import org.jetbrains.annotations.NotNull;
@@ -29,7 +32,9 @@ public class InventoryItem extends ContainerItem implements Interactable {
     }
 
     public void drop() {
+        int startCount = Inventory.INSTANCE.count(getId());
         interact("drop");
+        CommonsKt.waitUntil(Wait.defaultTimeout, Wait.defaultPollRate, () -> Inventory.INSTANCE.count(getId()) != startCount);
     }
 
     //Unit cause nosuchmethoderror

@@ -52,12 +52,8 @@ object Teleport {
         if (Dialog.isOpen()) {
             Dialog.chooseOption(optionContainsIgnoreCase)
         } else {
-            WidgetQuery(WidgetID.ADVENTURE_LOG_ID, 3) {
-                it.text.contains(
-                    optionContainsIgnoreCase,
-                    true
-                )
-            }().interact("continue")
+            WidgetQuery(WidgetID.ADVENTURE_LOG_ID, 3) { it.text.contains(optionContainsIgnoreCase, true) }()
+                .interact("continue")
         }
 
         waitTele(TELE_ANIMATION)

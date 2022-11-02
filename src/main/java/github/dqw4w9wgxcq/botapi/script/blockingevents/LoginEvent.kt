@@ -13,6 +13,7 @@ import net.runelite.api.GameState
 import org.jboss.aerogear.security.otp.Totp
 import org.jboss.aerogear.security.otp.api.Clock
 import java.awt.Rectangle
+import kotlin.system.exitProcess
 
 class LoginEvent : BlockingEvent() {
     companion object {
@@ -149,7 +150,12 @@ class LoginEvent : BlockingEvent() {
         val credentials = AccountManager.credentials
 
         if (!Worlds.areWorldsLoaded()) {
-            Worlds.openLobbySelector()
+            try {
+                Worlds.openLobbySelector()
+            } catch (e: Worlds.LobbyLoadWorldsTimedOutException) {
+                info { "load worlds timed out, exiting" }
+                exitProcess(401)//todo 401 is a launcher exit code, cba rn
+            }
         }
 
         if (Worlds.isLobbySelectorOpen()) {

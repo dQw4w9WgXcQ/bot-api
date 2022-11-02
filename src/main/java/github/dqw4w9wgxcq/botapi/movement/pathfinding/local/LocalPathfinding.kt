@@ -208,23 +208,24 @@ object LocalPathfinding {
     ): List<Point>? {
         val map = map//ensure the map doesn't change between reachable and finding path
 
-        //if we are standing on a blocked tile(this is observed when just teleproted to fairy ring)
         if (map.flags[from.x][from.y] and CollisionDataFlag.BLOCK_MOVEMENT_FULL != 0) {
-            info { "we are standing on a blocked tile" }
-            val adjacentEdges = map.graph[from.x][from.y].adjacentEdges
-
-            if (adjacentEdges.isEmpty()) {
-                throw Exception("should never happen, we are on standing on blocked and all adjacent r blocked ${Players.local().worldLocation}")
-            }
-
-            return adjacentEdges.mapNotNull {
-                val adjacentFrom = Point(from.x + dx(it.direction), from.y + dy(it.direction))
-                if (!map.canReach(to, adjacentFrom, ignoreEndObject)) {
-                    null
-                } else {
-                    findPathIgnoreReachable(to, adjacentFrom, ignoreEndObject, map)
-                }
-            }.minByOrNull { it.size }
+            throw RetryableBotException("standing on BLOCK_MOVEMENT_FULL, $from ${from.toWorld()}")
+            //if we are standing on a blocked tile(this is observed when just teleproted to fairy ring)
+//            info { "we are standing on a blocked tile" }
+//            val adjacentEdges = map.graph[from.x][from.y].adjacentEdges
+//
+//            if (adjacentEdges.isEmpty()) {
+//                throw Exception("should never happen, we are on standing on blocked and all adjacent are blocked ${Players.local().worldLocation}")
+//            }
+//
+//            return adjacentEdges.mapNotNull {
+//                val adjacentFrom = Point(from.x + dx(it.direction), from.y + dy(it.direction))
+//                if (!map.canReach(to, adjacentFrom, ignoreEndObject)) {
+//                    null
+//                } else {
+//                    findPathIgnoreReachable(to, adjacentFrom, ignoreEndObject, map)
+//                }
+//            }.minByOrNull { it.size }
         }
 
         if (!map.canReach(to, from, ignoreEndObject)) {
@@ -312,13 +313,11 @@ object LocalPathfinding {
 
         if (ignoreEndObject) {
             for (direction in 0..6 step 2) {
-                if (flags.canTravelInDirection(
-                        to.x,
-                        to.y,
-                        direction
-                    ) && zoneId == graph[to.x + dx(direction)][to.y + dy(direction)].zone
+                if (
+                    flags.canTravelInDirection(to.x, to.y, direction)
+                    && zoneId == graph[to.x + dx(direction)][to.y + dy(direction)].zone
                 ) {
-                    debug { "ignoring end blocked direction: $direction" }
+                    debug { "ignoring end blocked, direction:$direction" }
                     return true
                 }
             }

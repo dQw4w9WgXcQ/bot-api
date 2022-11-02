@@ -2,6 +2,7 @@ package github.dqw4w9wgxcq.botapi.tabs
 
 import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.debug
+import github.dqw4w9wgxcq.botapi.commons.info
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
 import github.dqw4w9wgxcq.botapi.grandexchange.GrandExchange
 import github.dqw4w9wgxcq.botapi.input.Keyboard
@@ -45,6 +46,12 @@ object Tabs {
     val logoutWq = WidgetQuery(WidgetID.LOGOUT_PANEL_ID) { it.hasAction("logout") }
     val worldSwitcherLogoutWq = WidgetQuery(WidgetID.WORLD_SWITCHER_GROUP_ID) { it.hasAction("logout") }
     fun logout(checkCloseInterfaces: Boolean = true) {
+        if (Client.isResized) {
+            info { "logging out resizable" }
+            waitUntil(6 * 60_000) { Client.gameState == GameState.LOGIN_SCREEN }
+            return
+        }
+
         if (checkCloseInterfaces) {
             Bank.close()
             GrandExchange.close()

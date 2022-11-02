@@ -1,6 +1,7 @@
 package github.dqw4w9wgxcq.botapi.wrappers.entity.tile.item;
 
 import github.dqw4w9wgxcq.botapi.commons.CommonsKt;
+import github.dqw4w9wgxcq.botapi.commons.Wait;
 import github.dqw4w9wgxcq.botapi.itemcontainer.Inventory;
 import github.dqw4w9wgxcq.botapi.wrappers.entity.tile.TileEntity;
 import github.dqw4w9wgxcq.botapi.wrappers.item.Item;
@@ -30,7 +31,14 @@ public final class TileItem extends Item implements TileEntity, net.runelite.api
     public void take() {
         int count = Inventory.INSTANCE.count(getId());
         interact("Take");
-        CommonsKt.waitUntil(3000, 50, () -> Inventory.INSTANCE.count(getId()) != count);
+        CommonsKt.waitUntil(
+                Wait.defaultTimeout,
+                Wait.defaultPollRate,
+                CommonsKt.desc(
+                        () -> Inventory.INSTANCE.count(getId()) != count,
+                        "took tile item (inventory count changed)"
+                )
+        );
     }
 
     @Override

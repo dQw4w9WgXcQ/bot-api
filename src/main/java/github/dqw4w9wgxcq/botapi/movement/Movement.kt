@@ -115,7 +115,7 @@ object Movement {
             throw RetryableBotException("not reachable to:$to ${to.toWorld()} from:$myPoint ${myPoint.toWorld()}")
         }
 
-        val path = LocalPathfinding.findPathIgnoreReachable(to, myPoint, ignoreEndObject, map)
+        val path = LocalPathfinding.findPathSkipReachableCheck(to, myPoint, ignoreEndObject, map)
 
         debug { "path size:${path.size}" }
 

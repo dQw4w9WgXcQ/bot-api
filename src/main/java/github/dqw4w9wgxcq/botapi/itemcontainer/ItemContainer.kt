@@ -12,13 +12,13 @@ import net.runelite.api.Item
 import net.runelite.api.ItemContainer
 import kotlin.random.Random
 
-abstract class ItemContainer<I : ContainerItem>(private val inventoryId: InventoryID) {
+abstract class ItemContainer<I : ContainerItem>(private val inventory: InventoryID) {
     protected abstract fun wrap(item: Item, index: Int): I
 
     open fun all(): List<I> {
         return onGameThread {
             val out: MutableList<I> = ArrayList()
-            val itemContainer: ItemContainer = Client.getItemContainer(inventoryId) ?: return@onGameThread emptyList()
+            val itemContainer: ItemContainer = Client.getItemContainer(inventory) ?: return@onGameThread emptyList()
             val rlItems = itemContainer.items
             for (i in rlItems.indices) {
                 val item = rlItems[i]
@@ -53,7 +53,7 @@ abstract class ItemContainer<I : ContainerItem>(private val inventoryId: Invento
     }
 
     fun get(matches: (I) -> Boolean): I {
-        return getOrNull(matches) ?: throw NotFoundException("No item found matching $matches in $inventoryId")
+        return getOrNull(matches) ?: throw NotFoundException("No item found matching $matches in $inventory")
     }
 
     fun get(vararg ids: Int): I {
@@ -82,12 +82,12 @@ abstract class ItemContainer<I : ContainerItem>(private val inventoryId: Invento
     }
 
     fun atIndex(index: Int): I {
-        return atIndexOrNull(index) ?: throw NotFoundException("not found at index $index in $inventoryId")
+        return atIndexOrNull(index) ?: throw NotFoundException("not found at index $index in $inventory")
     }
 
     fun atIndexOrNull(index: Int): I? {
         return onGameThread {
-            val itemContainer: ItemContainer = Client.getItemContainer(inventoryId) ?: return@onGameThread null
+            val itemContainer: ItemContainer = Client.getItemContainer(inventory) ?: return@onGameThread null
 
             val items = itemContainer.items
 
@@ -119,7 +119,7 @@ abstract class ItemContainer<I : ContainerItem>(private val inventoryId: Invento
     }
 
     fun first(matches: (I) -> Boolean): I {
-        return firstOrNull(matches) ?: throw NotFoundException("nothing matched $matches in $inventoryId")
+        return firstOrNull(matches) ?: throw NotFoundException("nothing matched $matches in $inventory")
     }
 
     fun first(vararg ids: Int): I {
@@ -144,7 +144,7 @@ abstract class ItemContainer<I : ContainerItem>(private val inventoryId: Invento
 
     fun distinctCount(): Int {
         return onGameThread {
-            val container = Client.getItemContainer(inventoryId) ?: return@onGameThread 0
+            val container = Client.getItemContainer(inventory) ?: return@onGameThread 0
             container.items.count { it.id != -1 }
         }
     }

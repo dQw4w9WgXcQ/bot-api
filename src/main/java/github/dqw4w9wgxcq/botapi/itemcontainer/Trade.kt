@@ -2,6 +2,7 @@ package github.dqw4w9wgxcq.botapi.itemcontainer
 
 import github.dqw4w9wgxcq.botapi.commons.RetryableBotException
 import github.dqw4w9wgxcq.botapi.commons.byContains
+import github.dqw4w9wgxcq.botapi.commons.desc
 import github.dqw4w9wgxcq.botapi.widget.Dialog
 import github.dqw4w9wgxcq.botapi.widget.Widgets
 import github.dqw4w9wgxcq.botapi.wrappers.item.container.TradeItem
@@ -42,7 +43,7 @@ object Trade : ItemContainer<TradeItem>(InventoryID.TRADE) {
         val tradeInv = Widgets.get(WidgetID.PLAYER_TRADE_INVENTORY_GROUP_ID, 0)
         for (item in tradeInv.childrenList) {
             if (item.itemId == itemId) {
-                item.interact("offer-all")
+                item.interact({ it: String -> it.startsWith("Offer-All") }.desc("offer all thing"))
                 return
             }
         }

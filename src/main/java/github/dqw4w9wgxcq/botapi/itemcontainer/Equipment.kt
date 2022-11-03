@@ -71,7 +71,7 @@ object Equipment : ItemContainer<EquipmentItem>(InventoryID.EQUIPMENT) {
         interact(slot) { it.contains(actionIgnoreCase, true) }
     }
 
-    fun remove(slot: EquipmentInventorySlot, waitFor: Boolean = true) {
+    fun unequip(slot: EquipmentInventorySlot, waitFor: Boolean = true) {
         interact(slot, "Remove")
         if (waitFor) {
             waitUntil { inSlotOrNull(slot) == null }

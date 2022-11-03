@@ -186,22 +186,6 @@ object LocalPathfinding {
     class GridEdge(val direction: Int)
 
     fun findPath(
-        to: WorldPoint,
-        from: WorldPoint,
-        ignoreEndObject: Boolean,
-    ): List<Point>? {
-        return findPath(to.toScene(), from.toScene(), ignoreEndObject)
-    }
-
-    fun findPath(
-        to: Locatable,
-        from: Locatable,
-        ignoreEndObject: Boolean,
-    ): List<Point>? {
-        return findPath(to.sceneLocation, from.sceneLocation, ignoreEndObject)
-    }
-
-    fun findPath(
         to: Point,
         from: Point,
         ignoreEndObject: Boolean,
@@ -209,8 +193,8 @@ object LocalPathfinding {
         val map = map//ensure the map doesn't change between reachable and finding path
 
         if (map.flags[from.x][from.y] and CollisionDataFlag.BLOCK_MOVEMENT_FULL != 0) {
-            throw RetryableBotException("standing on BLOCK_MOVEMENT_FULL, $from ${from.toWorld()}")
-            //if we are standing on a blocked tile(this is observed when just teleproted to fairy ring)
+            throw RetryableBotException("standing on BLOCK_MOVEMENT_FULL, ${from.toWorld()} $from")
+            //fairy ring issue(we spawn on blocked tile)
 //            info { "we are standing on a blocked tile" }
 //            val adjacentEdges = map.graph[from.x][from.y].adjacentEdges
 //
@@ -232,10 +216,15 @@ object LocalPathfinding {
             return null
         }
 
-        return findPathIgnoreReachable(to, from, ignoreEndObject, map)
+        return findPathSkipReachableCheck(to, from, ignoreEndObject, map)
     }
 
-    internal fun findPathIgnoreReachable(to: Point, from: Point, ignoreEndObject: Boolean, map: GridMap): List<Point> {
+    internal fun findPathSkipReachableCheck(
+        to: Point,
+        from: Point,
+        ignoreEndObject: Boolean,
+        map: GridMap
+    ): List<Point> {
         debug { "to $to from $from" }
 
         val frontier = mutableListOf(from)
@@ -252,18 +241,12 @@ object LocalPathfinding {
         val startTime = System.currentTimeMillis()
         while (frontier.isNotEmpty()) {
             val curr = frontier.removeFirst()
-            //debug { "curr $curr" }
-
             if (curr == to || (ignoreEndObject && adjacentToEnd.contains(curr) && map.flags[to.x][to.y] and CollisionDataFlag.BLOCK_MOVEMENT_FULL != 0)) {
-                val foundPathTime = System.currentTimeMillis()
-                debug { "found path in ${foundPathTime - startTime}ms" }
-                val backtrackStartTime = System.currentTimeMillis()
+                debug { "found path in ${System.currentTimeMillis() - startTime}ms" }
                 val backtrack = mutableListOf(curr)
                 while (backtrack.last() != from) {
                     backtrack.add(seenFrom[backtrack.last()]!!)
                 }
-                val backtrackTime = System.currentTimeMillis()
-                debug { "backtracked  ${backtrackTime - backtrackStartTime}ms" }
                 return backtrack.reversed()
             }
 
@@ -281,7 +264,7 @@ object LocalPathfinding {
             }
         }
 
-        throw Exception("cant find path from $from to $to")
+        throw Exception("cant find path from from $from to $to.  (from ${from.toWorld()} to ${to.toWorld()}")
     }
 
     fun canReach(to: WorldPoint, ignoreEndObject: Boolean = true): Boolean {

@@ -9,6 +9,8 @@ import github.dqw4w9wgxcq.botapi.wrappers.Identifiable
 import github.dqw4w9wgxcq.botapi.wrappers.Interactable
 import github.dqw4w9wgxcq.botapi.wrappers.Locatable
 import github.dqw4w9wgxcq.botapi.wrappers.Nameable
+import github.dqw4w9wgxcq.botapi.wrappers.entity.actor.NPC
+import github.dqw4w9wgxcq.botapi.wrappers.entity.tile.`object`.TileObject
 import github.dqw4w9wgxcq.botapi.wrappers.item.Item
 import net.runelite.api.Constants
 import net.runelite.api.Point
@@ -315,8 +317,52 @@ fun bySuffix(vararg ignoreCase: String): (Nameable) -> Boolean {
     }
 }
 
+private enum class IdentifiableTypes {
+    ITEM, NPC, OBJECT, UNKNOWN
+}
+
 fun byId(vararg ids: Int): (Identifiable) -> Boolean {
-    return { it: Identifiable -> ids.contains(it.id) }.desc("id[${ids.joinToString(",")}]")
+    return object : (Identifiable) -> Boolean {
+        var typeWas: IdentifiableTypes? = null
+        override fun invoke(it: Identifiable): Boolean {
+            if (typeWas == null) {
+                typeWas = when (it) {
+                    is Item -> IdentifiableTypes.ITEM
+                    is NPC -> IdentifiableTypes.NPC
+                    is TileObject<*> -> IdentifiableTypes.OBJECT
+                    else -> IdentifiableTypes.UNKNOWN
+                }
+            }
+            return ids.contains(it.id)
+        }
+
+        override fun toString(): String {
+            var label = "id"
+            val s = if (typeWas != null && typeWas != IdentifiableTypes.UNKNOWN) {
+                val nameMapper = when (typeWas) {
+                    IdentifiableTypes.ITEM -> {
+                        { it: Int -> Client.getItemDefinition(it).name }
+                    }
+
+                    IdentifiableTypes.NPC -> {
+                        { it: Int -> Client.getNpcDefinition(it).name }
+                    }
+
+                    IdentifiableTypes.OBJECT -> {
+                        { it: Int -> Client.getObjectDefinition(it).name }
+                    }
+
+                    else -> throw IllegalStateException("fuck")
+                }
+                label = typeWas!!.name.lowercase()
+                ids.joinToString { "$it:${nameMapper(it)}" }
+            } else {
+                ids.joinToString()
+            }
+            return "$label[$s]"
+        }
+    }
+    //return { it: Identifiable -> ids.contains(it.id) }.desc("id[${ids.joinToString(",")}]")
 }
 
 fun byIdIgnoreNote(vararg ids: Int): (Item) -> Boolean {
@@ -375,7 +421,7 @@ open class RetryableBotException(
     }
 }
 
-//trace doesn't get logged at INFO level
+//doesn't get logged at INFO level
 open class SilentBotException(message: String) : RetryableBotException(message)
 
 open class NotFoundException(message: String) : RetryableBotException(message)
@@ -386,3 +432,5 @@ class WaitTimeoutException(
     supply: () -> Any?,
     condition: (Any?) -> Boolean,
 ) : RetryableBotException("timeout:$timeout pollRate:$pollRate condition:$condition supply:$supply", retries = 10)
+
+class FatalBotException(message: String) : IllegalStateException()

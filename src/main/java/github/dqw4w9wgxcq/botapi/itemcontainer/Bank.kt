@@ -62,7 +62,7 @@ object Bank : ItemContainer<BankItem>(InventoryID.BANK) {
 
     fun getTileObject(): TileObject<*>? {
         return TileObjects.closestOrNull {
-            LocalPathfinding.canReach(it)
+            LocalPathfinding.canReach(it, ignoreEndObject = true)
                     && (it.hasAction("Bank") || (it.hasAction("Use") && it.name.contains("bank", true)))
         }
     }

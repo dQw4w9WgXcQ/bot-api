@@ -12,7 +12,7 @@ import github.dqw4w9wgxcq.botapi.tabs.magic.Spell
 import github.dqw4w9wgxcq.botapi.widget.Dialog
 import github.dqw4w9wgxcq.botapi.widget.WidgetQuery
 import github.dqw4w9wgxcq.botapi.widget.Widgets
-import github.dqw4w9wgxcq.botapi.wrappers.item.container.InventoryItem
+import github.dqw4w9wgxcq.botapi.wrappers.item.container.ContainerItem
 import net.runelite.api.AnimationID
 import net.runelite.api.EquipmentInventorySlot
 import net.runelite.api.coords.WorldPoint
@@ -45,15 +45,22 @@ object Teleport {
         waitTele(TELE_ANIMATION)
     }
 
-    fun jewellery(matches: (InventoryItem) -> Boolean, optionContainsIgnoreCase: String) {
-        Inventory.get(matches).interact("rub")
-        waitUntil { Dialog.hasOption(optionContainsIgnoreCase) || Widgets.getOrNull(187, 3) != null }
-
-        if (Dialog.isOpen()) {
-            Dialog.chooseOption(optionContainsIgnoreCase)
+    fun jewellery(matches: (ContainerItem) -> Boolean, optionContainsIgnoreCase: String) {
+        val equip = Equipment.getOrNull(matches)
+        if (equip != null) {
+            Equipment.interact(equip.slot, optionContainsIgnoreCase)
         } else {
-            WidgetQuery(WidgetID.ADVENTURE_LOG_ID, 3) { it.text.contains(optionContainsIgnoreCase, true) }()
-                .interact("continue")
+            Inventory.get(matches).interact("rub")
+            waitUntil {
+                Dialog.hasOption(optionContainsIgnoreCase) || Widgets.getOrNull(WidgetID.ADVENTURE_LOG_ID, 3) != null
+            }
+
+            if (Dialog.isOpen()) {
+                Dialog.chooseOption(optionContainsIgnoreCase)
+            } else {
+                WidgetQuery(WidgetID.ADVENTURE_LOG_ID, 3) { it.text.contains(optionContainsIgnoreCase, true) }()
+                    .interact("continue")
+            }
         }
 
         waitTele(TELE_ANIMATION)

@@ -105,7 +105,7 @@ abstract class BotScript : IBotScript {
                     }
 
                     nextLoopDelay = when {
-                        e is RetryableBotException && failCount < e.retries -> {
+                        e is RetryException && failCount < e.retries -> {
                             if (failCount < 2) {
                                 1000
                             } else {
@@ -129,13 +129,13 @@ abstract class BotScript : IBotScript {
                     }
 
                     if (failCount == 0) {
-                        if (e is SilentBotException) {
+                        if (e is SilentException) {
                             Log.log(Level.DEBUG, e) { "exception in loop" }
                         } else {
                             warn(e) { "exception in loop" }
                         }
                     } else {
-                        if (e is SilentBotException) {
+                        if (e is SilentException) {
                             debug { "$failCount fails, $e" }
                         } else {
                             info { "$failCount fails, $e" }

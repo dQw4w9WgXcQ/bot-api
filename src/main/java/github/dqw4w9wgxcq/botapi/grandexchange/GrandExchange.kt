@@ -52,7 +52,7 @@ object GrandExchange {
             }
 
             else -> {
-                throw RetryableBotException("widget broke i think weird text: $text")
+                throw RetryException("widget broke i think weird text: $text")
             }
         }
     }
@@ -66,7 +66,7 @@ object GrandExchange {
         }
 
         val itemDefinition = Client.getItemDefinition(id)
-        if (!itemDefinition.isTradeable) throw RetryableBotException("not tradeable $id itemdef id:${itemDefinition.id} name:${itemDefinition.name}")
+        if (!itemDefinition.isTradeable) throw RetryException("not tradeable $id itemdef id:${itemDefinition.id} name:${itemDefinition.name}")
         var name = itemDefinition.name.lowercase()
 
         //cant use removesuffix because may b in mid of word
@@ -96,7 +96,7 @@ object GrandExchange {
         val searchText = Client.getVarcStrValue(VarClientStr.INPUT_TEXT).trim()
         if (searchText.isNotEmpty()) {
             Keyboard.backspace(searchText.length)
-            throw RetryableBotException("search text not empty $$searchText")
+            throw RetryException("search text not empty $$searchText")
         }
 
         Keyboard.type(name)
@@ -135,7 +135,7 @@ object GrandExchange {
         }
 
         if (view() == View.BUYING && price * offerQuantity() > Inventory.count(ItemID.COINS_995)) {
-            throw RetryableBotException("not enough coins")
+            throw RetryException("not enough coins")
         }
 
         enterPriceWidget().interact("Enter price")
@@ -170,7 +170,7 @@ object GrandExchange {
             }
 
             else -> {
-                throw RetryableBotException("view is $view in enterQuantity")
+                throw RetryException("view is $view in enterQuantity")
             }
         }
 
@@ -213,10 +213,10 @@ object GrandExchange {
     private val notNumberRegex = "\\D".toRegex()
     fun guidePrice(): Int {
         val text = Widgets.get(WidgetID.GRAND_EXCHANGE_GROUP_ID, 27).text
-            ?: throw RetryableBotException("no guide price text")
+            ?: throw RetryException("no guide price text")
         val priceStr = text.replace(notNumberRegex, "")
         if (priceStr.isEmpty()) {
-            throw RetryableBotException("cant parse guide price, text:$text")
+            throw RetryException("cant parse guide price, text:$text")
         }
 
         return priceStr.toInt()
@@ -250,7 +250,7 @@ object GrandExchange {
                 return
             }
         }
-        throw RetryableBotException("no free slot")
+        throw RetryException("no free slot")
     }
 
     val offers: List<GrandExchangeOffer>

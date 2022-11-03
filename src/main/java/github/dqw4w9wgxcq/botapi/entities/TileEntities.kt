@@ -21,13 +21,13 @@ abstract class TileEntities<T : TileEntity> : SceneEntities<T>() {
 
     fun at(scene: Point, matches: (T) -> Boolean): List<T> {
         if (!scene.isInTrimmedScene()) {
-            throw RetryableBotException("scenePoint $scene not in trimmed scene")
+            throw RetryException("scenePoint $scene not in trimmed scene")
         }
 
         return onGameThread {
             extractFromUnsafe(
                 Client.scene.tiles[Client.plane][scene.x][scene.y]
-                    ?: throw RetryableBotException("Client.scene.tiles[Client.plane][scene.x][scene.y] is null")
+                    ?: throw RetryException("Client.scene.tiles[Client.plane][scene.x][scene.y] is null")
             )
         }
             .filter(matches)
@@ -36,7 +36,7 @@ abstract class TileEntities<T : TileEntity> : SceneEntities<T>() {
 
     fun firstAtOrNull(worldPoint: WorldPoint, matches: (T) -> Boolean): T? {
         val localPoint = LocalPoint.fromWorld(Client, worldPoint.x, worldPoint.y)
-            ?: throw RetryableBotException("tryna get from a point $worldPoint outside the scene base: ${Client.baseX}, ${Client.baseY}")
+            ?: throw RetryException("tryna get from a point $worldPoint outside the scene base: ${Client.baseX}, ${Client.baseY}")
         return firstAtOrNull(Point(localPoint.sceneX, localPoint.sceneY), matches)
     }
 

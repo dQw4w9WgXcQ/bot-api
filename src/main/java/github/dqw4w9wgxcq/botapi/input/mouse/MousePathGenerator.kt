@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.input.mouse
 
-import github.dqw4w9wgxcq.botapi.commons.RetryableBotException
+import github.dqw4w9wgxcq.botapi.commons.RetryException
 import github.dqw4w9wgxcq.botapi.commons.debug
 import github.dqw4w9wgxcq.botapi.commons.info
 import github.dqw4w9wgxcq.botapi.loader.BotApi
@@ -74,7 +74,7 @@ class MousePathGenerator {
             var prevY = 0
             for (point in points) {
                 if (abs(abs(prevX) - abs(point.x)) > dx || abs(abs(prevY) - abs(point.y)) > dy) {
-                    throw RetryableBotException("path id: ${path.id} big mouse move detected $prevX, ${point.x}, $prevY, ${point.y}")
+                    throw RetryException("path id: ${path.id} big mouse move detected $prevX, ${point.x}, $prevY, ${point.y}")
                 }
 
                 prevX = point.x

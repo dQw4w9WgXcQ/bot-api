@@ -20,7 +20,7 @@ import net.runelite.api.widgets.WidgetID
 import net.runelite.api.widgets.WidgetInfo
 
 object Bank : ItemContainer<BankItem>(InventoryID.BANK) {
-    class NotInBankException(matches: (BankItem) -> Boolean) : RetryableBotException("$matches")
+    class NotInBankException(matches: (BankItem) -> Boolean) : RetryException("$matches")
 
     private enum class TransactAction(val suffix: String?) {
         ONE("1"), FIVE("5"), TEN("10"), X("X"), SAVED_X(null), ALL("All"), ALL_BUT_ONE("All-but-one");
@@ -33,7 +33,7 @@ object Bank : ItemContainer<BankItem>(InventoryID.BANK) {
     override fun all(): List<BankItem> {
         return onGameThread {
             if (!isOpen()) {
-                throw RetryableBotException("bank isnt open")
+                throw RetryException("bank isnt open")
             }
 
             super.all()
@@ -75,7 +75,7 @@ object Bank : ItemContainer<BankItem>(InventoryID.BANK) {
 
         val bankObject = getTileObject() ?: throw NotFoundException("no bank tile object found")
         if (!bankObject.interact { it == "Use" || it == "Bank" }) {
-            throw RetryableBotException("a door or something opening bank")
+            throw RetryException("a door or something opening bank")
         }
 
         if (waitFor) {

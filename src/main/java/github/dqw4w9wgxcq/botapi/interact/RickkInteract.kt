@@ -74,7 +74,7 @@ class RickkInteract : InteractDriver {
             val newBaseX = Client.baseX
             val newBaseY = Client.baseY
             if (baseX != newBaseX || baseY != newBaseY) {
-                throw RetryableBotException("base changed $baseX,$baseY to $newBaseX,$newBaseY")
+                throw RetryException("base changed $baseX,$baseY to $newBaseX,$newBaseY")
             }
             Refl.Scene_selectedX.setInt2(null, scenePosition.x, 1)
             Refl.Scene_selectedY.setInt2(null, scenePosition.y, 1)
@@ -86,7 +86,7 @@ class RickkInteract : InteractDriver {
         Tabs.open(Tab.INVENTORY)
         val invIndex = invItem.index
         val widget = Widgets.get(WidgetInfo.INVENTORY).children?.get(invIndex)
-            ?: throw RetryableBotException("widgetitem at index $invIndex is null")
+            ?: throw RetryException("widgetitem at index $invIndex is null")
         val bounds = widget.bounds
 
         withDestination(
@@ -184,7 +184,7 @@ class RickkInteract : InteractDriver {
 
         val successful = Mouse.actionManager.submit(InteractMouseAction(destination, entryMatches)).get()
         if (!successful) {
-            throw RetryableBotException("the interaction was unsuccessful")
+            throw RetryException("the interaction was unsuccessful")
         }
     }
 
@@ -264,7 +264,7 @@ class RickkInteract : InteractDriver {
                 val indexAfterOpen = getMenuEntries().indexOfFirst { entryMatches(it) }
                 if (indexAfterOpen == -1) {
                     BotScript.nextLoopDelay = 100
-                    throw RetryableBotException("no entry matched $entryMatches after menu opened")
+                    throw RetryException("no entry matched $entryMatches after menu opened")
                 }
 
                 val menuX = Client.menuX
@@ -294,7 +294,7 @@ class RickkInteract : InteractDriver {
                 if (indexAfterMove != indexAfterOpen) {
                     if (indexAfterMove == -1) {
                         BotScript.nextLoopDelay = 100
-                        throw RetryableBotException("indexAfterMove is -1")
+                        throw RetryException("indexAfterMove is -1")
                     }
 
                     warn { "index after move $indexAfterMove != index $indexAfterOpen, moving again" }

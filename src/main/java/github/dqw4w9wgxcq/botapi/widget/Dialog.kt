@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.widget
 
-import github.dqw4w9wgxcq.botapi.commons.RetryableBotException
+import github.dqw4w9wgxcq.botapi.commons.RetryException
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
 import github.dqw4w9wgxcq.botapi.input.Keyboard
 import github.dqw4w9wgxcq.botapi.wrappers.Widget
@@ -121,7 +121,7 @@ object Dialog {
             }
         }
 
-        throw RetryableBotException(
+        throw RetryException(
             "no option matched(${optionContainsIgnoreCase.joinToString()}n) \n\"${
                 options().joinToString(
                     ","
@@ -142,7 +142,7 @@ object Dialog {
 
     fun processDialog(vararg optionsContainsIgnoreCase: String) {
         if (!isOpen()) {
-            throw RetryableBotException("dialog not open")
+            throw RetryException("dialog not open")
         }
 
         if (viewingChatOptions()) {

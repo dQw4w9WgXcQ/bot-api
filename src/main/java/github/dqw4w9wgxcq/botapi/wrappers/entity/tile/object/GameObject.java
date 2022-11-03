@@ -2,7 +2,7 @@ package github.dqw4w9wgxcq.botapi.wrappers.entity.tile.object;
 
 import github.dqw4w9wgxcq.botapi.Client;
 import github.dqw4w9wgxcq.botapi.commons.CommonsKt;
-import github.dqw4w9wgxcq.botapi.commons.RetryableBotException;
+import github.dqw4w9wgxcq.botapi.commons.RetryException;
 import github.dqw4w9wgxcq.botapi.entities.Players;
 import github.dqw4w9wgxcq.botapi.movement.Movement;
 import github.dqw4w9wgxcq.botapi.movement.pathfinding.local.LocalPathfinding;
@@ -43,7 +43,7 @@ public final class GameObject extends TileObject<net.runelite.api.GameObject> im
         }
 
         if (best == null) {
-            throw new RetryableBotException("game object not reachable " + getName() + " " + getId() + " " + getSceneMinLocation() + " " + sizeX() + " " + sizeY());
+            throw new RetryException("game object not reachable " + getName() + " " + getId() + " " + getSceneMinLocation() + " " + sizeX() + " " + sizeY());
         }
 
         if (!Movement.INSTANCE.checkDoor(best, true)) {

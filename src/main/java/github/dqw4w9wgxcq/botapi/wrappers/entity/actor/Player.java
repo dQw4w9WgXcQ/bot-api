@@ -2,7 +2,7 @@ package github.dqw4w9wgxcq.botapi.wrappers.entity.actor;
 
 import github.dqw4w9wgxcq.botapi.Client;
 import github.dqw4w9wgxcq.botapi.commons.NotFoundException;
-import github.dqw4w9wgxcq.botapi.commons.RetryableBotException;
+import github.dqw4w9wgxcq.botapi.commons.RetryException;
 import github.dqw4w9wgxcq.botapi.wrappers.Locatable;
 import kotlin.jvm.functions.Function1;
 import lombok.experimental.Delegate;
@@ -78,6 +78,6 @@ public class Player extends Actor<net.runelite.api.Player> implements net.runeli
             }
         }
 
-        throw new RetryableBotException("player wasn't in the players array");
+        throw new RetryException("player wasn't in the players array");
     }
 }

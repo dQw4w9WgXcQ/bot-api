@@ -1,7 +1,7 @@
 package github.dqw4w9wgxcq.botapi.input.mouse
 
 import github.dqw4w9wgxcq.botapi.Client
-import github.dqw4w9wgxcq.botapi.commons.RetryableBotException
+import github.dqw4w9wgxcq.botapi.commons.RetryException
 import github.dqw4w9wgxcq.botapi.commons.toAwt
 import github.dqw4w9wgxcq.botapi.commons.wait
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
@@ -56,6 +56,6 @@ object Mouse {
             wait(1, 200)
         }
 
-        throw RetryableBotException("after maxRotations $maxRotations condition $condition not met")
+        throw RetryException("after maxRotations $maxRotations condition $condition not met")
     }
 }

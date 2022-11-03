@@ -15,7 +15,7 @@ import net.runelite.api.WorldType
 import net.runelite.api.widgets.WidgetInfo
 
 object Worlds {
-    class LobbyLoadWorldsTimedOutException : RetryableBotException("load worlds in lobby timed out")
+    class LobbyLoadWorldsTimedOutException : RetryException("load worlds in lobby timed out")
 
     const val LOCATION_US = 0
     const val LOCATION_UK = 1
@@ -69,7 +69,7 @@ object Worlds {
     }
 
     fun all(matches: (World) -> Boolean): List<World> {
-        return Client.worldList?.filter(matches) ?: throw RetryableBotException("worlds not loaded")
+        return Client.worldList?.filter(matches) ?: throw RetryException("worlds not loaded")
     }
 
     fun areWorldsLoaded(): Boolean {
@@ -77,7 +77,7 @@ object Worlds {
     }
 
     private fun get(id: Int): World {
-        return all { it.id == id }.firstOrNull() ?: throw RetryableBotException("no world found $id")
+        return all { it.id == id }.firstOrNull() ?: throw RetryException("no world found $id")
     }
 
     fun isLobbySelectorOpen(): Boolean {
@@ -100,7 +100,7 @@ object Worlds {
     }
 
     private fun getBest(matches: (World) -> Boolean, selector: (World) -> Double): World {
-        return all(matches).minByOrNull(selector) ?: throw RetryableBotException("no world matched")
+        return all(matches).minByOrNull(selector) ?: throw RetryException("no world matched")
     }
 
     fun getRandom(matches: (World) -> Boolean): World {

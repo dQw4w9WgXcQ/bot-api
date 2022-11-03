@@ -39,13 +39,13 @@ object Movement {
     fun walk(to: WorldPoint) {
         val plane = Client.plane
         if (to.plane != plane) {
-            throw RetryableBotException("to.plane:${to.plane} != plane:$plane")
+            throw RetryException("to.plane:${to.plane} != plane:$plane")
         }
 
         val scenePoint = to.toScene()
         if (!scenePoint.isInTrimmedScene()) {
             //todo walk to closest tile in scene
-            throw RetryableBotException("$to not in trimmed scene")
+            throw RetryException("$to not in trimmed scene")
         }
 
         walk(scenePoint)
@@ -112,7 +112,7 @@ object Movement {
         val myPoint = Players.local().sceneLocation
 
         if (!map.canReach(to, myPoint, ignoreEndObject)) {
-            throw RetryableBotException("not reachable to:$to ${to.toWorld()} from:$myPoint ${myPoint.toWorld()}")
+            throw RetryException("not reachable to:$to ${to.toWorld()} from:$myPoint ${myPoint.toWorld()}")
         }
 
         val path = LocalPathfinding.findPathSkipReachableCheck(to, myPoint, ignoreEndObject, map)
@@ -151,7 +151,7 @@ object Movement {
                     warn { "flags are actually equal, can happen if the tiles changed then changed back?" }
                 }
 
-                throw RetryableBotException("blocked but theres no door, can happen if map changed.  should never happen if current flags are passed")
+                throw RetryException("blocked but theres no door, can happen if map changed.  should never happen if current flags are passed")
             }
 
             //the game doesn't load door state beyond ~30 tiles? idk how it works exactly

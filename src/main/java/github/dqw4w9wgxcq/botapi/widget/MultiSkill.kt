@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.widget
 
-import github.dqw4w9wgxcq.botapi.commons.RetryableBotException
+import github.dqw4w9wgxcq.botapi.commons.RetryException
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
 import github.dqw4w9wgxcq.botapi.input.Keyboard
 
@@ -32,13 +32,13 @@ object MultiSkill {
 
         for (i in 1..8) {//start at 1 cuz need 2 type
             if (id == (Widgets.get(MULTISKILL_MENU_GROUP_ID, 13 + i).childrenList.lastOrNull()?.itemId
-                    ?: throw RetryableBotException("multiskill list empty"))
+                    ?: throw RetryException("multiskill list empty"))
             ) {
                 Keyboard.type(i.digitToChar())
                 return
             }
         }
 
-        throw RetryableBotException("cant find option with id $id")
+        throw RetryException("cant find option with id $id")
     }
 }

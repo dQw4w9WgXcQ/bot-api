@@ -50,7 +50,7 @@ object MouseInput {
             mouseCanvasPosition
         } else {
             if (drag) {
-                throw RetryableBotException("cant drag if not in game bounds")
+                throw RetryException("cant drag if not in game bounds")
             }
 
             val x: Int
@@ -105,7 +105,7 @@ object MouseInput {
         debug { "canvasClick ${mousePosition.x}, ${mousePosition.y}, left:$left" }
         if (!inGameBounds(mousePosition)) {
             debug { "mouse$mousePosition not in game bounds" }
-            throw RetryableBotException("mouse$mousePosition not in game bounds, cant click")
+            throw RetryException("mouse$mousePosition not in game bounds, cant click")
         }
 
         val button = if (left) MouseEvent.BUTTON1 else MouseEvent.BUTTON3

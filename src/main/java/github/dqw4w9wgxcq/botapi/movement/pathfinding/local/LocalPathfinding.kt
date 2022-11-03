@@ -193,7 +193,7 @@ object LocalPathfinding {
         val map = map//ensure the map doesn't change between reachable and finding path
 
         if (map.flags[from.x][from.y] and CollisionDataFlag.BLOCK_MOVEMENT_FULL != 0) {
-            throw RetryableBotException("standing on BLOCK_MOVEMENT_FULL, ${from.toWorld()} $from")
+            throw RetryException("standing on BLOCK_MOVEMENT_FULL, ${from.toWorld()} $from")
             //fairy ring issue(we spawn on blocked tile)
 //            info { "we are standing on a blocked tile" }
 //            val adjacentEdges = map.graph[from.x][from.y].adjacentEdges
@@ -281,11 +281,11 @@ object LocalPathfinding {
 
     fun GridMap.canReach(to: Point, from: Point, ignoreEndObject: Boolean): Boolean {
         if (!to.isInTrimmedScene()) {
-            throw RetryableBotException("to $to is not in trimmed scene")
+            throw RetryException("to $to is not in trimmed scene")
         }
 
         if (!from.isInTrimmedScene()) {
-            throw RetryableBotException("from $from not in trimmed scene")
+            throw RetryException("from $from not in trimmed scene")
         }
 
         val zoneId = graph[from.x][from.y].zone ?: fillZone(from, this)
@@ -328,7 +328,7 @@ object LocalPathfinding {
 
                 if (nextVertex.zone != null) {
                     //gets thrown when local is on a blcoked tile?, cba rn
-                    throw RetryableBotException("nextVertex.zone:${nextVertex.zone} zoneId:$zoneId from: $from")
+                    throw RetryException("nextVertex.zone:${nextVertex.zone} zoneId:$zoneId from: $from")
                 }
 
                 nextVertex.zone = zoneId

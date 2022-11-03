@@ -42,7 +42,7 @@ fun <T> onGameThread(runnable: () -> T): T {
     return try {
         future.get(3000L, TimeUnit.MILLISECONDS)//3 sec bc 1 sec was causing issues on big lag idk
     } catch (e: TimeoutException) {
-        throw RetryableBotException("Timed out on game thread", e)
+        throw RetryException("Timed out on game thread", e)
     }
 }
 
@@ -141,7 +141,7 @@ fun <T> waitUntilCondition(
     val start = System.currentTimeMillis()
     do {
         if (!BotScript.looping) {
-            throw SilentBotException("bot script not looping")
+            throw SilentException("bot script not looping")
         }
 
         val supplied = supply()
@@ -409,7 +409,7 @@ fun <T> (() -> T).desc(toString: String): () -> T {
     }
 }
 
-open class RetryableBotException(
+open class RetryException(
     message: String,
     cause: Throwable? = null,
     val retries: Int = 10,
@@ -422,15 +422,15 @@ open class RetryableBotException(
 }
 
 //doesn't get logged at INFO level
-open class SilentBotException(message: String) : RetryableBotException(message)
+open class SilentException(message: String) : RetryException(message)
 
-open class NotFoundException(message: String) : RetryableBotException(message)
+open class NotFoundException(message: String) : RetryException(message)
 
 class WaitTimeoutException(
     timeout: Int,
     pollRate: Int,
     supply: () -> Any?,
     condition: (Any?) -> Boolean,
-) : RetryableBotException("timeout:$timeout pollRate:$pollRate condition:$condition supply:$supply", retries = 10)
+) : RetryException("timeout:$timeout pollRate:$pollRate condition:$condition supply:$supply", retries = 10)
 
-class FatalBotException(message: String) : IllegalStateException()
+class FatalException(message: String) : IllegalStateException()

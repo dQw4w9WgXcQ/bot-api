@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.itemcontainer
 
-import github.dqw4w9wgxcq.botapi.commons.RetryableBotException
+import github.dqw4w9wgxcq.botapi.commons.RetryException
 import github.dqw4w9wgxcq.botapi.commons.byContains
 import github.dqw4w9wgxcq.botapi.commons.desc
 import github.dqw4w9wgxcq.botapi.widget.Dialog
@@ -22,7 +22,7 @@ object Trade : ItemContainer<TradeItem>(InventoryID.TRADE) {
         val first = Widgets.getOrNull(WidgetID.PLAYER_TRADE_SCREEN_GROUP_ID, 10)
         if (first != null && !first.isHidden) {
             if (!first.hasAction("Accept")) {
-                throw RetryableBotException("it hink widg brok")
+                throw RetryException("it hink widg brok")
             }
 
             return View.FIRST
@@ -30,7 +30,7 @@ object Trade : ItemContainer<TradeItem>(InventoryID.TRADE) {
         val second = Widgets.getOrNull(SECOND_SCREEN_GROUP_ID, 13)
         if (second != null && !second.isHidden) {
             if (!second.hasAction("Accept")) {
-                throw RetryableBotException("it hink widg brok")
+                throw RetryException("it hink widg brok")
             }
 
             return View.SECOND
@@ -47,7 +47,7 @@ object Trade : ItemContainer<TradeItem>(InventoryID.TRADE) {
                 return
             }
         }
-        throw RetryableBotException("no item found")
+        throw RetryException("no item found")
     }
 
     fun offer(itemId: Int, amount: Int) {
@@ -69,7 +69,7 @@ object Trade : ItemContainer<TradeItem>(InventoryID.TRADE) {
             }
         }
 
-        throw RetryableBotException("no item found")
+        throw RetryException("no item found")
     }
 
     fun accept(first: Boolean) {
@@ -80,7 +80,7 @@ object Trade : ItemContainer<TradeItem>(InventoryID.TRADE) {
     fun accept() {
         val view = view()
         if (view == View.CLOSED) {
-            throw RetryableBotException("trade view is closed")
+            throw RetryException("trade view is closed")
         }
         accept(view == View.FIRST)
     }

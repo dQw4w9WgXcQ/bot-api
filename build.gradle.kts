@@ -18,6 +18,8 @@ repositories {
 apply<MavenPublishPlugin>()
 
 dependencies {
+    compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}")
+
     compileOnly("net.runelite:client:${Versions.runelite}")
     compileOnly(project(":loader"))
     implementation(group = "org.jboss.aerogear", name = "aerogear-otp-java", version = "1.0.0")

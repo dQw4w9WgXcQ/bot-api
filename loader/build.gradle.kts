@@ -23,6 +23,8 @@ dependencies {
         isTransitive = false
     }
 
+    runtimeOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}")
+
     annotationProcessor("org.projectlombok:lombok:1.18.20")
 }
 

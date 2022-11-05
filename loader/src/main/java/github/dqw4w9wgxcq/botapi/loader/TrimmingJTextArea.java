@@ -7,7 +7,7 @@ public class TrimmingJTextArea extends JTextArea {
     public void append(String str) {
         String text = getText();
         if (text.length() > 20000) {
-            setText(text.substring(text.length() - 1000));
+            setText(text.substring(text.length() - 10000));
         }
         super.append(str);
         scrollToBottom();

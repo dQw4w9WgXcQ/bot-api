@@ -23,9 +23,17 @@ object LocalPathfinding {
             setOf(),
             setOf("Open"),
             setOf(
-                ObjectID.GATE_44052, ObjectID.GATE_44053,//al kharid toll gate
-                ObjectID.DOOR_136,//draynor manor exit door
-                ObjectID.DOOR_24958//cooks guild door
+                //al kharid toll gate
+                ObjectID.GATE_44052,
+                ObjectID.GATE_44053,
+                //draynor manor exit door
+                ObjectID.DOOR_136,
+                //cooks guild door
+                ObjectID.DOOR_24958,
+                //rfd lumbridge castle dining hall
+                ObjectID.DOOR_12348,
+                ObjectID.LARGE_DOOR_12350,
+                ObjectID.LARGE_DOOR_12349
             )
         ),
         WEB(

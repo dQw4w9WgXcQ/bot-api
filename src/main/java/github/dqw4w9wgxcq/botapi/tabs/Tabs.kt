@@ -1,9 +1,7 @@
 package github.dqw4w9wgxcq.botapi.tabs
 
 import github.dqw4w9wgxcq.botapi.Client
-import github.dqw4w9wgxcq.botapi.commons.debug
-import github.dqw4w9wgxcq.botapi.commons.info
-import github.dqw4w9wgxcq.botapi.commons.waitUntil
+import github.dqw4w9wgxcq.botapi.commons.*
 import github.dqw4w9wgxcq.botapi.grandexchange.GrandExchange
 import github.dqw4w9wgxcq.botapi.input.Keyboard
 import github.dqw4w9wgxcq.botapi.itemcontainer.Bank
@@ -16,7 +14,7 @@ import net.runelite.api.widgets.WidgetInfo
 import java.awt.event.KeyEvent
 
 object Tabs {
-    fun open(tab: Tab) {
+    fun open(tab: Tab, mouse: Boolean = false) {
         if (isOpen(tab)) {
             return
         }
@@ -79,5 +77,27 @@ object Tabs {
         Tab.MAGIC -> KeyEvent.VK_F6
         Tab.SETTINGS -> KeyEvent.VK_F10
         else -> throw IllegalArgumentException("no hotkey for tab $tab")
+    }
+
+    private fun clickTab(action: String) {
+        if (Client.isResized) {
+            val modern = WidgetQuery(
+                WidgetID.RESIZABLE_VIEWPORT_BOTTOM_LINE_GROUP_ID,
+                byAction(action).and { !it.isHidden }
+            ).getOrNull()
+            if (modern != null) {
+                debug { "modern side panel" }
+                modern.interact(action)
+                return
+            }
+
+            debug { "classic side panel" }
+            WidgetQuery(
+                WidgetID.RESIZABLE_VIEWPORT_OLD_SCHOOL_BOX_GROUP_ID,
+                byAction(action).and { !it.isHidden }
+            )().interact(action)
+        } else {
+            WidgetQuery(WidgetID.FIXED_VIEWPORT_GROUP_ID, byAction(action).and { !it.isHidden })().interact(action)
+        }
     }
 }

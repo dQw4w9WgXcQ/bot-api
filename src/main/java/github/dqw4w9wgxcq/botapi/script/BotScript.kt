@@ -56,8 +56,6 @@ abstract class BotScript : IBotScript {
 
             onStart()
 
-            Antiban.active = true
-
             Events.register(this)
 
             var failCount = 0
@@ -172,7 +170,6 @@ abstract class BotScript : IBotScript {
         } finally {
             debug { "turning off antiban, clearing events, paint" }
             looping = false//some other threads might check this so ensure its off
-            Antiban.active = false
             reset()
         }
     }

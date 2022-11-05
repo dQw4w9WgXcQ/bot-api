@@ -1,51 +1,36 @@
 package github.dqw4w9wgxcq.botapi.antiban
 
 import github.dqw4w9wgxcq.botapi.Client
-import github.dqw4w9wgxcq.botapi.commons.debug
-import github.dqw4w9wgxcq.botapi.commons.inGameBounds
-import github.dqw4w9wgxcq.botapi.commons.toAwt
-import github.dqw4w9wgxcq.botapi.commons.wait
+import github.dqw4w9wgxcq.botapi.commons.*
 import github.dqw4w9wgxcq.botapi.input.Focus
+import github.dqw4w9wgxcq.botapi.input.Keyboard
 import github.dqw4w9wgxcq.botapi.input.mouse.Mouse
 import net.runelite.api.GameState
 import java.awt.Rectangle
+import java.awt.event.KeyEvent
 import kotlin.random.Random
 
 object Antiban {
-    @Volatile
-    var active = false
+    var mouseMoveArea: Rectangle? = null//not the same as boundary.  need to bound the endpoint not the path
 
-    //todo call this somewhere
-    fun initialize() {
-        antibanThread.start()
-    }
-
-    private val antibanThread = Thread(
-        {
-            while (true) {
-                if (active && Client.gameState == GameState.LOGGED_IN) {
-                    when (Random.nextInt(0, 100)) {
-//                        in 0 until 5 -> {
-//                            camera()
-//                        }
-
-                        in 10 until 20 -> {
-                            mouseMove()
-                        }
-
-                        in 40 until 60 -> {
-                            loseFocus()
-                        }
-                    }
+    fun maybeDoAntiban() {
+        if (Client.gameState == GameState.LOGGED_IN) {
+            wait(500)
+            when (Random.nextInt(0, 100)) {
+                in 0 until 20 -> {
+                    camera()
                 }
 
-                wait(0, 2000)
-            }
-        },
-        "antiban"
-    )
+//                        in 10 until 20 -> {
+//                            mouseMove()
+//                        }
 
-    var mouseMoveArea: Rectangle? = null//not the same as boundary.  need to bound the endpoint not the path
+                in 40 until 60 -> {
+                    loseFocus()
+                }
+            }
+        }
+    }
 
     fun mouseMove() {
         val mousePos = Client.mouseCanvasPosition.toAwt()
@@ -78,8 +63,12 @@ object Antiban {
             return
         }
 
-        debug { "camera" }
-        TODO()
+        info { "camera" }
+
+        val arrowKeys = listOf(KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_DOWN, KeyEvent.VK_UP)
+        Keyboard.press(
+            arrowKeys.random(),
+            delay = { Random.nextInt(50, 1000) })
     }
 
     fun loseFocus() {

@@ -106,7 +106,7 @@ object Dialog {
         val options = optionsWidgets()
 
         if (index >= options.size) {
-            throw RetryException("tryna chosoe option index:" + index + " options.size: " + options.size, retries = 3)
+            throw RetryException("tryna chosoe option index:" + index + " options.size: " + options.size)
         }
 
         Keyboard.type((index + 1).toString())
@@ -124,11 +124,8 @@ object Dialog {
         }
 
         throw RetryException(
-            "no option matched(${optionContainsIgnoreCase.joinToString()}n) \n\"${
-                options().joinToString(
-                    ","
-                )
-            }\""
+            "no option matched(${optionContainsIgnoreCase.joinToString()})\n" +
+                    "in (${options().joinToString(",")})"
         )
     }
 

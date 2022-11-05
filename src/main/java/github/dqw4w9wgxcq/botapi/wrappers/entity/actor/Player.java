@@ -52,13 +52,13 @@ public class Player extends Actor<net.runelite.api.Player> implements net.runeli
 
     @Delegate(types = {net.runelite.api.Player.class, Renderable.class}, excludes = {Excludes.class, PlayerComposition.class, Locatable.class})
     private @NotNull net.runelite.api.Player getDelegate() {
-        return super.rl;
+        return rl;
     }
 
     @NotNull
     @Override
     public String getName() {
-        String name = super.rl.getName();
+        String name = rl.getName();
         if (name == null) {
             throw new NotFoundException("player name null");
         }
@@ -73,7 +73,7 @@ public class Player extends Actor<net.runelite.api.Player> implements net.runeli
     public int getIndex() {
         net.runelite.api.Player[] players = Client.INSTANCE.getCachedPlayers();
         for (int i = 0; i < players.length; i++) {
-            if (super.rl == players[i]) {
+            if (rl == players[i]) {
                 return i;
             }
         }

@@ -15,11 +15,11 @@ object ItemData {
     val SKILLS_NECKLACE: (Item) -> Boolean = byPrefix("skills necklace(")
     val GAMES_NECKLACE: (Item) -> Boolean = byPrefix("games necklace(")
     val RING_OF_WEALTH: (Item) -> Boolean = byPrefix("ring of wealth (")
-        .and<Item> { it.id != ItemID.RING_OF_WEALTH_I }
+        .and { it.id != ItemID.RING_OF_WEALTH_I }
         .desc("RING_OF_WEALTH")
     val RING_OF_DUELING: (Item) -> Boolean = byPrefix("ring of dueling(")
     val AMULET_OF_GLORY: (Item) -> Boolean = byPrefix("amulet of glory(")
-        .and<Item> { it.id != ItemID.AMULET_OF_GLORY_T }
+        .and { it.id != ItemID.AMULET_OF_GLORY_T }
         .desc("AMULET_OF_GLORY")
     val NECKLACE_OF_PASSAGE: (Item) -> Boolean = byPrefix("necklace of passage(")
     val DIGSITE_PENDANT: (Item) -> Boolean = byPrefix("Digsite pendant(")
@@ -29,7 +29,7 @@ object ItemData {
     val ENERGY_POTION: (Item) -> Boolean = byPrefix("energy potion(")
     val EQUIPABLE = byAction("equip", "wield", "wear")
     val FOOD = byAction("eat")
-    val BOND = byId(ItemID.OLD_SCHOOL_BOND, ItemID.OLD_SCHOOL_BOND_UNTRADEABLE)
+    val BOND = byId(ItemID.OLD_SCHOOL_BOND, ItemID.OLD_SCHOOL_BOND_UNTRADEABLE).desc("bond")
     val GRACEFUL = byPrefix("graceful ")
     val THIEVING_CAPE = byId(ItemID.THIEVING_CAPE, ItemID.THIEVING_CAPET)
     val BIRD_NEST_FILLED: (Item) -> Boolean = byName("bird nest").and { it.id != ItemID.BIRD_NEST }
@@ -104,6 +104,10 @@ object ItemData {
         EquipmentInventorySlot.GLOVES to ItemID.ROGUE_GLOVES,
         EquipmentInventorySlot.BOOTS to ItemID.ROGUE_BOOTS,
     )
+
+    fun idToName(id: Int): String {
+        return onGameThread { Client.getItemDefinition(id) }.name
+    }
 
     enum class Graceful(
         val itemName: String,

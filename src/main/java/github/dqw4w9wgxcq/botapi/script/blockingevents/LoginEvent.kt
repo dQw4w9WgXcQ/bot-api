@@ -109,7 +109,7 @@ class LoginEvent : BlockingEvent() {
         }
 
         if (gameState == GameState.STARTING || gameState == GameState.HOPPING || gameState == GameState.LOADING || gameState == GameState.CONNECTION_LOST) {
-            BotScript.nextLoopDelay = 100
+            BotScript.nextDelay = 100
             return true
         }
 
@@ -143,7 +143,7 @@ class LoginEvent : BlockingEvent() {
         gameState = Client.gameState
         if (gameState != GameState.LOGIN_SCREEN && gameState != GameState.LOGIN_SCREEN_AUTHENTICATOR) {
             debug { "game state $gameState" }
-            BotScript.nextLoopDelay = 500
+            BotScript.nextDelay = 500
             return true
         }
 
@@ -235,7 +235,7 @@ class LoginEvent : BlockingEvent() {
                     condition = { Client.gameState == GameState.LOGGING_IN || Client.gameState == GameState.LOGIN_SCREEN_AUTHENTICATOR }
                         .desc("logging in or auth screen")
                 )
-                BotScript.nextLoopDelay = 100
+                BotScript.nextDelay = 100
                 return true
             }
 
@@ -258,7 +258,7 @@ class LoginEvent : BlockingEvent() {
                 Client.setOtp(code)
                 Keyboard.enter()
                 waitUntil(condition = { Client.gameState == GameState.LOGGING_IN }.desc("gameState == LOGGING_IN"))
-                BotScript.nextLoopDelay = 100
+                BotScript.nextDelay = 100
                 return true
             }
 

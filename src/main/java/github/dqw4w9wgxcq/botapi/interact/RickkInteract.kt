@@ -263,7 +263,7 @@ class RickkInteract : InteractDriver {
 
                 val indexAfterOpen = getMenuEntries().indexOfFirst { entryMatches(it) }
                 if (indexAfterOpen == -1) {
-                    BotScript.nextLoopDelay = 100
+                    BotScript.nextDelay = 100
                     throw RetryException("no entry matched $entryMatches after menu opened")
                 }
 
@@ -293,7 +293,7 @@ class RickkInteract : InteractDriver {
                 val indexAfterMove = getMenuEntries().indexOfFirst { entryMatches(it) }
                 if (indexAfterMove != indexAfterOpen) {
                     if (indexAfterMove == -1) {
-                        BotScript.nextLoopDelay = 100
+                        BotScript.nextDelay = 100
                         throw RetryException("indexAfterMove is -1")
                     }
 

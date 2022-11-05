@@ -89,21 +89,21 @@ object Dialog {
         return Widgets.getOrNull(WidgetInfo.LEVEL_UP) != null
     }
 
-    fun viewingChatOptions(): Boolean {
-        return optionsWidgets().isNotEmpty()
+    fun viewingChoices(): Boolean {
+        return choiceWidgets().isNotEmpty()
     }
 
-    private fun optionsWidgets(): List<Widget> {
+    private fun choiceWidgets(): List<Widget> {
         val widget = Widgets.getOrNull(WidgetID.DIALOG_OPTION_GROUP_ID, 1) ?: return emptyList()
         return widget.childrenList.filter { it.hasListener() }
     }
 
     fun options(): List<String> {
-        return optionsWidgets().map { it.text }
+        return choiceWidgets().map { it.text }
     }
 
     fun chooseOption(index: Int) {
-        val options = optionsWidgets()
+        val options = choiceWidgets()
 
         if (index >= options.size) {
             throw RetryException("tryna chosoe option index:" + index + " options.size: " + options.size)
@@ -113,7 +113,7 @@ object Dialog {
     }
 
     fun chooseOption(vararg optionContainsIgnoreCase: String) {
-        val options1 = optionsWidgets().filter { it.hasListener() }
+        val options1 = choiceWidgets().filter { it.hasListener() }
         for ((i, option) in options1.withIndex()) {
             for (partialText in optionContainsIgnoreCase) {
                 if (option.text.contains(partialText, true)) {
@@ -144,7 +144,7 @@ object Dialog {
             throw RetryException("dialog not open")
         }
 
-        if (viewingChatOptions()) {
+        if (viewingChoices()) {
             chooseOption(*optionsContainsIgnoreCase)
             return
         }

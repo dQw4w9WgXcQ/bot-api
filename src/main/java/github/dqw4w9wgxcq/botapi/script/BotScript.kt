@@ -16,7 +16,7 @@ import kotlin.system.exitProcess
 abstract class BotScript : IBotScript {
     companion object {
         @Volatile
-        var nextLoopDelay: Int? = null
+        var nextDelay: Int? = null
             set(value) {
                 require(value == null || value >= 0) { "$value" }
                 field = value
@@ -70,7 +70,7 @@ abstract class BotScript : IBotScript {
                     exitProcess(201)
                 }
 
-                nextLoopDelay = null
+                nextDelay = null
 
                 try {
                     if (BlockingEvents.checkBlocked()) {
@@ -104,7 +104,7 @@ abstract class BotScript : IBotScript {
                         e = cause
                     }
 
-                    nextLoopDelay = when {
+                    nextDelay = when {
                         e is RetryException && failCount < e.retries -> {
                             if (failCount < 2) {
                                 1000
@@ -117,7 +117,7 @@ abstract class BotScript : IBotScript {
 
                         e is IOException && failCount < 20 -> {
                             if (failCount < 2) {
-                                nextLoopDelay
+                                nextDelay
                             } else if (failCount < 5) {
                                 10000
                             } else {
@@ -146,14 +146,14 @@ abstract class BotScript : IBotScript {
                 }
 
                 if (looping) {
-                    debug { "nextLoopDelay:$nextLoopDelay" }
-                    when (nextLoopDelay) {
+                    debug { "nextLoopDelay:$nextDelay" }
+                    when (nextDelay) {
                         null -> {
                             wait(750, 1500)
                         }
 
                         else -> {
-                            wait(nextLoopDelay!!)
+                            wait(nextDelay!!)
                         }
                     }
                 }

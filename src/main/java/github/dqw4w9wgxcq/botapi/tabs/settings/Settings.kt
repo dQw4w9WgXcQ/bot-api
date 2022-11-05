@@ -2,6 +2,7 @@ package github.dqw4w9wgxcq.botapi.tabs.settings
 
 import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.NotFoundException
+import github.dqw4w9wgxcq.botapi.commons.info
 import github.dqw4w9wgxcq.botapi.commons.wait
 import github.dqw4w9wgxcq.botapi.commons.waitUntil
 import github.dqw4w9wgxcq.botapi.tabs.Tab
@@ -71,11 +72,11 @@ object Settings {
         waitUntil { isAllSettingsOpen() }
     }
 
-    fun isAllSettingsOpen(): Boolean {
+    private fun isAllSettingsOpen(): Boolean {
         return Widgets.getOrNull(WidgetInfo.SETTINGS_INIT) != null
     }
 
-    //varp and index switched for gameplay/keybinds
+    //varbit and index switched for gameplay/keybinds
     enum class AllSettingsTab(val varp: Int, val actionSuffix: String) {
         ACTIVITIES(0, "Activities"),
         AUDIO(1, "Audio"),
@@ -85,18 +86,14 @@ object Settings {
         GAMEPLAY(5, "Gameplay")
     }
 
-    fun getAllSettingsTab(): Int {
-        return Client.getVarbitValue(9656)
-    }
-
-    fun openAllSettingsTab(tab: AllSettingsTab) {
+    fun allSettingsTabOpened(tab: AllSettingsTab) {
         openAllSettings()
 
-        if (getAllSettingsTab() != tab.varp) {
+        if (Client.getVarbitValue(9656) != tab.varp) {
             WidgetQuery(WidgetID.SETTINGS_GROUP_ID, 23) { w -> w.hasAction { it.endsWith(tab.actionSuffix) } }()
                 .interact { it.startsWith("Select") }
-            waitUntil { getAllSettingsTab() == tab.varp }
-            wait(500)
+            waitUntil { Client.getVarbitValue(9656) == tab.varp }
+            wait(1000)
         }
     }
 
@@ -109,7 +106,7 @@ object Settings {
     }
 
     fun toggleOption(option: Option) {
-        openAllSettingsTab(option.tab)
+        allSettingsTabOpened(option.tab)
         val scrollableWidgets = Widgets.get(WidgetID.SETTINGS_GROUP_ID, optionsChildIndex)
         val toggleWidget = scrollableWidgets.childrenList
             .firstOrNull {
@@ -139,33 +136,14 @@ object Settings {
         }
     }
 
-    fun needRestoreDefaultKeybinds(): Boolean {
-        val configs = mapOf(
-            4675 to 1,
-            4676 to 2,
-            4677 to 3,
-            4678 to 13,//inventory
-            4679 to 4,
-            4680 to 5,
-            4682 to 6,
-            4684 to 8,
-            6517 to 9,//account settings
-            4689 to 0,//logout
-            4686 to 10,
-            4687 to 11,
-            4683 to 7,//clan
-            4688 to 12
-        )
-
-        return configs.any { Client.getVarbitValue(it.key) != it.value }
-    }
-
-    fun checkRestoreDefaultKeybinds() {
-        if (!needRestoreDefaultKeybinds()) {
+    fun keybindsDefault() {
+        if (keybindsAreDefault()) {
             return
         }
 
-        openAllSettingsTab(AllSettingsTab.CONTROLS)
+        info { "need reset keybinds" }
+
+        allSettingsTabOpened(AllSettingsTab.CONTROLS)
 
         val scrollableWidgets = Widgets.get(WidgetID.SETTINGS_GROUP_ID, optionsChildIndex)
         val w = scrollableWidgets.childrenList
@@ -175,6 +153,27 @@ object Settings {
         w.interact("Select")
         waitUntil { Dialog.hasOption("yes.") }
         Dialog.chooseOption("yes.")
-        waitUntil { !needRestoreDefaultKeybinds() }
+        waitUntil { keybindsAreDefault() }
+    }
+
+    private val keybindConfigs = mapOf(
+        4675 to 1,
+        4676 to 2,
+        4677 to 3,
+        4678 to 13,//inventory
+        4679 to 4,
+        4680 to 5,
+        4682 to 6,
+        4684 to 8,
+        6517 to 9,//account settings
+        4689 to 0,//logout
+        4686 to 10,
+        4687 to 11,
+        4683 to 7,//clan
+        4688 to 12
+    )
+
+    private fun keybindsAreDefault(): Boolean {
+        return keybindConfigs.all { Client.getVarbitValue(it.key) == it.value }
     }
 }

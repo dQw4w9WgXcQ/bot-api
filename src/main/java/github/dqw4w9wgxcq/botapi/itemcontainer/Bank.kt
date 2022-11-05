@@ -303,19 +303,16 @@ object Bank : ItemContainer<BankItem>(InventoryID.BANK) {
         deposit(byName(*names), Int.MAX_VALUE)
     }
 
-    fun openSettings() {
-        Widgets.get(WidgetInfo.BANK_SETTINGS_BUTTON).interact("Show menu")
-    }
-
-    fun closeSettings() {
-        Widgets.get(WidgetInfo.BANK_SETTINGS_BUTTON).interact("Close menu")
-    }
-
-    fun isSettingsOpen(): Boolean {
-        return Widgets.getOrNull(WidgetID.BANK_GROUP_ID, 48) != null
+    fun settingsOpened(open: Boolean = true) {
+        if (open != (Widgets.getOrNull(WidgetID.BANK_GROUP_ID, 48) != null)) {
+            Widgets.get(WidgetInfo.BANK_SETTINGS_BUTTON).interact("Show menu")
+        } else {
+            Widgets.get(WidgetInfo.BANK_SETTINGS_BUTTON).interact("Close menu")
+        }
     }
 
     fun getInvWidget(index: Int): Widget {
+        //is null when first loaded
         return waitUntilNotNull(500) {
             Widgets.getOrNull(WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER)?.getChildOrNull(index)
         }

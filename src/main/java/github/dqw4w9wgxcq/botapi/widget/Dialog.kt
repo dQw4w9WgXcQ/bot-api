@@ -105,7 +105,9 @@ object Dialog {
     fun chooseOption(index: Int) {
         val options = optionsWidgets()
 
-        require(index < options.size) { "tryna chosoe option index:" + index + " options.size: " + options.size }
+        if (index >= options.size) {
+            throw RetryException("tryna chosoe option index:" + index + " options.size: " + options.size, retries = 3)
+        }
 
         Keyboard.type((index + 1).toString())
     }

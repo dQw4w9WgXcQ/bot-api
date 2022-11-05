@@ -58,17 +58,16 @@ public class Widget implements net.runelite.api.widgets.Widget, Interactable, Id
         return CommonsKt.onGameThread(rl::getOnOpListener);
     }
 
-
     public @Nullable Widget getParentOrNull() {
-        net.runelite.api.widgets.Widget parentNullable = CommonsKt.onGameThread(rl::getParent);
-        if (parentNullable == null) {
+        net.runelite.api.widgets.Widget parent = CommonsKt.onGameThread(rl::getParent);
+        if (parent == null) {
             return null;
         }
-        return new Widget(parentNullable);
+
+        return new Widget(parent);
     }
 
     @Override
-
     public @NotNull Widget getParent() {
         Widget parentNullable = getParentOrNull();
         if (parentNullable == null) {

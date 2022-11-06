@@ -59,9 +59,16 @@ object Antiban {
 
     fun camera() {
         if (!inGameBounds(Client.mouseCanvasPosition.toAwt())) {
-            debug { "skipping camera because mouse not in game" }
+            info { "skipping camera because mouse not in game" }
             return
         }
+
+        if (!Client.hasFocus()) {
+            info { "skipping camera because client not focuesd" }
+            return
+        }
+
+        Focus.require(2000)
 
         info { "camera" }
 

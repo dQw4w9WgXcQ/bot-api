@@ -18,7 +18,7 @@ apply<MavenPublishPlugin>()
 dependencies {
     compileOnly("net.runelite:client:${Versions.runelite}")
     compileOnly("org.projectlombok:lombok:1.18.20")
-    //runelite launcher uses a minified runelite-api dep, so some classes are missing (devtools plugin)
+    //runelite launcher uses a minified runelite-api dep, so some classes are missing
     implementation("net.runelite:runelite-api:${Versions.runelite}") {
         isTransitive = false
     }

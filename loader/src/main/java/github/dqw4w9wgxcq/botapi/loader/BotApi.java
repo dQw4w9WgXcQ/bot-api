@@ -57,10 +57,10 @@ public class BotApi {
             InfoPlugin.class,
             //XpTrackerPlugin.class,
             LowMemoryPlugin.class,
-            LoginScreenPlugin.class,
-            FpsPlugin.class
+            FpsPlugin.class,
             //EntityHiderPlugin.class
             //GpuPlugin.class
+            LoginScreenPlugin.class
     ));
 
     private static final List<ManagedConfig<?>> managedConfigs = Arrays.asList(

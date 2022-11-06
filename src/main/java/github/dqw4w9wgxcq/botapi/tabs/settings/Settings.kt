@@ -19,7 +19,7 @@ object Settings {
     private const val tabVarbit = 9683
 
     private val acceptAid = WidgetQuery(groupId) { it.hasAction("Toggle Accept Aid") }
-    fun checkAcceptAidOff() {
+    fun acceptAidOff() {
         if (Client.getVarbitValue(4180) == 0) {
             return
         }
@@ -72,9 +72,9 @@ object Settings {
         waitUntil { isAllSettingsOpen() }
     }
 
-    private fun isAllSettingsOpen(): Boolean {
-        return Widgets.getOrNull(WidgetInfo.SETTINGS_INIT) != null
-    }
+     fun isAllSettingsOpen(): Boolean {
+         return Widgets.getOrNull(WidgetInfo.SETTINGS_INIT) != null
+     }
 
     //varbit and index switched for gameplay/keybinds
     enum class AllSettingsTab(val varp: Int, val actionSuffix: String) {

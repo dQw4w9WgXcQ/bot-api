@@ -110,8 +110,10 @@ public class ScriptManager {
         long startTime = System.currentTimeMillis();
 
         try (JarFile jar = new JarFile(file)) {
-            try (URLClassLoader ucl = new ScriptClassLoader(file, classLoader)) {
-                Arrays.stream(ucl.getURLs()).map(URL::getFile).forEach(log::info);
+            try (URLClassLoader ucl = new URLClassLoader(new URL[]{file.toURI().toURL()}, getClass().getClassLoader())) {
+                List<String> scriptFileNames = Arrays.stream(ucl.getURLs()).map(URL::getFile).collect(Collectors.toList());
+                log.info("script jars:" + String.join(", ", scriptFileNames));
+
                 Enumeration<JarEntry> entries = jar.entries();
                 while (entries.hasMoreElements()) {
                     JarEntry entry = entries.nextElement();

@@ -433,4 +433,4 @@ class WaitTimeoutException(
     condition: (Any?) -> Boolean,
 ) : RetryException("timeout:$timeout pollRate:$pollRate condition:$condition supply:$supply", retries = 10)
 
-class FatalException(message: String) : IllegalStateException()
+class FatalException(message: String) : RuntimeException(message)

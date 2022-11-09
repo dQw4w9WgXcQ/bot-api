@@ -125,7 +125,6 @@ object GrandExchange {
 
     fun offerPrice(): Int = Client.getVarbitValue(4398)
 
-    private val enterPriceWidget = WidgetQuery(WidgetInfo.GRAND_EXCHANGE_OFFER_CONTAINER, byAction("Enter price"))
     fun enterPrice(price: Int, waitFor: Boolean = true) {
         require(price > 0) { "price $price must be greater than 0 " }
 
@@ -138,7 +137,7 @@ object GrandExchange {
             throw RetryException("not enough coins")
         }
 
-        enterPriceWidget().interact("Enter price")
+        WidgetQuery(WidgetInfo.GRAND_EXCHANGE_OFFER_CONTAINER, byAction("Enter price"))().interact("Enter price")
         Dialog.enterAmount(price)
         if (waitFor) {
             waitUntil { offerPrice() == price }

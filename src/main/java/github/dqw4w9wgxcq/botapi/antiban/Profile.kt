@@ -25,12 +25,12 @@ object Profile {
         return Random(hash * key)
     }
 
-    fun newRandom(): Random {
-        return newRandom(hash)
-    }
-
     fun newRandom(key: String): Random {
         return newRandom(key.hashCode())
+    }
+
+    fun newRandom(): Random {
+        return newRandom(hash)
     }
 
     private fun getInt(key: Int, until: Int): Int {

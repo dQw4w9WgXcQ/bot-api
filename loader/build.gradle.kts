@@ -19,7 +19,7 @@ dependencies {
     compileOnly("net.runelite:client:${Versions.runelite}")
     compileOnly("org.projectlombok:lombok:1.18.20")
     //runelite launcher uses a minified runelite-api dep, so some classes are missing
-    implementation("net.runelite:runelite-api:${Versions.runelite}") {
+    runtimeOnly("net.runelite:runelite-api:${Versions.runelite}") {
         isTransitive = false
     }
     runtimeOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}")

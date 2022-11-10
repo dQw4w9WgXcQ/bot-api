@@ -156,21 +156,20 @@ object Worlds {
         switchTo(get(id))
     }
 
-    fun getRandomSuitable(matches: (World) -> Boolean = NotHighPop()): World {
-        return getRandom(matches.and(isSuitable).and { it.id != Client.world })
-    }
-
-    fun switchToRandomSuitable(matches: (World) -> Boolean = NotHighPop()) {
-        switchTo(getRandomSuitable(matches))
-    }
-
-    class NotHighPop(val highPops: Collection<Int> = getHighPop()) : (World) -> Boolean {
-        override fun invoke(p1: World): Boolean {
-            return !highPops.contains(p1.id)
+    fun getRandomSuitable(matches: (World) -> Boolean = { true }, allowHighPop: Boolean = false): World {
+        val matches2 = if (allowHighPop) {
+            matches
+        } else {
+            matches.and(NotHighPop())
         }
+        return getRandom(matches2.and(isSuitable).and { it.id != Client.world })
     }
 
-    fun getHighPop(): Set<Int> {
+    fun switchToRandomSuitable(matches: (World) -> Boolean = { true }, allowHighPop: Boolean = false) {
+        switchTo(getRandomSuitable(matches, allowHighPop))
+    }
+
+    class NotHighPop : (World) -> Boolean {
         val highPopF2p = all(F2P)
             .sortedByDescending { it.playerCount }
             .map { it.id }
@@ -183,7 +182,14 @@ object Worlds {
             .take(20)
             .toSet()
 
-        return highPopF2p + highPopP2p
+        val highPop = highPopF2p + highPopP2p
+        override fun invoke(p1: World): Boolean {
+            return !highPop.contains(p1.id)
+        }
+
+        override fun toString(): String {
+            return "not high pop"
+        }
     }
 
     fun onF2p(): Boolean {

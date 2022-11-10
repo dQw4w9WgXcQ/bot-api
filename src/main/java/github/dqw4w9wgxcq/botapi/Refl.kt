@@ -1,5 +1,6 @@
 package github.dqw4w9wgxcq.botapi
 
+import github.dqw4w9wgxcq.botapi.commons.FatalException
 import github.dqw4w9wgxcq.botapi.commons.debug
 import github.dqw4w9wgxcq.botapi.loader.RuneliteContext
 import java.lang.reflect.Field
@@ -22,6 +23,8 @@ object Refl {
     val Login_response1: Field
     val Login_response2: Field
     val Login_response3: Field
+    val banType: Field
+    val banTypeDecoder: Int
 
     //rickkinteract
     val ViewportMouse_entityTags: Field
@@ -51,6 +54,8 @@ object Refl {
         Login_response1 = loginClass.getDeclaredField("bm")
         Login_response2 = loginClass.getDeclaredField("bp")
         Login_response3 = loginClass.getDeclaredField("bx")
+        banType = loginClass.getDeclaredField("ai")
+        banTypeDecoder = -672921453
 
         val viewportMouseClass = getRsClass("hz")
         ViewportMouse_entityTags = viewportMouseClass.getDeclaredField("o")
@@ -160,7 +165,7 @@ object Refl {
             val remainder = multedValue % mult
             debug { "getLong2: $value %$multedValue" }
             if (remainder != 0L) {
-                throw IllegalStateException("mult wrong")
+                throw FatalException("mult wrong")
             }
             value
         } finally {

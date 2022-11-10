@@ -3,6 +3,7 @@ package github.dqw4w9wgxcq.botapi.script.blockingevents
 import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.Refl
 import github.dqw4w9wgxcq.botapi.Refl.get2
+import github.dqw4w9wgxcq.botapi.Refl.getInt2
 import github.dqw4w9wgxcq.botapi.account.AccountManager
 import github.dqw4w9wgxcq.botapi.commons.*
 import github.dqw4w9wgxcq.botapi.input.Keyboard
@@ -76,7 +77,17 @@ class LoginEvent : BlockingEvent() {
             return listOf(response0, response1, response2, response3).joinToString(" ")
         }
 
+        fun getBanType(): Int {
+            return Refl.banType.getInt2(null, Refl.banTypeDecoder)
+        }
+
         private var needInitialHop = true
+    }
+
+    object BanType {
+        const val DISABLED = 0
+        const val LOCKED = 1
+        const val BILLING = 2
     }
 
     object LoginIndex {
@@ -86,7 +97,7 @@ class LoginEvent : BlockingEvent() {
         const val INVALID_CREDENTIALS = 3
         const val AUTHENTICATOR = 4
         const val EULA = 12
-        const val DISABLED_LOCKED = 14
+        const val BANNED = 14
         const val DISCONNECTED = 24
     }
 
@@ -165,7 +176,7 @@ class LoginEvent : BlockingEvent() {
         }
 
         if (needInitialHop) {
-            val newWorldId = Worlds.getRandomSuitable(Worlds.P2P).id
+            val newWorldId = Worlds.getRandomSuitable(matches = Worlds.P2P).id
             if (Client.world != newWorldId) {
                 Worlds.changeLobbyWorld(newWorldId)
             }
@@ -187,11 +198,11 @@ class LoginEvent : BlockingEvent() {
         }
 
         if (loginResponse.contains("oo many login attempts", true)) {
-            throw IllegalStateException(loginResponse)
+            throw FatalException(loginResponse)
         }
 
         if (loginResponse.contains("need a members")) {
-            Worlds.changeLobbyWorld(Worlds.getRandomSuitable(Worlds.F2P).id)
+            Worlds.changeLobbyWorld(Worlds.getRandomSuitable(matches = Worlds.F2P).id)
         }
 
         if (loginResponse.contains("update")) {
@@ -200,7 +211,7 @@ class LoginEvent : BlockingEvent() {
         }
 
         if (loginResponse.contains("login limit", true)) {
-            throw IllegalStateException(loginResponse)
+            throw FatalException(loginResponse)
         }
 
         if (loginResponse.contains("your account has not logged out", true)) {
@@ -275,7 +286,7 @@ class LoginEvent : BlockingEvent() {
                 return true
             }
 
-            else -> throw IllegalStateException("no behavior for login index $loginIndex")
+            else -> throw FatalException("no behavior for login index $loginIndex")
         }
     }
 }

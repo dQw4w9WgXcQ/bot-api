@@ -1,5 +1,6 @@
 package github.dqw4w9wgxcq.botapi
 
+import github.dqw4w9wgxcq.botapi.commons.FatalException
 import github.dqw4w9wgxcq.botapi.commons.info
 import net.runelite.api.Skill
 import kotlin.math.ceil
@@ -25,7 +26,7 @@ object TrainingAmounts {
             var expStep = Client.getSkillExperience(skill).toDouble()
             for ((i, method) in methodss.withIndex()) {
                 if (method.lvlReq > lvlStep) {
-                    throw IllegalStateException("method.lvlReq ${method.lvlReq} > lvlStep $lvlStep, prob no doable method")
+                    throw FatalException("method.lvlReq ${method.lvlReq} > lvlStep $lvlStep, prob no doable method")
                 }
 
                 if (i != methodss.lastIndex && methodss[i + 1].lvlReq <= lvlStep) {

@@ -24,7 +24,7 @@ object Tabs {
             debug { "logout must be opened with mouse" }
 
             if (Client.isResized) {
-                throw IllegalStateException("not implemented open logout tab on resizable")
+                throw FatalException("not implemented open logout tab on resizable")
             }
 
             val logoutTab = Widgets.get(WidgetInfo.FIXED_VIEWPORT_LOGOUT_TAB)

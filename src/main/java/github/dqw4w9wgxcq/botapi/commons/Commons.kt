@@ -352,7 +352,7 @@ fun byId(vararg ids: Int): (Identifiable) -> Boolean {
                         { it: Int -> Client.getObjectDefinition(it).name }
                     }
 
-                    else -> throw IllegalStateException("fuck")
+                    else -> throw FatalException("fuck")
                 }
                 label = typeWas!!.name.lowercase()
                 ids.joinToString { "$it:${nameMapper(it)}" }

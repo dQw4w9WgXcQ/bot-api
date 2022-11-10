@@ -156,7 +156,7 @@ object Worlds {
         switchTo(get(id))
     }
 
-    fun getRandomSuitable(matches: (World) -> Boolean = { true }, allowHighPop: Boolean = false): World {
+    fun getRandomSuitable(allowHighPop: Boolean = false, matches: (World) -> Boolean = { true }): World {
         val matches2 = if (allowHighPop) {
             matches
         } else {
@@ -165,8 +165,8 @@ object Worlds {
         return getRandom(matches2.and(isSuitable).and { it.id != Client.world })
     }
 
-    fun switchToRandomSuitable(matches: (World) -> Boolean = { true }, allowHighPop: Boolean = false) {
-        switchTo(getRandomSuitable(matches, allowHighPop))
+    fun switchToRandomSuitable(allowHighPop: Boolean = false, matches: (World) -> Boolean = { true }) {
+        switchTo(getRandomSuitable(allowHighPop, matches))
     }
 
     class NotHighPop : (World) -> Boolean {

@@ -23,6 +23,7 @@ dependencies {
         isTransitive = false
     }
     runtimeOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}")
+    runtimeOnly(group = "org.jboss.aerogear", name = "aerogear-otp-java", version = "1.0.0")
     annotationProcessor("org.projectlombok:lombok:1.18.20")
 }
 

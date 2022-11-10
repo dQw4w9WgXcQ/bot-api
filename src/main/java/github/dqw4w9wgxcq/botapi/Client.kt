@@ -17,7 +17,7 @@ object Client : net.runelite.api.Client by RuneliteContext.getClient() {
     override fun getItemDefinition(id: Int): ItemComposition {
         val out = onGameThread { RuneliteContext.getClient().getItemDefinition(id) }
         if (out.name == null) {
-            throw IllegalArgumentException("no item found for id:$id")
+            throw IllegalArgumentException("item composition has null name, id:$id")
         }
         return out
     }

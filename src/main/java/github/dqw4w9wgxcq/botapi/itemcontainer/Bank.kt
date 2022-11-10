@@ -347,16 +347,16 @@ object Bank : ItemContainer<BankItem>(InventoryID.BANK) {
         val count = Inventory.count(matches.and { it.isNoted == noted })
 
         when {
-            count == quantity -> {
-                return 0
-            }
-
             count < quantity -> {
-                withdraw(matches, quantity - count, noted = noted)
+                withdraw(matches, quantity - count, noted)
             }
 
             count > quantity -> {
                 deposit(matches, count - quantity)
+            }
+
+            else -> {
+                return 0
             }
         }
 

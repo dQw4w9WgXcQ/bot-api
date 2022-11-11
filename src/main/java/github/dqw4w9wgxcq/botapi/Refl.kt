@@ -17,6 +17,8 @@ object Refl {
     val isLoading: Field
     val worldSelectOpen: Field
     val hasFocus: Field
+    val gameState: Field
+    val gameStateDecoder: Int
 
     //loginevent
     val Login_response0: Field
@@ -44,9 +46,13 @@ object Refl {
             return Class.forName(name, false, rsClassLoader)
         }
 
+        val clientClass = getRsClass("client")
+        isLoading = clientClass.getDeclaredField("df")
+        gameState = clientClass.getDeclaredField("ci")
+        gameStateDecoder = -1954783269
+
         val loginClass = getRsClass("bw")
         Widget_interfaceComponents = getRsClass("kn").getDeclaredField("q")
-        isLoading = getRsClass("client").getDeclaredField("df")
         worldSelectOpen = loginClass.getDeclaredField("cs")
         hasFocus = getRsClass("bs").getDeclaredField("au")
 

@@ -114,7 +114,6 @@ class LoginEvent : BlockingEvent() {
     override fun checkBlocked(): Boolean {
         var gameState = Client.gameState!!
 
-
         if (gameState == GameState.LOGGED_IN) {
             return false
         }
@@ -122,6 +121,11 @@ class LoginEvent : BlockingEvent() {
         if (gameState == GameState.STARTING || gameState == GameState.HOPPING || gameState == GameState.LOADING || gameState == GameState.CONNECTION_LOST) {
             BotScript.nextDelay = 100
             return true
+        }
+
+        if (Client.gameStateRaw == 1000) {
+            info { "gameState 1000, js5error, exiting" }
+            exitProcess(203)
         }
 
         if (preventLoginHook != null) {
@@ -165,7 +169,7 @@ class LoginEvent : BlockingEvent() {
                 Worlds.openLobbySelector()
             } catch (e: Worlds.LobbyLoadWorldsTimedOutException) {
                 info { "load worlds timed out, exiting" }
-                exitProcess(401)//todo 401 is a launcher exit code, cba rn
+                exitProcess(202)//todo 401 is a launcher exit code, cba rn
             }
         }
 

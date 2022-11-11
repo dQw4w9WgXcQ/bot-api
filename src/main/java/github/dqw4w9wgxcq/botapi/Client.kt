@@ -2,12 +2,14 @@ package github.dqw4w9wgxcq.botapi
 
 import github.dqw4w9wgxcq.botapi.Refl.get2
 import github.dqw4w9wgxcq.botapi.Refl.getBoolean2
+import github.dqw4w9wgxcq.botapi.Refl.getInt2
 import github.dqw4w9wgxcq.botapi.commons.onGameThread
 import github.dqw4w9wgxcq.botapi.loader.RuneliteContext
 import net.runelite.api.ItemComposition
 import net.runelite.api.NPCComposition
 import net.runelite.api.ObjectComposition
 import net.runelite.api.World
+import net.runelite.api.widgets.Widget
 
 object Client : net.runelite.api.Client by RuneliteContext.getClient() {
     override fun runScript(vararg args: Any?) {
@@ -50,20 +52,17 @@ object Client : net.runelite.api.Client by RuneliteContext.getClient() {
         return onGameThread { getVarbitValue(RuneliteContext.getClient().varps, varbitId) }
     }
 
-    val widgets: Array<Array<net.runelite.api.widgets.Widget?>?>
-        get() {
-            return Refl.Widget_interfaceComponents.get2(null)
-        }
+    val widgets: Array<Array<Widget?>?>
+        get() = Refl.Widget_interfaceComponents.get2(null)
 
     val isLoading: Boolean
-        get() {
-            return Refl.isLoading.getBoolean2(null)
-        }
+        get() = Refl.isLoading.getBoolean2(null)
 
     val isWorldSelectorOpen: Boolean
-        get() {
-            return Refl.worldSelectOpen.getBoolean2(null)
-        }
+        get() = Refl.worldSelectOpen.getBoolean2(null)
+
+    val gameStateRaw: Int
+        get() = Refl.gameState.getInt2(null, Refl.gameStateDecoder)
 
     fun hasFocus(): Boolean {
         return Refl.hasFocus.getBoolean2(null)

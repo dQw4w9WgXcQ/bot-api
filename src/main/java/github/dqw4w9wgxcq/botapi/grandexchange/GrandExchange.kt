@@ -2,6 +2,7 @@ package github.dqw4w9wgxcq.botapi.grandexchange
 
 import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.*
+import github.dqw4w9wgxcq.botapi.data.LocationData
 import github.dqw4w9wgxcq.botapi.entities.NPCs
 import github.dqw4w9wgxcq.botapi.entities.Players
 import github.dqw4w9wgxcq.botapi.input.Keyboard
@@ -19,7 +20,6 @@ import net.runelite.api.widgets.WidgetInfo
 
 object GrandExchange {
     val location = WorldPoint(3164, 3487, 0)
-    const val region = 12598
 
     enum class View {
         CLOSED, OFFERS, BUYING, SELLING, INDETERMINATE,
@@ -295,7 +295,7 @@ object GrandExchange {
     }
 
     fun isOpen(): Boolean {
-        return Players.local().region == region && view() != View.CLOSED
+        return Players.local().region == LocationData.GRAND_EXCHANGE && view() != View.CLOSED
     }
 
     fun confirm(waitFor: Boolean = true) {

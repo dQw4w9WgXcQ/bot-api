@@ -201,9 +201,13 @@ class LoginEvent : BlockingEvent() {
             }
         }
 
-        if (loginResponse.contains("oo many login attempts", true)) {
-            throw FatalException(loginResponse)
-        }
+//        if (loginResponse.contains("oo many login attempts", true)) {
+//            throw FatalException(loginResponse)
+//        }
+//
+//        if (loginResponse.contains("login limit", true)) {
+//            throw FatalException(loginResponse)
+//        }
 
         if (loginResponse.contains("need a members")) {
             Worlds.changeLobbyWorld(Worlds.getRandomSuitable(matches = Worlds.F2P).id)
@@ -212,10 +216,6 @@ class LoginEvent : BlockingEvent() {
         if (loginResponse.contains("update")) {
             BotScript.looping = false
             return true
-        }
-
-        if (loginResponse.contains("login limit", true)) {
-            throw FatalException(loginResponse)
         }
 
         if (loginResponse.contains("your account has not logged out", true)) {

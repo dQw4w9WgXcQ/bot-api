@@ -22,7 +22,7 @@ object Teleport {
     private const val TELE_ANIMATION = 714
 
     private fun waitTele(animation: Int) {
-        waitUntil { Players.local().animation == animation }
+        waitUntil(10_000) { Players.local().animation == animation }
         val startRegion = Players.local().region
         waitUntil { Players.local().animation != animation }//bc some animations are in parts
         waitUntil { Players.local().region != startRegion }

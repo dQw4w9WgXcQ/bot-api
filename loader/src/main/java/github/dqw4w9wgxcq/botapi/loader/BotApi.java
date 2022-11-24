@@ -94,7 +94,6 @@ public class BotApi {
     @SneakyThrows
     public static void init(ClassLoader rlLoader) {
         String acc = System.getProperty("bot.acc");
-        String proxy = System.getProperty("socksProxyHost");
 
         scriptManager = new ScriptManager(RuneLite.class.getClassLoader());
 
@@ -105,9 +104,7 @@ public class BotApi {
             if (acc != null) {
                 title += acc;
             }
-            if (proxy != null) {
-                title += " - " + proxy;
-            }
+
             frame.setTitle(title);
             frame.add(new BotPanel(scriptManager));
             frame.setSize(500, 500);
@@ -115,7 +112,6 @@ public class BotApi {
         });
 
         log.info("acc:" + acc);
-        log.info("proxy:" + proxy);
 
         NavigationButton navButton = NavigationButton.builder()
                 .tooltip("bot")

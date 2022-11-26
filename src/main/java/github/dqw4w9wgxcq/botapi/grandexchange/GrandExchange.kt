@@ -120,7 +120,7 @@ object GrandExchange {
             ?: throw NotFoundException("ge search result has no children")
         val index = children.indexOfFirst { it != null && it.itemId == id }
         if (index == -1) throw NotFoundException("cant find result widget for id: $id")
-        return children[index - 2]!!
+        return children[index - 2] ?: throw NotFoundException("not in child array")
     }
 
     fun offerPrice(): Int = Client.getVarbitValue(4398)

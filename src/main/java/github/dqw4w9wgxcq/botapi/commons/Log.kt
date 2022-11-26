@@ -71,7 +71,7 @@ object Log {
 
         val time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS)
         val threadName = Thread.currentThread().name
-        val packageInitials = classLabel.`package`.name.split(".").map { it[0] }.joinToString(separator = ".")
+        //val packageInitials = classLabel.`package`.name.split(".").map { it[0] }.joinToString(separator = ".")
         val printName = classLabel.name.substringAfterLast(".")
         var fullMessage = if (message is Throwable) {
             message.stackTraceToString()
@@ -82,7 +82,7 @@ object Log {
             fullMessage += "\n" + throwable.stackTraceToString()
         }
 
-        val formattedMessage = "$time $threadName $level $packageInitials.$printName $fullMessage"
+        val formattedMessage = "$time $threadName $level $printName $fullMessage"
 
         println(formattedMessage)
     }

@@ -122,10 +122,13 @@ object Worlds {
         }
     }
 
+    var preHopHook = {}
     fun switchTo(world: World) {
         info { "tryna switch to world " + world.id }
 
         openWorldHopper()
+
+        preHopHook()
 
         Client.hopToWorld(world)
         waitUntil { Client.gameState == GameState.HOPPING || Dialog.isOpen() }

@@ -1,6 +1,7 @@
 package github.dqw4w9wgxcq.botapi.interact
 
 import github.dqw4w9wgxcq.botapi.Client
+import github.dqw4w9wgxcq.botapi.Events
 import github.dqw4w9wgxcq.botapi.Refl
 import github.dqw4w9wgxcq.botapi.Refl.get2
 import github.dqw4w9wgxcq.botapi.Refl.getInt2
@@ -10,7 +11,6 @@ import github.dqw4w9wgxcq.botapi.commons.*
 import github.dqw4w9wgxcq.botapi.input.mouse.Mouse
 import github.dqw4w9wgxcq.botapi.input.mouse.MouseInput
 import github.dqw4w9wgxcq.botapi.input.mouse.action.MouseAction
-import github.dqw4w9wgxcq.botapi.loader.RuneliteContext
 import github.dqw4w9wgxcq.botapi.script.BotScript
 import github.dqw4w9wgxcq.botapi.tabs.Tab
 import github.dqw4w9wgxcq.botapi.tabs.Tabs
@@ -54,7 +54,7 @@ class RickkInteract : InteractDriver {
 
     private val hoveredTagManager by lazy {
         val out = HoveredTagManager()
-        RuneliteContext.getEventBus().register(out)
+        Events.register(out)
         out
     }
 

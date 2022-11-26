@@ -33,7 +33,9 @@ object LocalPathfinding {
                 //rfd lumbridge castle dining hall
                 ObjectID.DOOR_12348,
                 ObjectID.LARGE_DOOR_12350,
-                ObjectID.LARGE_DOOR_12349
+                ObjectID.LARGE_DOOR_12349,
+                //varrock museum
+                ObjectID.GATE_24536,
             )
         ),
         WEB(

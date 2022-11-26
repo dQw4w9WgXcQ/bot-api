@@ -141,9 +141,14 @@ class LoginEvent : BlockingEvent() {
 
         //if we are logging in, wait for welcome screen
         if (gameState == GameState.LOGGING_IN) {
-            waitUntil(60_000) {
-                gameState = Client.gameState
-                gameState != GameState.LOGGING_IN && gameState != GameState.LOADING
+            if (
+                waitUntilWithConfirm(100_000) {
+                    gameState = Client.gameState
+                    gameState != GameState.LOGGING_IN && gameState != GameState.LOADING
+                }
+            ) {
+                warn { "logging in took too long" }
+                exitProcess(204)
             }
 
             info { "gamestate after $gameState" }
@@ -169,7 +174,7 @@ class LoginEvent : BlockingEvent() {
                 Worlds.openLobbySelector()
             } catch (e: Worlds.LobbyLoadWorldsTimedOutException) {
                 info { "load worlds timed out, exiting" }
-                exitProcess(202)//todo 401 is a launcher exit code, cba rn
+                exitProcess(202)
             }
         }
 

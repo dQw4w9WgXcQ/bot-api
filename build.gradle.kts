@@ -38,10 +38,8 @@ tasks {
     withType<KotlinCompile> {
         kotlinOptions {
             jvmTarget = "11"
-            freeCompilerArgs = listOf(
-                "-Xjvm-default=all-compatibility",//so kotlin interfaces work with lombok delegate java classes(Wrappers)
-            )
         }
+        kotlinOptions.freeCompilerArgs += listOf("-Xjvm-default=all-compatibility", "-Xuse-k2", "-java-parameters")
     }
 }
 

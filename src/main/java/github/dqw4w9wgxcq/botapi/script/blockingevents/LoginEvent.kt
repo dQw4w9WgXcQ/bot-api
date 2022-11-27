@@ -142,7 +142,7 @@ class LoginEvent : BlockingEvent() {
         //if we are logging in, wait for welcome screen
         if (gameState == GameState.LOGGING_IN) {
             if (
-                waitUntilWithConfirm(100_000) {
+                !waitUntilWithConfirm(100_000) {
                     gameState = Client.gameState
                     gameState != GameState.LOGGING_IN && gameState != GameState.LOADING
                 }

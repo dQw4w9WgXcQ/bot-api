@@ -14,6 +14,6 @@ public class TrimmingJTextArea extends JTextArea {
     }
 
     public void scrollToBottom() {
-        setCaretPosition(getText().length());
+        getCaret().setDot(Integer.MAX_VALUE);
     }
 }

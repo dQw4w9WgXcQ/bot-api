@@ -1,6 +1,7 @@
 package github.dqw4w9wgxcq.botapi.loader;
 
 import javax.swing.*;
+import javax.swing.text.Caret;
 
 public class TrimmingJTextArea extends JTextArea {
     @Override
@@ -14,6 +15,9 @@ public class TrimmingJTextArea extends JTextArea {
     }
 
     public void scrollToBottom() {
-        getCaret().setDot(Integer.MAX_VALUE);
+        Caret caret = getCaret();
+        if (caret != null) {
+            caret.setDot(Integer.MAX_VALUE);
+        }
     }
 }

@@ -24,4 +24,6 @@ class WaitTimeoutException(
     condition: (Any?) -> Boolean,
 ) : RetryException("timeout:$timeout pollRate:$pollRate condition:$condition supply:$supply", retries = 10)
 
-class FatalException(message: String) : RuntimeException(message)
+class FatalException(message: String?, cause: Throwable? = null) : RuntimeException(message, cause) {
+    constructor(cause: Throwable) : this(null, cause)
+}

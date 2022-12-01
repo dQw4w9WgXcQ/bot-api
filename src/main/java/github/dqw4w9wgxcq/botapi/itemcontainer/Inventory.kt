@@ -13,7 +13,7 @@ import net.runelite.api.Item
 
 object Inventory : ItemContainer<InventoryItem>(InventoryID.INVENTORY) {
     fun isItemSelected(): Boolean {
-        return Client.spellSelected
+        return Client.isWidgetSelected
     }
 
     fun isFull(): Boolean {

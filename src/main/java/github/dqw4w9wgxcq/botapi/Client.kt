@@ -53,7 +53,7 @@ object Client : net.runelite.api.Client by RuneliteContext.getClient() {
     }
 
     val widgets: Array<Array<Widget?>?>
-        get() = Refl.Widget_interfaceComponents.get2(null)
+        get() = Refl.interfaceComponents.get2(null)
 
     val isLoading: Boolean
         get() = Refl.isLoading.getBoolean2(null)

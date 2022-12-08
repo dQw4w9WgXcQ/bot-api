@@ -70,10 +70,10 @@ class LoginEvent : BlockingEvent() {
         }
 
         fun getLoginResponse(): String {
-            val response0 = Refl.Login_response0.get2<String>(null)
-            val response1 = Refl.Login_response1.get2<String>(null)
-            val response2 = Refl.Login_response2.get2<String>(null)
-            val response3 = Refl.Login_response3.get2<String>(null)
+            val response0 = Refl.loginResponse0.get2<String>(null)
+            val response1 = Refl.loginResponse1.get2<String>(null)
+            val response2 = Refl.loginResponse2.get2<String>(null)
+            val response3 = Refl.loginResponse3.get2<String>(null)
             return listOf(response0, response1, response2, response3).joinToString(" ")
         }
 

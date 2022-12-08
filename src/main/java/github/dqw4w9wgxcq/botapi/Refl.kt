@@ -13,7 +13,7 @@ object Refl {
     }
 
     //client
-    val Widget_interfaceComponents: Field
+    val interfaceComponents: Field
     val isLoading: Field
     val worldSelectOpen: Field
     val hasFocus: Field
@@ -21,20 +21,20 @@ object Refl {
     val gameStateDecoder: Int
 
     //loginevent
-    val Login_response0: Field
-    val Login_response1: Field
-    val Login_response2: Field
-    val Login_response3: Field
+    val loginResponse0: Field
+    val loginResponse1: Field
+    val loginResponse2: Field
+    val loginResponse3: Field
     val banType: Field
     val banTypeDecoder: Int
 
     //rickkinteract
-    val ViewportMouse_entityTags: Field
-    val ViewportMouse_entityCount: Field
+    val entityTags: Field
+    val entityCount: Field
     val entityCountEncoder: Int
     val entityCountDecoder: Int
-    val Scene_selectedX: Field
-    val Scene_selectedY: Field
+    val selectedX: Field
+    val selectedY: Field
     val viewportWalking: Field
 
     //actor
@@ -47,36 +47,36 @@ object Refl {
         }
 
         val clientClass = getRsClass("client")
-        isLoading = clientClass.getDeclaredField("df")
-        gameState = clientClass.getDeclaredField("ci")
-        gameStateDecoder = -1954783269
+        isLoading = clientClass.getDeclaredField("dn")
+        gameState = clientClass.getDeclaredField("cc")
+        gameStateDecoder = 849546905
 
-        val loginClass = getRsClass("bw")
-        Widget_interfaceComponents = getRsClass("kn").getDeclaredField("q")
-        worldSelectOpen = loginClass.getDeclaredField("cs")
-        hasFocus = getRsClass("bs").getDeclaredField("au")
+        val loginClass = getRsClass("bu")
+        interfaceComponents = getRsClass("bt").getDeclaredField("as")
+        worldSelectOpen = loginClass.getDeclaredField("cq")
+        hasFocus = getRsClass("qx").getDeclaredField("aw")
 
-        Login_response0 = loginClass.getDeclaredField("bh")
-        Login_response1 = loginClass.getDeclaredField("bm")
-        Login_response2 = loginClass.getDeclaredField("bp")
-        Login_response3 = loginClass.getDeclaredField("bx")
-        banType = loginClass.getDeclaredField("ai")
-        banTypeDecoder = -672921453
+        loginResponse1 = loginClass.getDeclaredField("be")
+        loginResponse2 = loginClass.getDeclaredField("bf")
+        loginResponse3 = loginClass.getDeclaredField("bo")
+        loginResponse0 = loginClass.getDeclaredField("bh")
+        banType = loginClass.getDeclaredField("ah")
+        banTypeDecoder = -1123765685
 
-        val viewportMouseClass = getRsClass("hz")
-        ViewportMouse_entityTags = viewportMouseClass.getDeclaredField("o")
-        ViewportMouse_entityCount = viewportMouseClass.getDeclaredField("b")
-        entityCountEncoder = -1806915013
-        entityCountDecoder = 836673267
+        val viewportMouseClass = getRsClass("hg")
+        entityTags = viewportMouseClass.getDeclaredField("n")
+        entityCount = viewportMouseClass.getDeclaredField("o")
+        entityCountEncoder = 709533991
+        entityCountDecoder = -1096761705
 
-        val sceneClass = getRsClass("hf")
-        Scene_selectedX = sceneClass.getDeclaredField("ae")
-        Scene_selectedY = sceneClass.getDeclaredField("ap")
-        viewportWalking = sceneClass.getDeclaredField("as")
+        val sceneClass = getRsClass("hc")
+        selectedX = sceneClass.getDeclaredField("an")
+        selectedY = sceneClass.getDeclaredField("ab")
+        viewportWalking = sceneClass.getDeclaredField("al")
 
-        val actorClass = getRsClass("cl")
-        pathLength = actorClass.getDeclaredField("cv")
-        pathLengthDecoder = 1973809325
+        val actorClass = getRsClass("ct")
+        pathLength = actorClass.getDeclaredField("cd")
+        pathLengthDecoder = 472227045
     }
 
     fun <T> Field.get2(obj: Any?): T {

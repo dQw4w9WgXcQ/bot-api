@@ -38,12 +38,12 @@ object Focus {
         while (true) {
             val dif = synchronized(this) {
                 val currTime = System.currentTimeMillis()
-                val dif = blockLoseFocusTime - currTime
-                if (dif <= 0) {
+                val diff = blockLoseFocusTime - currTime
+                if (diff <= 0) {
                     blockGainFocusTime = currTime + lockDuration
                 }
 
-                dif
+                diff
             }
 
             if (dif <= 0) {

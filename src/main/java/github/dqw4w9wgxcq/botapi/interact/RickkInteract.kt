@@ -42,12 +42,12 @@ class RickkInteract : InteractDriver {
             }
 
             debug { "setting entity tag ${forcedTag.get()}" }
-            val tags: LongArray = Refl.ViewportMouse_entityTags.get2(null)
+            val tags: LongArray = Refl.entityTags.get2(null)
             tags[0] = forcedTag.get()
-            Refl.ViewportMouse_entityCount.setInt2(null, 1, Refl.entityCountEncoder)
-            debug { "tag after: ${Refl.ViewportMouse_entityTags.get2<LongArray>(null)[0]}" }
+            Refl.entityCount.setInt2(null, 1, Refl.entityCountEncoder)
+            debug { "tag after: ${Refl.entityTags.get2<LongArray>(null)[0]}" }
             debug {
-                "entity count after: ${Refl.ViewportMouse_entityCount.getInt2(null, Refl.entityCountDecoder)}"
+                "entity count after: ${Refl.entityCount.getInt2(null, Refl.entityCountDecoder)}"
             }
         }
     }
@@ -76,8 +76,8 @@ class RickkInteract : InteractDriver {
             if (baseX != newBaseX || baseY != newBaseY) {
                 throw RetryException("base changed $baseX,$baseY to $newBaseX,$newBaseY")
             }
-            Refl.Scene_selectedX.setInt2(null, scenePosition.x, 1)
-            Refl.Scene_selectedY.setInt2(null, scenePosition.y, 1)
+            Refl.selectedX.setInt2(null, scenePosition.x, 1)
+            Refl.selectedY.setInt2(null, scenePosition.y, 1)
             Refl.viewportWalking.setBoolean2(null, true)
         }
     }

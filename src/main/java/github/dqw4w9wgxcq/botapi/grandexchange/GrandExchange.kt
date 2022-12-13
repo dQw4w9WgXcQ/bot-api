@@ -17,6 +17,8 @@ import net.runelite.api.widgets.WidgetID
 import net.runelite.api.widgets.WidgetInfo
 
 object GrandExchange {
+    val location = WorldPoint(3164, 3487, 0)
+
     enum class View {
         CLOSED, OFFERS, BUYING, SELLING, INDETERMINATE,
     }

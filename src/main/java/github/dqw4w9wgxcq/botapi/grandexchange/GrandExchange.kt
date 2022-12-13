@@ -313,12 +313,18 @@ object GrandExchange {
 
         Widgets.get(WidgetID.GRAND_EXCHANGE_GROUP_ID, 29).interact("confirm")
         if (waitFor) {
+            waitUntil { view() == View.OFFERS || getPriceWarningYesButton() != null }
+            checkPriceWarning()
             waitUntil { view() == View.OFFERS }
         }
     }
 
+    fun getPriceWarningYesButton(): Widget? {
+        return Widgets.getOrNull(289, 8)
+    }
+
     fun checkPriceWarning() {
-        val priceWarning = Widgets.getOrNull(289, 8)
+        val priceWarning = getPriceWarningYesButton()
         if (priceWarning != null) {
             info { "much lower price warning" }
             priceWarning.interact("yes")

@@ -2,9 +2,7 @@ package github.dqw4w9wgxcq.botapi.grandexchange
 
 import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.commons.*
-import github.dqw4w9wgxcq.botapi.data.LocationData
 import github.dqw4w9wgxcq.botapi.entities.NPCs
-import github.dqw4w9wgxcq.botapi.entities.Players
 import github.dqw4w9wgxcq.botapi.input.Keyboard
 import github.dqw4w9wgxcq.botapi.itemcontainer.Bank
 import github.dqw4w9wgxcq.botapi.itemcontainer.Inventory
@@ -19,8 +17,6 @@ import net.runelite.api.widgets.WidgetID
 import net.runelite.api.widgets.WidgetInfo
 
 object GrandExchange {
-    val location = WorldPoint(3164, 3487, 0)
-
     enum class View {
         CLOSED, OFFERS, BUYING, SELLING, INDETERMINATE,
     }
@@ -107,7 +103,7 @@ object GrandExchange {
         selectSearchResult(id, waitFor)
     }
 
-    fun selectSearchResult(id: Int, waitFor: Boolean = true) {
+    private fun selectSearchResult(id: Int, waitFor: Boolean = true) {
         Widgets.scrollUntilWidgetInBounds(getSearchResultWidget(id))
         getSearchResultWidget(id).interact("Select")
         if (waitFor) {
@@ -123,10 +119,14 @@ object GrandExchange {
         return children[index - 2] ?: throw NotFoundException("not in child array")
     }
 
-    fun offerPrice(): Int = Client.getVarbitValue(4398)
+    fun offerPrice(): Int {
+        return Client.getVarbitValue(4398)
+    }
 
     fun enterPrice(price: Int, waitFor: Boolean = true) {
         require(price > 0) { "price $price must be greater than 0 " }
+
+        checkPriceWarning()
 
         if (offerPrice() == price) {
             debug { "price $price already selected" }
@@ -147,6 +147,8 @@ object GrandExchange {
     private val enterQuantityWq = WidgetQuery(WidgetInfo.GRAND_EXCHANGE_OFFER_CONTAINER, byAction("enter quantity"))
     fun enterQuantity(quantity: Int, waitFor: Boolean = true) {
         require(quantity > 0) { "quantity $quantity must be greater than 0" }
+
+        checkPriceWarning()
 
         val offerQuantity = offerQuantity()
         if (quantity == offerQuantity) {
@@ -207,7 +209,9 @@ object GrandExchange {
         }
     }
 
-    fun offerQuantity(): Int = Client.getVarbitValue(4396)
+    fun offerQuantity(): Int {
+        return Client.getVarbitValue(4396)
+    }
 
     private val notNumberRegex = "\\D".toRegex()
     fun guidePrice(): Int {
@@ -237,6 +241,8 @@ object GrandExchange {
     }
 
     fun createBuyOffer(waitFor: Boolean = true) {
+        checkPriceWarning()
+
         val group = Widgets.get(WidgetID.GRAND_EXCHANGE_GROUP_ID)
         for (i in 7..14) {
             val widget = group[i] ?: throw NotFoundException("offer widget not found at index $i")
@@ -252,13 +258,12 @@ object GrandExchange {
         throw RetryException("no free slot")
     }
 
-    val offers: List<GrandExchangeOffer>
-        get() {
-            return Client.grandExchangeOffers.toList()
-        }
+    fun getOffers(): List<GrandExchangeOffer> {
+        return Client.grandExchangeOffers.toList()
+    }
 
     fun haveEmptySlot(): Boolean {
-        val offers = offers
+        val offers = getOffers()
         val memDays: Int = Client.getVarpValue(VarPlayer.MEMBERSHIP_DAYS)
         for (i in offers.indices) {
             if (i > 2 && memDays == 0) {
@@ -281,11 +286,14 @@ object GrandExchange {
             GrandExchangeOfferState.CANCELLED_SELL
         )
 
-        return offers.any { completed.contains(it.state) }
+        return getOffers().any { completed.contains(it.state) }
     }
 
     fun collect(toBank: Boolean = Inventory.count({ true }, includeStacked = false) >= 27, waitFor: Boolean = true) {
         info { "collecting toBank:$toBank" }
+
+        checkPriceWarning()
+
         Widgets.get(WidgetID.GRAND_EXCHANGE_GROUP_ID, 6, 0)
             .interact(if (toBank) "Collect to bank" else "Collect to inventory")
 
@@ -295,20 +303,24 @@ object GrandExchange {
     }
 
     fun isOpen(): Boolean {
-        return Players.local().region == LocationData.GRAND_EXCHANGE && view() != View.CLOSED
+        return view() != View.CLOSED
     }
 
     fun confirm(waitFor: Boolean = true) {
-        val muchLowerPriceWarning = Widgets.getOrNull(289, 8)
-        if (muchLowerPriceWarning != null) {
-            debug { "much lower price warning" }
-            muchLowerPriceWarning.interact("yes")
-            waitUntil { Widgets.getOrNull(289, 8) == null }
-        }
+        checkPriceWarning()
 
         Widgets.get(WidgetID.GRAND_EXCHANGE_GROUP_ID, 29).interact("confirm")
         if (waitFor) {
             waitUntil { view() == View.OFFERS }
+        }
+    }
+
+    fun checkPriceWarning() {
+        val priceWarning = Widgets.getOrNull(289, 8)
+        if (priceWarning != null) {
+            info { "much lower price warning" }
+            priceWarning.interact("yes")
+            waitUntil { Widgets.getOrNull(289, 8) == null }
         }
     }
 

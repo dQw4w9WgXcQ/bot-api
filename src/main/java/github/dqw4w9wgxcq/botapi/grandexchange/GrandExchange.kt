@@ -299,6 +299,13 @@ object GrandExchange {
     }
 
     fun confirm(waitFor: Boolean = true) {
+        val muchLowerPriceWarning = Widgets.getOrNull(289, 8)
+        if (muchLowerPriceWarning != null) {
+            debug { "much lower price warning" }
+            muchLowerPriceWarning.interact("yes")
+            waitUntil { Widgets.getOrNull(289, 8) == null }
+        }
+
         Widgets.get(WidgetID.GRAND_EXCHANGE_GROUP_ID, 29).interact("confirm")
         if (waitFor) {
             waitUntil { view() == View.OFFERS }

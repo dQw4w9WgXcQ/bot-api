@@ -25,7 +25,7 @@ object Events {
             try {
                 unregister(listener)
             } catch (e: Exception) {
-                warn(e) { "some exception when unregistering class: ${listener.javaClass.simpleName}" }
+                warn(e) { "exception unregistering $listener" }
             }
         }
     }

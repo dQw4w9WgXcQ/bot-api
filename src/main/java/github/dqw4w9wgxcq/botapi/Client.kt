@@ -52,6 +52,10 @@ object Client : net.runelite.api.Client by RuneliteContext.getClient() {
         return onGameThread { getVarbitValue(RuneliteContext.getClient().varps, varbitId) }
     }
 
+    override fun getEnergy(): Int {
+        return RuneliteContext.getClient().energy / 100
+    }
+
     val widgets: Array<Array<Widget?>?>
         get() = Refl.interfaceComponents.get2(null)
 

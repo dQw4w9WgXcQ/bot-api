@@ -137,7 +137,7 @@ class LoginEvent : BlockingEvent() {
             return true
         }
 
-        info { "gameState:$gameState" }
+        debug { "gameState:$gameState" }
 
         //if we are logging in, wait for welcome screen
         if (gameState == GameState.LOGGING_IN) {

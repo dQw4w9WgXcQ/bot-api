@@ -3,6 +3,7 @@ package github.dqw4w9wgxcq.botapi.loader;
 import net.runelite.api.Client;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.eventbus.EventBus;
+import net.runelite.client.ui.overlay.OverlayManager;
 
 import javax.inject.Inject;
 
@@ -13,6 +14,8 @@ public class RuneliteContext {
     private ClientThread clientThread;
     @Inject
     private EventBus eventBus;
+    @Inject
+    private OverlayManager overlayManager;
 
     private static RuneliteContext instance = null;
 
@@ -42,5 +45,9 @@ public class RuneliteContext {
 
     public static EventBus getEventBus() {
         return getInstance().eventBus;
+    }
+
+    public static OverlayManager getOverlayManager() {
+        return getInstance().overlayManager;
     }
 }

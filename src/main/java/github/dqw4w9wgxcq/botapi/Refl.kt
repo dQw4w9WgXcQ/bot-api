@@ -80,8 +80,8 @@ object Refl {
     }
 
     fun <T> Field.get2(obj: Any?): T {
-        val wasAccessible = this.isAccessible
-        if (!wasAccessible) {
+        val access = this.isAccessible
+        if (!access) {
             this.isAccessible = true
         }
 
@@ -89,45 +89,45 @@ object Refl {
         return try {
             this.get(obj)
         } finally {
-            if (!wasAccessible) {
+            if (!access) {
                 this.isAccessible = false
             }
         } as T
     }
 
     fun Field.getBoolean2(obj: Any?): Boolean {
-        val wasAccessible = this.isAccessible
-        if (!wasAccessible) {
+        val access = this.isAccessible
+        if (!access) {
             this.isAccessible = true
         }
 
         return try {
             this.getBoolean(obj)
         } finally {
-            if (!wasAccessible) {
+            if (!access) {
                 this.isAccessible = false
             }
         }
     }
 
     fun Field.setBoolean2(obj: Any?, value: Boolean) {
-        val wasAccessible = this.isAccessible
-        if (!wasAccessible) {
+        val access = this.isAccessible
+        if (!access) {
             this.isAccessible = true
         }
 
         try {
             this.setBoolean(obj, value)
         } finally {
-            if (!wasAccessible) {
+            if (!access) {
                 this.isAccessible = false
             }
         }
     }
 
     fun Field.getInt2(obj: Any?, mult: Int): Int {
-        val wasAccessible = this.isAccessible
-        if (!wasAccessible) {
+        val access = this.isAccessible
+        if (!access) {
             this.isAccessible = true
         }
 
@@ -136,15 +136,15 @@ object Refl {
             val value = raw * mult
             value
         } finally {
-            if (!wasAccessible) {
+            if (!access) {
                 this.isAccessible = false
             }
         }
     }
 
     fun Field.setInt2(obj: Any?, value: Int, mult: Int) {
-        val wasAccessible = this.isAccessible
-        if (!wasAccessible) {
+        val access = this.isAccessible
+        if (!access) {
             this.isAccessible = true
         }
 
@@ -153,15 +153,15 @@ object Refl {
             debug { "setLong2: $value * $mult = $multedValue" }
             this.setInt(obj, multedValue)
         } finally {
-            if (!wasAccessible) {
+            if (!access) {
                 this.isAccessible = false
             }
         }
     }
 
     fun Field.getLong2(obj: Any?, mult: Long): Long {
-        val wasAccessible = this.isAccessible
-        if (!wasAccessible) {
+        val access = this.isAccessible
+        if (!access) {
             this.isAccessible = true
         }
 
@@ -175,15 +175,15 @@ object Refl {
             }
             value
         } finally {
-            if (!wasAccessible) {
+            if (!access) {
                 this.isAccessible = false
             }
         }
     }
 
     fun Field.setLong2(obj: Any?, value: Long, mult: Long) {
-        val wasAccessible = this.isAccessible
-        if (!wasAccessible) {
+        val access = this.isAccessible
+        if (!access) {
             this.isAccessible = true
         }
 
@@ -192,7 +192,7 @@ object Refl {
             debug { "setLong2: $value*$mult=$multedValue" }
             this.setLong(obj, multedValue)
         } finally {
-            if (!wasAccessible) {
+            if (!access) {
                 this.isAccessible = false
             }
         }
@@ -200,8 +200,8 @@ object Refl {
 
     //cant use varargs, kotlin primtive auto boxing makes args different type
     fun <T> Method.invoke2(args: Any?, junk: Int): T {
-        val wasAccessible = this.isAccessible
-        if (!wasAccessible) {
+        val access = this.isAccessible
+        if (!access) {
             this.isAccessible = true
         }
 
@@ -209,7 +209,7 @@ object Refl {
             @Suppress("UNCHECKED_CAST")
             this.invoke(args, junk) as T
         } finally {
-            if (!wasAccessible) {
+            if (!access) {
                 this.isAccessible = false
             }
         }

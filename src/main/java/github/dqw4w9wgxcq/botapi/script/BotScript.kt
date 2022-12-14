@@ -2,10 +2,10 @@ package github.dqw4w9wgxcq.botapi.script
 
 import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.Events
-import github.dqw4w9wgxcq.botapi.antiban.Antiban
 import github.dqw4w9wgxcq.botapi.commons.*
 import github.dqw4w9wgxcq.botapi.loader.BotApi
 import github.dqw4w9wgxcq.botapi.loader.IBotScript
+import github.dqw4w9wgxcq.botapi.paint.Paint
 import org.slf4j.event.Level
 import java.io.FileNotFoundException
 import java.io.IOException
@@ -47,6 +47,7 @@ abstract class BotScript : IBotScript {
         fun reset() {
             Events.clear()
             BlockingEvents.reset()
+            Paint.clear()
         }
 
         try {

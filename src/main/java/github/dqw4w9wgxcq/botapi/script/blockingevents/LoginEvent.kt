@@ -102,12 +102,21 @@ class LoginEvent : BlockingEvent() {
     }
 
     private val loginResponseBehaviors = mutableListOf<Pair<String, () -> Boolean>>()
+    private val loginIndexBehaviors = mutableMapOf<Int, () -> Boolean>()
+
     fun addLoginResponseBehavior(responseContainsIgnoreCase: String, behavior: () -> Boolean) {
+        if (loginResponseBehaviors.any { it.first == responseContainsIgnoreCase }) {
+            throw FatalException("handler for '$responseContainsIgnoreCase' already registered")
+        }
+
         loginResponseBehaviors.add(responseContainsIgnoreCase to behavior)
     }
 
-    private val loginIndexBehaviors = mutableMapOf<Int, () -> Boolean>()
     fun addLoginIndexBehavior(loginIndex: Int, behavior: () -> Boolean) {
+        if (loginIndexBehaviors.containsKey(loginIndex)) {
+            throw FatalException("handler for $loginIndex already registered")
+        }
+
         loginIndexBehaviors[loginIndex] = behavior
     }
 

@@ -44,12 +44,6 @@ abstract class BotScript : IBotScript {
     var loopCount = 0
 
     override fun run() {
-        fun reset() {
-            Events.clear()
-            BlockingEvents.reset()
-            Paint.clear()
-        }
-
         try {
             reset()//unnecessary probably
 
@@ -173,5 +167,11 @@ abstract class BotScript : IBotScript {
             looping = false//some other threads might check this so ensure its off
             reset()
         }
+    }
+
+    private fun reset() {
+        Events.clear()
+        BlockingEvents.reset()
+        Paint.clear()
     }
 }

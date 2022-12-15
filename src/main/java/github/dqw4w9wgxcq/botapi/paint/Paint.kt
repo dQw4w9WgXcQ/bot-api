@@ -14,4 +14,8 @@ object Paint {
     fun clear() {
         RuneliteContext.getOverlayManager().removeIf { it is PaintOverlay }
     }
+
+    fun onScriptStart() {
+        add(MouseOverlay)
+    }
 }

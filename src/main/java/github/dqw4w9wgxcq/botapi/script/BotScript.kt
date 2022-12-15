@@ -49,9 +49,10 @@ abstract class BotScript : IBotScript {
 
             looping = true
 
-            onStart()
-
             Events.register(this)
+            Paint.onScriptStart()
+
+            onStart()
 
             var failCount = 0
             while (looping) {

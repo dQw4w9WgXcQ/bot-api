@@ -17,14 +17,14 @@ apply<MavenPublishPlugin>()
 
 dependencies {
     compileOnly("net.runelite:client:${Versions.runelite}")
-    compileOnly("org.projectlombok:lombok:1.18.20")
+    compileOnly("org.projectlombok:lombok:${Versions.rlLombok}")
     //runelite launcher uses a minified runelite-api dep, so some classes are missing
     runtimeOnly("net.runelite:runelite-api:${Versions.runelite}") {
         isTransitive = false
     }
     runtimeOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}")
     runtimeOnly(group = "org.jboss.aerogear", name = "aerogear-otp-java", version = "1.0.0")
-    annotationProcessor("org.projectlombok:lombok:1.18.20")
+    annotationProcessor("org.projectlombok:lombok:${Versions.rlLombok}")
 }
 
 tasks {

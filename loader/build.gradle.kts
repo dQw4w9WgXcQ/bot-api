@@ -8,9 +8,7 @@ version = Versions.project
 
 repositories {
     mavenCentral()
-    maven {
-        url = uri("https://repo.runelite.net")
-    }
+    maven("https://repo.runelite.net")
 }
 
 apply<MavenPublishPlugin>()
@@ -22,9 +20,9 @@ dependencies {
     runtimeOnly("net.runelite:runelite-api:${Versions.runelite}") {
         isTransitive = false
     }
+    annotationProcessor("org.projectlombok:lombok:${Versions.rlLombok}")
     runtimeOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}")
     runtimeOnly(group = "org.jboss.aerogear", name = "aerogear-otp-java", version = "1.0.0")
-    annotationProcessor("org.projectlombok:lombok:${Versions.rlLombok}")
 }
 
 tasks {

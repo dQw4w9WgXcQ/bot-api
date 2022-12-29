@@ -16,6 +16,8 @@ apply<MavenPublishPlugin>()
 dependencies {
     compileOnly("net.runelite:client:${Versions.runelite}")
     compileOnly("org.projectlombok:lombok:${Versions.rlLombok}")
+    implementation("org.ow2.asm:asm:9.4")
+    implementation("org.ow2.asm:asm-tree:9.4")
     //runelite launcher uses a minified runelite-api dep, so some classes are missing
     runtimeOnly("net.runelite:runelite-api:${Versions.runelite}") {
         isTransitive = false
@@ -27,7 +29,8 @@ dependencies {
 
 tasks {
     java {
-        //if used in a plugin, need 1.8.  j9 module-info breaks guava jar loader
+        withSourcesJar()
+        //if used in a plugin, need 1.8.  j9 module-info breaks guava jar loader used by runelite
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_11
     }

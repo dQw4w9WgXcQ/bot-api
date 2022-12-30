@@ -16,8 +16,6 @@ apply<MavenPublishPlugin>()
 dependencies {
     compileOnly("net.runelite:client:${Versions.runelite}")
     compileOnly("org.projectlombok:lombok:${Versions.rlLombok}")
-    implementation("org.ow2.asm:asm:9.4")
-    implementation("org.ow2.asm:asm-tree:9.4")
     //runelite launcher uses a minified runelite-api dep, so some classes are missing
     runtimeOnly("net.runelite:runelite-api:${Versions.runelite}") {
         isTransitive = false

@@ -1,25 +1,12 @@
 package github.dqw4w9wgxcq.botapi.antiban
 
-import github.dqw4w9wgxcq.botapi.commons.info
 import kotlin.random.Random
 
 object Profile {
-    private var _hash: Int? = null
-    private val hash: Int
-        get() {
-            if (_hash == null) {
-                val acc = System.getProperty("bot.acc")
-                if (acc != null) {
-                    this._hash = acc.hashCode()
-                    info { "Profile initialized with acc: $acc hash: $_hash" }
-                } else {
-                    _hash = Random.nextInt()
-                    info { "no acc, set hash to random $_hash" }
-                }
-            }
-
-            return _hash!!
-        }
+    private val hash: Int by lazy {
+        val acc = System.getProperty("bot.acc")
+        acc?.hashCode() ?: Random.nextInt()
+    }
 
     fun newRandom(key: Int): Random {
         return Random(hash * key)

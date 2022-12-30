@@ -1,0 +1,46 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+plugins {
+    java
+    kotlin("jvm") version Versions.kotlin
+}
+
+group = "github.dqw4w9wgxcq.bot"
+version = Versions.project
+
+repositories {
+    mavenCentral()
+}
+
+apply<MavenPublishPlugin>()
+
+dependencies {
+    compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}")
+    compileOnly("org.ow2.asm:asm:9.4")
+    compileOnly("org.ow2.asm:asm-tree:9.4")
+    compileOnly("org.projectlombok:lombok:${Versions.rlLombok}")
+    annotationProcessor("org.projectlombok:lombok:${Versions.rlLombok}")
+}
+
+tasks {
+    java {
+        withSourcesJar()
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    withType<KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = "11"
+        }
+        kotlinOptions.freeCompilerArgs += listOf("-Xjvm-default=all-compatibility", "-Xuse-k2", "-java-parameters")
+    }
+}
+
+configure<PublishingExtension> {
+    publications {
+        register("mavenJava", MavenPublication::class) {
+            from(components["java"])
+        }
+    }
+}

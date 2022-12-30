@@ -1,6 +1,6 @@
-package github.dqw4w9wgxcq.bot.injector.disablerendering
+package github.dqw4w9wgxcq.botapi.injector.disablerendering
 
-import github.dqw4w9wgxcq.bot.injector.Injector
+import github.dqw4w9wgxcq.botapi.injector.Injector
 
 class DisableRendering : Injector {
     override fun inject(className: String?, bytes: ByteArray?): ByteArray {

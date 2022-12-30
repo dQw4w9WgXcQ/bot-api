@@ -1,4 +1,4 @@
-package github.dqw4w9wgxcq.botapi.loader;
+package github.dqw4w9wgxcq.botapi.inject;
 
 import lombok.extern.slf4j.Slf4j;
 import org.objectweb.asm.ClassReader;
@@ -6,8 +6,8 @@ import org.objectweb.asm.tree.ClassNode;
 
 //gets called by injected guava com.google.common.io.ByteStreams
 @Slf4j
-public class InjectRs {
-	public static byte[] injectRs(byte[] bytes) {
+public class Inject {
+	public static byte[] inject(byte[] bytes) {
 		if (!Thread.currentThread().getName().equals("Preloader")) {
 			log.info("InjectRs: " + Thread.currentThread().getName());
 			return bytes;

@@ -39,7 +39,7 @@ tasks {
         kotlinOptions {
             jvmTarget = "11"
         }
-        kotlinOptions.freeCompilerArgs += listOf("-Xjvm-default=all-compatibility", "-Xuse-k2", "-java-parameters")
+        kotlinOptions.freeCompilerArgs += listOf("-Xuse-k2", "-Xjvm-default=all-compatibility")
     }
 }
 

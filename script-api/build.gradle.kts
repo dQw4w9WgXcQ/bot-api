@@ -18,7 +18,7 @@ repositories {
 apply<MavenPublishPlugin>()
 
 dependencies {
-    compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}")
+    compileOnly("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}")
 
     compileOnly("net.runelite:client:${Versions.runelite}")
     compileOnly(project(":loader"))

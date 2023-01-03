@@ -15,7 +15,7 @@ repositories {
 apply<MavenPublishPlugin>()
 
 dependencies {
-    compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}")
+    compileOnly("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}")
     compileOnly("org.ow2.asm:asm:${Versions.asm}")
     compileOnly("org.ow2.asm:asm-tree:${Versions.asm}")
     compileOnly("org.slf4j:slf4j-api:${Versions.rlSlf4j}")

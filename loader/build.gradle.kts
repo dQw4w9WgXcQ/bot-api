@@ -21,9 +21,8 @@ dependencies {
 tasks {
     java {
         withSourcesJar()
-        //if used in a plugin, need 1.8.  j9 module-info breaks guava jar loader used by runelite
         sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 

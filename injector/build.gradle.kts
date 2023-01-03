@@ -1,8 +1,5 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     java
-    kotlin("jvm") version Versions.kotlin
 }
 
 group = "github.dqw4w9wgxcq.bot"
@@ -15,7 +12,6 @@ repositories {
 apply<MavenPublishPlugin>()
 
 dependencies {
-    compileOnly("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}")
     compileOnly("org.ow2.asm:asm:${Versions.asm}")
     compileOnly("org.ow2.asm:asm-tree:${Versions.asm}")
     compileOnly("org.slf4j:slf4j-api:${Versions.rlSlf4j}")
@@ -26,15 +22,8 @@ dependencies {
 tasks {
     java {
         withSourcesJar()
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    withType<KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = "11"
-        }
-        kotlinOptions.freeCompilerArgs += listOf("-Xuse-k2")
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 

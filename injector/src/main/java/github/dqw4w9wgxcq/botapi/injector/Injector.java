@@ -1,5 +1,7 @@
 package github.dqw4w9wgxcq.botapi.injector;
 
+import org.objectweb.asm.tree.ClassNode;
+
 public interface Injector {
-    byte[] inject(String className, byte[] bytes);
+    void inject(String className, ClassNode cn);
 }

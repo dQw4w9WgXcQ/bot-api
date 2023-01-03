@@ -36,7 +36,7 @@ import java.util.Set;
 
 @Slf4j
 public class BotApi {
-    public static final File DIR = new File(RealUserHome.getUserHome(), "runelite-bot");
+    public static final File DIR = new File(RealUserHome.getUserHome(), ".runelite");
 
     @Data
     private static class ManagedConfig<T> {

@@ -8,12 +8,8 @@ import java.net.Socket;
 
 @Slf4j
 public class Mixins {
-    public static Socket socket(InetAddress address, int port) {
+    public static Socket socket(InetAddress address, int port) throws IOException {
         log.debug("socket: {} {}", address, port);
-        try {
-            return new Socket(address, port);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return new Socket(address, port);
     }
 }

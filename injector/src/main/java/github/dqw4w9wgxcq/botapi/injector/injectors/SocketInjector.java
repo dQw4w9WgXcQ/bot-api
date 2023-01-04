@@ -43,7 +43,7 @@ public class SocketInjector implements Injector {
                 initSocketInsn,
                 new MethodInsnNode(
                         Opcodes.INVOKESTATIC,
-                        "github.dqw4w9wgxcq.botapi.injector.Mixins",
+                        "github/dqw4w9wgxcq/botapi/injector/Mixins",
                         "socket",
                         "(Ljava/net/InetAddress;I)Ljava/net/Socket;"
                 )

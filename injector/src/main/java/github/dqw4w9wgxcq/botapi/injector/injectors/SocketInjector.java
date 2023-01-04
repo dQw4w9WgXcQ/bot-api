@@ -37,14 +37,14 @@ public class SocketInjector implements Injector {
                 }
             }
         }
-        if (initSocketInsn == null) throw new RuntimeException("Could not find Socket inits");
+        if (initSocketInsn == null) throw new RuntimeException("Could not find Socket init insn");
 
         runMethod.instructions.insertBefore(
                 initSocketInsn,
                 new MethodInsnNode(
                         Opcodes.INVOKESTATIC,
                         "github/dqw4w9wgxcq/botapi/injector/Mixins",
-                        "socket",
+                        "createSocket",
                         "(Ljava/net/InetAddress;I)Ljava/net/Socket;"
                 )
         );

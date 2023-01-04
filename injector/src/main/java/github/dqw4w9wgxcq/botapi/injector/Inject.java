@@ -11,7 +11,7 @@ import java.util.List;
 @Slf4j
 public class Inject {
     public static List<Injector> injectors = Arrays.asList(
-            new SocketInjector("fp")
+//            new SocketInjector("fp")
     );
 
     //gets called by injected guava com.google.common.io.ByteStreams

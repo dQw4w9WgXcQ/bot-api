@@ -23,6 +23,7 @@ dependencies {
     compileOnly("net.runelite:client:${Versions.runelite}")
     compileOnly(project(":loader"))
     compileOnly(group = "org.jboss.aerogear", name = "aerogear-otp-java", version = "1.0.0")
+    compileOnly(group = "org.jetbrains", name = "annotations", version = "23.1.0")//version in kotlin-stdlib is 13.0
     compileOnly("org.projectlombok:lombok:${Versions.rlLombok}")
     annotationProcessor("org.projectlombok:lombok:${Versions.rlLombok}")
 }

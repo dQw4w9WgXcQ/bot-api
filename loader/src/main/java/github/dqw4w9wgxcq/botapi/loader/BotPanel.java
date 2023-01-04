@@ -11,7 +11,7 @@ import java.util.Vector;
 public class BotPanel extends JPanel {
     private final JList<ScriptListEntry> scriptList = new JList<>();
     private final JFrame logFrame;
-    TrimmingJTextArea logTextArea;
+    private final TrimmingJTextArea logTextArea;
     private final ScriptManager scriptManager;
 
     public BotPanel(ScriptManager scriptManager) {

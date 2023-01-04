@@ -1,7 +1,7 @@
 package github.dqw4w9wgxcq.botapi.injector.injectors;
 
 import github.dqw4w9wgxcq.botapi.injector.Injector;
-import github.dqw4w9wgxcq.botapi.injector.NonloadingClassWriter;
+import github.dqw4w9wgxcq.botapi.injector.FixedClassWriter;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
@@ -18,17 +18,17 @@ public class SocketInjector implements Injector {
     public byte[] inject(String className, byte[] bytes) {
         if (!className.equals(taskHandlerClassName)) return bytes;
 
-        ClassNode cn = new ClassNode();
-        ClassReader cr = new ClassReader(bytes);
-        cr.accept(cn, 0);
+        ClassNode classNode = new ClassNode();
+        ClassReader classReader = new ClassReader(bytes);
+        classReader.accept(classNode, 0);
 
-        MethodNode mn = cn.methods.stream()
+        MethodNode runMethod = classNode.methods.stream()
                 .filter(m -> m.name.equals("run"))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Cannot find run method in " + className));
 
         MethodInsnNode initSocketInsn = null;
-        for (AbstractInsnNode insn : mn.instructions) {
+        for (AbstractInsnNode insn : runMethod.instructions) {
             if (insn instanceof MethodInsnNode) {
                 MethodInsnNode methodInsn = (MethodInsnNode) insn;
                 if (methodInsn.owner.equals("java/net/Socket") && methodInsn.name.equals("<init>")) {
@@ -39,27 +39,33 @@ public class SocketInjector implements Injector {
         }
         if (initSocketInsn == null) throw new RuntimeException("Could not find Socket inits");
 
-        mn.instructions.insertBefore(
+        runMethod.instructions.insertBefore(
                 initSocketInsn,
-                new MethodInsnNode(Opcodes.INVOKESTATIC, "rl10", "socket", "(Ljava/net/InetAddress;I)Ljava/net/Socket;")
+                new MethodInsnNode(
+                        Opcodes.INVOKESTATIC,
+                        "github.dqw4w9wgxcq.botapi.injector.Mixins",
+                        "socket",
+                        "(Ljava/net/InetAddress;I)Ljava/net/Socket;"
+                )
         );
 
-        mn.instructions.remove(initSocketInsn);
+        runMethod.instructions.remove(initSocketInsn);
 
-        AbstractInsnNode newSocketInsn = null;
-        for (AbstractInsnNode insn : mn.instructions) {
+        TypeInsnNode newSocketInsn = null;
+        for (AbstractInsnNode insn : runMethod.instructions) {
             if (insn.getOpcode() == Opcodes.NEW && ((TypeInsnNode) insn).desc.equals("java/net/Socket")) {
-                newSocketInsn = insn;
+                newSocketInsn = (TypeInsnNode) insn;
                 break;
             }
         }
         if (newSocketInsn == null) throw new RuntimeException("Could not find newSocket instruction");
-        mn.instructions.remove(newSocketInsn.getNext());//DUP
-        mn.instructions.remove(newSocketInsn);
 
-        ClassWriter cw = new NonloadingClassWriter(cr, ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
-        cn.accept(cw);
+        runMethod.instructions.remove(newSocketInsn.getNext());//DUP
+        runMethod.instructions.remove(newSocketInsn);
 
-        return cw.toByteArray();
+        ClassWriter classWriter = new FixedClassWriter(classReader, ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+        classNode.accept(classWriter);
+
+        return classWriter.toByteArray();
     }
 }

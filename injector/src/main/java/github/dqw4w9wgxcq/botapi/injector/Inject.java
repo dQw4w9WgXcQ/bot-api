@@ -20,13 +20,10 @@ public class Inject {
             return bytes;
         }
 
-        ClassReader cr = new ClassReader(bytes);
-        ClassNode cn = new ClassNode();
-        cr.accept(cn, ClassReader.SKIP_FRAMES);
-        String name = cn.name;
-        if (!name.equals("fp")) {
-            return bytes;
-        }
+        ClassReader classReader = new ClassReader(bytes);
+        ClassNode classNode = new ClassNode();
+        classReader.accept(classNode, ClassReader.SKIP_FRAMES | ClassReader.SKIP_CODE | ClassReader.SKIP_DEBUG);
+        String name = classNode.name;
 
         for (Injector injector : injectors) {
             bytes = injector.inject(name, bytes);

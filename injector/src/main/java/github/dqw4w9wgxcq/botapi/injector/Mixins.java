@@ -1,10 +1,15 @@
+package github.dqw4w9wgxcq.botapi.injector;
+
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 
-public class rl10 {
+@Slf4j
+public class Mixins {
     public static Socket socket(InetAddress address, int port) {
-        System.out.println("rl10.socket(" + address + ", " + port + ")");
+        log.debug("socket: {} {}", address, port);
         try {
             return new Socket(address, port);
         } catch (IOException e) {

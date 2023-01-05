@@ -5,7 +5,11 @@ import github.dqw4w9wgxcq.botapi.injector.Injector;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.*;
+
+import java.net.InetAddress;
+import java.net.Socket;
 
 public class SocketInjector implements Injector {
     private final String taskHandlerClassName;
@@ -15,8 +19,8 @@ public class SocketInjector implements Injector {
     }
 
     @Override
-    public byte[] inject(String className, byte[] bytes) {
-        if (!className.equals(taskHandlerClassName)) return bytes;
+    public byte[] inject(String classInternalName, byte[] bytes) {
+        if (!classInternalName.equals(taskHandlerClassName)) return bytes;
 
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(bytes);
@@ -25,7 +29,7 @@ public class SocketInjector implements Injector {
         MethodNode runMethod = classNode.methods.stream()
                 .filter(m -> m.name.equals("run"))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Cannot find run method in " + className));
+                .orElseThrow(() -> new RuntimeException("Cannot find run method in " + classInternalName));
 
         MethodInsnNode initSocketInsn = null;
         for (AbstractInsnNode insn : runMethod.instructions) {
@@ -41,11 +45,21 @@ public class SocketInjector implements Injector {
 
         runMethod.instructions.insertBefore(
                 initSocketInsn,
+                new VarInsnNode(Opcodes.ALOAD, 0)
+        );
+
+        runMethod.instructions.insertBefore(
+                initSocketInsn,
                 new MethodInsnNode(
                         Opcodes.INVOKESTATIC,
-                        "github/dqw4w9wgxcq/botapi/injector/Mixins",
+                        "github/dqw4w9wgxcq/botapi/mixins/SocketMixins",
                         "createSocket",
-                        "(Ljava/net/InetAddress;I)Ljava/net/Socket;"
+                        Type.getMethodDescriptor(
+                                Type.getType(Socket.class),
+                                Type.getType(InetAddress.class),
+                                Type.INT_TYPE,
+                                Type.getType(Object.class)
+                        )
                 )
         );
 

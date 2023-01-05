@@ -1,7 +1,7 @@
 package github.dqw4w9wgxcq.botapi.injector.injectors;
 
-import github.dqw4w9wgxcq.botapi.injector.Injector;
 import github.dqw4w9wgxcq.botapi.injector.FixedClassWriter;
+import github.dqw4w9wgxcq.botapi.injector.Injector;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;

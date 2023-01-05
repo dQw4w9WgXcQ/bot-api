@@ -1,6 +1,5 @@
 package github.dqw4w9wgxcq.botapi.injector;
 
-import github.dqw4w9wgxcq.botapi.injector.injectors.SocketInjector;
 import lombok.extern.slf4j.Slf4j;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.ClassNode;

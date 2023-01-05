@@ -70,7 +70,7 @@ class RickkInteract : InteractDriver {
         debug { "walking $scenePosition" }
         val baseX = Client.baseX
         val baseY = Client.baseY
-        onGameThread {//make sure were at the right point in the game cycle, can fail otherwise
+        onGameThread {
             val newBaseX = Client.baseX
             val newBaseY = Client.baseY
             if (baseX != newBaseX || baseY != newBaseY) {

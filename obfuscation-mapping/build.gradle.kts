@@ -1,5 +1,5 @@
 plugins {
-    java
+    id("java")
 }
 
 group = "github.dqw4w9wgxcq.bot"
@@ -7,16 +7,19 @@ version = Versions.project
 
 repositories {
     mavenCentral()
-    maven("https://repo.runelite.net")
 }
 
 apply<MavenPublishPlugin>()
 
 dependencies {
-    implementation(project(":obfuscation-mapping"))
-    compileOnly("net.runelite:client:${Versions.runelite}")
+    compileOnly("com.google.code.gson:gson:${Versions.rlGson}")
+
     compileOnly("org.projectlombok:lombok:${Versions.rlLombok}")
     annotationProcessor("org.projectlombok:lombok:${Versions.rlLombok}")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+    testRuntimeOnly("com.google.code.gson:gson:${Versions.rlGson}")
 }
 
 tasks {
@@ -24,6 +27,10 @@ tasks {
         withSourcesJar()
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    test {
+        useJUnitPlatform()
     }
 }
 

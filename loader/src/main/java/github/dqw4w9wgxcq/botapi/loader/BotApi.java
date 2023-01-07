@@ -1,6 +1,7 @@
 package github.dqw4w9wgxcq.botapi.loader;
 
 import com.google.inject.Injector;
+import github.dqw4w9wgxcq.botapi.mixins.SocketMixins;
 import lombok.Data;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,7 @@ import javax.swing.*;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.*;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -90,6 +92,42 @@ public class BotApi {
 
             new ManagedConfig<>("loginscreen", "showLoginFire", Boolean.class, false)
     );
+
+    public static void preInit(
+            String js5ProxyHost,
+            int js5ProxyPort
+    ) {
+        Authenticator.setDefault(new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                if (getRequestingHost().contains("iproyal")) {
+                    throw new IllegalStateException("iproyal auth not set");
+                }
+
+                return new PasswordAuthentication("wtpgigrt", "5ecundsupcvy".toCharArray());
+            }
+        });
+
+        SocketMixins.setJs5SocketFactory(new SocketMixins.SocketFactory() {
+            @Override
+            @SneakyThrows
+            public Socket createSocket(InetAddress address, int port, Object taskRs) {
+                if (js5ProxyHost == null) {
+                    return new Socket(address, port);
+                }
+
+                try {
+                    Proxy proxy = new Proxy(Proxy.Type.SOCKS, new InetSocketAddress(js5ProxyHost, js5ProxyPort));
+                    Socket socket = new Socket(proxy);
+                    socket.connect(new InetSocketAddress(address, port));
+                    return socket;
+                } catch (Exception e) {
+                    log.error("error creating js5 socket", e);
+                    throw new RuntimeException();//gets swallowed by task thread
+                }
+            }
+        });
+    }
 
     @SneakyThrows
     public static void init(ClassLoader rlLoader) {

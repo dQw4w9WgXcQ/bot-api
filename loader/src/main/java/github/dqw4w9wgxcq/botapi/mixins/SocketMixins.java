@@ -1,7 +1,6 @@
 package github.dqw4w9wgxcq.botapi.mixins;
 
 import lombok.Setter;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 import java.net.InetAddress;
@@ -10,11 +9,13 @@ import java.net.Socket;
 @Slf4j
 public class SocketMixins {
     public interface SocketFactory {
-        Socket createSocket(InetAddress address, int port, Object task);
+        Socket createSocket(InetAddress address, int port, Object taskRs);
     }
 
     @Setter
-    private static SocketFactory socketFactory = null;
+    private static SocketFactory js5SocketFactory = null;
+    @Setter
+    private static SocketFactory gameSocketFactory = null;
 
     /*
     if the game/js5 fails to connect on 43594, it will try 443.
@@ -36,16 +37,15 @@ public class SocketMixins {
     			}
     		}
      */
-    //returning null will crash the game with NPE
-    @SneakyThrows
-    public static Socket createSocket(InetAddress address, int port, Object task) {
-        log.info("createSocket: {} {} {}", address, port, task);
+    //taskRs is used to determine if the socket is for the game or js5
+    public static Socket createSocket(InetAddress address, int port, Object taskRs) {
+        log.info("createSocket: {} {} {}", address, port, taskRs);
 
-        if (socketFactory == null) {
-            log.error("socketFactory not set");
-            throw new RuntimeException();//gets swallowed by Task thread
+        if (js5SocketFactory == null) {
+            log.error("js5SocketFactory not set");
+            System.exit(205);
         }
 
-        return socketFactory.createSocket(address, port, task);
+        return js5SocketFactory.createSocket(address, port, taskRs);
     }
 }

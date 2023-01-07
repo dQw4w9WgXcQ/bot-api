@@ -1,0 +1,7645 @@
+{
+  "revision": 210,
+  "hash": -453977106,
+  "classes": [
+    {
+      "definition": "LinkedList",
+      "fields": [
+        {
+          "definition": "sentinel",
+          "owner": "mv",
+          "name": "h",
+          "descriptor": "Lpl;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "tail",
+          "owner": "mv",
+          "name": "e",
+          "descriptor": "Lpl;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "TextureProviderImpl",
+      "fields": [
+        {
+          "definition": "table",
+          "owner": "ht",
+          "name": "f",
+          "descriptor": "Lly;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "ObjectNode",
+      "fields": [
+        {
+          "definition": "value",
+          "owner": "pj",
+          "name": "h",
+          "descriptor": "Ljava/lang/Object;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "ReferenceCache",
+      "fields": [
+        {
+          "definition": "table",
+          "owner": "jv",
+          "name": "x",
+          "descriptor": "Lql;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": [
+        "queue"
+      ]
+    },
+    {
+      "definition": "MouseRecorder",
+      "fields": [
+        {
+          "definition": "timeHistory",
+          "owner": "cs",
+          "name": "q",
+          "descriptor": "[J",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "lock",
+          "owner": "cs",
+          "name": "e",
+          "descriptor": "Ljava/lang/Object;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "index",
+          "owner": "cs",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": 1063919825,
+          "virtual": true
+        },
+        {
+          "definition": "xHistory",
+          "owner": "cs",
+          "name": "x",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "yHistory",
+          "owner": "cs",
+          "name": "m",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "enabled",
+          "owner": "cs",
+          "name": "h",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "SceneGraph",
+      "fields": [
+        {
+          "definition": "tiles",
+          "owner": "hc",
+          "name": "q",
+          "descriptor": "[[[Lhe;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "tempMarkers",
+          "owner": "hc",
+          "name": "u",
+          "descriptor": "[Lhp;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "addEntityMarker",
+          "owner": "hc",
+          "name": "o",
+          "descriptor": "(IIIIIIIILhr;IZJI)Z",
+          "expectedDescriptor": "omit",
+          "predicate": 0,
+          "virtual": true
+        },
+        {
+          "definition": "addBoundaryDecor",
+          "owner": "hc",
+          "name": "b",
+          "descriptor": "(IIIILhr;Lhr;IIIIJI)V",
+          "expectedDescriptor": "omit",
+          "predicate": 0,
+          "virtual": true
+        },
+        {
+          "definition": "addPickableDecor",
+          "owner": "hc",
+          "name": "r",
+          "descriptor": "(IIIILhr;JLhr;Lhr;)V",
+          "expectedDescriptor": "omit",
+          "predicate": 2147483647,
+          "virtual": true
+        },
+        {
+          "definition": "addBoundary",
+          "owner": "hc",
+          "name": "u",
+          "descriptor": "(IIIILhr;Lhr;IIJI)V",
+          "expectedDescriptor": "omit",
+          "predicate": 0,
+          "virtual": true
+        },
+        {
+          "definition": "addTileDecor",
+          "owner": "hc",
+          "name": "f",
+          "descriptor": "(IIIILhr;JI)V",
+          "expectedDescriptor": "omit",
+          "predicate": 0,
+          "virtual": true
+        }
+      ],
+      "breaks": []
+    },
+    {
+      "definition": "RasterProvider",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "GraphicsProvider",
+      "fields": [
+        {
+          "definition": "image",
+          "owner": "at",
+          "name": "e",
+          "descriptor": "Ljava/awt/Image;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "drawGame",
+          "owner": "at",
+          "name": "x",
+          "descriptor": "(Ljava/awt/Graphics;IIB)V",
+          "expectedDescriptor": "(Ljava/awt/Graphics;II)V",
+          "predicate": 0,
+          "virtual": true
+        }
+      ],
+      "breaks": []
+    },
+    {
+      "definition": "NpcDefinition",
+      "fields": [
+        {
+          "definition": "prayerIcon",
+          "owner": "gz",
+          "name": "as",
+          "descriptor": "I",
+          "multiplier": -2023873033,
+          "virtual": true
+        },
+        {
+          "definition": "renderingPrioritized",
+          "owner": "gz",
+          "name": "ab",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "textures",
+          "owner": "gz",
+          "name": "ad",
+          "descriptor": "[S",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "idleAnimation",
+          "owner": "gz",
+          "name": "i",
+          "descriptor": "I",
+          "multiplier": -499537861,
+          "virtual": true
+        },
+        {
+          "definition": "colors",
+          "owner": "gz",
+          "name": "ao",
+          "descriptor": "[S",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "scaleZ",
+          "owner": "gz",
+          "name": "an",
+          "descriptor": "I",
+          "multiplier": -1404076757,
+          "virtual": true
+        },
+        {
+          "definition": "renderedOnMinimap",
+          "owner": "gz",
+          "name": "ar",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "scaleXY",
+          "owner": "gz",
+          "name": "ay",
+          "descriptor": "I",
+          "multiplier": -124469981,
+          "virtual": true
+        },
+        {
+          "definition": "varpIndex",
+          "owner": "gz",
+          "name": "ai",
+          "descriptor": "I",
+          "multiplier": -2035410821,
+          "virtual": true
+        },
+        {
+          "definition": "varpbitIndex",
+          "owner": "gz",
+          "name": "af",
+          "descriptor": "I",
+          "multiplier": 1750524771,
+          "virtual": true
+        },
+        {
+          "definition": "size",
+          "owner": "gz",
+          "name": "b",
+          "descriptor": "I",
+          "multiplier": -1021399127,
+          "virtual": true
+        },
+        {
+          "definition": "modelIds",
+          "owner": "gz",
+          "name": "j",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "newColors",
+          "owner": "gz",
+          "name": "av",
+          "descriptor": "[S",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "name",
+          "owner": "gz",
+          "name": "u",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "walkAnimation",
+          "owner": "gz",
+          "name": "k",
+          "descriptor": "I",
+          "multiplier": 1587887915,
+          "virtual": true
+        },
+        {
+          "definition": "transformIds",
+          "owner": "gz",
+          "name": "ak",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "combatLevel",
+          "owner": "gz",
+          "name": "at",
+          "descriptor": "I",
+          "multiplier": -917269397,
+          "virtual": true
+        },
+        {
+          "definition": "actions",
+          "owner": "gz",
+          "name": "au",
+          "descriptor": "[Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "newTextures",
+          "owner": "gz",
+          "name": "am",
+          "descriptor": "[S",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "properties",
+          "owner": "gz",
+          "name": "ap",
+          "descriptor": "Lql;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": [
+        "id"
+      ]
+    },
+    {
+      "definition": "FriendsChatUser",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "OutgoingPacketMeta",
+      "fields": [
+        {
+          "definition": "size",
+          "owner": "jp",
+          "name": "dw",
+          "descriptor": "I",
+          "multiplier": -1150175255,
+          "virtual": true
+        },
+        {
+          "definition": "opcode",
+          "owner": "jp",
+          "name": "dl",
+          "descriptor": "I",
+          "multiplier": 148030627,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "RuneScript",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "CollisionMap",
+      "fields": [
+        {
+          "definition": "flags",
+          "owner": "gw",
+          "name": "al",
+          "descriptor": "[[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "width",
+          "owner": "gw",
+          "name": "an",
+          "descriptor": "I",
+          "multiplier": -2137393315,
+          "virtual": true
+        },
+        {
+          "definition": "insetX",
+          "owner": "gw",
+          "name": "at",
+          "descriptor": "I",
+          "multiplier": 213236785,
+          "virtual": true
+        },
+        {
+          "definition": "insetY",
+          "owner": "gw",
+          "name": "ay",
+          "descriptor": "I",
+          "multiplier": -1374720281,
+          "virtual": true
+        },
+        {
+          "definition": "height",
+          "owner": "gw",
+          "name": "ab",
+          "descriptor": "I",
+          "multiplier": -1805233665,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "FriendLoginUpdate",
+      "fields": [
+        {
+          "definition": "world",
+          "owner": "oy",
+          "name": "v",
+          "descriptor": "S",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "namePair",
+          "owner": "oy",
+          "name": "e",
+          "descriptor": "Lrp;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "time",
+          "owner": "oy",
+          "name": "h",
+          "descriptor": "I",
+          "multiplier": -934585325,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "InterfaceComponent",
+      "fields": [
+        {
+          "definition": "parent",
+          "owner": "kd",
+          "name": "et",
+          "descriptor": "Lkd;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "explicitlyHidden",
+          "owner": "kd",
+          "name": "bl",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "renderCycle",
+          "owner": "kd",
+          "name": "gn",
+          "descriptor": "I",
+          "multiplier": -1786479895,
+          "virtual": true
+        },
+        {
+          "definition": "modelId",
+          "owner": "kd",
+          "name": "cs",
+          "descriptor": "I",
+          "multiplier": -1902209067,
+          "virtual": true
+        },
+        {
+          "definition": "subComponentIndex",
+          "owner": "kd",
+          "name": "af",
+          "descriptor": "I",
+          "multiplier": -915599827,
+          "virtual": true
+        },
+        {
+          "definition": "relativeY",
+          "owner": "kd",
+          "name": "bf",
+          "descriptor": "I",
+          "multiplier": 1365086685,
+          "virtual": true
+        },
+        {
+          "definition": "relativeX",
+          "owner": "kd",
+          "name": "be",
+          "descriptor": "I",
+          "multiplier": 2086303241,
+          "virtual": true
+        },
+        {
+          "definition": "itemIds",
+          "owner": "kd",
+          "name": "fw",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "zRotation",
+          "owner": "kd",
+          "name": "co",
+          "descriptor": "I",
+          "multiplier": -1558449129,
+          "virtual": true
+        },
+        {
+          "definition": "scrollListeners",
+          "owner": "kd",
+          "name": "fo",
+          "descriptor": "[Ljava/lang/Object;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "foreground",
+          "owner": "kd",
+          "name": "bi",
+          "descriptor": "I",
+          "multiplier": 1891121533,
+          "virtual": true
+        },
+        {
+          "definition": "type",
+          "owner": "kd",
+          "name": "ai",
+          "descriptor": "I",
+          "multiplier": -1540152617,
+          "virtual": true
+        },
+        {
+          "definition": "enabledMaterialId",
+          "owner": "kd",
+          "name": "bk",
+          "descriptor": "I",
+          "multiplier": -1847696179,
+          "virtual": true
+        },
+        {
+          "definition": "viewportHeight",
+          "owner": "kd",
+          "name": "bz",
+          "descriptor": "I",
+          "multiplier": -319102043,
+          "virtual": true
+        },
+        {
+          "definition": "mousePressListeners",
+          "owner": "kd",
+          "name": "fb",
+          "descriptor": "[Ljava/lang/Object;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "itemStackSizes",
+          "owner": "kd",
+          "name": "gf",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "xRotation",
+          "owner": "kd",
+          "name": "cu",
+          "descriptor": "I",
+          "multiplier": 413961515,
+          "virtual": true
+        },
+        {
+          "definition": "borderThickness",
+          "owner": "kd",
+          "name": "cq",
+          "descriptor": "I",
+          "multiplier": -1300355189,
+          "virtual": true
+        },
+        {
+          "definition": "yLayout",
+          "owner": "kd",
+          "name": "aj",
+          "descriptor": "I",
+          "multiplier": -1053685537,
+          "virtual": true
+        },
+        {
+          "definition": "fontId",
+          "owner": "kd",
+          "name": "cd",
+          "descriptor": "I",
+          "multiplier": 1520551125,
+          "virtual": true
+        },
+        {
+          "definition": "mouseEnterListeners",
+          "owner": "kd",
+          "name": "ec",
+          "descriptor": "[Ljava/lang/Object;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "text",
+          "owner": "kd",
+          "name": "ck",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "xMargin",
+          "owner": "kd",
+          "name": "aa",
+          "descriptor": "I",
+          "multiplier": 1569341613,
+          "virtual": true
+        },
+        {
+          "definition": "contentType",
+          "owner": "kd",
+          "name": "ah",
+          "descriptor": "I",
+          "multiplier": -1064789039,
+          "virtual": true
+        },
+        {
+          "definition": "shadowColor",
+          "owner": "kd",
+          "name": "cc",
+          "descriptor": "I",
+          "multiplier": -1319117017,
+          "virtual": true
+        },
+        {
+          "definition": "height",
+          "owner": "kd",
+          "name": "by",
+          "descriptor": "I",
+          "multiplier": 882604251,
+          "virtual": true
+        },
+        {
+          "definition": "parentUid",
+          "owner": "kd",
+          "name": "bc",
+          "descriptor": "I",
+          "multiplier": 8537723,
+          "virtual": true
+        },
+        {
+          "definition": "tableTransmitArgs",
+          "owner": "kd",
+          "name": "ei",
+          "descriptor": "[Ljava/lang/Object;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "functionOpcodes",
+          "owner": "kd",
+          "name": "fx",
+          "descriptor": "[[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "spriteId",
+          "owner": "kd",
+          "name": "cf",
+          "descriptor": "I",
+          "multiplier": 416928349,
+          "virtual": true
+        },
+        {
+          "definition": "spellName",
+          "owner": "kd",
+          "name": "fe",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "insetX",
+          "owner": "kd",
+          "name": "bv",
+          "descriptor": "I",
+          "multiplier": -2078533729,
+          "virtual": true
+        },
+        {
+          "definition": "modelType",
+          "owner": "kd",
+          "name": "cb",
+          "descriptor": "I",
+          "multiplier": -824466597,
+          "virtual": true
+        },
+        {
+          "definition": "materialId",
+          "owner": "kd",
+          "name": "bm",
+          "descriptor": "I",
+          "multiplier": 659533181,
+          "virtual": true
+        },
+        {
+          "definition": "insetY",
+          "owner": "kd",
+          "name": "bx",
+          "descriptor": "I",
+          "multiplier": 163430389,
+          "virtual": true
+        },
+        {
+          "definition": "dragArea",
+          "owner": "kd",
+          "name": "es",
+          "descriptor": "I",
+          "multiplier": 82868583,
+          "virtual": true
+        },
+        {
+          "definition": "animation",
+          "owner": "kd",
+          "name": "cj",
+          "descriptor": "I",
+          "multiplier": 167495965,
+          "virtual": true
+        },
+        {
+          "definition": "itemId",
+          "owner": "kd",
+          "name": "go",
+          "descriptor": "I",
+          "multiplier": 1983678461,
+          "virtual": true
+        },
+        {
+          "definition": "flippedHorizontally",
+          "owner": "kd",
+          "name": "bb",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "flippedVertically",
+          "owner": "kd",
+          "name": "bb",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "modelZoom",
+          "owner": "kd",
+          "name": "ce",
+          "descriptor": "I",
+          "multiplier": -1310127279,
+          "virtual": true
+        },
+        {
+          "definition": "noClickThrough",
+          "owner": "kd",
+          "name": "bl",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "name",
+          "owner": "kd",
+          "name": "ew",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "actions",
+          "owner": "kd",
+          "name": "ey",
+          "descriptor": "[Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "tableActions",
+          "owner": "kd",
+          "name": "dc",
+          "descriptor": "[Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "yMargin",
+          "owner": "kd",
+          "name": "ae",
+          "descriptor": "I",
+          "multiplier": 1295682743,
+          "virtual": true
+        },
+        {
+          "definition": "varpTransmitArgs",
+          "owner": "kd",
+          "name": "ez",
+          "descriptor": "[Ljava/lang/Object;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "subComponents",
+          "owner": "kd",
+          "name": "gl",
+          "descriptor": "[Lkd;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "skillTransmitArgs",
+          "owner": "kd",
+          "name": "eu",
+          "descriptor": "[Ljava/lang/Object;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "boundsIndex",
+          "owner": "kd",
+          "name": "gm",
+          "descriptor": "I",
+          "multiplier": -1373070299,
+          "virtual": true
+        },
+        {
+          "definition": "xPadding",
+          "owner": "kd",
+          "name": "dl",
+          "descriptor": "I",
+          "multiplier": 1603100581,
+          "virtual": true
+        },
+        {
+          "definition": "varpTransmitTriggers",
+          "owner": "kd",
+          "name": "ef",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "yPadding",
+          "owner": "kd",
+          "name": "dw",
+          "descriptor": "I",
+          "multiplier": 1637251583,
+          "virtual": true
+        },
+        {
+          "definition": "uid",
+          "owner": "kd",
+          "name": "ak",
+          "descriptor": "I",
+          "multiplier": 1023837327,
+          "virtual": true
+        },
+        {
+          "definition": "buttonType",
+          "owner": "kd",
+          "name": "ax",
+          "descriptor": "I",
+          "multiplier": -822804071,
+          "virtual": true
+        },
+        {
+          "definition": "modelOffsetY",
+          "owner": "kd",
+          "name": "ct",
+          "descriptor": "I",
+          "multiplier": -538253409,
+          "virtual": true
+        },
+        {
+          "definition": "modelOffsetX",
+          "owner": "kd",
+          "name": "cm",
+          "descriptor": "I",
+          "multiplier": 1865914977,
+          "virtual": true
+        },
+        {
+          "definition": "alpha",
+          "owner": "kd",
+          "name": "bt",
+          "descriptor": "I",
+          "multiplier": 1450406977,
+          "virtual": true
+        },
+        {
+          "definition": "yRotation",
+          "owner": "kd",
+          "name": "ch",
+          "descriptor": "I",
+          "multiplier": -2125848423,
+          "virtual": true
+        },
+        {
+          "definition": "textShadowed",
+          "owner": "kd",
+          "name": "bb",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "mouseExitListeners",
+          "owner": "kd",
+          "name": "ek",
+          "descriptor": "[Ljava/lang/Object;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "viewportWidth",
+          "owner": "kd",
+          "name": "bg",
+          "descriptor": "I",
+          "multiplier": -1494857505,
+          "virtual": true
+        },
+        {
+          "definition": "skillTransmitTriggers",
+          "owner": "kd",
+          "name": "el",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "toolTip",
+          "owner": "kd",
+          "name": "fj",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "xLayout",
+          "owner": "kd",
+          "name": "aw",
+          "descriptor": "I",
+          "multiplier": 867935181,
+          "virtual": true
+        },
+        {
+          "definition": "hoverListeners",
+          "owner": "kd",
+          "name": "eb",
+          "descriptor": "[Ljava/lang/Object;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "renderListeners",
+          "owner": "kd",
+          "name": "fn",
+          "descriptor": "[Ljava/lang/Object;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "tableTransmitTriggers",
+          "owner": "kd",
+          "name": "ed",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "selectedAction",
+          "owner": "kd",
+          "name": "ev",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "width",
+          "owner": "kd",
+          "name": "bo",
+          "descriptor": "I",
+          "multiplier": 1832001725,
+          "virtual": true
+        },
+        {
+          "definition": "dragAreaThreshold",
+          "owner": "kd",
+          "name": "eo",
+          "descriptor": "I",
+          "multiplier": 1267822615,
+          "virtual": true
+        },
+        {
+          "definition": "itemStackSize",
+          "owner": "kd",
+          "name": "gj",
+          "descriptor": "I",
+          "multiplier": 390571909,
+          "virtual": true
+        },
+        {
+          "definition": "config",
+          "owner": "kd",
+          "name": "dg",
+          "descriptor": "I",
+          "multiplier": -149949271,
+          "virtual": true
+        },
+        {
+          "definition": "properties",
+          "owner": "kd",
+          "name": "dy",
+          "descriptor": "Ljava/util/HashMap;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": [
+        "textSpacing",
+        "verticalMargin",
+        "horizontalMargin",
+        "scrollBar",
+        "noScrollThrough"
+      ]
+    },
+    {
+      "definition": "HealthBarDefinition",
+      "fields": [
+        {
+          "definition": "overlaySpriteId",
+          "owner": "fw",
+          "name": "i",
+          "descriptor": "I",
+          "multiplier": 1047498223,
+          "virtual": true
+        },
+        {
+          "definition": "underlaySpriteId",
+          "owner": "fw",
+          "name": "o",
+          "descriptor": "I",
+          "multiplier": 187372523,
+          "virtual": true
+        },
+        {
+          "definition": "maxWidth",
+          "owner": "fw",
+          "name": "n",
+          "descriptor": "I",
+          "multiplier": -1356193103,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "CameraCapture",
+      "fields": [
+        {
+          "definition": "minFineY",
+          "owner": "hv",
+          "name": "r",
+          "descriptor": "I",
+          "multiplier": -754335941,
+          "virtual": true
+        },
+        {
+          "definition": "flag",
+          "owner": "hv",
+          "name": "m",
+          "descriptor": "I",
+          "multiplier": -845662039,
+          "virtual": true
+        },
+        {
+          "definition": "minFineX",
+          "owner": "hv",
+          "name": "q",
+          "descriptor": "I",
+          "multiplier": 227042381,
+          "virtual": true
+        },
+        {
+          "definition": "componentHeight",
+          "owner": "hv",
+          "name": "b",
+          "descriptor": "I",
+          "multiplier": 554630705,
+          "virtual": true
+        },
+        {
+          "definition": "maxFineY",
+          "owner": "hv",
+          "name": "u",
+          "descriptor": "I",
+          "multiplier": 253383223,
+          "virtual": true
+        },
+        {
+          "definition": "maxFineX",
+          "owner": "hv",
+          "name": "f",
+          "descriptor": "I",
+          "multiplier": -201172581,
+          "virtual": true
+        },
+        {
+          "definition": "tileHeight",
+          "owner": "hv",
+          "name": "j",
+          "descriptor": "I",
+          "multiplier": 1377372931,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "IgnoredPlayer",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "PartySettingsDelta",
+      "fields": [
+        {
+          "definition": "owner",
+          "owner": "ep",
+          "name": "t",
+          "descriptor": "I",
+          "multiplier": -494521313,
+          "virtual": true
+        },
+        {
+          "definition": "userRanks",
+          "owner": "ep",
+          "name": "n",
+          "descriptor": "[B",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "talkRank",
+          "owner": "ep",
+          "name": "u",
+          "descriptor": "B",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "bannedUserHashes",
+          "owner": "ep",
+          "name": "d",
+          "descriptor": "[J",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "varps",
+          "owner": "ep",
+          "name": "a",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "bannedUserCount",
+          "owner": "ep",
+          "name": "p",
+          "descriptor": "I",
+          "multiplier": -1174627911,
+          "virtual": true
+        },
+        {
+          "definition": "userHashes",
+          "owner": "ep",
+          "name": "o",
+          "descriptor": "[J",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "bannedUserNames",
+          "owner": "ep",
+          "name": "z",
+          "descriptor": "[Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "userCount",
+          "owner": "ep",
+          "name": "i",
+          "descriptor": "I",
+          "multiplier": -656738779,
+          "virtual": true
+        },
+        {
+          "definition": "kickRank",
+          "owner": "ep",
+          "name": "b",
+          "descriptor": "B",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "usingNames",
+          "owner": "ep",
+          "name": "v",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "allowingGuests",
+          "owner": "ep",
+          "name": "r",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "userNames",
+          "owner": "ep",
+          "name": "y",
+          "descriptor": "[Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "channelName",
+          "owner": "ep",
+          "name": "q",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "properties",
+          "owner": "ep",
+          "name": "w",
+          "descriptor": "Lql;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": [
+        "usingHashes"
+      ]
+    },
+    {
+      "definition": "AudioEffect",
+      "fields": [
+        {
+          "definition": "instruments",
+          "owner": "ak",
+          "name": "e",
+          "descriptor": "[Lbp;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "start",
+          "owner": "ak",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "end",
+          "owner": "ak",
+          "name": "x",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "ObjectDefinition",
+      "fields": [
+        {
+          "definition": "textures",
+          "owner": "gn",
+          "name": "n",
+          "descriptor": "[S",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "mapSceneId",
+          "owner": "gn",
+          "name": "av",
+          "descriptor": "I",
+          "multiplier": -528274721,
+          "virtual": true
+        },
+        {
+          "definition": "ambient",
+          "owner": "gn",
+          "name": "as",
+          "descriptor": "I",
+          "multiplier": -424668761,
+          "virtual": true
+        },
+        {
+          "definition": "scaleZ",
+          "owner": "gn",
+          "name": "ay",
+          "descriptor": "I",
+          "multiplier": 1425199157,
+          "virtual": true
+        },
+        {
+          "definition": "colors",
+          "owner": "gn",
+          "name": "i",
+          "descriptor": "[S",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "scaleX",
+          "owner": "gn",
+          "name": "at",
+          "descriptor": "I",
+          "multiplier": 588658835,
+          "virtual": true
+        },
+        {
+          "definition": "scaleY",
+          "owner": "gn",
+          "name": "an",
+          "descriptor": "I",
+          "multiplier": 1670589841,
+          "virtual": true
+        },
+        {
+          "definition": "translateZ",
+          "owner": "gn",
+          "name": "ag",
+          "descriptor": "I",
+          "multiplier": 1646929951,
+          "virtual": true
+        },
+        {
+          "definition": "varpIndex",
+          "owner": "gn",
+          "name": "ah",
+          "descriptor": "I",
+          "multiplier": -152229453,
+          "virtual": true
+        },
+        {
+          "definition": "varpbitIndex",
+          "owner": "gn",
+          "name": "ax",
+          "descriptor": "I",
+          "multiplier": -95041479,
+          "virtual": true
+        },
+        {
+          "definition": "modelIds",
+          "owner": "gn",
+          "name": "j",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "translateY",
+          "owner": "gn",
+          "name": "al",
+          "descriptor": "I",
+          "multiplier": -1445641697,
+          "virtual": true
+        },
+        {
+          "definition": "translateX",
+          "owner": "gn",
+          "name": "ab",
+          "descriptor": "I",
+          "multiplier": 1220901585,
+          "virtual": true
+        },
+        {
+          "definition": "newColors",
+          "owner": "gn",
+          "name": "o",
+          "descriptor": "[S",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "mapFunction",
+          "owner": "gn",
+          "name": "am",
+          "descriptor": "I",
+          "multiplier": 1128084973,
+          "virtual": true
+        },
+        {
+          "definition": "id",
+          "owner": "gn",
+          "name": "u",
+          "descriptor": "I",
+          "multiplier": 169329993,
+          "virtual": true
+        },
+        {
+          "definition": "newTextures",
+          "owner": "gn",
+          "name": "k",
+          "descriptor": "[S",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "clipType",
+          "owner": "gn",
+          "name": "p",
+          "descriptor": "I",
+          "multiplier": -127791057,
+          "virtual": true
+        },
+        {
+          "definition": "solid",
+          "owner": "gn",
+          "name": "ak",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "itemSupport",
+          "owner": "gn",
+          "name": "af",
+          "descriptor": "I",
+          "multiplier": 188018083,
+          "virtual": true
+        },
+        {
+          "definition": "rotated",
+          "owner": "gn",
+          "name": "au",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "ambientSoundId",
+          "owner": "gn",
+          "name": "aw",
+          "descriptor": "I",
+          "multiplier": 318837113,
+          "virtual": true
+        },
+        {
+          "definition": "mapDoorFlag",
+          "owner": "gn",
+          "name": "c",
+          "descriptor": "I",
+          "multiplier": -1335218033,
+          "virtual": true
+        },
+        {
+          "definition": "animation",
+          "owner": "gn",
+          "name": "z",
+          "descriptor": "I",
+          "multiplier": 1255396169,
+          "virtual": true
+        },
+        {
+          "definition": "clipped",
+          "owner": "gn",
+          "name": "y",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "sizeX",
+          "owner": "gn",
+          "name": "a",
+          "descriptor": "I",
+          "multiplier": -729722715,
+          "virtual": true
+        },
+        {
+          "definition": "impenetrable",
+          "owner": "gn",
+          "name": "t",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "projectileClipped",
+          "owner": "gn",
+          "name": "ar",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "contrast",
+          "owner": "gn",
+          "name": "ad",
+          "descriptor": "I",
+          "multiplier": 1809473659,
+          "virtual": true
+        },
+        {
+          "definition": "name",
+          "owner": "gn",
+          "name": "g",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "transformIds",
+          "owner": "gn",
+          "name": "ai",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "actions",
+          "owner": "gn",
+          "name": "ao",
+          "descriptor": "[Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "sizeY",
+          "owner": "gn",
+          "name": "s",
+          "descriptor": "I",
+          "multiplier": 1817261831,
+          "virtual": true
+        },
+        {
+          "definition": "properties",
+          "owner": "gn",
+          "name": "ac",
+          "descriptor": "Lql;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "IdentityTable",
+      "fields": [
+        {
+          "definition": "contents",
+          "owner": "rc",
+          "name": "h",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "BefriendedPlayer",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "UnlitModel",
+      "fields": [
+        {
+          "definition": "zVertices",
+          "owner": "gi",
+          "name": "f",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "defaultRenderPriority",
+          "owner": "gi",
+          "name": "s",
+          "descriptor": "B",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "xVertices",
+          "owner": "gi",
+          "name": "m",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "yVertices",
+          "owner": "gi",
+          "name": "q",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "light",
+          "owner": "gi",
+          "name": "w",
+          "descriptor": "(IIIII)Lhh;",
+          "expectedDescriptor": "(IIIII)Lhh;",
+          "predicate": 2147483647,
+          "virtual": true
+        }
+      ],
+      "breaks": []
+    },
+    {
+      "definition": "EffectObject",
+      "fields": [
+        {
+          "definition": "sequence",
+          "owner": "bn",
+          "name": "f",
+          "descriptor": "Lga;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "absoluteX",
+          "owner": "bn",
+          "name": "m",
+          "descriptor": "I",
+          "multiplier": -1470591223,
+          "virtual": true
+        },
+        {
+          "definition": "absoluteY",
+          "owner": "bn",
+          "name": "x",
+          "descriptor": "I",
+          "multiplier": -983407105,
+          "virtual": true
+        },
+        {
+          "definition": "floorLevel",
+          "owner": "bn",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": -1267714979,
+          "virtual": true
+        },
+        {
+          "definition": "finished",
+          "owner": "bn",
+          "name": "b",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "id",
+          "owner": "bn",
+          "name": "h",
+          "descriptor": "I",
+          "multiplier": 1763916019,
+          "virtual": true
+        },
+        {
+          "definition": "height",
+          "owner": "bn",
+          "name": "q",
+          "descriptor": "I",
+          "multiplier": 1313330391,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "ChatLine",
+      "fields": [
+        {
+          "definition": "channelPair",
+          "owner": "bv",
+          "name": "m",
+          "descriptor": "Lrp;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "channel",
+          "owner": "bv",
+          "name": "x",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "index",
+          "owner": "bv",
+          "name": "h",
+          "descriptor": "I",
+          "multiplier": 1008799057,
+          "virtual": true
+        },
+        {
+          "definition": "source",
+          "owner": "bv",
+          "name": "r",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "type",
+          "owner": "bv",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": 1608023953,
+          "virtual": true
+        },
+        {
+          "definition": "message",
+          "owner": "bv",
+          "name": "u",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "cycle",
+          "owner": "bv",
+          "name": "e",
+          "descriptor": "I",
+          "multiplier": 111146775,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "AudioSystemImpl",
+      "fields": [
+        {
+          "definition": "sourceDataLine",
+          "owner": "w",
+          "name": "e",
+          "descriptor": "Ljavax/sound/sampled/SourceDataLine;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "format",
+          "owner": "w",
+          "name": "h",
+          "descriptor": "Ljavax/sound/sampled/AudioFormat;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "buffer",
+          "owner": "w",
+          "name": "x",
+          "descriptor": "[B",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "bufferSize",
+          "owner": "w",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": 1829305965,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "Player",
+      "fields": [
+        {
+          "definition": "prayerIcon",
+          "owner": "cj",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": 350410091,
+          "virtual": true
+        },
+        {
+          "definition": "skullIcon",
+          "owner": "cj",
+          "name": "x",
+          "descriptor": "I",
+          "multiplier": -1022197567,
+          "virtual": true
+        },
+        {
+          "definition": "appearance",
+          "owner": "cj",
+          "name": "e",
+          "descriptor": "Lko;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "namePair",
+          "owner": "cj",
+          "name": "h",
+          "descriptor": "Lrp;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "transformedNpcModel",
+          "owner": "cj",
+          "name": "n",
+          "descriptor": "Lhh;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "team",
+          "owner": "cj",
+          "name": "c",
+          "descriptor": "I",
+          "multiplier": -416492285,
+          "virtual": true
+        },
+        {
+          "definition": "combatLevel",
+          "owner": "cj",
+          "name": "f",
+          "descriptor": "I",
+          "multiplier": -1148721401,
+          "virtual": true
+        },
+        {
+          "definition": "softHidden",
+          "owner": "cj",
+          "name": "p",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "actions",
+          "owner": "cj",
+          "name": "q",
+          "descriptor": "[Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "skillLevel",
+          "owner": "cj",
+          "name": "r",
+          "descriptor": "I",
+          "multiplier": -1210481355,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "Identikit",
+      "fields": [
+        {
+          "definition": "id",
+          "owner": "ho",
+          "name": "q",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "showing",
+          "owner": "ho",
+          "name": "j",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "DiskFile",
+      "fields": [
+        {
+          "definition": "offset",
+          "owner": "qq",
+          "name": "v",
+          "descriptor": "J",
+          "multiplier": 6501473835846586069,
+          "virtual": true
+        },
+        {
+          "definition": "accessFile",
+          "owner": "qq",
+          "name": "h",
+          "descriptor": "Ljava/io/RandomAccessFile;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "maxSize",
+          "owner": "qq",
+          "name": "e",
+          "descriptor": "J",
+          "multiplier": 7743048531476061067,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "IncomingPacketMeta",
+      "fields": [
+        {
+          "definition": "size",
+          "owner": "jf",
+          "name": "dy",
+          "descriptor": "I",
+          "multiplier": -1413935371,
+          "virtual": true
+        },
+        {
+          "definition": "opcode",
+          "owner": "jf",
+          "name": "df",
+          "descriptor": "I",
+          "multiplier": -170435115,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "OutgoingPacket",
+      "fields": [
+        {
+          "definition": "size",
+          "owner": "jx",
+          "name": "x",
+          "descriptor": "I",
+          "multiplier": -931975297,
+          "virtual": true
+        },
+        {
+          "definition": "payloadSize",
+          "owner": "jx",
+          "name": "e",
+          "descriptor": "I",
+          "multiplier": -554924555,
+          "virtual": true
+        },
+        {
+          "definition": "meta",
+          "owner": "jx",
+          "name": "h",
+          "descriptor": "Ljp;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "buffer",
+          "owner": "jx",
+          "name": "v",
+          "descriptor": "Lqx;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "AsyncInputStream",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "IgnoreListContext",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "Varcs",
+      "fields": [
+        {
+          "definition": "strings",
+          "owner": "dn",
+          "name": "m",
+          "descriptor": "[Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "values",
+          "owner": "dn",
+          "name": "x",
+          "descriptor": "Ljava/util/Map;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "persistentIntegers",
+          "owner": "dn",
+          "name": "v",
+          "descriptor": "[Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "persistent",
+          "owner": "dn",
+          "name": "q",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "DoublyLinkedNode",
+      "fields": [
+        {
+          "definition": "doublyKey",
+          "owner": "pw",
+          "name": "dw",
+          "descriptor": "J",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "nextDoubly",
+          "owner": "pw",
+          "name": "dm",
+          "descriptor": "Lpw;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "previousDoubly",
+          "owner": "pw",
+          "name": "dv",
+          "descriptor": "Lpw;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "Node",
+      "fields": [
+        {
+          "definition": "next",
+          "owner": "pl",
+          "name": "gc",
+          "descriptor": "Lpl;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "previous",
+          "owner": "pl",
+          "name": "gw",
+          "descriptor": "Lpl;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "key",
+          "owner": "pl",
+          "name": "gt",
+          "descriptor": "J",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "ItemDefinition",
+      "fields": [
+        {
+          "definition": "spriteTranslateX",
+          "owner": "gr",
+          "name": "z",
+          "descriptor": "I",
+          "multiplier": 1913553153,
+          "virtual": true
+        },
+        {
+          "definition": "resizeY",
+          "owner": "gr",
+          "name": "be",
+          "descriptor": "I",
+          "multiplier": 1646343287,
+          "virtual": true
+        },
+        {
+          "definition": "resizeX",
+          "owner": "gr",
+          "name": "aq",
+          "descriptor": "I",
+          "multiplier": -1923047899,
+          "virtual": true
+        },
+        {
+          "definition": "resizeZ",
+          "owner": "gr",
+          "name": "bf",
+          "descriptor": "I",
+          "multiplier": -99918107,
+          "virtual": true
+        },
+        {
+          "definition": "modelId",
+          "owner": "gr",
+          "name": "n",
+          "descriptor": "I",
+          "multiplier": -79179159,
+          "virtual": true
+        },
+        {
+          "definition": "ambient",
+          "owner": "gr",
+          "name": "bo",
+          "descriptor": "I",
+          "multiplier": -1743952543,
+          "virtual": true
+        },
+        {
+          "definition": "spritePitch",
+          "owner": "gr",
+          "name": "p",
+          "descriptor": "I",
+          "multiplier": -809487997,
+          "virtual": true
+        },
+        {
+          "definition": "maleHeadModel2",
+          "owner": "gr",
+          "name": "aw",
+          "descriptor": "I",
+          "multiplier": 1042908255,
+          "virtual": true
+        },
+        {
+          "definition": "stockMarketable",
+          "owner": "gr",
+          "name": "bl",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "groundActions",
+          "owner": "gr",
+          "name": "ar",
+          "descriptor": "[Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "members",
+          "owner": "gr",
+          "name": "au",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "spriteScale",
+          "owner": "gr",
+          "name": "c",
+          "descriptor": "I",
+          "multiplier": -2078238987,
+          "virtual": true
+        },
+        {
+          "definition": "femaleHeadModel2",
+          "owner": "gr",
+          "name": "aq",
+          "descriptor": "I",
+          "multiplier": -1923047899,
+          "virtual": true
+        },
+        {
+          "definition": "value",
+          "owner": "gr",
+          "name": "ad",
+          "descriptor": "I",
+          "multiplier": 1868181119,
+          "virtual": true
+        },
+        {
+          "definition": "femaleHeadModel",
+          "owner": "gr",
+          "name": "aj",
+          "descriptor": "I",
+          "multiplier": -1329405317,
+          "virtual": true
+        },
+        {
+          "definition": "shiftClickActionIndex",
+          "owner": "gr",
+          "name": "an",
+          "descriptor": "I",
+          "multiplier": -573326147,
+          "virtual": true
+        },
+        {
+          "definition": "spriteTranslateY",
+          "owner": "gr",
+          "name": "w",
+          "descriptor": "I",
+          "multiplier": 1827536133,
+          "virtual": true
+        },
+        {
+          "definition": "stackable",
+          "owner": "gr",
+          "name": "as",
+          "descriptor": "I",
+          "multiplier": -1304719979,
+          "virtual": true
+        },
+        {
+          "definition": "maleModel2",
+          "owner": "gr",
+          "name": "ai",
+          "descriptor": "I",
+          "multiplier": -428507273,
+          "virtual": true
+        },
+        {
+          "definition": "maleModel1",
+          "owner": "gr",
+          "name": "al",
+          "descriptor": "I",
+          "multiplier": -136305627,
+          "virtual": true
+        },
+        {
+          "definition": "noteTemplateId",
+          "owner": "gr",
+          "name": "ac",
+          "descriptor": "I",
+          "multiplier": -1058213631,
+          "virtual": true
+        },
+        {
+          "definition": "spriteRoll",
+          "owner": "gr",
+          "name": "d",
+          "descriptor": "I",
+          "multiplier": -1148033667,
+          "virtual": true
+        },
+        {
+          "definition": "maleHeadModel",
+          "owner": "gr",
+          "name": "ah",
+          "descriptor": "I",
+          "multiplier": -1566002253,
+          "virtual": true
+        },
+        {
+          "definition": "noteId",
+          "owner": "gr",
+          "name": "ae",
+          "descriptor": "I",
+          "multiplier": -590505645,
+          "virtual": true
+        },
+        {
+          "definition": "team",
+          "owner": "gr",
+          "name": "bw",
+          "descriptor": "I",
+          "multiplier": -1347495133,
+          "virtual": true
+        },
+        {
+          "definition": "spriteYaw",
+          "owner": "gr",
+          "name": "y",
+          "descriptor": "I",
+          "multiplier": -897636777,
+          "virtual": true
+        },
+        {
+          "definition": "femaleModel1",
+          "owner": "gr",
+          "name": "ak",
+          "descriptor": "I",
+          "multiplier": -954860879,
+          "virtual": true
+        },
+        {
+          "definition": "femaleModel2",
+          "owner": "gr",
+          "name": "ax",
+          "descriptor": "I",
+          "multiplier": 740482477,
+          "virtual": true
+        },
+        {
+          "definition": "variantStackSizes",
+          "owner": "gr",
+          "name": "aa",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "variantIds",
+          "owner": "gr",
+          "name": "ap",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "contrast",
+          "owner": "gr",
+          "name": "by",
+          "descriptor": "I",
+          "multiplier": 298604473,
+          "virtual": true
+        },
+        {
+          "definition": "name",
+          "owner": "gr",
+          "name": "k",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "actions",
+          "owner": "gr",
+          "name": "at",
+          "descriptor": "[Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "properties",
+          "owner": "gr",
+          "name": "bc",
+          "descriptor": "Lql;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "getModel",
+          "owner": "gr",
+          "name": "b",
+          "descriptor": "(II)Lhh;",
+          "expectedDescriptor": "omit",
+          "predicate": 1623435937,
+          "virtual": true
+        }
+      ],
+      "breaks": [
+        "id",
+        "getEquipmentModel"
+      ]
+    },
+    {
+      "definition": "IsaacCipher",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "AudioRunnable",
+      "fields": [
+        {
+          "definition": "systems",
+          "owner": "aw",
+          "name": "h",
+          "descriptor": "[Lax;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "run",
+          "owner": "aw",
+          "name": "run",
+          "descriptor": "()V",
+          "expectedDescriptor": "()V",
+          "predicate": 2147483647,
+          "virtual": true
+        }
+      ],
+      "breaks": []
+    },
+    {
+      "definition": "PathingEntity",
+      "fields": [
+        {
+          "definition": "routeWaypointsX",
+          "owner": "ct",
+          "name": "ck",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "walkingStance",
+          "owner": "ct",
+          "name": "az",
+          "descriptor": "I",
+          "multiplier": 498947341,
+          "virtual": true
+        },
+        {
+          "definition": "targetIndex",
+          "owner": "ct",
+          "name": "bi",
+          "descriptor": "I",
+          "multiplier": 254868797,
+          "virtual": true
+        },
+        {
+          "definition": "animationFrameCycle",
+          "owner": "ct",
+          "name": "bm",
+          "descriptor": "I",
+          "multiplier": -1043036109,
+          "virtual": true
+        },
+        {
+          "definition": "hitsplatIds",
+          "owner": "ct",
+          "name": "bx",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "specialHitsplats",
+          "owner": "ct",
+          "name": "bg",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "routeWaypointCount",
+          "owner": "ct",
+          "name": "cd",
+          "descriptor": "I",
+          "multiplier": 472227045,
+          "virtual": true
+        },
+        {
+          "definition": "animationFrame",
+          "owner": "ct",
+          "name": "bb",
+          "descriptor": "I",
+          "multiplier": 1723796857,
+          "virtual": true
+        },
+        {
+          "definition": "hitsplatCount",
+          "owner": "ct",
+          "name": "bp",
+          "descriptor": "B",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "routeWaypointsY",
+          "owner": "ct",
+          "name": "ci",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "absoluteX",
+          "owner": "ct",
+          "name": "av",
+          "descriptor": "I",
+          "multiplier": -389894911,
+          "virtual": true
+        },
+        {
+          "definition": "orientation",
+          "owner": "ct",
+          "name": "cv",
+          "descriptor": "I",
+          "multiplier": -947520985,
+          "virtual": true
+        },
+        {
+          "definition": "absoluteY",
+          "owner": "ct",
+          "name": "au",
+          "descriptor": "I",
+          "multiplier": 65440413,
+          "virtual": true
+        },
+        {
+          "definition": "overheadText",
+          "owner": "ct",
+          "name": "ac",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "animationDelay",
+          "owner": "ct",
+          "name": "bk",
+          "descriptor": "I",
+          "multiplier": -1398805233,
+          "virtual": true
+        },
+        {
+          "definition": "hitsplatTypes",
+          "owner": "ct",
+          "name": "bc",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "healthBars",
+          "owner": "ct",
+          "name": "bz",
+          "descriptor": "Lmv;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "animation",
+          "owner": "ct",
+          "name": "bj",
+          "descriptor": "I",
+          "multiplier": 94737613,
+          "virtual": true
+        },
+        {
+          "definition": "hitsplats",
+          "owner": "ct",
+          "name": "bl",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "effect",
+          "owner": "ct",
+          "name": "cf",
+          "descriptor": "I",
+          "multiplier": 385930223,
+          "virtual": true
+        },
+        {
+          "definition": "stanceFrame",
+          "owner": "ct",
+          "name": "bs",
+          "descriptor": "I",
+          "multiplier": 1618805973,
+          "virtual": true
+        },
+        {
+          "definition": "hitsplatCycles",
+          "owner": "ct",
+          "name": "bv",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "stance",
+          "owner": "ct",
+          "name": "ba",
+          "descriptor": "I",
+          "multiplier": -23593053,
+          "virtual": true
+        },
+        {
+          "definition": "effectFrame",
+          "owner": "ct",
+          "name": "cl",
+          "descriptor": "I",
+          "multiplier": 1092439411,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "addHitSplat",
+          "owner": "ct",
+          "name": "ah",
+          "descriptor": "(IIIIIII)V",
+          "expectedDescriptor": "(IIIIII)V",
+          "predicate": 1755309614,
+          "virtual": true
+        },
+        {
+          "definition": "addHitUpdate",
+          "owner": "ct",
+          "name": "aw",
+          "descriptor": "(IIIIIII)V",
+          "expectedDescriptor": "(IIIIII)V",
+          "predicate": 1256732773,
+          "virtual": true
+        }
+      ],
+      "breaks": [
+        "routeWaypointsTraversed"
+      ]
+    },
+    {
+      "definition": "Pickable",
+      "fields": [
+        {
+          "definition": "stackSize",
+          "owner": "cr",
+          "name": "e",
+          "descriptor": "I",
+          "multiplier": 1996619089,
+          "virtual": true
+        },
+        {
+          "definition": "id",
+          "owner": "cr",
+          "name": "h",
+          "descriptor": "I",
+          "multiplier": -1495440553,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "Varpbit",
+      "fields": [
+        {
+          "definition": "varpIndex",
+          "owner": "gu",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": 1633221379,
+          "virtual": true
+        },
+        {
+          "definition": "lower",
+          "owner": "gu",
+          "name": "x",
+          "descriptor": "I",
+          "multiplier": -270804781,
+          "virtual": true
+        },
+        {
+          "definition": "upper",
+          "owner": "gu",
+          "name": "m",
+          "descriptor": "I",
+          "multiplier": -1549035405,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "TextureProvider",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "EntityMarker",
+      "fields": [
+        {
+          "definition": "uid",
+          "owner": "hp",
+          "name": "i",
+          "descriptor": "J",
+          "multiplier": -7754761910240207891,
+          "virtual": true
+        },
+        {
+          "definition": "orientation",
+          "owner": "hp",
+          "name": "m",
+          "descriptor": "I",
+          "multiplier": -835257591,
+          "virtual": true
+        },
+        {
+          "definition": "sceneY",
+          "owner": "hp",
+          "name": "u",
+          "descriptor": "I",
+          "multiplier": -1389612741,
+          "virtual": true
+        },
+        {
+          "definition": "sceneX",
+          "owner": "hp",
+          "name": "f",
+          "descriptor": "I",
+          "multiplier": 1451034711,
+          "virtual": true
+        },
+        {
+          "definition": "maxSceneY",
+          "owner": "hp",
+          "name": "b",
+          "descriptor": "I",
+          "multiplier": 675535951,
+          "virtual": true
+        },
+        {
+          "definition": "maxSceneX",
+          "owner": "hp",
+          "name": "r",
+          "descriptor": "I",
+          "multiplier": 1873413133,
+          "virtual": true
+        },
+        {
+          "definition": "floorLevel",
+          "owner": "hp",
+          "name": "h",
+          "descriptor": "I",
+          "multiplier": -1864133043,
+          "virtual": true
+        },
+        {
+          "definition": "centerFineX",
+          "owner": "hp",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": -472121489,
+          "virtual": true
+        },
+        {
+          "definition": "config",
+          "owner": "hp",
+          "name": "o",
+          "descriptor": "I",
+          "multiplier": -799893141,
+          "virtual": true
+        },
+        {
+          "definition": "centerFineY",
+          "owner": "hp",
+          "name": "x",
+          "descriptor": "I",
+          "multiplier": 1527155529,
+          "virtual": true
+        },
+        {
+          "definition": "entity",
+          "owner": "hp",
+          "name": "q",
+          "descriptor": "Lhr;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "height",
+          "owner": "hp",
+          "name": "e",
+          "descriptor": "I",
+          "multiplier": -1769154667,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "SubInterface",
+      "fields": [
+        {
+          "definition": "id",
+          "owner": "cx",
+          "name": "h",
+          "descriptor": "I",
+          "multiplier": 545250955,
+          "virtual": true
+        },
+        {
+          "definition": "state",
+          "owner": "cx",
+          "name": "e",
+          "descriptor": "I",
+          "multiplier": -829260005,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "ChatHistory",
+      "fields": [
+        {
+          "definition": "caret",
+          "owner": "bd",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": -1171646571,
+          "virtual": true
+        },
+        {
+          "definition": "buffer",
+          "owner": "bd",
+          "name": "e",
+          "descriptor": "[Lbv;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "NamePair",
+      "fields": [
+        {
+          "definition": "formatted",
+          "owner": "rp",
+          "name": "e",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "raw",
+          "owner": "rp",
+          "name": "h",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "AudioTrack",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "TileDecor",
+      "fields": [
+        {
+          "definition": "absoluteX",
+          "owner": "hs",
+          "name": "e",
+          "descriptor": "I",
+          "multiplier": 804453261,
+          "virtual": true
+        },
+        {
+          "definition": "uid",
+          "owner": "hs",
+          "name": "m",
+          "descriptor": "J",
+          "multiplier": 4180672137059809271,
+          "virtual": true
+        },
+        {
+          "definition": "absoluteY",
+          "owner": "hs",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": 1531498091,
+          "virtual": true
+        },
+        {
+          "definition": "config",
+          "owner": "hs",
+          "name": "q",
+          "descriptor": "I",
+          "multiplier": -1420887887,
+          "virtual": true
+        },
+        {
+          "definition": "entity",
+          "owner": "hs",
+          "name": "x",
+          "descriptor": "Lhr;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "height",
+          "owner": "hs",
+          "name": "h",
+          "descriptor": "I",
+          "multiplier": 133255249,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "ScriptEvent",
+      "fields": [
+        {
+          "definition": "args",
+          "owner": "cb",
+          "name": "h",
+          "descriptor": "[Ljava/lang/Object;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "source",
+          "owner": "cb",
+          "name": "f",
+          "descriptor": "Lkd;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "AnimationSequence",
+      "fields": [
+        {
+          "definition": "stretch",
+          "owner": "ga",
+          "name": "l",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "mainHand",
+          "owner": "ga",
+          "name": "p",
+          "descriptor": "I",
+          "multiplier": 1154134933,
+          "virtual": true
+        },
+        {
+          "definition": "replayMode",
+          "owner": "ga",
+          "name": "as",
+          "descriptor": "I",
+          "multiplier": 1460955579,
+          "virtual": true
+        },
+        {
+          "definition": "loopOffset",
+          "owner": "ga",
+          "name": "k",
+          "descriptor": "I",
+          "multiplier": 2135707529,
+          "virtual": true
+        },
+        {
+          "definition": "frameIds",
+          "owner": "ga",
+          "name": "g",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "priority",
+          "owner": "ga",
+          "name": "t",
+          "descriptor": "I",
+          "multiplier": -1831885199,
+          "virtual": true
+        },
+        {
+          "definition": "animatingPrecedence",
+          "owner": "ga",
+          "name": "z",
+          "descriptor": "I",
+          "multiplier": -1085888001,
+          "virtual": true
+        },
+        {
+          "definition": "maxLoops",
+          "owner": "ga",
+          "name": "d",
+          "descriptor": "I",
+          "multiplier": 1794667521,
+          "virtual": true
+        },
+        {
+          "definition": "frameLengths",
+          "owner": "ga",
+          "name": "o",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "offHand",
+          "owner": "ga",
+          "name": "c",
+          "descriptor": "I",
+          "multiplier": 1340317649,
+          "virtual": true
+        },
+        {
+          "definition": "walkingPrecedence",
+          "owner": "ga",
+          "name": "w",
+          "descriptor": "I",
+          "multiplier": -746157259,
+          "virtual": true
+        },
+        {
+          "definition": "interleaveOrder",
+          "owner": "ga",
+          "name": "a",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "Associate",
+      "fields": [
+        {
+          "definition": "world",
+          "owner": "oa",
+          "name": "m",
+          "descriptor": "I",
+          "multiplier": 1767210019,
+          "virtual": true
+        },
+        {
+          "definition": "rank",
+          "owner": "oa",
+          "name": "f",
+          "descriptor": "I",
+          "multiplier": -894638573,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "BoundaryDecor",
+      "fields": [
+        {
+          "definition": "offsetX",
+          "owner": "hb",
+          "name": "q",
+          "descriptor": "I",
+          "multiplier": -1641152353,
+          "virtual": true
+        },
+        {
+          "definition": "absoluteX",
+          "owner": "hb",
+          "name": "e",
+          "descriptor": "I",
+          "multiplier": 195804449,
+          "virtual": true
+        },
+        {
+          "definition": "uid",
+          "owner": "hb",
+          "name": "b",
+          "descriptor": "J",
+          "multiplier": -4565289188219368055,
+          "virtual": true
+        },
+        {
+          "definition": "absoluteY",
+          "owner": "hb",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": -878815741,
+          "virtual": true
+        },
+        {
+          "definition": "orientation",
+          "owner": "hb",
+          "name": "m",
+          "descriptor": "I",
+          "multiplier": 1777240723,
+          "virtual": true
+        },
+        {
+          "definition": "offsetY",
+          "owner": "hb",
+          "name": "f",
+          "descriptor": "I",
+          "multiplier": 1040498041,
+          "virtual": true
+        },
+        {
+          "definition": "renderConfig",
+          "owner": "hb",
+          "name": "x",
+          "descriptor": "I",
+          "multiplier": 1962326121,
+          "virtual": true
+        },
+        {
+          "definition": "linkedEntity",
+          "owner": "hb",
+          "name": "u",
+          "descriptor": "Lhr;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "config",
+          "owner": "hb",
+          "name": "j",
+          "descriptor": "I",
+          "multiplier": 1162489357,
+          "virtual": true
+        },
+        {
+          "definition": "entity",
+          "owner": "hb",
+          "name": "r",
+          "descriptor": "Lhr;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "height",
+          "owner": "hb",
+          "name": "h",
+          "descriptor": "I",
+          "multiplier": 13169171,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "ResourceRequest",
+      "fields": [
+        {
+          "definition": "index",
+          "owner": "lt",
+          "name": "v",
+          "descriptor": "Loi;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "archive",
+          "owner": "lt",
+          "name": "x",
+          "descriptor": "Lln;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "buffer",
+          "owner": "lt",
+          "name": "e",
+          "descriptor": "[B",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "DBRow",
+      "fields": [
+        {
+          "definition": "dataTypes",
+          "owner": "qm",
+          "name": "v",
+          "descriptor": "[[Ljava/lang/Object;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "HitsplatDefinition",
+      "fields": [
+        {
+          "definition": "iconId",
+          "owner": "gm",
+          "name": "n",
+          "descriptor": "I",
+          "multiplier": -1857088509,
+          "virtual": true
+        },
+        {
+          "definition": "amount",
+          "owner": "gm",
+          "name": "p",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "foreground",
+          "owner": "gm",
+          "name": "i",
+          "descriptor": "I",
+          "multiplier": 29790821,
+          "virtual": true
+        },
+        {
+          "definition": "rightSpriteId",
+          "owner": "gm",
+          "name": "s",
+          "descriptor": "I",
+          "multiplier": 866194173,
+          "virtual": true
+        },
+        {
+          "definition": "offsetX",
+          "owner": "gm",
+          "name": "l",
+          "descriptor": "I",
+          "multiplier": -1183512901,
+          "virtual": true
+        },
+        {
+          "definition": "duration",
+          "owner": "gm",
+          "name": "o",
+          "descriptor": "I",
+          "multiplier": -1571140211,
+          "virtual": true
+        },
+        {
+          "definition": "middleSpriteId",
+          "owner": "gm",
+          "name": "k",
+          "descriptor": "I",
+          "multiplier": 519800861,
+          "virtual": true
+        },
+        {
+          "definition": "offsetY",
+          "owner": "gm",
+          "name": "t",
+          "descriptor": "I",
+          "multiplier": 695762813,
+          "virtual": true
+        },
+        {
+          "definition": "fade",
+          "owner": "gm",
+          "name": "c",
+          "descriptor": "I",
+          "multiplier": -220285237,
+          "virtual": true
+        },
+        {
+          "definition": "varpIndex",
+          "owner": "gm",
+          "name": "as",
+          "descriptor": "I",
+          "multiplier": -20536057,
+          "virtual": true
+        },
+        {
+          "definition": "fontId",
+          "owner": "gm",
+          "name": "g",
+          "descriptor": "I",
+          "multiplier": -452341601,
+          "virtual": true
+        },
+        {
+          "definition": "leftSpriteId",
+          "owner": "gm",
+          "name": "a",
+          "descriptor": "I",
+          "multiplier": 1875529689,
+          "virtual": true
+        },
+        {
+          "definition": "varpbitIndex",
+          "owner": "gm",
+          "name": "w",
+          "descriptor": "I",
+          "multiplier": 327667697,
+          "virtual": true
+        },
+        {
+          "definition": "comparisonType",
+          "owner": "gm",
+          "name": "d",
+          "descriptor": "I",
+          "multiplier": 1451388863,
+          "virtual": true
+        },
+        {
+          "definition": "transformIds",
+          "owner": "gm",
+          "name": "z",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "getLeftSprite",
+          "owner": "gm",
+          "name": "r",
+          "descriptor": "(I)Lrx;",
+          "expectedDescriptor": "()Lrx;",
+          "predicate": -1399173808,
+          "virtual": true
+        },
+        {
+          "definition": "getIcon",
+          "owner": "gm",
+          "name": "q",
+          "descriptor": "(S)Lrx;",
+          "expectedDescriptor": "()Lrx;",
+          "predicate": 8226,
+          "virtual": true
+        },
+        {
+          "definition": "getRightSprite",
+          "owner": "gm",
+          "name": "u",
+          "descriptor": "(B)Lrx;",
+          "expectedDescriptor": "()Lrx;",
+          "predicate": 0,
+          "virtual": true
+        },
+        {
+          "definition": "getMiddleSprite",
+          "owner": "gm",
+          "name": "f",
+          "descriptor": "(S)Lrx;",
+          "expectedDescriptor": "()Lrx;",
+          "predicate": 246,
+          "virtual": true
+        }
+      ],
+      "breaks": []
+    },
+    {
+      "definition": "ChatterContext",
+      "fields": [
+        {
+          "definition": "chatters",
+          "owner": "od",
+          "name": "j",
+          "descriptor": "[Lov;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "displayNameCache",
+          "owner": "od",
+          "name": "g",
+          "descriptor": "Ljava/util/HashMap;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "previousNameCache",
+          "owner": "od",
+          "name": "i",
+          "descriptor": "Ljava/util/HashMap;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "count",
+          "owner": "od",
+          "name": "b",
+          "descriptor": "I",
+          "multiplier": -809601657,
+          "virtual": true
+        },
+        {
+          "definition": "capacity",
+          "owner": "od",
+          "name": "u",
+          "descriptor": "I",
+          "multiplier": -1701166139,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "Archive",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "DynamicObject",
+      "fields": [
+        {
+          "definition": "sequence",
+          "owner": "bk",
+          "name": "f",
+          "descriptor": "Lga;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "orientation",
+          "owner": "bk",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": -1920524297,
+          "virtual": true
+        },
+        {
+          "definition": "sceneY",
+          "owner": "bk",
+          "name": "q",
+          "descriptor": "I",
+          "multiplier": -1033732035,
+          "virtual": true
+        },
+        {
+          "definition": "sceneX",
+          "owner": "bk",
+          "name": "m",
+          "descriptor": "I",
+          "multiplier": -1813409375,
+          "virtual": true
+        },
+        {
+          "definition": "floorLevel",
+          "owner": "bk",
+          "name": "x",
+          "descriptor": "I",
+          "multiplier": -14987683,
+          "virtual": true
+        },
+        {
+          "definition": "id",
+          "owner": "bk",
+          "name": "h",
+          "descriptor": "I",
+          "multiplier": -2074471671,
+          "virtual": true
+        },
+        {
+          "definition": "type",
+          "owner": "bk",
+          "name": "e",
+          "descriptor": "I",
+          "multiplier": 1709661329,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "ActionPrioritySetting",
+      "fields": [
+        {
+          "definition": "id",
+          "owner": "cz",
+          "name": "q",
+          "descriptor": "I",
+          "multiplier": -1340490443,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "ConnectionContext",
+      "fields": [
+        {
+          "definition": "outgoing",
+          "owner": "de",
+          "name": "x",
+          "descriptor": "Lqy;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "idleReadPulses",
+          "owner": "de",
+          "name": "b",
+          "descriptor": "I",
+          "multiplier": -562413973,
+          "virtual": true
+        },
+        {
+          "definition": "idleWritePulses",
+          "owner": "de",
+          "name": "j",
+          "descriptor": "I",
+          "multiplier": -1673559747,
+          "virtual": true
+        },
+        {
+          "definition": "encryptor",
+          "owner": "de",
+          "name": "m",
+          "descriptor": "Lrg;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "buffered",
+          "owner": "de",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": -1512304017,
+          "virtual": true
+        },
+        {
+          "definition": "buffer",
+          "owner": "de",
+          "name": "q",
+          "descriptor": "Lqx;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "packets",
+          "owner": "de",
+          "name": "e",
+          "descriptor": "Lmv;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "writeLater",
+          "owner": "de",
+          "name": "v",
+          "descriptor": "(Ljx;S)V",
+          "expectedDescriptor": "(Ljx;)V",
+          "predicate": 0,
+          "virtual": true
+        }
+      ],
+      "breaks": []
+    },
+    {
+      "definition": "Model",
+      "fields": [
+        {
+          "definition": "zVertices",
+          "owner": "hh",
+          "name": "j",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "yTriangles",
+          "owner": "hh",
+          "name": "o",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "useAABBBoundingBoxes",
+          "owner": "hh",
+          "name": "bv",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "aabbEnabled",
+          "owner": "hh",
+          "name": "au",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "faceTextures",
+          "owner": "hh",
+          "name": "p",
+          "descriptor": "[S",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "xTriangles",
+          "owner": "hh",
+          "name": "i",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "zFaceColors",
+          "owner": "hh",
+          "name": "s",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "xVertices",
+          "owner": "hh",
+          "name": "u",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "zTriangles",
+          "owner": "hh",
+          "name": "n",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "yVertices",
+          "owner": "hh",
+          "name": "b",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "Canvas",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "AsyncOutputStream",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "Sprite",
+      "fields": [
+        {
+          "definition": "pixels",
+          "owner": "rx",
+          "name": "h",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "width",
+          "owner": "rx",
+          "name": "e",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "height",
+          "owner": "rx",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "RelationshipSystem",
+      "fields": [
+        {
+          "definition": "ignoreListContext",
+          "owner": "bi",
+          "name": "q",
+          "descriptor": "Lnj;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "friendListContext",
+          "owner": "bi",
+          "name": "m",
+          "descriptor": "Lng;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "isIgnoring",
+          "owner": "bi",
+          "name": "f",
+          "descriptor": "(Lrp;B)Z",
+          "expectedDescriptor": "(Lrp;)Z",
+          "predicate": 0,
+          "virtual": true
+        },
+        {
+          "definition": "ignore",
+          "owner": "bi",
+          "name": "i",
+          "descriptor": "(Ljava/lang/String;B)V",
+          "expectedDescriptor": "(Ljava/lang/String;)V",
+          "predicate": 6,
+          "virtual": true
+        },
+        {
+          "definition": "unignore",
+          "owner": "bi",
+          "name": "s",
+          "descriptor": "(Ljava/lang/String;I)V",
+          "expectedDescriptor": "(Ljava/lang/String;)V",
+          "predicate": 106143491,
+          "virtual": true
+        },
+        {
+          "definition": "unbefriend",
+          "owner": "bi",
+          "name": "a",
+          "descriptor": "(Ljava/lang/String;I)V",
+          "expectedDescriptor": "(Ljava/lang/String;)V",
+          "predicate": 1796571417,
+          "virtual": true
+        },
+        {
+          "definition": "isBefriended",
+          "owner": "bi",
+          "name": "q",
+          "descriptor": "(Lrp;ZI)Z",
+          "expectedDescriptor": "(Lrp;)Z",
+          "predicate": -1987105224,
+          "virtual": true
+        },
+        {
+          "definition": "befriend",
+          "owner": "bi",
+          "name": "r",
+          "descriptor": "(Ljava/lang/String;I)V",
+          "expectedDescriptor": "(Ljava/lang/String;)V",
+          "predicate": 182534146,
+          "virtual": true
+        }
+      ],
+      "breaks": []
+    },
+    {
+      "definition": "AudioSystem",
+      "fields": [
+        {
+          "definition": "samples",
+          "owner": "ax",
+          "name": "o",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "Npc",
+      "fields": [
+        {
+          "definition": "definition",
+          "owner": "cg",
+          "name": "h",
+          "descriptor": "Lgz;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "Boundary",
+      "fields": [
+        {
+          "definition": "absoluteX",
+          "owner": "hq",
+          "name": "e",
+          "descriptor": "I",
+          "multiplier": -395952651,
+          "virtual": true
+        },
+        {
+          "definition": "uid",
+          "owner": "hq",
+          "name": "r",
+          "descriptor": "J",
+          "multiplier": -2819561851550717281,
+          "virtual": true
+        },
+        {
+          "definition": "absoluteY",
+          "owner": "hq",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": -1849081701,
+          "virtual": true
+        },
+        {
+          "definition": "orientation",
+          "owner": "hq",
+          "name": "x",
+          "descriptor": "I",
+          "multiplier": -1730515423,
+          "virtual": true
+        },
+        {
+          "definition": "linkedEntity",
+          "owner": "hq",
+          "name": "f",
+          "descriptor": "Lhr;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "linkedOrientation",
+          "owner": "hq",
+          "name": "m",
+          "descriptor": "I",
+          "multiplier": -1631697669,
+          "virtual": true
+        },
+        {
+          "definition": "config",
+          "owner": "hq",
+          "name": "u",
+          "descriptor": "I",
+          "multiplier": -403448227,
+          "virtual": true
+        },
+        {
+          "definition": "entity",
+          "owner": "hq",
+          "name": "q",
+          "descriptor": "Lhr;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "height",
+          "owner": "hq",
+          "name": "h",
+          "descriptor": "I",
+          "multiplier": 231702347,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "AudioEnvelope",
+      "fields": [
+        {
+          "definition": "amplitude",
+          "owner": "ah",
+          "name": "j",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "max",
+          "owner": "ah",
+          "name": "g",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "ticks",
+          "owner": "ah",
+          "name": "r",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "start",
+          "owner": "ah",
+          "name": "m",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "phaseIndex",
+          "owner": "ah",
+          "name": "u",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "step",
+          "owner": "ah",
+          "name": "b",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "end",
+          "owner": "ah",
+          "name": "q",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "phases",
+          "owner": "ah",
+          "name": "v",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "Varps",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "Queue",
+      "fields": [
+        {
+          "definition": "root",
+          "owner": "md",
+          "name": "h",
+          "descriptor": "Lpw;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "ResourceCache",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "GameEngine",
+      "fields": [
+        {
+          "definition": "canvas",
+          "owner": "an",
+          "name": "ar",
+          "descriptor": "Ljava/awt/Canvas;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "doCycle",
+          "owner": "an",
+          "name": "av",
+          "descriptor": "(I)V",
+          "expectedDescriptor": "omit",
+          "predicate": -1667894554,
+          "virtual": true
+        }
+      ],
+      "breaks": []
+    },
+    {
+      "definition": "EffectAnimation",
+      "fields": [
+        {
+          "definition": "orientation",
+          "owner": "gq",
+          "name": "o",
+          "descriptor": "I",
+          "multiplier": 919548227,
+          "virtual": true
+        },
+        {
+          "definition": "modelId",
+          "owner": "gq",
+          "name": "q",
+          "descriptor": "I",
+          "multiplier": 903909845,
+          "virtual": true
+        },
+        {
+          "definition": "ambience",
+          "owner": "gq",
+          "name": "n",
+          "descriptor": "I",
+          "multiplier": 291323671,
+          "virtual": true
+        },
+        {
+          "definition": "contrast",
+          "owner": "gq",
+          "name": "k",
+          "descriptor": "I",
+          "multiplier": 1468773977,
+          "virtual": true
+        },
+        {
+          "definition": "scaleXY",
+          "owner": "gq",
+          "name": "g",
+          "descriptor": "I",
+          "multiplier": -289907207,
+          "virtual": true
+        },
+        {
+          "definition": "scaleZ",
+          "owner": "gq",
+          "name": "i",
+          "descriptor": "I",
+          "multiplier": 1592669609,
+          "virtual": true
+        },
+        {
+          "definition": "animation",
+          "owner": "gq",
+          "name": "f",
+          "descriptor": "I",
+          "multiplier": -295593061,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "BufferedFile",
+      "fields": [
+        {
+          "definition": "diskFile",
+          "owner": "qa",
+          "name": "e",
+          "descriptor": "Lqq;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "read",
+          "owner": "qa",
+          "name": "m",
+          "descriptor": "([BIII)V",
+          "expectedDescriptor": "([BII)V",
+          "predicate": 259660321,
+          "virtual": true
+        },
+        {
+          "definition": "readFully",
+          "owner": "qa",
+          "name": "x",
+          "descriptor": "([BB)V",
+          "expectedDescriptor": "([B)V",
+          "predicate": 0,
+          "virtual": true
+        },
+        {
+          "definition": "write",
+          "owner": "qa",
+          "name": "f",
+          "descriptor": "([BIII)V",
+          "expectedDescriptor": "([BII)V",
+          "predicate": -571996502,
+          "virtual": true
+        }
+      ],
+      "breaks": []
+    },
+    {
+      "definition": "Chatter",
+      "fields": [
+        {
+          "definition": "displayName",
+          "owner": "ov",
+          "name": "v",
+          "descriptor": "Lrp;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "previousName",
+          "owner": "ov",
+          "name": "x",
+          "descriptor": "Lrp;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "Font",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "Connection",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "IterableNodeTable",
+      "fields": [
+        {
+          "definition": "head",
+          "owner": "ql",
+          "name": "v",
+          "descriptor": "Lpl;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "size",
+          "owner": "ql",
+          "name": "h",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "tail",
+          "owner": "ql",
+          "name": "x",
+          "descriptor": "Lpl;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "buckets",
+          "owner": "ql",
+          "name": "e",
+          "descriptor": "[Lpl;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "index",
+          "owner": "ql",
+          "name": "m",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "lookup",
+          "owner": "ql",
+          "name": "h",
+          "descriptor": "(J)Lpl;",
+          "expectedDescriptor": "omit",
+          "predicate": 2147483647,
+          "virtual": true
+        }
+      ],
+      "breaks": []
+    },
+    {
+      "definition": "TileModel",
+      "fields": [
+        {
+          "definition": "flatShade",
+          "owner": "hy",
+          "name": "j",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "shape",
+          "owner": "hy",
+          "name": "g",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "overlay",
+          "owner": "hy",
+          "name": "n",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "rotation",
+          "owner": "hy",
+          "name": "i",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "underlay",
+          "owner": "hy",
+          "name": "o",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "TilePaint",
+      "fields": [
+        {
+          "definition": "flatShade",
+          "owner": "hj",
+          "name": "q",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "texture",
+          "owner": "hj",
+          "name": "m",
+          "descriptor": "I",
+          "multiplier": -813926199,
+          "virtual": true
+        },
+        {
+          "definition": "rgb",
+          "owner": "hj",
+          "name": "f",
+          "descriptor": "I",
+          "multiplier": -235347683,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "DefinitionProperty",
+      "fields": [
+        {
+          "definition": "deleteOnUse",
+          "owner": "gv",
+          "name": "q",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "defaultInteger",
+          "owner": "gv",
+          "name": "x",
+          "descriptor": "I",
+          "multiplier": 818744259,
+          "virtual": true
+        },
+        {
+          "definition": "defaultString",
+          "owner": "gv",
+          "name": "m",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "type",
+          "owner": "gv",
+          "name": "v",
+          "descriptor": "C",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "SystemInformationProvider",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "DBTable",
+      "fields": [
+        {
+          "definition": "dataTypes",
+          "owner": "qs",
+          "name": "x",
+          "descriptor": "[[Ljava/lang/Object;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "PlayerAppearance",
+      "fields": [
+        {
+          "definition": "equipmentIds",
+          "owner": "ko",
+          "name": "h",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "transformedNpcId",
+          "owner": "ko",
+          "name": "m",
+          "descriptor": "I",
+          "multiplier": 14128873,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "getModel",
+          "owner": "ko",
+          "name": "r",
+          "descriptor": "(Lga;ILga;II)Lhh;",
+          "expectedDescriptor": "omit",
+          "predicate": 316580570,
+          "virtual": true
+        }
+      ],
+      "breaks": [
+        "ids",
+        "female"
+      ]
+    },
+    {
+      "definition": "ClientPreferences",
+      "fields": [
+        {
+          "definition": "loginScreenAudioDisabled",
+          "owner": "ch",
+          "name": "f",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "resizable",
+          "owner": "ch",
+          "name": "k",
+          "descriptor": "I",
+          "multiplier": -628738235,
+          "virtual": true
+        },
+        {
+          "definition": "drawingFps",
+          "owner": "ch",
+          "name": "r",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "roofsHidden",
+          "owner": "ch",
+          "name": "m",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "rememberMe",
+          "owner": "ch",
+          "name": "q",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "properties",
+          "owner": "ch",
+          "name": "a",
+          "descriptor": "Ljava/util/Map;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "cameraScale",
+          "owner": "ch",
+          "name": "b",
+          "descriptor": "D",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": [
+        "audioLevel",
+        "soundEffectLevel",
+        "areaSoundEffectLevel"
+      ]
+    },
+    {
+      "definition": "World",
+      "fields": [
+        {
+          "definition": "activity",
+          "owner": "bz",
+          "name": "n",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "domain",
+          "owner": "bz",
+          "name": "o",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "location",
+          "owner": "bz",
+          "name": "k",
+          "descriptor": "I",
+          "multiplier": 2095420555,
+          "virtual": true
+        },
+        {
+          "definition": "id",
+          "owner": "bz",
+          "name": "j",
+          "descriptor": "I",
+          "multiplier": -944957609,
+          "virtual": true
+        },
+        {
+          "definition": "mask",
+          "owner": "bz",
+          "name": "g",
+          "descriptor": "I",
+          "multiplier": -1208284293,
+          "virtual": true
+        },
+        {
+          "definition": "population",
+          "owner": "bz",
+          "name": "i",
+          "descriptor": "I",
+          "multiplier": -512350001,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "PartyUser",
+      "fields": [
+        {
+          "definition": "world",
+          "owner": "ee",
+          "name": "e",
+          "descriptor": "I",
+          "multiplier": -1561957153,
+          "virtual": true
+        },
+        {
+          "definition": "displayName",
+          "owner": "ee",
+          "name": "v",
+          "descriptor": "Lrp;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "rank",
+          "owner": "ee",
+          "name": "h",
+          "descriptor": "B",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "StructDefinition",
+      "fields": [
+        {
+          "definition": "table",
+          "owner": "gd",
+          "name": "v",
+          "descriptor": "Lql;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "PendingSpawn",
+      "fields": [
+        {
+          "definition": "hitpoints",
+          "owner": "cm",
+          "name": "i",
+          "descriptor": "I",
+          "multiplier": 583629257,
+          "virtual": true
+        },
+        {
+          "definition": "sceneY",
+          "owner": "cm",
+          "name": "x",
+          "descriptor": "I",
+          "multiplier": 301883379,
+          "virtual": true
+        },
+        {
+          "definition": "orientation",
+          "owner": "cm",
+          "name": "u",
+          "descriptor": "I",
+          "multiplier": -910085015,
+          "virtual": true
+        },
+        {
+          "definition": "sceneX",
+          "owner": "cm",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": -1941580187,
+          "virtual": true
+        },
+        {
+          "definition": "floorLevel",
+          "owner": "cm",
+          "name": "h",
+          "descriptor": "I",
+          "multiplier": -768872951,
+          "virtual": true
+        },
+        {
+          "definition": "id",
+          "owner": "cm",
+          "name": "r",
+          "descriptor": "I",
+          "multiplier": -323138543,
+          "virtual": true
+        },
+        {
+          "definition": "type",
+          "owner": "cm",
+          "name": "e",
+          "descriptor": "I",
+          "multiplier": 1473814219,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": [
+        "delay"
+      ]
+    },
+    {
+      "definition": "FriendListContext",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "AudioInstrument",
+      "fields": [
+        {
+          "definition": "pitchEnvelope",
+          "owner": "bp",
+          "name": "h",
+          "descriptor": "Lah;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "oscillatorPitch",
+          "owner": "bp",
+          "name": "b",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "HealthBar",
+      "fields": [
+        {
+          "definition": "hitsplats",
+          "owner": "ce",
+          "name": "x",
+          "descriptor": "Lmv;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "definition",
+          "owner": "ce",
+          "name": "v",
+          "descriptor": "Lfw;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "Buffer",
+      "fields": [
+        {
+          "definition": "caret",
+          "owner": "qy",
+          "name": "u",
+          "descriptor": "I",
+          "multiplier": -1969198767,
+          "virtual": true
+        },
+        {
+          "definition": "payload",
+          "owner": "qy",
+          "name": "r",
+          "descriptor": "[B",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "ReferenceTable",
+      "fields": [
+        {
+          "definition": "entry",
+          "owner": "ly",
+          "name": "c",
+          "descriptor": "Lrc;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "children",
+          "owner": "ly",
+          "name": "as",
+          "descriptor": "[Lrc;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "buffer",
+          "owner": "ly",
+          "name": "ao",
+          "descriptor": "[[Ljava/lang/Object;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "unpack",
+          "owner": "ly",
+          "name": "ax",
+          "descriptor": "(II[II)[B",
+          "expectedDescriptor": "(II[I)[B",
+          "predicate": 810907384,
+          "virtual": true
+        }
+      ],
+      "breaks": []
+    },
+    {
+      "definition": "FriendsChatSystem",
+      "fields": [
+        {
+          "definition": "localPlayerRank",
+          "owner": "nc",
+          "name": "f",
+          "descriptor": "I",
+          "multiplier": 1090208209,
+          "virtual": true
+        },
+        {
+          "definition": "channelOwner",
+          "owner": "nc",
+          "name": "m",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "channelName",
+          "owner": "nc",
+          "name": "x",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "Inventory",
+      "fields": [
+        {
+          "definition": "ids",
+          "owner": "cc",
+          "name": "e",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "stackSizes",
+          "owner": "cc",
+          "name": "v",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "NodeTable",
+      "fields": [
+        {
+          "definition": "head",
+          "owner": "qp",
+          "name": "v",
+          "descriptor": "Lpl;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "size",
+          "owner": "qp",
+          "name": "h",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "tail",
+          "owner": "qp",
+          "name": "x",
+          "descriptor": "Lpl;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "buckets",
+          "owner": "qp",
+          "name": "e",
+          "descriptor": "[Lpl;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "index",
+          "owner": "qp",
+          "name": "m",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "lookup",
+          "owner": "qp",
+          "name": "h",
+          "descriptor": "(J)Lpl;",
+          "expectedDescriptor": "omit",
+          "predicate": 2147483647,
+          "virtual": true
+        }
+      ],
+      "breaks": []
+    },
+    {
+      "definition": "Entity",
+      "fields": [
+        {
+          "definition": "height",
+          "owner": "hr",
+          "name": "dl",
+          "descriptor": "I",
+          "multiplier": 501367541,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "defineModel",
+          "owner": "hr",
+          "name": "e",
+          "descriptor": "(I)Lhh;",
+          "expectedDescriptor": "()Lhh;",
+          "predicate": 0,
+          "virtual": true
+        }
+      ],
+      "breaks": []
+    },
+    {
+      "definition": "Tile",
+      "fields": [
+        {
+          "definition": "boundary",
+          "owner": "he",
+          "name": "f",
+          "descriptor": "Lhq;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "sceneY",
+          "owner": "he",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": 578479025,
+          "virtual": true
+        },
+        {
+          "definition": "sceneX",
+          "owner": "he",
+          "name": "e",
+          "descriptor": "I",
+          "multiplier": 1304974879,
+          "virtual": true
+        },
+        {
+          "definition": "boundaryDecor",
+          "owner": "he",
+          "name": "r",
+          "descriptor": "Lhb;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "decor",
+          "owner": "he",
+          "name": "u",
+          "descriptor": "Lhs;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "floorLevel",
+          "owner": "he",
+          "name": "h",
+          "descriptor": "I",
+          "multiplier": -850337333,
+          "virtual": true
+        },
+        {
+          "definition": "paint",
+          "owner": "he",
+          "name": "m",
+          "descriptor": "Lhj;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "model",
+          "owner": "he",
+          "name": "q",
+          "descriptor": "Lhy;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "pickableStack",
+          "owner": "he",
+          "name": "b",
+          "descriptor": "Lgy;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "markers",
+          "owner": "he",
+          "name": "g",
+          "descriptor": "[Lhp;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "SystemInformation",
+      "fields": [
+        {
+          "definition": "javaVersionMajor",
+          "owner": "pk",
+          "name": "ab",
+          "descriptor": "I",
+          "multiplier": 1721213915,
+          "virtual": true
+        },
+        {
+          "definition": "osVersion",
+          "owner": "pk",
+          "name": "ay",
+          "descriptor": "I",
+          "multiplier": -616314079,
+          "virtual": true
+        },
+        {
+          "definition": "processorCount",
+          "owner": "pk",
+          "name": "af",
+          "descriptor": "I",
+          "multiplier": 1625606725,
+          "virtual": true
+        },
+        {
+          "definition": "osType",
+          "owner": "pk",
+          "name": "ar",
+          "descriptor": "I",
+          "multiplier": 1696581137,
+          "virtual": true
+        },
+        {
+          "definition": "javaVersionMinor",
+          "owner": "pk",
+          "name": "al",
+          "descriptor": "I",
+          "multiplier": -1060935769,
+          "virtual": true
+        },
+        {
+          "definition": "heapSize",
+          "owner": "pk",
+          "name": "ak",
+          "descriptor": "I",
+          "multiplier": -1977940473,
+          "virtual": true
+        },
+        {
+          "definition": "javaVendor",
+          "owner": "pk",
+          "name": "an",
+          "descriptor": "I",
+          "multiplier": -1322171453,
+          "virtual": true
+        },
+        {
+          "definition": "64Bit",
+          "owner": "pk",
+          "name": "at",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "javaVersionPatch",
+          "owner": "pk",
+          "name": "ag",
+          "descriptor": "I",
+          "multiplier": -1680914369,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "writeTo",
+          "owner": "pk",
+          "name": "h",
+          "descriptor": "(Lqy;B)V",
+          "expectedDescriptor": "omit",
+          "predicate": 0,
+          "virtual": true
+        }
+      ],
+      "breaks": []
+    },
+    {
+      "definition": "PacketBuffer",
+      "fields": [
+        {
+          "definition": "cipher",
+          "owner": "qx",
+          "name": "h",
+          "descriptor": "Lrg;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "bitCaret",
+          "owner": "qx",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": 546227263,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "writeHeader",
+          "owner": "qx",
+          "name": "v",
+          "descriptor": "(II)V",
+          "expectedDescriptor": "omit",
+          "predicate": 0,
+          "virtual": true
+        },
+        {
+          "definition": "readHeader",
+          "owner": "qx",
+          "name": "x",
+          "descriptor": "(B)I",
+          "expectedDescriptor": "omit",
+          "predicate": 0,
+          "virtual": true
+        }
+      ],
+      "breaks": []
+    },
+    {
+      "definition": "AsyncConnection",
+      "fields": [
+        {
+          "definition": "output",
+          "owner": "ot",
+          "name": "v",
+          "descriptor": "Lox;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "input",
+          "owner": "ot",
+          "name": "e",
+          "descriptor": "Lol;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "socket",
+          "owner": "ot",
+          "name": "h",
+          "descriptor": "Ljava/net/Socket;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "finalize0",
+          "owner": "ot",
+          "name": "finalize",
+          "descriptor": "()V",
+          "expectedDescriptor": "()V",
+          "predicate": 2147483647,
+          "virtual": true
+        }
+      ],
+      "breaks": []
+    },
+    {
+      "definition": "StockMarketTransaction",
+      "fields": [
+        {
+          "definition": "itemId",
+          "owner": "mz",
+          "name": "e",
+          "descriptor": "I",
+          "multiplier": -512398981,
+          "virtual": true
+        },
+        {
+          "definition": "transferred",
+          "owner": "mz",
+          "name": "m",
+          "descriptor": "I",
+          "multiplier": -1074991029,
+          "virtual": true
+        },
+        {
+          "definition": "itemQuantity",
+          "owner": "mz",
+          "name": "x",
+          "descriptor": "I",
+          "multiplier": -717642563,
+          "virtual": true
+        },
+        {
+          "definition": "spent",
+          "owner": "mz",
+          "name": "q",
+          "descriptor": "I",
+          "multiplier": 1552101637,
+          "virtual": true
+        },
+        {
+          "definition": "itemPrice",
+          "owner": "mz",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": -1186373323,
+          "virtual": true
+        },
+        {
+          "definition": "state",
+          "owner": "mz",
+          "name": "h",
+          "descriptor": "B",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "HitUpdate",
+      "fields": [
+        {
+          "definition": "startWidth",
+          "owner": "cu",
+          "name": "e",
+          "descriptor": "I",
+          "multiplier": -395288459,
+          "virtual": true
+        },
+        {
+          "definition": "currentWidth",
+          "owner": "cu",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": 1291576245,
+          "virtual": true
+        },
+        {
+          "definition": "startCycle",
+          "owner": "cu",
+          "name": "h",
+          "descriptor": "I",
+          "multiplier": 1203912281,
+          "virtual": true
+        },
+        {
+          "definition": "currentCycle",
+          "owner": "cu",
+          "name": "x",
+          "descriptor": "I",
+          "multiplier": -426163011,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "PartyDelta",
+      "fields": [
+        {
+          "definition": "talkRank",
+          "owner": "fn",
+          "name": "f",
+          "descriptor": "B",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "kickRank",
+          "owner": "fn",
+          "name": "r",
+          "descriptor": "B",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "name",
+          "owner": "fn",
+          "name": "q",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "users",
+          "owner": "fn",
+          "name": "v",
+          "descriptor": "Ljava/util/List;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "ClassStructure",
+      "fields": [
+        {
+          "definition": "methodArgs",
+          "owner": "ag",
+          "name": "m",
+          "descriptor": "[[[B",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "methods",
+          "owner": "ag",
+          "name": "r",
+          "descriptor": "[Ljava/lang/reflect/Method;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "fields",
+          "owner": "ag",
+          "name": "q",
+          "descriptor": "[Ljava/lang/reflect/Field;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "errors",
+          "owner": "ag",
+          "name": "x",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "SceneOffset",
+      "fields": [
+        {
+          "definition": "floorLevel",
+          "owner": "ky",
+          "name": "h",
+          "descriptor": "I",
+          "multiplier": -606144137,
+          "virtual": true
+        },
+        {
+          "definition": "x",
+          "owner": "ky",
+          "name": "e",
+          "descriptor": "I",
+          "multiplier": 453228853,
+          "virtual": true
+        },
+        {
+          "definition": "y",
+          "owner": "ky",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": 141048333,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "CanvasMouseListener",
+      "fields": [],
+      "methods": [
+        {
+          "definition": "mouseReleased",
+          "owner": "ab",
+          "name": "mouseReleased",
+          "descriptor": "(Ljava/awt/event/MouseEvent;)V",
+          "expectedDescriptor": "(Ljava/awt/event/MouseEvent;)Z",
+          "predicate": 2147483647,
+          "virtual": true
+        },
+        {
+          "definition": "mouseExited",
+          "owner": "ab",
+          "name": "mouseExited",
+          "descriptor": "(Ljava/awt/event/MouseEvent;)V",
+          "expectedDescriptor": "(Ljava/awt/event/MouseEvent;)Z",
+          "predicate": 2147483647,
+          "virtual": true
+        },
+        {
+          "definition": "mouseDragged",
+          "owner": "ab",
+          "name": "mouseDragged",
+          "descriptor": "(Ljava/awt/event/MouseEvent;)V",
+          "expectedDescriptor": "(Ljava/awt/event/MouseEvent;)Z",
+          "predicate": 2147483647,
+          "virtual": true
+        },
+        {
+          "definition": "mouseEntered",
+          "owner": "ab",
+          "name": "mouseEntered",
+          "descriptor": "(Ljava/awt/event/MouseEvent;)V",
+          "expectedDescriptor": "(Ljava/awt/event/MouseEvent;)Z",
+          "predicate": 2147483647,
+          "virtual": true
+        },
+        {
+          "definition": "mouseClicked",
+          "owner": "ab",
+          "name": "mouseClicked",
+          "descriptor": "(Ljava/awt/event/MouseEvent;)V",
+          "expectedDescriptor": "(Ljava/awt/event/MouseEvent;)Z",
+          "predicate": 2147483647,
+          "virtual": true
+        },
+        {
+          "definition": "mouseMoved",
+          "owner": "ab",
+          "name": "mouseMoved",
+          "descriptor": "(Ljava/awt/event/MouseEvent;)V",
+          "expectedDescriptor": "(Ljava/awt/event/MouseEvent;)Z",
+          "predicate": 2147483647,
+          "virtual": true
+        },
+        {
+          "definition": "mousePressed",
+          "owner": "ab",
+          "name": "mousePressed",
+          "descriptor": "(Ljava/awt/event/MouseEvent;)V",
+          "expectedDescriptor": "(Ljava/awt/event/MouseEvent;)Z",
+          "predicate": 2147483647,
+          "virtual": true
+        }
+      ],
+      "breaks": []
+    },
+    {
+      "definition": "IntegerNode",
+      "fields": [
+        {
+          "definition": "value",
+          "owner": "pm",
+          "name": "h",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "LoginPacketMeta",
+      "fields": [],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "NodeDeque",
+      "fields": [
+        {
+          "definition": "head",
+          "owner": "mq",
+          "name": "e",
+          "descriptor": "Lpl;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "tail",
+          "owner": "mq",
+          "name": "h",
+          "descriptor": "Lpl;",
+          "multiplier": 0,
+          "virtual": true
+        }
+      ],
+      "methods": [
+        {
+          "definition": "next",
+          "owner": "mq",
+          "name": "u",
+          "descriptor": "()Lpl;",
+          "expectedDescriptor": "()Lpl;",
+          "predicate": 2147483647,
+          "virtual": true
+        },
+        {
+          "definition": "current",
+          "owner": "mq",
+          "name": "f",
+          "descriptor": "()Lpl;",
+          "expectedDescriptor": "()Lpl;",
+          "predicate": 2147483647,
+          "virtual": true
+        }
+      ],
+      "breaks": []
+    },
+    {
+      "definition": "Client",
+      "fields": [
+        {
+          "definition": "mouseX",
+          "owner": "ab",
+          "name": "g",
+          "descriptor": "I",
+          "multiplier": 1055725291,
+          "virtual": false
+        },
+        {
+          "definition": "randomFile",
+          "owner": "fg",
+          "name": "g",
+          "descriptor": "Lqa;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "totp",
+          "owner": "ex",
+          "name": "bb",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "pendingSpawns",
+          "owner": "client",
+          "name": "mv",
+          "descriptor": "Lmq;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "mouseY",
+          "owner": "ab",
+          "name": "x",
+          "descriptor": "I",
+          "multiplier": -467089053,
+          "virtual": false
+        },
+        {
+          "definition": "interfaceHeights",
+          "owner": "client",
+          "name": "rq",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "destinationX",
+          "owner": "client",
+          "name": "sx",
+          "descriptor": "I",
+          "multiplier": 1298103577,
+          "virtual": false
+        },
+        {
+          "definition": "mouseRecorder",
+          "owner": "jz",
+          "name": "dl",
+          "descriptor": "Lcs;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "destinationY",
+          "owner": "client",
+          "name": "su",
+          "descriptor": "I",
+          "multiplier": -801254203,
+          "virtual": false
+        },
+        {
+          "definition": "selectedComponentTargetFlags",
+          "owner": "p",
+          "name": "ov",
+          "descriptor": "I",
+          "multiplier": 429125907,
+          "virtual": false
+        },
+        {
+          "definition": "pendingClickMeta",
+          "owner": "ab",
+          "name": "o",
+          "descriptor": "I",
+          "multiplier": -1359580461,
+          "virtual": false
+        },
+        {
+          "definition": "drawingAreaPixels",
+          "owner": "rj",
+          "name": "ad",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "password",
+          "owner": "bu",
+          "name": "bw",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "drawingAreaRight",
+          "owner": "rj",
+          "name": "au",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "membersWorld",
+          "owner": "client",
+          "name": "bc",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "engineCycle",
+          "owner": "client",
+          "name": "da",
+          "descriptor": "I",
+          "multiplier": -1399173809,
+          "virtual": false
+        },
+        {
+          "definition": "systemInformation",
+          "owner": "hi",
+          "name": "uk",
+          "descriptor": "Lpk;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "menuSecondaryArgs",
+          "owner": "client",
+          "name": "nv",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "energy",
+          "owner": "client",
+          "name": "of",
+          "descriptor": "I",
+          "multiplier": 809546495,
+          "virtual": false
+        },
+        {
+          "definition": "packetBuffer",
+          "owner": "client",
+          "name": "v",
+          "descriptor": "Lqx;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "guestClanChannelSettingsDelta",
+          "owner": "c",
+          "name": "sr",
+          "descriptor": "Lep;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "viewportScale",
+          "owner": "client",
+          "name": "uu",
+          "descriptor": "I",
+          "multiplier": -2061488415,
+          "virtual": false
+        },
+        {
+          "definition": "baseX",
+          "owner": "eu",
+          "name": "hk",
+          "descriptor": "I",
+          "multiplier": -854586489,
+          "virtual": false
+        },
+        {
+          "definition": "menuPrimaryArgs",
+          "owner": "client",
+          "name": "np",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "baseY",
+          "owner": "nx",
+          "name": "hq",
+          "descriptor": "I",
+          "multiplier": -1083525607,
+          "virtual": false
+        },
+        {
+          "definition": "playerActions",
+          "owner": "client",
+          "name": "mr",
+          "descriptor": "[Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "pendingMouseY",
+          "owner": "ab",
+          "name": "u",
+          "descriptor": "I",
+          "multiplier": 1239267453,
+          "virtual": false
+        },
+        {
+          "definition": "pendingMouseX",
+          "owner": "ab",
+          "name": "r",
+          "descriptor": "I",
+          "multiplier": -178516955,
+          "virtual": false
+        },
+        {
+          "definition": "itemDefinitionCache",
+          "owner": "gr",
+          "name": "b",
+          "descriptor": "Ljv;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "worlds",
+          "owner": "bz",
+          "name": "m",
+          "descriptor": "[Lbz;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "currentDomain",
+          "owner": "em",
+          "name": "fu",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "menuOpen",
+          "owner": "client",
+          "name": "mc",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "loginStep",
+          "owner": "bu",
+          "name": "ac",
+          "descriptor": "I",
+          "multiplier": 860431235,
+          "virtual": false
+        },
+        {
+          "definition": "lastMouseRecordX",
+          "owner": "client",
+          "name": "dw",
+          "descriptor": "I",
+          "multiplier": -1006687007,
+          "virtual": false
+        },
+        {
+          "definition": "lastMouseRecordY",
+          "owner": "client",
+          "name": "dm",
+          "descriptor": "I",
+          "multiplier": 89733947,
+          "virtual": false
+        },
+        {
+          "definition": "selectedSubcomponentIndex",
+          "owner": "client",
+          "name": "oy",
+          "descriptor": "I",
+          "multiplier": -825825707,
+          "virtual": false
+        },
+        {
+          "definition": "redrawMode",
+          "owner": "client",
+          "name": "rk",
+          "descriptor": "I",
+          "multiplier": -544956459,
+          "virtual": false
+        },
+        {
+          "definition": "preferences",
+          "owner": "gd",
+          "name": "vs",
+          "descriptor": "Lch;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "pleaseWaitComponent",
+          "owner": "client",
+          "name": "ok",
+          "descriptor": "Lkd;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "viewportWidth",
+          "owner": "client",
+          "name": "us",
+          "descriptor": "I",
+          "multiplier": -509639003,
+          "virtual": false
+        },
+        {
+          "definition": "interfaceConfigs",
+          "owner": "client",
+          "name": "qs",
+          "descriptor": "Lqp;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "loginXPadding",
+          "owner": "bu",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": -994097247,
+          "virtual": false
+        },
+        {
+          "definition": "stockMarketTransactions",
+          "owner": "client",
+          "name": "vg",
+          "descriptor": "[Lmz;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "mapRotation",
+          "owner": "client",
+          "name": "jx",
+          "descriptor": "I",
+          "multiplier": -1633873355,
+          "virtual": false
+        },
+        {
+          "definition": "audioEffects",
+          "owner": "client",
+          "name": "tr",
+          "descriptor": "[Lak;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "playerIndices",
+          "owner": "ci",
+          "name": "f",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "loginResponse1",
+          "owner": "bu",
+          "name": "be",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "loginResponse3",
+          "owner": "bu",
+          "name": "bo",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "loginResponse2",
+          "owner": "bu",
+          "name": "bf",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "currentWorld",
+          "owner": "client",
+          "name": "be",
+          "descriptor": "I",
+          "multiplier": -1786376969,
+          "virtual": false
+        },
+        {
+          "definition": "collisionMaps",
+          "owner": "client",
+          "name": "w",
+          "descriptor": "[Lgw;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "audioTwoChannels",
+          "owner": "kn",
+          "name": "q",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "onCursorCount",
+          "owner": "hg",
+          "name": "o",
+          "descriptor": "I",
+          "multiplier": -1096761705,
+          "virtual": false
+        },
+        {
+          "definition": "sceneLowMemory",
+          "owner": "hc",
+          "name": "h",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "classStructures",
+          "owner": "al",
+          "name": "h",
+          "descriptor": "Lmv;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "lastMouseRecordTime",
+          "owner": "client",
+          "name": "dv",
+          "descriptor": "J",
+          "multiplier": 421294918074731913,
+          "virtual": false
+        },
+        {
+          "definition": "componentSelected",
+          "owner": "client",
+          "name": "nc",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "sceneGraph",
+          "owner": "ag",
+          "name": "io",
+          "descriptor": "Lhc;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "mapState",
+          "owner": "client",
+          "name": "sh",
+          "descriptor": "I",
+          "multiplier": 1125738065,
+          "virtual": false
+        },
+        {
+          "definition": "cameraYaw",
+          "owner": "di",
+          "name": "jp",
+          "descriptor": "I",
+          "multiplier": 1444608091,
+          "virtual": false
+        },
+        {
+          "definition": "interfacePositionsY",
+          "owner": "client",
+          "name": "qz",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "interfacePositionsX",
+          "owner": "client",
+          "name": "qy",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "latestSelectedItemIndex",
+          "owner": "cd",
+          "name": "ng",
+          "descriptor": "I",
+          "multiplier": 978763523,
+          "virtual": false
+        },
+        {
+          "definition": "subInterfaces",
+          "owner": "client",
+          "name": "oa",
+          "descriptor": "Lqp;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "selectedComponentAction",
+          "owner": "client",
+          "name": "os",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "audioEffectCount",
+          "owner": "client",
+          "name": "j",
+          "descriptor": "I",
+          "multiplier": -1673559747,
+          "virtual": true
+        },
+        {
+          "definition": "floorHeights",
+          "owner": "cf",
+          "name": "h",
+          "descriptor": "[[[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "canvasWidth",
+          "owner": "gw",
+          "name": "p",
+          "descriptor": "I",
+          "multiplier": 94760623,
+          "virtual": false
+        },
+        {
+          "definition": "drawingAreaHeight",
+          "owner": "rj",
+          "name": "am",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "chatHistory",
+          "owner": "da",
+          "name": "h",
+          "descriptor": "Ljava/util/Map;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "hintArrowNpcIndex",
+          "owner": "client",
+          "name": "df",
+          "descriptor": "I",
+          "multiplier": 53054479,
+          "virtual": false
+        },
+        {
+          "definition": "weight",
+          "owner": "client",
+          "name": "ow",
+          "descriptor": "I",
+          "multiplier": -761634595,
+          "virtual": false
+        },
+        {
+          "definition": "mapRegions",
+          "owner": "gx",
+          "name": "iu",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "menuTertiaryArgs",
+          "owner": "client",
+          "name": "nu",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "hintArrowX",
+          "owner": "client",
+          "name": "dx",
+          "descriptor": "I",
+          "multiplier": -1525015337,
+          "virtual": false
+        },
+        {
+          "definition": "hintArrowY",
+          "owner": "client",
+          "name": "dr",
+          "descriptor": "I",
+          "multiplier": -1084314735,
+          "virtual": false
+        },
+        {
+          "definition": "hintArrowZ",
+          "owner": "client",
+          "name": "dd",
+          "descriptor": "I",
+          "multiplier": -1231712023,
+          "virtual": false
+        },
+        {
+          "definition": "currentLevels",
+          "owner": "client",
+          "name": "mm",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "gameState",
+          "owner": "client",
+          "name": "cc",
+          "descriptor": "I",
+          "multiplier": 849546905,
+          "virtual": false
+        },
+        {
+          "definition": "playerActionPriorities",
+          "owner": "client",
+          "name": "mi",
+          "descriptor": "[Z",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "clickX",
+          "owner": "ab",
+          "name": "l",
+          "descriptor": "I",
+          "multiplier": 1391909665,
+          "virtual": false
+        },
+        {
+          "definition": "clickY",
+          "owner": "ab",
+          "name": "t",
+          "descriptor": "I",
+          "multiplier": -255937079,
+          "virtual": false
+        },
+        {
+          "definition": "tradeChatMode",
+          "owner": "client",
+          "name": "rs",
+          "descriptor": "I",
+          "multiplier": -1887729789,
+          "virtual": false
+        },
+        {
+          "definition": "menuShiftClickActions",
+          "owner": "client",
+          "name": "nk",
+          "descriptor": "[Z",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "random",
+          "owner": "client",
+          "name": "gg",
+          "descriptor": "[B",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "lowMemory",
+          "owner": "client",
+          "name": "bl",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "scriptStringStack",
+          "owner": "bq",
+          "name": "b",
+          "descriptor": "[Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "npcCount",
+          "owner": "client",
+          "name": "hs",
+          "descriptor": "I",
+          "multiplier": 1742658927,
+          "virtual": false
+        },
+        {
+          "definition": "interfaces",
+          "owner": "bt",
+          "name": "as",
+          "descriptor": "[[Lkd;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "selectedComponentTarget",
+          "owner": "client",
+          "name": "og",
+          "descriptor": "I",
+          "multiplier": -264024497,
+          "virtual": false
+        },
+        {
+          "definition": "font_p12full",
+          "owner": "in",
+          "name": "hy",
+          "descriptor": "Lnv;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "currentWorldMask",
+          "owner": "client",
+          "name": "bf",
+          "descriptor": "I",
+          "multiplier": -478869749,
+          "virtual": false
+        },
+        {
+          "definition": "hintArrowType",
+          "owner": "client",
+          "name": "dk",
+          "descriptor": "I",
+          "multiplier": 1689383815,
+          "virtual": false
+        },
+        {
+          "definition": "loginWorldSelectorOpen",
+          "owner": "bu",
+          "name": "cq",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "menuY",
+          "owner": "cg",
+          "name": "mw",
+          "descriptor": "I",
+          "multiplier": -736500721,
+          "virtual": false
+        },
+        {
+          "definition": "stockMarketSearchResults",
+          "owner": "t",
+          "name": "vb",
+          "descriptor": "[S",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "menuX",
+          "owner": "fe",
+          "name": "mh",
+          "descriptor": "I",
+          "multiplier": -1028390641,
+          "virtual": false
+        },
+        {
+          "definition": "itemSelectionState",
+          "owner": "client",
+          "name": "nn",
+          "descriptor": "I",
+          "multiplier": -1639704995,
+          "virtual": false
+        },
+        {
+          "definition": "cameraCaptures",
+          "owner": "hc",
+          "name": "ah",
+          "descriptor": "[Lhv;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "colorPalette",
+          "owner": "client",
+          "name": "hx",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "drawingAreaTop",
+          "owner": "rj",
+          "name": "av",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "lockedAccountResponseCode",
+          "owner": "bu",
+          "name": "ah",
+          "descriptor": "I",
+          "multiplier": -1123765685,
+          "virtual": false
+        },
+        {
+          "definition": "username",
+          "owner": "bu",
+          "name": "by",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "cameraPitch",
+          "owner": "ca",
+          "name": "jr",
+          "descriptor": "I",
+          "multiplier": -1117488829,
+          "virtual": false
+        },
+        {
+          "definition": "pendingClickY",
+          "owner": "ab",
+          "name": "k",
+          "descriptor": "I",
+          "multiplier": -231426227,
+          "virtual": false
+        },
+        {
+          "definition": "playerCount",
+          "owner": "ci",
+          "name": "q",
+          "descriptor": "I",
+          "multiplier": -316088161,
+          "virtual": false
+        },
+        {
+          "definition": "oculusOrbMode",
+          "owner": "client",
+          "name": "jc",
+          "descriptor": "I",
+          "multiplier": 1951368499,
+          "virtual": false
+        },
+        {
+          "definition": "viewportHeight",
+          "owner": "client",
+          "name": "uq",
+          "descriptor": "I",
+          "multiplier": -897458695,
+          "virtual": false
+        },
+        {
+          "definition": "pendingClickX",
+          "owner": "ab",
+          "name": "n",
+          "descriptor": "I",
+          "multiplier": -1431798489,
+          "virtual": false
+        },
+        {
+          "definition": "drawingAreaBottom",
+          "owner": "rj",
+          "name": "at",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "partySettingsDeltas",
+          "owner": "client",
+          "name": "st",
+          "descriptor": "[Lep;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "hoveredWorldIndex",
+          "owner": "bu",
+          "name": "cj",
+          "descriptor": "I",
+          "multiplier": -1726708665,
+          "virtual": false
+        },
+        {
+          "definition": "inventories",
+          "owner": "cc",
+          "name": "h",
+          "descriptor": "Lqp;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "relationshipSystem",
+          "owner": "oo",
+          "name": "uw",
+          "descriptor": "Lbi;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "interfaceWidths",
+          "owner": "client",
+          "name": "rf",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "connection",
+          "owner": "lv",
+          "name": "h",
+          "descriptor": "Lou;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "cursorState",
+          "owner": "client",
+          "name": "lk",
+          "descriptor": "I",
+          "multiplier": -2144438923,
+          "virtual": false
+        },
+        {
+          "definition": "effectObjects",
+          "owner": "client",
+          "name": "mo",
+          "descriptor": "Lmq;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "tempVarps",
+          "owner": "ks",
+          "name": "e",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "xteaKeys",
+          "owner": "dh",
+          "name": "ij",
+          "descriptor": "[[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "dynamicSceneData",
+          "owner": "client",
+          "name": "im",
+          "descriptor": "[[[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "sceneRenderRules",
+          "owner": "cf",
+          "name": "e",
+          "descriptor": "[[[B",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "publicChatMode",
+          "owner": "client",
+          "name": "rx",
+          "descriptor": "I",
+          "multiplier": 1034069959,
+          "virtual": false
+        },
+        {
+          "definition": "players",
+          "owner": "client",
+          "name": "ly",
+          "descriptor": "[Lcj;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "npcIndices",
+          "owner": "client",
+          "name": "hx",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "menuWidth",
+          "owner": "cz",
+          "name": "mf",
+          "descriptor": "I",
+          "multiplier": 1102902677,
+          "virtual": false
+        },
+        {
+          "definition": "oculusOrbAbsoluteY",
+          "owner": "n",
+          "name": "kn",
+          "descriptor": "I",
+          "multiplier": -866172123,
+          "virtual": false
+        },
+        {
+          "definition": "oculusOrbAbsoluteX",
+          "owner": "am",
+          "name": "js",
+          "descriptor": "I",
+          "multiplier": 1655404347,
+          "virtual": false
+        },
+        {
+          "definition": "affinedPartySettingsDelta",
+          "owner": "dj",
+          "name": "k",
+          "descriptor": "Lep;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "latestSelectedItemName",
+          "owner": "client",
+          "name": "it",
+          "descriptor": "Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "menuActions",
+          "owner": "client",
+          "name": "na",
+          "descriptor": "[Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "partyDeltas",
+          "owner": "client",
+          "name": "sj",
+          "descriptor": "[Lfn;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "viewportWalking",
+          "owner": "hc",
+          "name": "al",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "selectedComponentUid",
+          "owner": "my",
+          "name": "oe",
+          "descriptor": "I",
+          "multiplier": 1164204793,
+          "virtual": false
+        },
+        {
+          "definition": "sceneDynamic",
+          "owner": "client",
+          "name": "ia",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "menuRowCount",
+          "owner": "client",
+          "name": "nm",
+          "descriptor": "I",
+          "multiplier": 2013462879,
+          "virtual": false
+        },
+        {
+          "definition": "canvasHeight",
+          "owner": "mb",
+          "name": "d",
+          "descriptor": "I",
+          "multiplier": 1226653913,
+          "virtual": false
+        },
+        {
+          "definition": "pendingMouseMoveTime",
+          "owner": "ab",
+          "name": "b",
+          "descriptor": "J",
+          "multiplier": 4716901357680916313,
+          "virtual": false
+        },
+        {
+          "definition": "previousTimeOfClick",
+          "owner": "client",
+          "name": "de",
+          "descriptor": "J",
+          "multiplier": 8630714732823869625,
+          "virtual": false
+        },
+        {
+          "definition": "pendingTimeOfClick",
+          "owner": "ab",
+          "name": "a",
+          "descriptor": "J",
+          "multiplier": -1319422683492569027,
+          "virtual": false
+        },
+        {
+          "definition": "playerActionPriority",
+          "owner": "client",
+          "name": "dt",
+          "descriptor": "Lcz;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "rights",
+          "owner": "cp",
+          "name": "u",
+          "descriptor": "I",
+          "multiplier": 316580569,
+          "virtual": false
+        },
+        {
+          "definition": "validInterfaces",
+          "owner": "mb",
+          "name": "ad",
+          "descriptor": "[Z",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "audioTrackGroupIndex",
+          "owner": "client",
+          "name": "sz",
+          "descriptor": "I",
+          "multiplier": 421577261,
+          "virtual": false
+        },
+        {
+          "definition": "cameraY",
+          "owner": "fn",
+          "name": "jw",
+          "descriptor": "I",
+          "multiplier": 2009090259,
+          "virtual": false
+        },
+        {
+          "definition": "cameraZ",
+          "owner": "ob",
+          "name": "jb",
+          "descriptor": "I",
+          "multiplier": -1436966015,
+          "virtual": false
+        },
+        {
+          "definition": "drawingAreaLeft",
+          "owner": "rj",
+          "name": "ar",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "cameraX",
+          "owner": "ek",
+          "name": "jz",
+          "descriptor": "I",
+          "multiplier": 402004555,
+          "virtual": false
+        },
+        {
+          "definition": "targetUnsignedShort",
+          "owner": "gt",
+          "name": "dj",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "pickableNodeDeques",
+          "owner": "client",
+          "name": "mu",
+          "descriptor": "[[[Lmq;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "clickMeta",
+          "owner": "ab",
+          "name": "s",
+          "descriptor": "I",
+          "multiplier": 1573473759,
+          "virtual": false
+        },
+        {
+          "definition": "worldSelectorPage",
+          "owner": "bu",
+          "name": "cn",
+          "descriptor": "I",
+          "multiplier": -1039174001,
+          "virtual": false
+        },
+        {
+          "definition": "varcs",
+          "owner": "it",
+          "name": "qq",
+          "descriptor": "Ldn;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "levels",
+          "owner": "client",
+          "name": "mj",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "npcs",
+          "owner": "client",
+          "name": "gi",
+          "descriptor": "[Lcg;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "instance",
+          "owner": "dr",
+          "name": "ac",
+          "descriptor": "Lclient;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "playerIndex",
+          "owner": "client",
+          "name": "lr",
+          "descriptor": "I",
+          "multiplier": -653603109,
+          "virtual": false
+        },
+        {
+          "definition": "onCursorUids",
+          "owner": "hg",
+          "name": "n",
+          "descriptor": "[J",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "menuTargets",
+          "owner": "client",
+          "name": "nl",
+          "descriptor": "[Ljava/lang/String;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "objectDefinitionCache",
+          "owner": "gn",
+          "name": "x",
+          "descriptor": "Ljv;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "pendingDestinationX",
+          "owner": "hc",
+          "name": "an",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "logoutTimer",
+          "owner": "client",
+          "name": "hf",
+          "descriptor": "I",
+          "multiplier": 914543801,
+          "virtual": false
+        },
+        {
+          "definition": "dbRowCache",
+          "owner": "qm",
+          "name": "e",
+          "descriptor": "Ljv;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "pendingDestinationY",
+          "owner": "hc",
+          "name": "ab",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "npcDefinitionCache",
+          "owner": "gz",
+          "name": "q",
+          "descriptor": "Ljv;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "friendsChatSystem",
+          "owner": "jg",
+          "name": "sf",
+          "descriptor": "Lnc;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "floorLevel",
+          "owner": "nt",
+          "name": "lv",
+          "descriptor": "I",
+          "multiplier": -457974623,
+          "virtual": false
+        },
+        {
+          "definition": "npcActionPriority",
+          "owner": "client",
+          "name": "dp",
+          "descriptor": "Lcz;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "experiences",
+          "owner": "client",
+          "name": "my",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "projectiles",
+          "owner": "client",
+          "name": "ma",
+          "descriptor": "Lmq;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "resizableMode",
+          "owner": "client",
+          "name": "rl",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "menuHeight",
+          "owner": "ab",
+          "name": "nb",
+          "descriptor": "I",
+          "multiplier": -1112640559,
+          "virtual": false
+        },
+        {
+          "definition": "varps",
+          "owner": "ks",
+          "name": "v",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "rasterProvider",
+          "owner": "gg",
+          "name": "ak",
+          "descriptor": "Lrm;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "timeOfClick",
+          "owner": "ab",
+          "name": "c",
+          "descriptor": "J",
+          "multiplier": -3284909752288296989,
+          "virtual": false
+        },
+        {
+          "definition": "hintArrowPlayerIndex",
+          "owner": "client",
+          "name": "dy",
+          "descriptor": "I",
+          "multiplier": 689063901,
+          "virtual": false
+        },
+        {
+          "definition": "bootState",
+          "owner": "client",
+          "name": "eh",
+          "descriptor": "I",
+          "multiplier": -1081196793,
+          "virtual": false
+        },
+        {
+          "definition": "player",
+          "owner": "el",
+          "name": "lo",
+          "descriptor": "Lcj;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "rootInterfaceIndex",
+          "owner": "client",
+          "name": "oq",
+          "descriptor": "I",
+          "multiplier": -1495174825,
+          "virtual": false
+        },
+        {
+          "definition": "loadMembersItemDefinitions",
+          "owner": "fz",
+          "name": "r",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "build",
+          "owner": "rw",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": 1972222199,
+          "virtual": false
+        },
+        {
+          "definition": "connectionContext",
+          "owner": "client",
+          "name": "hn",
+          "descriptor": "Lde;",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "mouseMoveTime",
+          "owner": "ab",
+          "name": "i",
+          "descriptor": "J",
+          "multiplier": 1841814800481912317,
+          "virtual": false
+        },
+        {
+          "definition": "drawingAreaWidth",
+          "owner": "rj",
+          "name": "ao",
+          "descriptor": "I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "menuOpcodes",
+          "owner": "client",
+          "name": "ny",
+          "descriptor": "[I",
+          "multiplier": 0,
+          "virtual": false
+        },
+        {
+          "definition": "mouseIdleTime",
+          "owner": "ab",
+          "name": "q",
+          "descriptor": "I",
+          "multiplier": -666107829,
+          "virtual": false
+        }
+      ],
+      "methods": [
+        {
+          "definition": "loadAudioTrack",
+          "owner": "kc",
+          "name": "h",
+          "descriptor": "(Lly;II)Lkc;",
+          "expectedDescriptor": "omit",
+          "predicate": 2147483647,
+          "virtual": false
+        },
+        {
+          "definition": "loadWorlds",
+          "owner": "am",
+          "name": "h",
+          "descriptor": "(B)Z",
+          "expectedDescriptor": "()Z",
+          "predicate": 2,
+          "virtual": false
+        },
+        {
+          "definition": "processComponentRendering",
+          "owner": "nr",
+          "name": "lc",
+          "descriptor": "(IIIIIIIB)V",
+          "expectedDescriptor": "(IIIIIII)V",
+          "predicate": 0,
+          "virtual": false
+        },
+        {
+          "definition": "getObjectDefinition",
+          "owner": "fi",
+          "name": "e",
+          "descriptor": "(II)Lgn;",
+          "expectedDescriptor": "(I)Lgn;",
+          "predicate": 484185205,
+          "virtual": false
+        },
+        {
+          "definition": "insertMenuItem",
+          "owner": "al",
+          "name": "ka",
+          "descriptor": "(Ljava/lang/String;Ljava/lang/String;IIIIIZI)V",
+          "expectedDescriptor": "omit",
+          "predicate": 1933490129,
+          "virtual": false
+        },
+        {
+          "definition": "updateNpcs",
+          "owner": "lb",
+          "name": "jq",
+          "descriptor": "(ZLqx;B)V",
+          "expectedDescriptor": "omit",
+          "predicate": 7,
+          "virtual": false
+        },
+        {
+          "definition": "getStructDefinition",
+          "owner": "df",
+          "name": "h",
+          "descriptor": "(II)Lgd;",
+          "expectedDescriptor": "(I)Lgd;",
+          "predicate": 0,
+          "virtual": false
+        },
+        {
+          "definition": "messageReceived",
+          "owner": "nq",
+          "name": "e",
+          "descriptor": "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
+          "expectedDescriptor": "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
+          "predicate": -1488389762,
+          "virtual": false
+        },
+        {
+          "definition": "getAnimationSequence",
+          "owner": "hf",
+          "name": "e",
+          "descriptor": "(II)Lga;",
+          "expectedDescriptor": "(I)Lga;",
+          "predicate": -1358986172,
+          "virtual": false
+        },
+        {
+          "definition": "buildMenu",
+          "owner": "s",
+          "name": "kl",
+          "descriptor": "(IIIII)V",
+          "expectedDescriptor": "omit",
+          "predicate": -561553053,
+          "virtual": false
+        },
+        {
+          "definition": "processClassStructurePacket",
+          "owner": "hk",
+          "name": "h",
+          "descriptor": "(Lqx;B)V",
+          "expectedDescriptor": "omit",
+          "predicate": 0,
+          "virtual": false
+        },
+        {
+          "definition": "processAction",
+          "owner": "hd",
+          "name": "jh",
+          "descriptor": "(IIIIILjava/lang/String;Ljava/lang/String;III)V",
+          "expectedDescriptor": "(IIIIILjava/lang/String;Ljava/lang/String;II)V",
+          "predicate": 649826417,
+          "virtual": false
+        },
+        {
+          "definition": "resetDrawingArea",
+          "owner": "rj",
+          "name": "cd",
+          "descriptor": "()V",
+          "expectedDescriptor": "()V",
+          "predicate": 2147483647,
+          "virtual": false
+        },
+        {
+          "definition": "getItemSprite",
+          "owner": "gt",
+          "name": "g",
+          "descriptor": "(IIIIIZB)Lrx;",
+          "expectedDescriptor": "(IIIIIZ)Lrx;",
+          "predicate": 0,
+          "virtual": false
+        },
+        {
+          "definition": "prepareOutgoingPacket",
+          "owner": "ev",
+          "name": "e",
+          "descriptor": "(Ljp;Lrg;B)Ljx;",
+          "expectedDescriptor": "(Ljp;Lrg;)Ljx;",
+          "predicate": 2,
+          "virtual": false
+        },
+        {
+          "definition": "buildComponentMenu",
+          "owner": "jw",
+          "name": "kj",
+          "descriptor": "(Lkd;IIB)V",
+          "expectedDescriptor": "(Lkd;II)V",
+          "predicate": 14,
+          "virtual": false
+        },
+        {
+          "definition": "processLoginResponse",
+          "owner": "ar",
+          "name": "gr",
+          "descriptor": "(II)V",
+          "expectedDescriptor": "(I)V",
+          "predicate": 1982545508,
+          "virtual": false
+        },
+        {
+          "definition": "getItemDefinition",
+          "owner": "gz",
+          "name": "e",
+          "descriptor": "(II)Lgr;",
+          "expectedDescriptor": "(I)Lgr;",
+          "predicate": -664337463,
+          "virtual": false
+        },
+        {
+          "definition": "absoluteToViewport",
+          "owner": "bl",
+          "name": "ir",
+          "descriptor": "(IIIB)V",
+          "expectedDescriptor": "(III)V",
+          "predicate": 2,
+          "virtual": false
+        },
+        {
+          "definition": "spawnObjectLater",
+          "owner": "g",
+          "name": "jk",
+          "descriptor": "(IIIIIIIIIII)V",
+          "expectedDescriptor": "(IIIIIIIII)V",
+          "predicate": 417909714,
+          "virtual": false
+        },
+        {
+          "definition": "onSceneXTEAKeyChange",
+          "owner": "cx",
+          "name": "is",
+          "descriptor": "(ZLqx;I)V",
+          "expectedDescriptor": "omit",
+          "predicate": -560600334,
+          "virtual": false
+        },
+        {
+          "definition": "processComponentEvents",
+          "owner": "eb",
+          "name": "ll",
+          "descriptor": "([Lkd;IIIIIIII)V",
+          "expectedDescriptor": "omit",
+          "predicate": -1268032530,
+          "virtual": false
+        },
+        {
+          "definition": "draw",
+          "owner": "client",
+          "name": "ab",
+          "descriptor": "(ZI)V",
+          "expectedDescriptor": "(Z)V",
+          "predicate": -167401425,
+          "virtual": true
+        },
+        {
+          "definition": "getNpcDefinition",
+          "owner": "do",
+          "name": "e",
+          "descriptor": "(IB)Lgz;",
+          "expectedDescriptor": "(I)Lgz;",
+          "predicate": 0,
+          "virtual": false
+        },
+        {
+          "definition": "getDefinitionProperty",
+          "owner": "eg",
+          "name": "e",
+          "descriptor": "(II)Lgv;",
+          "expectedDescriptor": "(I)Lgv;",
+          "predicate": -640568434,
+          "virtual": false
+        },
+        {
+          "definition": "getHitsplatDefinition",
+          "owner": "nb",
+          "name": "h",
+          "descriptor": "(II)Lgm;",
+          "expectedDescriptor": "(I)Lgm;",
+          "predicate": -1553954506,
+          "virtual": false
+        },
+        {
+          "definition": "fireScriptEvent",
+          "owner": "fm",
+          "name": "h",
+          "descriptor": "(Lcb;B)V",
+          "expectedDescriptor": "(Lcb;)V",
+          "predicate": 0,
+          "virtual": false
+        },
+        {
+          "definition": "setGameState",
+          "owner": "ea",
+          "name": "gp",
+          "descriptor": "(II)V",
+          "expectedDescriptor": "(I)V",
+          "predicate": 1425199157,
+          "virtual": false
+        },
+        {
+          "definition": "getArchive",
+          "owner": "kx",
+          "name": "gd",
+          "descriptor": "(IZZZZI)Lln;",
+          "expectedDescriptor": "(IZZZ)Lly;",
+          "predicate": 243666843,
+          "virtual": false
+        },
+        {
+          "definition": "setWorld",
+          "owner": "dd",
+          "name": "k",
+          "descriptor": "(Lbz;I)V",
+          "expectedDescriptor": "(Lbz;)V",
+          "predicate": 1668703855,
+          "virtual": false
+        },
+        {
+          "definition": "getEffectAnimation",
+          "owner": "ep",
+          "name": "e",
+          "descriptor": "(II)Lgq;",
+          "expectedDescriptor": "(I)Lgq;",
+          "predicate": -743604679,
+          "virtual": false
+        },
+        {
+          "definition": "setLoginMessages",
+          "owner": "fp",
+          "name": "n",
+          "descriptor": "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
+          "expectedDescriptor": "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
+          "predicate": 0,
+          "virtual": false
+        },
+        {
+          "definition": "processDialogActionPacket",
+          "owner": "ju",
+          "name": "ja",
+          "descriptor": "(III)V",
+          "expectedDescriptor": "(II)V",
+          "predicate": 0,
+          "virtual": false
+        },
+        {
+          "definition": "getVarpbit",
+          "owner": "fx",
+          "name": "h",
+          "descriptor": "(II)I",
+          "expectedDescriptor": "omit",
+          "predicate": -1620150733,
+          "virtual": false
+        }
+      ],
+      "breaks": [
+        "cameraLocked",
+        "crosshairSprites",
+        "regionChunkX",
+        "regionChunkY",
+        "processNumericInput",
+        "processAlphabeticalInput",
+        "modelColorPalette",
+        "guestClanChannelDelta",
+        "affinedPartyDelta",
+        "scriptIntStack"
+      ]
+    },
+    {
+      "definition": "PickableStack",
+      "fields": [
+        {
+          "definition": "uid",
+          "owner": "gy",
+          "name": "f",
+          "descriptor": "J",
+          "multiplier": -8382761698159618857,
+          "virtual": true
+        },
+        {
+          "definition": "absoluteX",
+          "owner": "gy",
+          "name": "e",
+          "descriptor": "I",
+          "multiplier": -733443873,
+          "virtual": true
+        },
+        {
+          "definition": "absoluteY",
+          "owner": "gy",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": 659820055,
+          "virtual": true
+        },
+        {
+          "definition": "middle",
+          "owner": "gy",
+          "name": "m",
+          "descriptor": "Lhr;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "top",
+          "owner": "gy",
+          "name": "q",
+          "descriptor": "Lhr;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "bottom",
+          "owner": "gy",
+          "name": "x",
+          "descriptor": "Lhr;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "height",
+          "owner": "gy",
+          "name": "r",
+          "descriptor": "I",
+          "multiplier": -999463859,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    },
+    {
+      "definition": "Projectile",
+      "fields": [
+        {
+          "definition": "absoluteX",
+          "owner": "bj",
+          "name": "o",
+          "descriptor": "D",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "absoluteY",
+          "owner": "bj",
+          "name": "i",
+          "descriptor": "D",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "speedZ",
+          "owner": "bj",
+          "name": "l",
+          "descriptor": "D",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "speedY",
+          "owner": "bj",
+          "name": "k",
+          "descriptor": "D",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "speedX",
+          "owner": "bj",
+          "name": "a",
+          "descriptor": "D",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "targetIndex",
+          "owner": "bj",
+          "name": "j",
+          "descriptor": "I",
+          "multiplier": 1220656091,
+          "virtual": true
+        },
+        {
+          "definition": "floorLevel",
+          "owner": "bj",
+          "name": "e",
+          "descriptor": "I",
+          "multiplier": 1947725359,
+          "virtual": true
+        },
+        {
+          "definition": "targetDistance",
+          "owner": "bj",
+          "name": "b",
+          "descriptor": "I",
+          "multiplier": -1545090087,
+          "virtual": true
+        },
+        {
+          "definition": "slope",
+          "owner": "bj",
+          "name": "u",
+          "descriptor": "I",
+          "multiplier": -1239204449,
+          "virtual": true
+        },
+        {
+          "definition": "heightOffset",
+          "owner": "bj",
+          "name": "t",
+          "descriptor": "D",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "speed",
+          "owner": "bj",
+          "name": "s",
+          "descriptor": "D",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "sequence",
+          "owner": "bj",
+          "name": "d",
+          "descriptor": "Lga;",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "xRotation",
+          "owner": "bj",
+          "name": "c",
+          "descriptor": "I",
+          "multiplier": 1617416595,
+          "virtual": true
+        },
+        {
+          "definition": "startCycle",
+          "owner": "bj",
+          "name": "f",
+          "descriptor": "I",
+          "multiplier": -1612153409,
+          "virtual": true
+        },
+        {
+          "definition": "endCycle",
+          "owner": "bj",
+          "name": "r",
+          "descriptor": "I",
+          "multiplier": 1384648045,
+          "virtual": true
+        },
+        {
+          "definition": "startY",
+          "owner": "bj",
+          "name": "x",
+          "descriptor": "I",
+          "multiplier": 140840657,
+          "virtual": true
+        },
+        {
+          "definition": "inMotion",
+          "owner": "bj",
+          "name": "g",
+          "descriptor": "Z",
+          "multiplier": 0,
+          "virtual": true
+        },
+        {
+          "definition": "id",
+          "owner": "bj",
+          "name": "h",
+          "descriptor": "I",
+          "multiplier": -1523052687,
+          "virtual": true
+        },
+        {
+          "definition": "startX",
+          "owner": "bj",
+          "name": "v",
+          "descriptor": "I",
+          "multiplier": 879345441,
+          "virtual": true
+        },
+        {
+          "definition": "yRotation",
+          "owner": "bj",
+          "name": "p",
+          "descriptor": "I",
+          "multiplier": -1125057587,
+          "virtual": true
+        },
+        {
+          "definition": "height",
+          "owner": "bj",
+          "name": "m",
+          "descriptor": "I",
+          "multiplier": -519343155,
+          "virtual": true
+        }
+      ],
+      "methods": [],
+      "breaks": []
+    }
+  ]
+}

@@ -45,7 +45,7 @@ public class SocketInjector implements Injector {
 
         runMethod.instructions.insertBefore(
                 initSocketInsn,
-                new VarInsnNode(Opcodes.ALOAD, 0)
+                new VarInsnNode(Opcodes.ALOAD, 1)
         );
 
         runMethod.instructions.insertBefore(

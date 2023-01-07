@@ -2,6 +2,7 @@ package github.dqw4w9wgxcq.botapi.loader;
 
 import com.google.inject.Injector;
 import github.dqw4w9wgxcq.botapi.mixins.SocketMixins;
+import github.dqw4w9wgxcq.botapi.obfuscationmapping.InuBotHooks;
 import lombok.Data;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -93,10 +94,9 @@ public class BotApi {
             new ManagedConfig<>("loginscreen", "showLoginFire", Boolean.class, false)
     );
 
-    public static void preInit(
-            String js5ProxyHost,
-            int js5ProxyPort
-    ) {
+    public static void preInit(String js5ProxyHost, int js5ProxyPort) {
+        InuBotHooks.init();
+
         Authenticator.setDefault(new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {

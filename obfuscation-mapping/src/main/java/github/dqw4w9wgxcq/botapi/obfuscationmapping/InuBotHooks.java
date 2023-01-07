@@ -12,7 +12,7 @@ public class InuBotHooks {
     private static InuBotHooks inuBotHooks = null;
 
     @SneakyThrows
-    public static InuBotHooks get() {
+    public static void init() {
         if (inuBotHooks == null) {
             String json;
             try (InputStream is = InuBotHooks.class.getResourceAsStream("/inubothooks.json")) {
@@ -23,22 +23,29 @@ public class InuBotHooks {
             }
             inuBotHooks = new Gson().fromJson(json, InuBotHooks.class);
         }
+    }
+
+    public static InuBotHooks get() {
+        if (inuBotHooks == null) {
+            throw new IllegalStateException("InuBotHooks not initialized");
+        }
         return inuBotHooks;
     }
 
     private final int revision;
     private final int hash;
-    private final List<Class> classes;
+    private final List<ClassHook> classes;
 
     @Data
-    public static class Class {
+    public static class ClassHook {
         private final String definition;
-        private final List<Field> fields;
+        private final List<FieldHook> fields;
+        private final List<MethodHook> methods;
         private final List<String> breaks;
     }
 
     @Data
-    public static class Field {
+    public static class FieldHook {
         private final String definition;
         private final String owner;
         private final String name;
@@ -48,7 +55,7 @@ public class InuBotHooks {
     }
 
     @Data
-    public static class Method {
+    public static class MethodHook {
         private final String definition;
         private final String owner;
         private final String name;

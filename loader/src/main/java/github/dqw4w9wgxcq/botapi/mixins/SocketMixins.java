@@ -3,6 +3,8 @@ package github.dqw4w9wgxcq.botapi.mixins;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -37,15 +39,53 @@ public class SocketMixins {
     			}
     		}
      */
-    //taskRs is used to determine if the socket is for the game or js5
-    public static Socket createSocket(InetAddress address, int port, Object taskRs) {
-        log.info("createSocket: {} {} {}", address, port, taskRs);
+    //@param task is used to determine if the socket is for the game or js5
+    public static Socket createSocket(InetAddress address, int port, Object task) {
+        log.info("createSocket: {} {} {}", address, port, task);
 
-        if (js5SocketFactory == null) {
-            log.error("js5SocketFactory not set");
-            System.exit(205);
+        try {
+            String js5SocketTaskOwnerClassName = "mj";
+            String js5SocketTaskFieldName = "ev";
+
+            Class<?> js5SocketTaskOwnerClass = Class.forName(js5SocketTaskOwnerClassName, false, task.getClass().getClassLoader());
+            Field js5SocketTaskField = js5SocketTaskOwnerClass.getDeclaredField(js5SocketTaskFieldName);
+            js5SocketTaskField.setAccessible(true);
+            Object js5SocketTask = js5SocketTaskField.get(null);
+
+            if (js5SocketTask == task) {
+                log.info("createSocket: js5");
+                if (js5SocketFactory == null) {
+                    throw new IllegalStateException("js5SocketFactory is null");
+                }
+
+                return js5SocketFactory.createSocket(address, port, task);
+            }
+
+            Class<?> gameSocketTaskOwnerClass = Class.forName("t", false, task.getClass().getClassLoader());
+            Field gameSocketTaskField = gameSocketTaskOwnerClass.getDeclaredField("hi");
+            gameSocketTaskField.setAccessible(true);
+            Object gameSocketTask = gameSocketTaskField.get(null);
+
+            if (gameSocketTask == task) {
+                log.info("createSocket: game");
+                if (gameSocketFactory == null) {
+                    throw new IllegalStateException("gameSocketFactory is null");
+                }
+
+                return gameSocketFactory.createSocket(address, port, task);
+            }
+
+            throw new IllegalStateException("task: " + task + " is not js5SocketTask: " + js5SocketTask + " or gameSocketTaskRs: ");
+        } catch (Throwable t) {
+            //noinspection ConstantValue
+            if (t instanceof IOException) {//sneaky catch
+                log.warn("createSocket: IOException", t);
+                throw new RuntimeException(t);
+            }
+
+            log.error("createSocket", t);
+            System.exit(200);
+            return null;//unreachable
         }
-
-        return js5SocketFactory.createSocket(address, port, taskRs);
     }
 }

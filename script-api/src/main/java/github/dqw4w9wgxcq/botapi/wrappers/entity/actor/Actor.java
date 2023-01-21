@@ -1,6 +1,6 @@
 package github.dqw4w9wgxcq.botapi.wrappers.entity.actor;
 
-import github.dqw4w9wgxcq.botapi.Refl;
+import github.dqw4w9wgxcq.botapi.Reflect;
 import github.dqw4w9wgxcq.botapi.wrappers.Locatable;
 import github.dqw4w9wgxcq.botapi.wrappers.entity.Entity;
 import lombok.experimental.Delegate;
@@ -38,7 +38,7 @@ public abstract class Actor<RL extends net.runelite.api.Actor> implements Entity
     }
 
     public int getPathLength() {
-        return Refl.INSTANCE.getInt2(Refl.INSTANCE.getPathLength(), rl, Refl.INSTANCE.getPathLengthDecoder());
+        return Reflect.INSTANCE.getInt2(Reflect.INSTANCE.getPathLength(), rl, Reflect.INSTANCE.getPathLengthDecoder());
     }
 
     public boolean isMoving() {

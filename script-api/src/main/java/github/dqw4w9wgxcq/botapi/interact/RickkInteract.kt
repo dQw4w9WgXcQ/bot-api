@@ -2,11 +2,11 @@ package github.dqw4w9wgxcq.botapi.interact
 
 import github.dqw4w9wgxcq.botapi.Client
 import github.dqw4w9wgxcq.botapi.Events
-import github.dqw4w9wgxcq.botapi.Refl
-import github.dqw4w9wgxcq.botapi.Refl.get2
-import github.dqw4w9wgxcq.botapi.Refl.getInt2
-import github.dqw4w9wgxcq.botapi.Refl.setBoolean2
-import github.dqw4w9wgxcq.botapi.Refl.setInt2
+import github.dqw4w9wgxcq.botapi.Reflect
+import github.dqw4w9wgxcq.botapi.Reflect.get2
+import github.dqw4w9wgxcq.botapi.Reflect.getInt2
+import github.dqw4w9wgxcq.botapi.Reflect.setBoolean2
+import github.dqw4w9wgxcq.botapi.Reflect.setInt2
 import github.dqw4w9wgxcq.botapi.commons.*
 import github.dqw4w9wgxcq.botapi.input.mouse.Mouse
 import github.dqw4w9wgxcq.botapi.input.mouse.MouseInput
@@ -42,12 +42,12 @@ class RickkInteract : InteractDriver {
             }
 
             debug { "setting entity tag ${forcedTag.get()}" }
-            val tags: LongArray = Refl.entityTags.get2(null)
+            val tags: LongArray = Reflect.entityTags.get2(null)
             tags[0] = forcedTag.get()
-            Refl.entityCount.setInt2(null, 1, Refl.entityCountEncoder)
-            debug { "tag after: ${Refl.entityTags.get2<LongArray>(null)[0]}" }
+            Reflect.entityCount.setInt2(null, 1, Reflect.entityCountEncoder)
+            debug { "tag after: ${Reflect.entityTags.get2<LongArray>(null)[0]}" }
             debug {
-                "entity count after: ${Refl.entityCount.getInt2(null, Refl.entityCountDecoder)}"
+                "entity count after: ${Reflect.entityCount.getInt2(null, Reflect.entityCountDecoder)}"
             }
         }
     }
@@ -76,9 +76,9 @@ class RickkInteract : InteractDriver {
             if (baseX != newBaseX || baseY != newBaseY) {
                 throw RetryException("base changed $baseX,$baseY to $newBaseX,$newBaseY")
             }
-            Refl.selectedX.setInt2(null, scenePosition.x, 1)
-            Refl.selectedY.setInt2(null, scenePosition.y, 1)
-            Refl.viewportWalking.setBoolean2(null, true)
+            Reflect.selectedX.setInt2(null, scenePosition.x, 1)
+            Reflect.selectedY.setInt2(null, scenePosition.y, 1)
+            Reflect.viewportWalking.setBoolean2(null, true)
         }
     }
 

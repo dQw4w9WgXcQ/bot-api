@@ -100,7 +100,7 @@ public class BotApi {
         Authenticator.setDefault(new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                if (getRequestingHost().contains("iproyal")) {
+                if (getRequestingHost().equals("geo.iproyal.com")) {
                     throw new IllegalStateException("iproyal auth not set");
                 }
 
@@ -111,7 +111,7 @@ public class BotApi {
         SocketMixins.setJs5SocketFactory(new SocketMixins.SocketFactory() {
             @Override
             @SneakyThrows
-            public Socket createSocket(InetAddress address, int port, Object taskRs) {
+            public Socket createSocket(InetAddress address, int port) {
                 if (js5ProxyHost == null) {
                     return new Socket(address, port);
                 }

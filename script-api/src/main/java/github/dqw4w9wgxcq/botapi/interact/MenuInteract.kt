@@ -1,9 +1,9 @@
 package github.dqw4w9wgxcq.botapi.interact
 
 import github.dqw4w9wgxcq.botapi.Client
-import github.dqw4w9wgxcq.botapi.Refl
-import github.dqw4w9wgxcq.botapi.Refl.setBoolean2
-import github.dqw4w9wgxcq.botapi.Refl.setInt2
+import github.dqw4w9wgxcq.botapi.Reflect
+import github.dqw4w9wgxcq.botapi.Reflect.setBoolean2
+import github.dqw4w9wgxcq.botapi.Reflect.setInt2
 import github.dqw4w9wgxcq.botapi.commons.RetryException
 import github.dqw4w9wgxcq.botapi.commons.debug
 import github.dqw4w9wgxcq.botapi.commons.onGameThread
@@ -27,9 +27,9 @@ class MenuInteract : InteractDriver {
             if (baseX != newBaseX || baseY != newBaseY) {
                 throw RetryException("base changed $baseX,$baseY to $newBaseX,$newBaseY")
             }
-            Refl.selectedX.setInt2(null, scenePosition.x, 1)
-            Refl.selectedY.setInt2(null, scenePosition.y, 1)
-            Refl.viewportWalking.setBoolean2(null, true)
+            Reflect.selectedX.setInt2(null, scenePosition.x, 1)
+            Reflect.selectedY.setInt2(null, scenePosition.y, 1)
+            Reflect.viewportWalking.setBoolean2(null, true)
         }
     }
 

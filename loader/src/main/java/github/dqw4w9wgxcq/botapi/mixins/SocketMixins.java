@@ -11,7 +11,7 @@ import java.net.Socket;
 @Slf4j
 public class SocketMixins {
     public interface SocketFactory {
-        Socket createSocket(InetAddress address, int port, Object taskRs);
+        Socket createSocket(InetAddress address, int port);
     }
 
     @Setter
@@ -58,7 +58,7 @@ public class SocketMixins {
                     throw new IllegalStateException("js5SocketFactory is null");
                 }
 
-                return js5SocketFactory.createSocket(address, port, task);
+                return js5SocketFactory.createSocket(address, port);
             }
 
             Class<?> gameSocketTaskOwnerClass = Class.forName("t", false, task.getClass().getClassLoader());
@@ -72,7 +72,7 @@ public class SocketMixins {
                     throw new IllegalStateException("gameSocketFactory is null");
                 }
 
-                return gameSocketFactory.createSocket(address, port, task);
+                return gameSocketFactory.createSocket(address, port);
             }
 
             throw new IllegalStateException("task: " + task + " is not js5SocketTask: " + js5SocketTask + " or gameSocketTaskRs: ");

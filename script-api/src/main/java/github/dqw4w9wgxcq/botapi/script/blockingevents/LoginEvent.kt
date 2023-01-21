@@ -1,9 +1,9 @@
 package github.dqw4w9wgxcq.botapi.script.blockingevents
 
 import github.dqw4w9wgxcq.botapi.Client
-import github.dqw4w9wgxcq.botapi.Refl
-import github.dqw4w9wgxcq.botapi.Refl.get2
-import github.dqw4w9wgxcq.botapi.Refl.getInt2
+import github.dqw4w9wgxcq.botapi.Reflect
+import github.dqw4w9wgxcq.botapi.Reflect.get2
+import github.dqw4w9wgxcq.botapi.Reflect.getInt2
 import github.dqw4w9wgxcq.botapi.account.AccountManager
 import github.dqw4w9wgxcq.botapi.commons.*
 import github.dqw4w9wgxcq.botapi.input.Keyboard
@@ -70,15 +70,15 @@ class LoginEvent : BlockingEvent() {
         }
 
         fun getLoginResponse(): String {
-            val response0 = Refl.loginResponse0.get2<String>(null)
-            val response1 = Refl.loginResponse1.get2<String>(null)
-            val response2 = Refl.loginResponse2.get2<String>(null)
-            val response3 = Refl.loginResponse3.get2<String>(null)
+            val response0 = Reflect.loginResponse0.get2<String>(null)
+            val response1 = Reflect.loginResponse1.get2<String>(null)
+            val response2 = Reflect.loginResponse2.get2<String>(null)
+            val response3 = Reflect.loginResponse3.get2<String>(null)
             return listOf(response0, response1, response2, response3).joinToString(" ")
         }
 
         fun getBanType(): Int {
-            return Refl.banType.getInt2(null, Refl.banTypeDecoder)
+            return Reflect.banType.getInt2(null, Reflect.banTypeDecoder)
         }
 
         private var needInitialHop = true

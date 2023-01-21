@@ -7,7 +7,7 @@ import java.lang.reflect.Field
 import java.lang.reflect.Method
 
 @Suppress("DEPRECATION")
-object Refl {
+internal object Reflect {
     private val rsClassLoader by lazy {
         RuneliteContext.getClient()::class.java.classLoader!!
     }
